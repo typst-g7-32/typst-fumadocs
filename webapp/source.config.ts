@@ -1,3 +1,4 @@
+import { type RehypeCodeOptions } from 'fumadocs-core/mdx-plugins';
 import {
   defineConfig,
   defineDocs,
@@ -5,8 +6,6 @@ import {
   metaSchema,
 } from 'fumadocs-mdx/config';
 
-// You can customise Zod schemas for frontmatter and `meta.json` here
-// see https://fumadocs.dev/docs/mdx/collections
 export const docs = defineDocs({
   dir: 'content/docs',
   docs: {
@@ -20,8 +19,15 @@ export const docs = defineDocs({
   },
 });
 
+const rehypeCodeOptions: RehypeCodeOptions = {
+  inline: 'tailing-curly-colon',
+  themes: {
+    light: 'github-light',
+    dark: 'github-dark',
+  },
+};
 export default defineConfig({
   mdxOptions: {
-    // MDX options
+    rehypeCodeOptions
   },
 });
