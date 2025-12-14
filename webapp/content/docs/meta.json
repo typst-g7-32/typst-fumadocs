@@ -1,0 +1,5 @@
+{
+  "title": "Overview",
+  "description": "Learn how to use Typst to compose documents faster. Get started with the tutorial, or dive into the reference. ",
+  "pages": ["tutorial", "reference", "guides", "changelog"]
+}

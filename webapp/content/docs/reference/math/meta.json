@@ -1,0 +1,5 @@
+{
+  "title": "Math",
+  "description": "Documentation for functions related to Math in Typst.",
+  "pages": ["accent", "attach", "binom", "cancel", "cases", "class", "equation", "frac", "lr", "mat", "primes", "roots", "sizes", "stretch", "styles", "op", "underover", "variants", "vec"]
+}

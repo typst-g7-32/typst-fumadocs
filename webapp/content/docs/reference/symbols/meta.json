@@ -1,0 +1,5 @@
+{
+  "title": "Symbols",
+  "description": "Documentation for functions related to Symbols in Typst.",
+  "pages": ["sym", "emoji"]
+}

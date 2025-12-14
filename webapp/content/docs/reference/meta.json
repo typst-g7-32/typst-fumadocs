@@ -1,0 +1,5 @@
+{
+  "title": "Reference",
+  "description": "The Typst reference is a systematic and comprehensive guide to the Typst typesetting language.",
+  "pages": ["syntax", "styling", "scripting", "context", "foundations", "model", "text", "math", "symbols", "layout", "visualize", "introspection", "data-loading", "pdf", "html", "png", "svg"]
+}

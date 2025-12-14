@@ -1,0 +1,5 @@
+{
+  "title": "Model",
+  "description": "Documentation for functions related to Model in Typst.",
+  "pages": ["bibliography", "list", "cite", "document", "emph", "figure", "footnote", "heading", "link", "enum", "numbering", "outline", "par", "parbreak", "quote", "ref", "strong", "table", "terms", "title"]
+}

@@ -1,0 +1,5 @@
+{
+  "title": "Data Loading",
+  "description": "Documentation for functions related to Data Loading in Typst.",
+  "pages": ["cbor", "csv", "json", "read", "toml", "xml", "yaml"]
+}

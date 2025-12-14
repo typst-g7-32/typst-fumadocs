@@ -20,7 +20,7 @@ def process_footnote_definition(element: Tag) -> str:
     fn_id = element.get("id")
     
     label = element.find(class_="footnote-definition-label")
-    if label:
+    if label and isinstance(label, Tag):
         label.decompose()
 
     content = "".join([process_inline(child) for child in element.children]).strip()

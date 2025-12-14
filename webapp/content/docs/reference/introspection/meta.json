@@ -1,0 +1,5 @@
+{
+  "title": "Introspection",
+  "description": "Documentation for functions related to Introspection in Typst.",
+  "pages": ["counter", "here", "locate", "location", "metadata", "query", "state"]
+}

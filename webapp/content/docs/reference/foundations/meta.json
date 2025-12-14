@@ -1,0 +1,5 @@
+{
+  "title": "Foundations",
+  "description": "Documentation for functions related to Foundations in Typst.",
+  "pages": ["arguments", "array", "assert", "auto", "bool", "bytes", "calc", "content", "datetime", "decimal", "dictionary", "duration", "eval", "float", "function", "int", "label", "module", "none", "panic", "plugin", "regex", "repr", "selector", "std", "str", "symbol", "sys", "target", "type", "version"]
+}

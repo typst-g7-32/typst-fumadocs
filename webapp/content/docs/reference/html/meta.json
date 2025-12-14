@@ -1,0 +1,5 @@
+{
+  "title": "HTML",
+  "description": "Documentation for functions related to HTML in Typst.",
+  "pages": ["elem", "frame", "typed"]
+}

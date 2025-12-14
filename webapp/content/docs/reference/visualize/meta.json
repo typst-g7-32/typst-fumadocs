@@ -1,0 +1,5 @@
+{
+  "title": "Visualize",
+  "description": "Documentation for functions related to Visualize in Typst.",
+  "pages": ["circle", "color", "curve", "ellipse", "gradient", "image", "line", "path", "polygon", "rect", "square", "stroke", "tiling"]
+}

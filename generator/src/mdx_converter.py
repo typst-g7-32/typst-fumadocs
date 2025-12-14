@@ -9,7 +9,7 @@ def js_escape(text: str) -> str:
         return ""
     return text.replace("\\", "\\\\").replace("'", "\\'").replace('\n', ' ')
 
-def render_details(details: Union[str, list, dict]) -> str:
+def render_generic(details: Union[str, list, dict]) -> str:
     if not details:
         return ""
     
@@ -45,7 +45,7 @@ def render_type_table(params: list[dict]) -> str:
         
         type_str = " | ".join([t for t in param.get('types', [])])
         
-        raw_desc = render_details(param.get('details', '')).strip()
+        raw_desc = render_generic(param.get('details', '')).strip()
         desc = js_escape(raw_desc)
         
         fields = []
@@ -75,7 +75,7 @@ def render_func(func: dict, heading_level: int = 2) -> str:
     path = ".".join(func.get('path', []) + [name])
     
     result = ""
-    result += render_details(func.get("details", "")) + "\n\n"
+    result += render_generic(func.get("details", "")) + "\n\n"
     
     params_sig = []
     for p in func.get("params", []):
@@ -100,7 +100,7 @@ def render_func(func: dict, heading_level: int = 2) -> str:
         if isinstance(ex, dict) and "body" in ex:
              result += html_to_mdx(ex["body"]) + "\n"
         else:
-             result += render_details(ex) + "\n"
+             result += render_generic(ex) + "\n"
 
     if func.get("scope"):
         result += f"\n{head}# Definitions\n"
@@ -122,6 +122,7 @@ def get_pages_recursive(json_data: dict, result_list: list, on_item_processed: C
     part = json_data.get("part")
     body = json_data.get("body")
     has_children = bool(json_data.get("children"))
+    children_order = [elem.get("route").split("/")[-2] for elem in json_data.get("children") or []]
     
     result_list.append({
         "title": title,
@@ -129,7 +130,8 @@ def get_pages_recursive(json_data: dict, result_list: list, on_item_processed: C
         "description": description,
         "part": part,
         "body": body,
-        "has_children": has_children
+        "has_children": has_children,
+        "children_order": children_order
     })
 
     if on_item_processed:
@@ -139,7 +141,7 @@ def get_pages_recursive(json_data: dict, result_list: list, on_item_processed: C
         get_pages_recursive(children, result_list, on_item_processed)
 
 def render_category(category: dict) -> str:
-    details = render_details(category.get("details", ""))
+    details = render_generic(category.get("details", ""))
 
     items = category.get("items", [])
 
@@ -172,7 +174,7 @@ def render_category(category: dict) -> str:
     return f"{details}\n\n## Definitions\n\n{table}\n"
 
 def render_symbols(symbols: dict) -> str:
-    result = render_details(symbols.get('details', ''))
+    result = render_generic(symbols.get('details', ''))
     result += "\n\n"
     result += "| Symbol | Name | Math Class |\n"
     result += "| ----- | ----- | ----- |\n"
@@ -184,13 +186,13 @@ def render_symbols(symbols: dict) -> str:
     return result
 
 def render_group(group: dict) -> str:
-    result = render_details(group.get("details", "")) + "\n\n"
+    result = render_generic(group.get("details", "")) + "\n\n"
     for func in group.get("functions", []):
         result += render_func(func)
     return result
 
 def render_type(type_data: dict) -> str:
-    result = render_details(type_data.get("details", "")) + "\n\n"
+    result = render_generic(type_data.get("details", "")) + "\n\n"
     
     if type_data.get("constructor"):
         result += "## Constructor\n"
@@ -205,7 +207,7 @@ def render_type(type_data: dict) -> str:
 
 def render_body(body_type: str, body_content) -> str:
     if body_type == "html":
-        return render_details(body_content)
+        return render_generic(body_content)
     elif body_type == "category":
         return render_category(body_content)
     elif body_type == "symbols":
@@ -240,14 +242,31 @@ def convert_page_to_mdx(page: dict) -> str:
     for import_name in imports_dict.keys():
         if import_name in body_content_str:
             imports += imports_dict[import_name] + "\n"
+    if imports:
+        imports = "\n" + imports
 
     content = f"""---
 title: "{title}"
 description: "{description}"
----\n\n{imports}
+---\n{imports}
 {body_content_str}
 """
     return content
+
+
+def generate_meta_json(directory_json: dict, folder_path: Path) -> None:
+    file_path = folder_path / "meta.json"
+    title = directory_json.get("title")
+    description = (directory_json.get("description") or "").replace('\n', ' ')
+    pages = [f'"{elem}"' for elem in directory_json.get("children_order") or []]
+    children_order = ', '.join(pages)
+    meta = f"""{{
+  "title": "{title}",
+  "description": "{description}",
+  "pages": [{children_order}]
+}}
+"""
+    file_path.write_text(meta, encoding='utf-8')
 
 def generate_mdx_docs(input_json: Path, output_path: Path) -> None:
     json_data = json.loads(input_json.read_text(encoding='utf-8'))
@@ -260,14 +279,22 @@ def generate_mdx_docs(input_json: Path, output_path: Path) -> None:
     for page in full_pages_list:
         logger.info(f"Processing: {page['title']}")
         mdx_content = convert_page_to_mdx(page)
+
         
         route = page["route"]
         if not route:
+            root_data = {
+                "title": json_data[0]["title"],
+                "description": json_data[0]["description"],
+                "children_order": [elem.get("route").split("/")[-2] for elem in json_data[1:]]
+            }
+            generate_meta_json(root_data, output_path)
             file_path = output_path / "index.mdx"
         elif page["has_children"]:
             folder = output_path / route
             folder.mkdir(parents=True, exist_ok=True)
             file_path = folder / "index.mdx"
+            generate_meta_json(page, folder)
         else:
             folder = output_path / route
             folder.parent.mkdir(parents=True, exist_ok=True)

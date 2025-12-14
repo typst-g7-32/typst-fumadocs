@@ -1,0 +1,5 @@
+{
+  "title": "Layout",
+  "description": "Documentation for functions related to Layout in Typst.",
+  "pages": ["align", "alignment", "angle", "block", "box", "colbreak", "columns", "direction", "fraction", "grid", "hide", "layout", "length", "measure", "move", "pad", "page", "pagebreak", "place", "ratio", "relative", "repeat", "rotate", "scale", "skew", "h", "v", "stack"]
+}

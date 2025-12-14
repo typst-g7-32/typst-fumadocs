@@ -1,0 +1,5 @@
+{
+  "title": "Tutorial",
+  "description": "Typst's tutorial.",
+  "pages": ["writing-in-typst", "formatting", "advanced-styling", "making-a-template"]
+}

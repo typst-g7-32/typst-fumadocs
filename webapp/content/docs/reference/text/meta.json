@@ -1,0 +1,5 @@
+{
+  "title": "Text",
+  "description": "Documentation for functions related to Text in Typst.",
+  "pages": ["highlight", "linebreak", "lorem", "lower", "overline", "raw", "smallcaps", "smartquote", "strike", "sub", "super", "text", "underline", "upper"]
+}

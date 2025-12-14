@@ -1,0 +1,5 @@
+{
+  "title": "PDF",
+  "description": "Documentation for functions related to PDF in Typst.",
+  "pages": ["artifact", "attach", "data-cell", "header-cell", "table-summary"]
+}
