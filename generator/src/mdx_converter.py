@@ -47,7 +47,8 @@ def render_category(category: dict) -> str:
 
     rows = "\n".join(
         f'    <tr>\n'
-        f'      <td>— <code><a href="{item["route"]}">{item["name"]}</a></code></td>\n'
+        f'      <td width="20px" align="center">—</td>\n'
+        f'      <td><code><a href="{item["route"]}">{item["name"]}</a></code></td>\n'
         f'      <td>{item["oneliner"]}</td>\n'
         f'    </tr>'
         for item in category["items"]
@@ -57,6 +58,7 @@ def render_category(category: dict) -> str:
 <table>
   <thead>
     <tr>
+      <th width="20px"></th>
       <th align="left">Name</th>
       <th align="left">Description</th>
     </tr>
@@ -66,23 +68,43 @@ def render_category(category: dict) -> str:
   </tbody>
 </table>
 """.strip()
-
     return f"{details}\n\n## Definitions\n\n{table}\n"
+
+def render_symbols(symbols: dict) -> str:
+    # TODO: Improve this
+    result = html_to_mdx(symbols['details'])
+    result += "\n\n"
+
+    result += "| Symbol | Name | Math Class |\n"
+    result += "| ----- | ----- | ----- |\n"
+    for symbol in symbols["list"]:
+        value = symbol["value"]
+        if value in ["|", "`", "'", '"', "\\"]:
+            value = f"\\{value}"
+        result += f"| {value} | {symbol['name']} | {symbol['mathClass']} |\n"
+
+    return result
+
+def render_group(group: dict) -> str:
+    result = html_to_mdx(group["details"])
+    for func in group["functions"]:
+        result += render_func(func)
+    return result
 
 def render_body(body_type: str, body_content) -> str:
     if body_type == "html":
         return html_to_mdx(body_content)
     elif body_type == "category":
         return render_category(body_content)
+    elif body_type == "symbols":
+        return render_symbols(body_content)
     else:
         print(f"{body_type} is currently not supported")
         return f"{body_type} is currently not supported"
 
 def convert_page_to_mdx(page: dict) -> str:
     title = page.get("title")
-    route = page.get("route")
     description = page.get("description")
-    part = page.get("part")
     body = page.get("body")
     if body:
         body_type = body.get("kind")
@@ -108,7 +130,7 @@ def generate_mdx_docs(input_json: Path, output_path: Path) -> None:
     logger.info(f"Found {len(full_pages_list)} pages")
 
     for page in full_pages_list:
-        print(page.get("title"), page.get("has_children"))
+        print(page["title"], page["route"])
         mdx_content = convert_page_to_mdx(page)
         if page["route"] == "":
             output_path.joinpath("index.mdx").write_text(mdx_content)
