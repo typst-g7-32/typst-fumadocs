@@ -3,7 +3,6 @@ title: "PNG"
 description: "Documentation for functions related to PNG in Typst."
 ---
 
-
 Instead of creating a PDF, Typst can also directly render pages to PNG raster graphics. PNGs are losslessly compressed images that can contain one page at a time. When exporting a multi-page document, Typst will emit multiple PNGs. PNGs are a good choice when you want to use Typst's output in an image editing software or when you can use none of Typst's other export formats.
 
 In contrast to Typst's other export formats, PNGs are bound to a specific resolution. When exporting to PNG, you can configure the resolution as pixels per inch (PPI). If the medium you view the PNG on has a finer resolution than the PNG you exported, you will notice a loss of quality. Typst calculates the resolution of your PNGs based on each page's physical dimensions and the PPI. If you need guidance for choosing a PPI value, consider the following:

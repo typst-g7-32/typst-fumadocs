@@ -14,10 +14,11 @@ The text is rendered smaller and its baseline is raised.
 
 <TypstPreview
   code={`
-1#super[st] try!
+  1#super[st] try!
 `}
   image='/assets/d39db3c0aae4bd51ed655cd6eb958575.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -33,7 +34,7 @@ The text is rendered smaller and its baseline is raised.
 <TypeTable
   type={{
     'typographic': {
-      'description': 'Whether to use superscript glyphs from the font if available.  Ideally, superscripts glyphs are provided by the font (using the `sups{:typst}` OpenType feature). Otherwise, Typst is able to synthesize superscripts by raising and scaling down regular glyphs.  When this is set to `false{:typst}`, synthesized glyphs will be used regardless of whether the font provides dedicated superscript glyphs. When `true{:typst}`, synthesized glyphs may still be used in case the font does not provide the necessary superscript glyphs.  <TypstPreview   code={` N#super(typographic: true)[1] N#super(typographic: false)[1] `}   image=\'/assets/d7fcca4246d939b0d654b4f893ed8b29.png\'   alt=\'Preview\' />',
+      'description': 'Whether to use superscript glyphs from the font if available.  Ideally, superscripts glyphs are provided by the font (using the `sups{:typst}` OpenType feature). Otherwise, Typst is able to synthesize superscripts by raising and scaling down regular glyphs.  When this is set to `false{:typst}`, synthesized glyphs will be used regardless of whether the font provides dedicated superscript glyphs. When `true{:typst}`, synthesized glyphs may still be used in case the font does not provide the necessary superscript glyphs.  <TypstPreview   code={`   N#super(typographic: true)[1]   N#super(typographic: false)[1] `}   image=\'/assets/d7fcca4246d939b0d654b4f893ed8b29.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">true</span></code>'
     },

@@ -14,15 +14,16 @@ Must not be used inside any containers.
 
 <TypstPreview
   code={`
-The next page contains
-more details on compound theory.
-#pagebreak()
+  The next page contains
+  more details on compound theory.
+  #pagebreak()
 
-== Compound Theory
-In 1984, the first ...
+  == Compound Theory
+  In 1984, the first ...
 `}
   image='/assets/3098eee9a9bf195060b49592b4463703-0.png'
   alt='Preview page 1'
+  editable={true}
 />
 
 Even without manual page breaks, content will be automatically paginated based on the configured page size. You can set [the page height](/docs/reference/layout/page/#parameters-height) to `auto{:typst}` to let the page grow dynamically until a manual page break occurs.
@@ -45,7 +46,7 @@ Pagination tries to avoid single lines of text at the top or bottom of a page (t
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'to': {
-      'description': 'If given, ensures that the next page will be an even/odd page, with an empty page in between if necessary.  <TypstPreview   code={` #set page(height: 30pt)  First. #pagebreak(to: "odd") Third. `}   image=\'/assets/ff80837b479a5387b266d55477502b8a-0.png\'   alt=\'Preview page 1\' />',
+      'description': 'If given, ensures that the next page will be an even/odd page, with an empty page in between if necessary.  <TypstPreview   code={`   #set page(height: 30pt)    First.   #pagebreak(to: "odd")   Third. `}   image=\'/assets/ff80837b479a5387b266d55477502b8a-0.png\'   alt=\'Preview page 1\'   editable={true} />',
       'type': 'none | str',
       'default': '<code><span class="typ-key">none</span></code>'
     }

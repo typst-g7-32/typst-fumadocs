@@ -12,17 +12,18 @@ A path through a list of points, connected by Bézier curves.
 
 <TypstPreview
   code={`
-#path(
-  fill: blue.lighten(80%),
-  stroke: blue,
-  closed: true,
-  (0pt, 50pt),
-  (100%, 50pt),
-  ((50%, 0pt), (40pt, 0pt)),
-)
+  #path(
+    fill: blue.lighten(80%),
+    stroke: blue,
+    closed: true,
+    (0pt, 50pt),
+    (100%, 50pt),
+    ((50%, 0pt), (40pt, 0pt)),
+  )
 `}
   image='/assets/7c71fff7477a30492c8c5421fe00a40f.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -44,7 +45,7 @@ A path through a list of points, connected by Bézier curves.
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'fill-rule': {
-      'description': 'The drawing rule used to fill the path.  <TypstPreview   code={` // We use \\`.with\\` to get a new // function that has the common // arguments pre-applied. #let star = path.with(   fill: red,   closed: true,   (25pt, 0pt),   (10pt, 50pt),   (50pt, 20pt),   (0pt, 20pt),   (40pt, 50pt), )  #star(fill-rule: "non-zero") #star(fill-rule: "even-odd") `}   image=\'/assets/30910e51feb697b68ad0f1be1e5dc72a.png\'   alt=\'Preview\' />',
+      'description': 'The drawing rule used to fill the path.  <TypstPreview   code={`   // We use \\`.with\\` to get a new   // function that has the common   // arguments pre-applied.   #let star = path.with(     fill: red,     closed: true,     (25pt, 0pt),     (10pt, 50pt),     (50pt, 20pt),     (0pt, 20pt),     (40pt, 50pt),   )    #star(fill-rule: "non-zero")   #star(fill-rule: "even-odd") `}   image=\'/assets/30910e51feb697b68ad0f1be1e5dc72a.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;non-zero&quot;</span></code>'
     },

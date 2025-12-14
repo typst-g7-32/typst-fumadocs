@@ -16,42 +16,45 @@ Apart from basic types for numeric values and [typical](/docs/reference/foundati
 
 <TypstPreview
   code={`
-#let x = 10
-#if type(x) == int [
-  #x is an integer!
-] else [
-  #x is another value...
-]
+  #let x = 10
+  #if type(x) == int [
+    #x is an integer!
+  ] else [
+    #x is another value...
+  ]
 
-An image is of type
-#type(image("glacier.jpg")).
+  An image is of type
+  #type(image("glacier.jpg")).
 `}
   image='/assets/7538c768430ee75e747b4f97560d4ecf.png'
   alt='Preview'
+  editable={false}
 />
 
 The type of `10{:typst}` is `int{:typst}`. Now, what is the type of `int{:typst}` or even `type{:typst}`?
 
 <TypstPreview
   code={`
-#type(int) 
-#type(type)
+  #type(int) \
+  #type(type)
 `}
   image='/assets/1ea220672ff0a816e76e846567e22fe0.png'
   alt='Preview'
+  editable={true}
 />
 
 Unlike other types like `int{:typst}`, [none](/docs/reference/foundations/none/) and [auto](/docs/reference/foundations/auto/) do not have a name representing them. To test if a value is one of these, compare your value to them directly, e.g:
 
 <TypstPreview
   code={`
-#let val = none
-#if val == none [
-  Yep, it's none.
-]
+  #let val = none
+  #if val == none [
+    Yep, it's none.
+  ]
 `}
   image='/assets/9fe64b0d6307e76aa133e5f4f468d494.png'
   alt='Preview'
+  editable={true}
 />
 
 Note that `type{:typst}` will return [`content{:typst}`](/docs/reference/foundations/content/) for all document elements. To programmatically determine which kind of content you are dealing with, see [`content.func{:typst}`](/docs/reference/foundations/content/#definitions-func).
@@ -61,16 +64,17 @@ Determines a value's type.
 
 <TypstPreview
   code={`
-#type(12) 
-#type(14.7) 
-#type("hello") 
-#type(<glacier>) 
-#type([Hi]) 
-#type(x => x + 1) 
-#type(type)
+  #type(12) \
+  #type(14.7) \
+  #type("hello") \
+  #type(<glacier>) \
+  #type([Hi]) \
+  #type(x => x + 1) \
+  #type(type)
 `}
   image='/assets/3bff018780f2b4261ae9dc20c2e887a.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

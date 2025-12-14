@@ -21,17 +21,18 @@ You can multiply lengths with and divide them by integers and floats.
 
 <TypstPreview
   code={`
-#rect(width: 20pt)
-#rect(width: 2em)
-#rect(width: 1in)
+  #rect(width: 20pt)
+  #rect(width: 2em)
+  #rect(width: 1in)
 
-#(3em + 5pt).em 
-#(20pt).em 
-#(40em + 2pt).abs 
-#(5em).abs
+  #(3em + 5pt).em \
+  #(20pt).em \
+  #(40em + 2pt).abs \
+  #(5em).abs
 `}
   image='/assets/829c0a1d2ef2db0201ec12311845e833.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Fields
@@ -61,22 +62,23 @@ Resolve this length to an absolute length.
 
 <TypstPreview
   code={`
-#set text(size: 12pt)
-#context [
-  #(6pt).to-absolute() 
-  #(6pt + 10em).to-absolute() 
-  #(10em).to-absolute()
-]
+  #set text(size: 12pt)
+  #context [
+    #(6pt).to-absolute() \
+    #(6pt + 10em).to-absolute() \
+    #(10em).to-absolute()
+  ]
 
-#set text(size: 6pt)
-#context [
-  #(6pt).to-absolute() 
-  #(6pt + 10em).to-absolute() 
-  #(10em).to-absolute()
-]
+  #set text(size: 6pt)
+  #context [
+    #(6pt).to-absolute() \
+    #(6pt + 10em).to-absolute() \
+    #(10em).to-absolute()
+  ]
 `}
   image='/assets/3bc7f89b14d9cfece24bb79c946032be.png'
   alt='Preview'
+  editable={true}
 />
 
 

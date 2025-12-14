@@ -16,15 +16,16 @@ If you specify `encoding: none{:typst}`, this returns raw [bytes](/docs/referenc
 
 <TypstPreview
   code={`
-An example for a HTML file: 
-#let text = read("example.html")
-#raw(text, block: true, lang: "html")
+  An example for a HTML file: \
+  #let text = read("example.html")
+  #raw(text, block: true, lang: "html")
 
-Raw bytes:
-#read("tiger.jpg", encoding: none)
+  Raw bytes:
+  #read("tiger.jpg", encoding: none)
 `}
   image='/assets/5beb8b2f71dd3bc914c1c85e2a66bc77.png'
   alt='Preview'
+  editable={false}
 />
 
 ```typst

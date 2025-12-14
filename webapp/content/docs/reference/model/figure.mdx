@@ -16,33 +16,35 @@ The example below shows a basic figure with an image:
 
 <TypstPreview
   code={`
-@glacier shows a glacier. Glaciers
-are complex systems.
+  @glacier shows a glacier. Glaciers
+  are complex systems.
 
-#figure(
-  image("glacier.jpg", width: 80%),
-  caption: [A curious figure.],
-) <glacier>
+  #figure(
+    image("glacier.jpg", width: 80%),
+    caption: [A curious figure.],
+  ) <glacier>
 `}
   image='/assets/b9dc3c275cd6f020dfa180755d3cdd2e.png'
   alt='Preview'
+  editable={false}
 />
 
 You can also insert [tables](/docs/reference/model/table/) into figures to give them a caption. The figure will detect this and automatically use a separate counter.
 
 <TypstPreview
   code={`
-#figure(
-  table(
-    columns: 4,
-    [t], [1], [2], [3],
-    [y], [0.3s], [0.4s], [0.8s],
-  ),
-  caption: [Timing results],
-)
+  #figure(
+    table(
+      columns: 4,
+      [t], [1], [2], [3],
+      [y], [0.3s], [0.4s], [0.8s],
+    ),
+    caption: [Timing results],
+  )
 `}
   image='/assets/fd168e26293d3b952840ef04aba38cf6.png'
   alt='Preview'
+  editable={true}
 />
 
 This behaviour can be overridden by explicitly specifying the figure's `kind{:typst}`. All figures of the same kind share a common counter.
@@ -65,32 +67,34 @@ You can modify the appearance of the figure's caption with its associated [`capt
 
 <TypstPreview
   code={`
-#show figure.caption: emph
+  #show figure.caption: emph
 
-#figure(
-  rect[Hello],
-  caption: [I am emphasized!],
-)
+  #figure(
+    rect[Hello],
+    caption: [I am emphasized!],
+  )
 `}
   image='/assets/fd76214814edd5d9a3611f40e27fda0a.png'
   alt='Preview'
+  editable={true}
 />
 
 By using a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector, we can scope such rules to specific kinds of figures. For example, to position the caption above tables, but keep it below for all other kinds of figures, we could write the following show-set rule:
 
 <TypstPreview
   code={`
-#show figure.where(
-  kind: table
-): set figure.caption(position: top)
+  #show figure.where(
+    kind: table
+  ): set figure.caption(position: top)
 
-#figure(
-  table(columns: 2)[A][B][C][D],
-  caption: [I'm up here],
-)
+  #figure(
+    table(columns: 2)[A][B][C][D],
+    caption: [I'm up here],
+  )
 `}
   image='/assets/e455d8faf40a203e10d4562c478231f4.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Accessibility
@@ -130,12 +134,12 @@ AT will always read the figure at the point where it appears in the document, re
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'placement': {
-      'description': 'The figure\'s placement on the page.  - `none{:typst}`: The figure stays in-flow exactly where it was specified like other content. - `auto{:typst}`: The figure picks `top{:typst}` or `bottom{:typst}` depending on which is closer. - `top{:typst}`: The figure floats to the top of the page. - `bottom{:typst}`: The figure floats to the bottom of the page.  The gap between the main flow content and the floating figure is controlled by the [`clearance{:typst}`](/docs/reference/layout/place/#parameters-clearance) argument on the `place{:typst}` function.  <TypstPreview   code={` #set page(height: 200pt) #show figure: set place(   clearance: 1em, )  = Introduction #figure(   placement: bottom,   caption: [A glacier],   image("glacier.jpg", width: 60%), ) #lorem(60) `}   image=\'/assets/836b68045cf729130a332f4422de1824-0.png\'   alt=\'Preview page 1\' />',
+      'description': 'The figure\'s placement on the page.  - `none{:typst}`: The figure stays in-flow exactly where it was specified like other content. - `auto{:typst}`: The figure picks `top{:typst}` or `bottom{:typst}` depending on which is closer. - `top{:typst}`: The figure floats to the top of the page. - `bottom{:typst}`: The figure floats to the bottom of the page.  The gap between the main flow content and the floating figure is controlled by the [`clearance{:typst}`](/docs/reference/layout/place/#parameters-clearance) argument on the `place{:typst}` function.  <TypstPreview   code={`   #set page(height: 200pt)   #show figure: set place(     clearance: 1em,   )    = Introduction   #figure(     placement: bottom,     caption: [A glacier],     image("glacier.jpg", width: 60%),   )   #lorem(60) `}   image=\'/assets/836b68045cf729130a332f4422de1824-0.png\'   alt=\'Preview page 1\'   editable={true} />',
       'type': 'none | auto | alignment',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'scope': {
-      'description': 'Relative to which containing scope the figure is placed.  Set this to `"parent"{:typst}` to create a full-width figure in a two-column document.  Has no effect if `placement{:typst}` is `none{:typst}`.  <TypstPreview   code={` #set page(height: 250pt, columns: 2)  = Introduction #figure(   placement: bottom,   scope: "parent",   caption: [A glacier],   image("glacier.jpg", width: 60%), ) #lorem(60) `}   image=\'/assets/ff35f92bd3477ddda661809e2666a0ef-0.png\'   alt=\'Preview page 1\' />',
+      'description': 'Relative to which containing scope the figure is placed.  Set this to `"parent"{:typst}` to create a full-width figure in a two-column document.  Has no effect if `placement{:typst}` is `none{:typst}`.  <TypstPreview   code={`   #set page(height: 250pt, columns: 2)    = Introduction   #figure(     placement: bottom,     scope: "parent",     caption: [A glacier],     image("glacier.jpg", width: 60%),   )   #lorem(60) `}   image=\'/assets/ff35f92bd3477ddda661809e2666a0ef-0.png\'   alt=\'Preview page 1\'   editable={true} />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;column&quot;</span></code>'
     },
@@ -145,12 +149,12 @@ AT will always read the figure at the point where it appears in the document, re
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'kind': {
-      'description': 'The kind of figure this is.  All figures of the same kind share a common counter.  If set to `auto{:typst}`, the figure will try to automatically determine its kind based on the type of its body. Automatically detected kinds are [tables](/docs/reference/model/table/) and [code](/docs/reference/text/raw/). In other cases, the inferred kind is that of an [image](/docs/reference/visualize/image/).  Setting this to something other than `auto{:typst}` will override the automatic detection. This can be useful if  - you wish to create a custom figure type that is not an [image](/docs/reference/visualize/image/), a [table](/docs/reference/model/table/) or [code](/docs/reference/text/raw/), - you want to force the figure to use a specific counter regardless of its content.  You can set the kind to be an element function or a string. If you set it to an element function other than [`table{:typst}`](/docs/reference/model/table/), [`raw{:typst}`](/docs/reference/text/raw/), or [`image{:typst}`](/docs/reference/visualize/image/), you will need to manually specify the figure\'s supplement.  <TypstPreview   code={` #figure(   circle(radius: 10pt),   caption: [A curious atom.],   kind: "atom",   supplement: [Atom], ) `}   image=\'/assets/82712152d3e540b0bd0e61dfb58e2fcd.png\'   alt=\'Preview\' />  If you want to modify a counter to skip a number or reset the counter, you can access the [counter](/docs/reference/introspection/counter/) of each kind of figure with a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector:  - For [tables](/docs/reference/model/table/): `counter(figure.where(kind: table)){:typst}` - For [images](/docs/reference/visualize/image/): `counter(figure.where(kind: image)){:typst}` - For a custom kind: `counter(figure.where(kind: kind)){:typst}`  <TypstPreview   code={` #figure(   table(columns: 2, $n$, $1$),   caption: [The first table.], )  #counter(   figure.where(kind: table) ).update(41)  #figure(   table(columns: 2, $n$, $42$),   caption: [The 42nd table], )  #figure(   rect[Image],   caption: [Does not affect images], ) `}   image=\'/assets/e37c23f2e763f8a755103e6fcd1dd0c5.png\'   alt=\'Preview\' />  To conveniently use the correct counter in a show rule, you can access the `counter{:typst}` field. There is an example of this in the documentation [of the `figure.caption{:typst}` element\'s `body{:typst}` field](/docs/reference/model/figure/#definitions-caption-body).',
+      'description': 'The kind of figure this is.  All figures of the same kind share a common counter.  If set to `auto{:typst}`, the figure will try to automatically determine its kind based on the type of its body. Automatically detected kinds are [tables](/docs/reference/model/table/) and [code](/docs/reference/text/raw/). In other cases, the inferred kind is that of an [image](/docs/reference/visualize/image/).  Setting this to something other than `auto{:typst}` will override the automatic detection. This can be useful if  - you wish to create a custom figure type that is not an [image](/docs/reference/visualize/image/), a [table](/docs/reference/model/table/) or [code](/docs/reference/text/raw/), - you want to force the figure to use a specific counter regardless of its content.  You can set the kind to be an element function or a string. If you set it to an element function other than [`table{:typst}`](/docs/reference/model/table/), [`raw{:typst}`](/docs/reference/text/raw/), or [`image{:typst}`](/docs/reference/visualize/image/), you will need to manually specify the figure\'s supplement.  <TypstPreview   code={`   #figure(     circle(radius: 10pt),     caption: [A curious atom.],     kind: "atom",     supplement: [Atom],   ) `}   image=\'/assets/82712152d3e540b0bd0e61dfb58e2fcd.png\'   alt=\'Preview\'   editable={true} />  If you want to modify a counter to skip a number or reset the counter, you can access the [counter](/docs/reference/introspection/counter/) of each kind of figure with a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector:  - For [tables](/docs/reference/model/table/): `counter(figure.where(kind: table)){:typst}` - For [images](/docs/reference/visualize/image/): `counter(figure.where(kind: image)){:typst}` - For a custom kind: `counter(figure.where(kind: kind)){:typst}`  <TypstPreview   code={`   #figure(     table(columns: 2, $n$, $1$),     caption: [The first table.],   )    #counter(     figure.where(kind: table)   ).update(41)    #figure(     table(columns: 2, $n$, $42$),     caption: [The 42nd table],   )    #figure(     rect[Image],     caption: [Does not affect images],   ) `}   image=\'/assets/e37c23f2e763f8a755103e6fcd1dd0c5.png\'   alt=\'Preview\'   editable={true} />  To conveniently use the correct counter in a show rule, you can access the `counter{:typst}` field. There is an example of this in the documentation [of the `figure.caption{:typst}` element\'s `body{:typst}` field](/docs/reference/model/figure/#definitions-caption-body).',
       'type': 'auto | str | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'supplement': {
-      'description': 'The figure\'s supplement.  If set to `auto{:typst}`, the figure will try to automatically determine the correct supplement based on the `kind{:typst}` and the active [text language](/docs/reference/text/text/#parameters-lang). If you are using a custom figure type, you will need to manually specify the supplement.  If a function is specified, it is passed the first descendant of the specified `kind{:typst}` (typically, the figure\'s body) and should return content.  <TypstPreview   code={` #figure(   [The contents of my figure!],   caption: [My custom figure],   supplement: [Bar],   kind: "foo", ) `}   image=\'/assets/fe8c37b3e778c5204de955fe9d51d5cd.png\'   alt=\'Preview\' />',
+      'description': 'The figure\'s supplement.  If set to `auto{:typst}`, the figure will try to automatically determine the correct supplement based on the `kind{:typst}` and the active [text language](/docs/reference/text/text/#parameters-lang). If you are using a custom figure type, you will need to manually specify the supplement.  If a function is specified, it is passed the first descendant of the specified `kind{:typst}` (typically, the figure\'s body) and should return content.  <TypstPreview   code={`   #figure(     [The contents of my figure!],     caption: [My custom figure],     supplement: [Bar],     kind: "foo",   ) `}   image=\'/assets/fe8c37b3e778c5204de955fe9d51d5cd.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | content | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
@@ -180,15 +184,16 @@ In addition to its `position{:typst}` and `body{:typst}`, the `caption{:typst}` 
 
 <TypstPreview
   code={`
-#show figure.caption: emph
+  #show figure.caption: emph
 
-#figure(
-  rect[Hello],
-  caption: [A rectangle],
-)
+  #figure(
+    rect[Hello],
+    caption: [A rectangle],
+  )
 `}
   image='/assets/ffd45a7b793ed7875c6f4d1b596e1c88.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -203,17 +208,17 @@ In addition to its `position{:typst}` and `body{:typst}`, the `caption{:typst}` 
 <TypeTable
   type={{
     'position': {
-      'description': 'The caption\'s position in the figure. Either `top{:typst}` or `bottom{:typst}`.  <TypstPreview   code={` #show figure.where(   kind: table ): set figure.caption(position: top)  #figure(   table(columns: 2)[A][B],   caption: [I\'m up here], )  #figure(   rect[Hi],   caption: [I\'m down here], )  #figure(   table(columns: 2)[A][B],   caption: figure.caption(     position: bottom,     [I\'m down here too!]   ) ) `}   image=\'/assets/21d14a9a26af4aa31312a9fcc145ee52.png\'   alt=\'Preview\' />',
+      'description': 'The caption\'s position in the figure. Either `top{:typst}` or `bottom{:typst}`.  <TypstPreview   code={`   #show figure.where(     kind: table   ): set figure.caption(position: top)    #figure(     table(columns: 2)[A][B],     caption: [I\'m up here],   )    #figure(     rect[Hi],     caption: [I\'m down here],   )    #figure(     table(columns: 2)[A][B],     caption: figure.caption(       position: bottom,       [I\'m down here too!]     )   ) `}   image=\'/assets/21d14a9a26af4aa31312a9fcc145ee52.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'alignment',
       'default': '<code>bottom</code>'
     },
     'separator': {
-      'description': 'The separator which will appear between the number and body.  If set to `auto{:typst}`, the separator will be adapted to the current [language](/docs/reference/text/text/#parameters-lang) and [region](/docs/reference/text/text/#parameters-region).  <TypstPreview   code={` #set figure.caption(separator: [ --- ])  #figure(   rect[Hello],   caption: [A rectangle], ) `}   image=\'/assets/178ec0814a619978959f5da809bfc408.png\'   alt=\'Preview\' />',
+      'description': 'The separator which will appear between the number and body.  If set to `auto{:typst}`, the separator will be adapted to the current [language](/docs/reference/text/text/#parameters-lang) and [region](/docs/reference/text/text/#parameters-region).  <TypstPreview   code={`   #set figure.caption(separator: [ --- ])    #figure(     rect[Hello],     caption: [A rectangle],   ) `}   image=\'/assets/178ec0814a619978959f5da809bfc408.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'auto | content',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'body': {
-      'description': 'The caption\'s body.  Can be used alongside `kind{:typst}`, `supplement{:typst}`, `counter{:typst}`, `numbering{:typst}`, and `location{:typst}` to completely customize the caption.  <TypstPreview   code={` #show figure.caption: it => [   #underline(it.body) |   #it.supplement   #context it.counter.display(it.numbering) ]  #figure(   rect[Hello],   caption: [A rectangle], ) `}   image=\'/assets/271203fbe1409c884010228b31516257.png\'   alt=\'Preview\' />',
+      'description': 'The caption\'s body.  Can be used alongside `kind{:typst}`, `supplement{:typst}`, `counter{:typst}`, `numbering{:typst}`, and `location{:typst}` to completely customize the caption.  <TypstPreview   code={`   #show figure.caption: it => [     #underline(it.body) |     #it.supplement     #context it.counter.display(it.numbering)   ]    #figure(     rect[Hello],     caption: [A rectangle],   ) `}   image=\'/assets/271203fbe1409c884010228b31516257.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'content',
       'default': 'None'
     }

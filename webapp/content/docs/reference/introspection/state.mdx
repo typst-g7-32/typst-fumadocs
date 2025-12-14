@@ -35,20 +35,21 @@ Let's look at a slightly different, but similar kind of state: The heading numbe
 
 <TypstPreview
   code={`
-#set heading(numbering: "1.")
-#let template(body) = [
-  = Outline
+  #set heading(numbering: "1.")
+  #let template(body) = [
+    = Outline
+    ...
+    #body
+  ]
+
+  #show: template
+
+  = Introduction
   ...
-  #body
-]
-
-#show: template
-
-= Introduction
-...
 `}
   image='/assets/382f18a61cf8fa6150847e8c9bd970c0.png'
   alt='Preview'
+  editable={true}
 />
 
 Here, Typst first processes the body of the document after the show rule, sees the `Introduction{:typst}` heading, then passes the resulting content to the `template{:typst}` function and only then sees the `Outline{:typst}`. Just counting up would number the `Introduction{:typst}` with `1{:typst}` and the `Outline{:typst}` with `2{:typst}`.
@@ -64,21 +65,22 @@ Our initial example would now look like this:
 
 <TypstPreview
   code={`
-#let star = state("star", 0)
-#let compute(expr) = {
-  star.update(old =>
-    eval(expr.replace("⭐", str(old)))
-  )
-  [New value is #context star.get().]
-}
+  #let star = state("star", 0)
+  #let compute(expr) = {
+    star.update(old =>
+      eval(expr.replace("⭐", str(old)))
+    )
+    [New value is #context star.get().]
+  }
 
-#compute("10") 
-#compute("⭐ + 3") 
-#compute("⭐ * 2") 
-#compute("⭐ - 5")
+  #compute("10") \
+  #compute("⭐ + 3") \
+  #compute("⭐ * 2") \
+  #compute("⭐ - 5")
 `}
   image='/assets/90558dbee771e808eca1f68cdf3a9180.png'
   alt='Preview'
+  editable={true}
 />
 
 State managed by Typst is always updated in layout order, not in evaluation order. The `update{:typst}` method returns content and its effect occurs at the position where the returned content is inserted into the document.
@@ -87,19 +89,20 @@ As a result, we can now also store some of the computations in variables, but th
 
 <TypstPreview
   code={`
-...
+  ...
 
-#let more = [
-  #compute("⭐ * 2") 
-  #compute("⭐ - 5")
-]
+  #let more = [
+    #compute("⭐ * 2") \
+    #compute("⭐ - 5")
+  ]
 
-#compute("10") 
-#compute("⭐ + 3") 
-#more
+  #compute("10") \
+  #compute("⭐ + 3") \
+  #more
 `}
   image='/assets/60d834289ed95a6cd0ead55e970b8e94.png'
   alt='Preview'
+  editable={true}
 />
 
 This example is of course a bit silly, but in practice this is often exactly what you want! A good example are heading counters, which is why Typst's [counting system](/docs/reference/introspection/counter/) is very similar to its state system.
@@ -110,19 +113,20 @@ By using Typst's state management system you also get time travel capabilities! 
 
 <TypstPreview
   code={`
-...
+  ...
 
-Value at \`<here>\` is
-#context star.at(<here>)
+  Value at \`<here>\` is
+  #context star.at(<here>)
 
-#compute("10") 
-#compute("⭐ + 3") 
-*Here.* <here> 
-#compute("⭐ * 2") 
-#compute("⭐ - 5")
+  #compute("10") \
+  #compute("⭐ + 3") \
+  *Here.* <here> \
+  #compute("⭐ * 2") \
+  #compute("⭐ - 5")
 `}
   image='/assets/51ba9ea8959d58ae8865d48419e2a96e.png'
   alt='Preview'
+  editable={true}
 />
 
 ## A word of caution
@@ -133,13 +137,14 @@ For instance, if you generate state updates depending on the final value of a st
 
 <TypstPreview
   code={`
-// This is bad!
-#let x = state("key", 1)
-#context x.update(x.final() + 1)
-#context x.get()
+  // This is bad!
+  #let x = state("key", 1)
+  #context x.update(x.final() + 1)
+  #context x.get()
 `}
   image='/assets/353191d880395aa736697d1ec67de606.png'
   alt='Preview'
+  editable={true}
 />
 
 In general, you should try not to generate state updates from within context expressions. If possible, try to express your updates as non-contextual values or functions that compute the new value from the previous value. Sometimes, it cannot be helped, but in those cases it is up to you to ensure that the result converges.
@@ -163,7 +168,7 @@ Create a new state identified by a key.
       'default': 'None'
     },
     'init': {
-      'description': 'The initial value of the state.  If you construct multiple states with the same `key{:typst}` but different `init{:typst}` values, they will each use their own initial value but share updates. Specifically, the value of a state at some location in the document will be computed from that state\'s initial value and all preceding updates for the state\'s key.  <TypstPreview   code={` #let banana = state("key", "🍌") #let broccoli = state("key", "🥦")  #banana.update(it => it + "😋")  #context [   - #state("key", "🍎").get()   - #banana.get()   - #broccoli.get() ] `}   image=\'/assets/9f5105246e9a16db3f675ecc36607343.png\'   alt=\'Preview\' />',
+      'description': 'The initial value of the state.  If you construct multiple states with the same `key{:typst}` but different `init{:typst}` values, they will each use their own initial value but share updates. Specifically, the value of a state at some location in the document will be computed from that state\'s initial value and all preceding updates for the state\'s key.  <TypstPreview   code={`   #let banana = state("key", "🍌")   #let broccoli = state("key", "🥦")    #banana.update(it => it + "😋")    #context [     - #state("key", "🍎").get()     - #banana.get()     - #broccoli.get()   ] `}   image=\'/assets/9f5105246e9a16db3f675ecc36607343.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'any',
       'default': '<code><span class="typ-key">none</span></code>'
     }
@@ -221,7 +226,7 @@ In contrast to [`get{:typst}`](/docs/reference/introspection/state/#definitions-
 <TypeTable
   type={{
     'update': {
-      'description': 'A value to update to or a function to update with.  - If given a non-function value, sets the state to that value. - If given a function, that function receives the state\'s previous value and has to return the state\'s new value.  When updating the state based on its previous value, you should prefer the function form instead of retrieving the previous value from the [context](/docs/reference/context/). This allows the compiler to resolve the final state efficiently, minimizing the number of [layout iterations](/docs/reference/context/#compiler-iterations) required.  In the following example, `fill.update(f => not f){:typst}` will paint odd [items in the bullet list](/docs/reference/model/list/#definitions-item) as expected. However, if it\'s replaced with `context fill.update(not fill.get()){:typst}`, then layout will not converge within 5 attempts, as each update will take one additional iteration to propagate.  <TypstPreview   code={` #let fill = state("fill", false)  #show list.item: it => {   fill.update(f => not f)   context {     set text(fill: fuchsia) if fill.get()     it   } }  #lorem(5).split().map(list.item).join() `}   image=\'/assets/396ec1571afb7936e381da6ef57923c.png\'   alt=\'Preview\' />',
+      'description': 'A value to update to or a function to update with.  - If given a non-function value, sets the state to that value. - If given a function, that function receives the state\'s previous value and has to return the state\'s new value.  When updating the state based on its previous value, you should prefer the function form instead of retrieving the previous value from the [context](/docs/reference/context/). This allows the compiler to resolve the final state efficiently, minimizing the number of [layout iterations](/docs/reference/context/#compiler-iterations) required.  In the following example, `fill.update(f => not f){:typst}` will paint odd [items in the bullet list](/docs/reference/model/list/#definitions-item) as expected. However, if it\'s replaced with `context fill.update(not fill.get()){:typst}`, then layout will not converge within 5 attempts, as each update will take one additional iteration to propagate.  <TypstPreview   code={`   #let fill = state("fill", false)    #show list.item: it => {     fill.update(f => not f)     context {       set text(fill: fuchsia) if fill.get()       it     }   }    #lorem(5).split().map(list.item).join() `}   image=\'/assets/396ec1571afb7936e381da6ef57923c.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'any | function',
       'default': 'None'
     }

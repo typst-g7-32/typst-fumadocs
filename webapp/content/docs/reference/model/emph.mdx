@@ -15,17 +15,18 @@ Emphasizes content by toggling italics.
 
 <TypstPreview
   code={`
-This is _emphasized._ 
-This is #emph[too.]
+  This is _emphasized._ \
+  This is #emph[too.]
 
-#show emph: it => {
-  text(blue, it.body)
-}
+  #show emph: it => {
+    text(blue, it.body)
+  }
 
-This is _emphasized_ differently.
+  This is _emphasized_ differently.
 `}
   image='/assets/a777060a068976b92b49c3a2b5aed07e.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Syntax

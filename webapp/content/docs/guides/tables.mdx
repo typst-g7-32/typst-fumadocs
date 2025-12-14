@@ -22,22 +22,23 @@ So, let's say you want to create a table with two columns describing the ingredi
 
 <TypstPreview
   code={`
-#table(
-  columns: 2,
-  [*Amount*], [*Ingredient*],
-  [360g], [Baking flour],
-  [250g], [Butter (room temp.)],
-  [150g], [Brown sugar],
-  [100g], [Cane sugar],
-  [100g], [70% cocoa chocolate],
-  [100g], [35-40% cocoa chocolate],
-  [2], [Eggs],
-  [Pinch], [Salt],
-  [Drizzle], [Vanilla extract],
-)
+  #table(
+    columns: 2,
+    [*Amount*], [*Ingredient*],
+    [360g], [Baking flour],
+    [250g], [Butter (room temp.)],
+    [150g], [Brown sugar],
+    [100g], [Cane sugar],
+    [100g], [70% cocoa chocolate],
+    [100g], [35-40% cocoa chocolate],
+    [2], [Eggs],
+    [Pinch], [Salt],
+    [Drizzle], [Vanilla extract],
+  )
 `}
   image='/assets/eb2c89e60a7f28cd1d8543b6bbb717f.png'
   alt='Preview'
+  editable={true}
 />
 
 This example shows how to call, configure, and populate a table. Both the column count and cell contents are passed to the table as arguments. The [argument list](/docs/reference/foundations/function/) is surrounded by round parentheses. In it, we first pass the column count as a named argument. Then, we pass multiple [content blocks](/docs/reference/foundations/content/) as positional arguments. Each content block contains the contents for a single cell.
@@ -48,32 +49,34 @@ It is best to wrap the header row of your table in the [`table.header{:typst}` f
 
 <TypstPreview
   code={`
-#table(
-  columns: 2,
-  table.header[*Amount*][*Ingredient*],
-  [360g], [Baking flour],
- // ... the remaining cells
-)
+  #table(
+    columns: 2,
+    table.header[*Amount*][*Ingredient*],
+    [360g], [Baking flour],
+   // ... the remaining cells
+  )
 `}
   image='/assets/6a2549ec6593b2ca3640ff2800e0aaae.png'
   alt='Preview'
+  editable={true}
 />
 
 You could also write a show rule that automatically [strongly emphasizes](/docs/reference/model/strong/) the contents of the first cells for all tables. This quickly becomes useful if your document contains multiple tables!
 
 <TypstPreview
   code={`
-#show table.cell.where(y: 0): strong
+  #show table.cell.where(y: 0): strong
 
-#table(
-  columns: 2,
-  table.header[Amount][Ingredient],
-  [360g], [Baking flour],
- // ... the remaining cells
-)
+  #table(
+    columns: 2,
+    table.header[Amount][Ingredient],
+    [360g], [Baking flour],
+   // ... the remaining cells
+  )
 `}
   image='/assets/53b0b10f01dd5386e8591829e777375e.png'
   alt='Preview'
+  editable={true}
 />
 
 We are using a show rule with a selector for cell coordinates here instead of applying our styles directly to `table.header{:typst}`. This is due to a current limitation of Typst that will be fixed in a future release.
@@ -93,16 +96,17 @@ Let's put this to use with a table that contains the dates, numbers, and descrip
 
 <TypstPreview
   code={`
-#table(
-  columns: (auto, auto, 1fr),
-  table.header[Date][°No][Description],
-  [24/01/03], [813], [Filtered participant pool],
-  [24/01/03], [477], [Transitioned to sec. regimen],
-  [24/01/11], [051], [Cycled treatment substrate],
-)
+  #table(
+    columns: (auto, auto, 1fr),
+    table.header[Date][°No][Description],
+    [24/01/03], [813], [Filtered participant pool],
+    [24/01/03], [477], [Transitioned to sec. regimen],
+    [24/01/11], [051], [Cycled treatment substrate],
+  )
 `}
   image='/assets/d94fea7bcf57bf2a4b0037a5f20f35be.png'
   alt='Preview'
+  editable={true}
 />
 
 Here, we have passed our list of column lengths as an [array](/docs/reference/foundations/array/), enclosed in round parentheses, with its elements separated by commas. The first two columns are automatically sized, so that they take on the size of their content and the third column is sized as `1fr{:typst}` so that it fills up the remainder of the space on the page. If you wanted to instead change the second column to be a bit more spacious, you could replace its entry in the `columns{:typst}` array with a value like `6em{:typst}`.
@@ -117,25 +121,26 @@ Let's take a look at a captioned table and how to reference it in prose:
 
 <TypstPreview
   code={`
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#figure(
-  table(
-    columns: 4,
-    stroke: none,
+  #figure(
+    table(
+      columns: 4,
+      stroke: none,
 
-    table.header[Test Item][Specification][Test Result][Compliance],
-    [Voltage], [220V ± 5%], [218V], [Pass],
-    [Current], [5A ± 0.5A], [4.2A], [Fail],
-  ),
-  caption: [Probe results for design A],
-) <probe-a>
+      table.header[Test Item][Specification][Test Result][Compliance],
+      [Voltage], [220V ± 5%], [218V], [Pass],
+      [Current], [5A ± 0.5A], [4.2A], [Fail],
+    ),
+    caption: [Probe results for design A],
+  ) <probe-a>
 
-The results from @probe-a show that the design is not yet optimal.
-We will show how its performance can be improved in this section.
+  The results from @probe-a show that the design is not yet optimal.
+  We will show how its performance can be improved in this section.
 `}
   image='/assets/abcc3d737c5a8aa9100fd01bd4f01ee8.png'
   alt='Preview'
+  editable={true}
 />
 
 The example shows how to wrap a table in a figure, set a caption and a label, and how to reference that label. We start by using the `figure{:typst}` function. It expects the contents of the figure as a positional argument. We just put the table function call in its argument list, omitting the `#{:typst}` character because it is only needed when calling a function in markup mode. We also add the caption as a named argument (above or below) the table.
@@ -156,39 +161,40 @@ Let's start with an example of a horizontally striped table:
 
 <TypstPreview
   code={`
-#set text(font: "IBM Plex Sans")
+  #set text(font: "IBM Plex Sans")
 
-// Medium bold table header.
-#show table.cell.where(y: 0): set text(weight: "medium")
+  // Medium bold table header.
+  #show table.cell.where(y: 0): set text(weight: "medium")
 
-// Bold titles.
-#show table.cell.where(x: 1): set text(weight: "bold")
+  // Bold titles.
+  #show table.cell.where(x: 1): set text(weight: "bold")
 
-// See the strokes section for details on this!
-#let frame(stroke) = (x, y) => (
-  left: if x > 0 { 0pt } else { stroke },
-  right: stroke,
-  top: if y < 2 { stroke } else { 0pt },
-  bottom: stroke,
-)
+  // See the strokes section for details on this!
+  #let frame(stroke) = (x, y) => (
+    left: if x > 0 { 0pt } else { stroke },
+    right: stroke,
+    top: if y < 2 { stroke } else { 0pt },
+    bottom: stroke,
+  )
 
-#set table(
-  fill: (rgb("EAF2F5"), none),
-  stroke: frame(1pt + rgb("21222C")),
-)
+  #set table(
+    fill: (rgb("EAF2F5"), none),
+    stroke: frame(1pt + rgb("21222C")),
+  )
 
-#table(
-  columns: (0.4fr, 1fr, 1fr, 1fr),
+  #table(
+    columns: (0.4fr, 1fr, 1fr, 1fr),
 
-  table.header[Month][Title][Author][Genre],
-  [January], [The Great Gatsby], [F. Scott Fitzgerald], [Classic],
-  [February], [To Kill a Mockingbird], [Harper Lee], [Drama],
-  [March], [1984], [George Orwell], [Dystopian],
-  [April], [The Catcher in the Rye], [J.D. Salinger], [Coming-of-Age],
-)
+    table.header[Month][Title][Author][Genre],
+    [January], [The Great Gatsby], [F. Scott Fitzgerald], [Classic],
+    [February], [To Kill a Mockingbird], [Harper Lee], [Drama],
+    [March], [1984], [George Orwell], [Dystopian],
+    [April], [The Catcher in the Rye], [J.D. Salinger], [Coming-of-Age],
+  )
 `}
   image='/assets/86722819d20f9157f8ad24caea8c4046.png'
   alt='Preview'
+  editable={true}
 />
 
 This example shows a book club reading list. The line `fill: (rgb("EAF2F5"), none){:typst}` in `table{:typst}`'s set rule is all that is needed to add striped columns. It tells Typst to alternate between coloring columns with a light blue (in the [`rgb{:typst}`](/docs/reference/visualize/color/#definitions-rgb) function call) and nothing (`none{:typst}`). Note that we extracted all of our styling from the `table{:typst}` function call itself into set and show rules, so that we can automatically reuse it for multiple tables.
@@ -199,13 +205,14 @@ Let's next take a look at how we can change only the set rule to achieve horizon
 
 <TypstPreview
   code={`
-#set table(
-  fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
-  stroke: frame(1pt + rgb("21222C")),
-)
+  #set table(
+    fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+    stroke: frame(1pt + rgb("21222C")),
+  )
 `}
   image='/assets/afb912b5d845d82c061f887ad4d72d66.png'
   alt='Preview'
+  editable={true}
 />
 
 We just need to replace the set rule from the previous example with this one and get horizontal stripes instead. Here, we are passing a function to `fill{:typst}`. It discards the horizontal coordinate with an underscore and then checks if the vertical coordinate `y{:typst}` of the cell is odd. If so, the cell gets a light blue fill, otherwise, no fill is returned.
@@ -214,13 +221,14 @@ Of course, you can make this function arbitrarily complex. For example, if you w
 
 <TypstPreview
   code={`
-#set table(
-  fill: (_, y) => (none, rgb("EAF2F5"), rgb("DDEAEF")).at(calc.rem(y, 3)),
-  stroke: frame(1pt + rgb("21222C")),
-)
+  #set table(
+    fill: (_, y) => (none, rgb("EAF2F5"), rgb("DDEAEF")).at(calc.rem(y, 3)),
+    stroke: frame(1pt + rgb("21222C")),
+  )
 `}
   image='/assets/1ab5fe5f866c6f783180d722e1190171.png'
   alt='Preview'
+  editable={true}
 />
 
 This example shows an alternative approach to write our fill function. The function uses an array with three colors and then cycles between its values for each row by indexing the array with the remainder of `y{:typst}` divided by 3.
@@ -229,16 +237,17 @@ Finally, here is a bonus example that uses the _stroke_ to achieve striped rows:
 
 <TypstPreview
   code={`
-#set table(
-  stroke: (x, y) => (
-    y: 1pt,
-    left: if x > 0 { 0pt } else if calc.even(y) { 1pt },
-    right: if calc.even(y) { 1pt },
-  ),
-)
+  #set table(
+    stroke: (x, y) => (
+      y: 1pt,
+      left: if x > 0 { 0pt } else if calc.even(y) { 1pt },
+      right: if calc.even(y) { 1pt },
+    ),
+  )
 `}
   image='/assets/183fdb57dff39e2760799d2fe7321750.png'
   alt='Preview'
+  editable={true}
 />
 
 ### Manually overriding a cell's fill color
@@ -249,33 +258,34 @@ For example, here is a list of all German presidents, with the cell borders colo
 
 <TypstPreview
   code={`
-#set text(font: "Roboto")
+  #set text(font: "Roboto")
 
-#let cdu(name) = ([CDU], table.cell(fill: black, text(fill: white, name)))
-#let spd(name) = ([SPD], table.cell(fill: red, text(fill: white, name)))
-#let fdp(name) = ([FDP], table.cell(fill: yellow, name))
+  #let cdu(name) = ([CDU], table.cell(fill: black, text(fill: white, name)))
+  #let spd(name) = ([SPD], table.cell(fill: red, text(fill: white, name)))
+  #let fdp(name) = ([FDP], table.cell(fill: yellow, name))
 
-#table(
-  columns: (auto, auto, 1fr),
-  stroke: (x: none),
+  #table(
+    columns: (auto, auto, 1fr),
+    stroke: (x: none),
 
-  table.header[Tenure][Party][President],
-  [1949-1959], ..fdp[Theodor Heuss],
-  [1959-1969], ..cdu[Heinrich Lübke],
-  [1969-1974], ..spd[Gustav Heinemann],
-  [1974-1979], ..fdp[Walter Scheel],
-  [1979-1984], ..cdu[Karl Carstens],
-  [1984-1994], ..cdu[Richard von Weizsäcker],
-  [1994-1999], ..cdu[Roman Herzog],
-  [1999-2004], ..spd[Johannes Rau],
-  [2004-2010], ..cdu[Horst Köhler],
-  [2010-2012], ..cdu[Christian Wulff],
-  [2012-2017], [n/a], [Joachim Gauck],
-  [2017-],     ..spd[Frank-Walter-Steinmeier],
-)
+    table.header[Tenure][Party][President],
+    [1949-1959], ..fdp[Theodor Heuss],
+    [1959-1969], ..cdu[Heinrich Lübke],
+    [1969-1974], ..spd[Gustav Heinemann],
+    [1974-1979], ..fdp[Walter Scheel],
+    [1979-1984], ..cdu[Karl Carstens],
+    [1984-1994], ..cdu[Richard von Weizsäcker],
+    [1994-1999], ..cdu[Roman Herzog],
+    [1999-2004], ..spd[Johannes Rau],
+    [2004-2010], ..cdu[Horst Köhler],
+    [2010-2012], ..cdu[Christian Wulff],
+    [2012-2017], [n/a], [Joachim Gauck],
+    [2017-],     ..spd[Frank-Walter-Steinmeier],
+  )
 `}
   image='/assets/29ce6849357d9086f3c12776ef9384c1.png'
   alt='Preview'
+  editable={true}
 />
 
 In this example, we make use of variables because there only have been a total of three parties whose members have become president (and one unaffiliated president). Their colors will repeat multiple times, so we store a function that produces an array with their party's name and a table cell with that party's color and the president's name (`cdu{:typst}`, `spd{:typst}`, and `fdp{:typst}`). We then use these functions in the `table{:typst}` argument list instead of directly adding the name. We use the [spread operator](/docs/reference/foundations/arguments/#spreading) `..{:typst}` to turn the items of the arrays into single cells. We could also write something like `[FDP], table.cell(fill: yellow)[Theodor Heuss]{:typst}` for each cell directly in the `table{:typst}`'s argument list, but that becomes unreadable, especially for the parties whose colors are dark so that they require white text. We also delete vertical strokes and set the font to Roboto.
@@ -297,16 +307,17 @@ Let's start by modifying the color and thickness of the stroke:
 
 <TypstPreview
   code={`
-#table(
-  columns: 4,
-  stroke: 0.5pt + rgb("666675"),
-  [*Monday*], [11.5], [13.0], [4.0],
-  [*Tuesday*], [8.0], [14.5], [5.0],
-  [*Wednesday*], [9.0], [18.5], [13.0],
-)
+  #table(
+    columns: 4,
+    stroke: 0.5pt + rgb("666675"),
+    [*Monday*], [11.5], [13.0], [4.0],
+    [*Tuesday*], [8.0], [14.5], [5.0],
+    [*Wednesday*], [9.0], [18.5], [13.0],
+  )
 `}
   image='/assets/cb4b867fd697f9a5065aa08a3301c427.png'
   alt='Preview'
+  editable={true}
 />
 
 This makes the table lines a bit less wide and uses a bluish gray. You can see that we added a width in point to a color to achieve our customized stroke. This addition yields a value of the [stroke type](/docs/reference/visualize/stroke/). Alternatively, you can use the dictionary representation for strokes which allows you to access advanced features such as dashed lines.
@@ -329,34 +340,36 @@ For small tables, you sometimes want to suppress all strokes because they add to
 
 <TypstPreview
   code={`
-#table(
-  columns: 4,
-  stroke: none,
-  [*Monday*], [11.5], [13.0], [4.0],
-  [*Tuesday*], [8.0], [14.5], [5.0],
-  [*Wednesday*], [9.0], [18.5], [13.0],
-)
+  #table(
+    columns: 4,
+    stroke: none,
+    [*Monday*], [11.5], [13.0], [4.0],
+    [*Tuesday*], [8.0], [14.5], [5.0],
+    [*Wednesday*], [9.0], [18.5], [13.0],
+  )
 `}
   image='/assets/bd098e0eea59924e8c6c8de70728e4ab.png'
   alt='Preview'
+  editable={true}
 />
 
 If you want more fine-grained control of where lines get placed in your table, you can also pass a dictionary with the keys `top{:typst}`, `left{:typst}`, `right{:typst}`, `bottom{:typst}` (controlling the respective cell sides), `x{:typst}`, `y{:typst}` (controlling vertical and horizontal strokes), and `rest{:typst}` (covers all strokes not styled by other dictionary entries). All keys are optional; omitted keys will use their previously set value, or the default value if never set. For example, to get a table with only horizontal lines, you can do this:
 
 <TypstPreview
   code={`
-#table(
-  columns: 2,
-  stroke: (x: none),
-  align: horizon,
-  [☒], [Close cabin door],
-  [☐], [Start engines],
-  [☐], [Radio tower],
-  [☐], [Push back],
-)
+  #table(
+    columns: 2,
+    stroke: (x: none),
+    align: horizon,
+    [☒], [Close cabin door],
+    [☐], [Start engines],
+    [☐], [Radio tower],
+    [☐], [Push back],
+  )
 `}
   image='/assets/79bd887d2884813c5c0480bbf51e9bf9.png'
   alt='Preview'
+  editable={true}
 />
 
 This turns off all vertical strokes and leaves the horizontal strokes in place. To achieve the reverse effect (only horizontal strokes), set the stroke argument to `(y: none){:typst}` instead.
@@ -371,21 +384,22 @@ Let's take a look at the following example from the reference:
 
 <TypstPreview
   code={`
-#set table.hline(stroke: 0.6pt)
+  #set table.hline(stroke: 0.6pt)
 
-#table(
-  stroke: none,
-  columns: (auto, 1fr),
-  // Morning schedule abridged.
-  [14:00], [Talk: Tracked Layout],
-  [15:00], [Talk: Automations],
-  [16:00], [Workshop: Tables],
-  table.hline(),
-  [19:00], [Day 1 Attendee Mixer],
-)
+  #table(
+    stroke: none,
+    columns: (auto, 1fr),
+    // Morning schedule abridged.
+    [14:00], [Talk: Tracked Layout],
+    [15:00], [Talk: Automations],
+    [16:00], [Workshop: Tables],
+    table.hline(),
+    [19:00], [Day 1 Attendee Mixer],
+  )
 `}
   image='/assets/dce18351d85a7e6be7b1bc21a44667a8.png'
   alt='Preview'
+  editable={true}
 />
 
 In this example, you can see that we have placed a call to `table.hline{:typst}` between the cells, producing a horizontal line at that spot. We also used a set rule on the element to reduce its stroke width to make it fit better with the weight of the font.
@@ -411,23 +425,24 @@ Let's imagine you are working with a template that shows none of the table strok
 
 <TypstPreview
   code={`
-// Base template already configured tables, but we need some
-// extra configuration for this table.
-#{
-  set table(align: (x, _) => if x == 0 { left } else { right })
-  show table.cell.where(x: 0): smallcaps
-  table(
-    columns: (auto, 1fr, 1fr, 1fr),
-    table.vline(x: 1, start: 1),
-    table.header[Trainset][Top Speed][Length][Weight],
-    [TGV Réseau], [320 km/h], [200m], [383t],
-    [ICE 403], [330 km/h], [201m], [409t],
-    [Shinkansen N700], [300 km/h], [405m], [700t],
-  )
-}
+  // Base template already configured tables, but we need some
+  // extra configuration for this table.
+  #{
+    set table(align: (x, _) => if x == 0 { left } else { right })
+    show table.cell.where(x: 0): smallcaps
+    table(
+      columns: (auto, 1fr, 1fr, 1fr),
+      table.vline(x: 1, start: 1),
+      table.header[Trainset][Top Speed][Length][Weight],
+      [TGV Réseau], [320 km/h], [200m], [383t],
+      [ICE 403], [330 km/h], [201m], [409t],
+      [Shinkansen N700], [300 km/h], [405m], [700t],
+    )
+  }
 `}
   image='/assets/2c8360bc80e83043f19b274c46759702.png'
   alt='Preview'
+  editable={true}
 />
 
 In this example, we have added `table.vline{:typst}` at the start of our positional argument list. But because the line is not supposed to go to the left of the first column, we specified the `x{:typst}` argument as `1{:typst}`. We also set the `start{:typst}` argument to `1{:typst}` so that the line does only start after the first row.
@@ -442,25 +457,26 @@ Here's an example with a matrix of two of the Big Five personality factors, with
 
 <TypstPreview
   code={`
-#table(
-  columns: 3,
-  stroke: (x: none),
+  #table(
+    columns: 3,
+    stroke: (x: none),
 
-  table.header[][*High Neuroticism*][*Low Neuroticism*],
+    table.header[][*High Neuroticism*][*Low Neuroticism*],
 
-  [*High Agreeableness*],
-  table.cell(stroke: orange + 2pt)[
-    _Sensitive_ \ Prone to emotional distress but very empathetic.
-  ],
-  [_Compassionate_ \ Caring and stable, often seen as a supportive figure.],
+    [*High Agreeableness*],
+    table.cell(stroke: orange + 2pt)[
+      _Sensitive_ \ Prone to emotional distress but very empathetic.
+    ],
+    [_Compassionate_ \ Caring and stable, often seen as a supportive figure.],
 
-  [*Low Agreeableness*],
-  [_Contentious_ \ Competitive and easily agitated.],
-  [_Detached_ \ Independent and calm, may appear aloof.],
-)
+    [*Low Agreeableness*],
+    [_Contentious_ \ Competitive and easily agitated.],
+    [_Detached_ \ Independent and calm, may appear aloof.],
+  )
 `}
   image='/assets/f402239bc6e7909e8aae764babc5eba1.png'
   alt='Preview'
+  editable={true}
 />
 
 Above, you can see that we used the `table.cell{:typst}` element in the table's argument list and passed the cell content to it. We have used its `stroke{:typst}` argument to set a wider orange stroke. Despite the fact that we disabled vertical strokes on the table, the orange stroke appeared on all sides of the modified cell, showing that the table's stroke configuration is overwritten.
@@ -473,21 +489,22 @@ For example, this is a set rule that draws all horizontal lines except for the v
 
 <TypstPreview
   code={`
-#show table.cell.where(x: 0): set text(style: "italic")
-#show table.cell.where(y: 0): set text(style: "normal", weight: "bold")
-#set table(stroke: (_, y) => if y > 0 { (top: 0.8pt) })
+  #show table.cell.where(x: 0): set text(style: "italic")
+  #show table.cell.where(y: 0): set text(style: "normal", weight: "bold")
+  #set table(stroke: (_, y) => if y > 0 { (top: 0.8pt) })
 
-#table(
-  columns: 3,
-  align: center + horizon,
-  table.header[Technique][Advantage][Drawback],
-  [Diegetic], [Immersive], [May be contrived],
-  [Extradiegetic], [Breaks immersion], [Obtrusive],
-  [Omitted], [Fosters engagement], [May fracture audience],
-)
+  #table(
+    columns: 3,
+    align: center + horizon,
+    table.header[Technique][Advantage][Drawback],
+    [Diegetic], [Immersive], [May be contrived],
+    [Extradiegetic], [Breaks immersion], [Obtrusive],
+    [Omitted], [Fosters engagement], [May fracture audience],
+  )
 `}
   image='/assets/48a88fa20efd01fc14a20940ad3fb5ef.png'
   alt='Preview'
+  editable={true}
 />
 
 In the set rule, we pass a function that receives two arguments, assigning the vertical coordinate to `y{:typst}` and discarding the horizontal coordinate. It then returns a stroke dictionary with a `0.8pt{:typst}` top stroke for all but the first line. The cells in the first line instead implicitly receive `none{:typst}` as the return value. You can easily modify this function to just draw the inner vertical lines instead as `(x, _) => if x > 0 \{ (left: 0.8pt) \}{:typst}`.
@@ -496,12 +513,13 @@ Let's try a few more stroking functions. The next function will only draw a line
 
 <TypstPreview
   code={`
-#set table(stroke: (_, y) => if y == 0 { (bottom: 1pt) })
+  #set table(stroke: (_, y) => if y == 0 { (bottom: 1pt) })
 
-// Table as seen above
+  // Table as seen above
 `}
   image='/assets/9f2bec20afad0ef1ee4706e7c218f891.png'
   alt='Preview'
+  editable={true}
 />
 
 If you understood the first example, it becomes obvious what happens here. We check if we are in the first row. If so, we return a bottom stroke. Otherwise, we'll return `none{:typst}` implicitly.
@@ -510,15 +528,16 @@ The next example shows how to draw all but the outer lines:
 
 <TypstPreview
   code={`
-#set table(stroke: (x, y) => (
-  left: if x > 0 { 0.8pt },
-  top: if y > 0 { 0.8pt },
-))
+  #set table(stroke: (x, y) => (
+    left: if x > 0 { 0.8pt },
+    top: if y > 0 { 0.8pt },
+  ))
 
-// Table as seen above
+  // Table as seen above
 `}
   image='/assets/411878f9ec8fa83e18cfd5517ac93d77.png'
   alt='Preview'
+  editable={true}
 />
 
 This example uses both the `x{:typst}` and `y{:typst}` coordinates. It omits the left stroke in the first column and the top stroke in the first row. The right and bottom lines are not drawn.
@@ -527,17 +546,18 @@ Finally, here is a table that draws all lines except for the vertical lines in t
 
 <TypstPreview
   code={`
-#set table(stroke: (x, y) => (
-  left: if x == 0 or y > 0 { 1pt } else { 0pt },
-  right: 1pt,
-  top: if y <= 1 { 1pt } else { 0pt },
-  bottom: 1pt,
-))
+  #set table(stroke: (x, y) => (
+    left: if x == 0 or y > 0 { 1pt } else { 0pt },
+    right: 1pt,
+    top: if y <= 1 { 1pt } else { 0pt },
+    bottom: 1pt,
+  ))
 
-// Table as seen above
+  // Table as seen above
 `}
   image='/assets/46bbd548bbbcaf579768f6bd90ed3c25.png'
   alt='Preview'
+  editable={true}
 />
 
 This example is a bit more complex. We start by drawing all the strokes on the right of the cells. But this means that we have drawn strokes in the top row, too, and we don't need those! We use the fact that `left{:typst}` will override `right{:typst}` and only draw the left line if we are not in the first row or if we are in the first column. In all other cases, we explicitly remove the left line. Finally, we draw the horizontal lines by first setting the bottom line and then for the first two rows with the `top{:typst}` key, suppressing all other top lines. The last line appears because there is no `top{:typst}` line that could suppress it.
@@ -550,18 +570,19 @@ Tables can space their cells apart using the `gutter{:typst}` argument. When a g
 
 <TypstPreview
   code={`
-#table(
-  columns: 3,
-  stroke: (x: none),
-  row-gutter: (2.2pt, auto),
-  table.header[Date][Exercise Type][Calories Burned],
-  [2023-03-15], [Swimming], [400],
-  [2023-03-17], [Weightlifting], [250],
-  [2023-03-18], [Yoga], [200],
-)
+  #table(
+    columns: 3,
+    stroke: (x: none),
+    row-gutter: (2.2pt, auto),
+    table.header[Date][Exercise Type][Calories Burned],
+    [2023-03-15], [Swimming], [400],
+    [2023-03-17], [Weightlifting], [250],
+    [2023-03-18], [Yoga], [200],
+  )
 `}
   image='/assets/91eb6958c17ff1340429096b6e188d45.png'
   alt='Preview'
+  editable={true}
 />
 
 We can see that we used an array for `row-gutter{:typst}` that specifies a `2.2pt{:typst}` gap between the first and second row. It then continues with `auto{:typst}` (which is the default, in this case `0pt{:typst}` gutter) which will be the gutter between all other rows, since it is the last entry in the array.
@@ -580,50 +601,52 @@ For example, this travel itinerary right-aligns the day column and left-aligns e
 
 <TypstPreview
   code={`
-#set text(font: "IBM Plex Sans")
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #set text(font: "IBM Plex Sans")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#table(
-  columns: 4,
-  align: (right, left, left, left),
-  fill: (_, y) => if calc.odd(y) { green.lighten(90%) },
-  stroke: none,
+  #table(
+    columns: 4,
+    align: (right, left, left, left),
+    fill: (_, y) => if calc.odd(y) { green.lighten(90%) },
+    stroke: none,
 
-  table.header[Day][Location][Hotel or Apartment][Activities],
-  [1], [Paris, France], [Hôtel de l'Europe], [Arrival, Evening River Cruise],
-  [2], [Paris, France], [Hôtel de l'Europe], [Louvre Museum, Eiffel Tower],
-  [3], [Lyon, France], [Lyon City Hotel], [City Tour, Local Cuisine Tasting],
-  [4], [Geneva, Switzerland], [Lakeview Inn], [Lake Geneva, Red Cross Museum],
-  [5], [Zermatt, Switzerland], [Alpine Lodge], [Visit Matterhorn, Skiing],
-)
+    table.header[Day][Location][Hotel or Apartment][Activities],
+    [1], [Paris, France], [Hôtel de l'Europe], [Arrival, Evening River Cruise],
+    [2], [Paris, France], [Hôtel de l'Europe], [Louvre Museum, Eiffel Tower],
+    [3], [Lyon, France], [Lyon City Hotel], [City Tour, Local Cuisine Tasting],
+    [4], [Geneva, Switzerland], [Lakeview Inn], [Lake Geneva, Red Cross Museum],
+    [5], [Zermatt, Switzerland], [Alpine Lodge], [Visit Matterhorn, Skiing],
+  )
 `}
   image='/assets/3d14afd44d650537031a621541053c17.png'
   alt='Preview'
+  editable={true}
 />
 
 However, this example does not yet look perfect — the header cells should be bottom-aligned. Let's use a function instead to do so:
 
 <TypstPreview
   code={`
-#set text(font: "IBM Plex Sans")
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #set text(font: "IBM Plex Sans")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#table(
-  columns: 4,
-  align: (x, y) =>
-    if x == 0 { right } else { left } +
-    if y == 0 { bottom } else { top },
-  fill: (_, y) => if calc.odd(y) { green.lighten(90%) },
-  stroke: none,
+  #table(
+    columns: 4,
+    align: (x, y) =>
+      if x == 0 { right } else { left } +
+      if y == 0 { bottom } else { top },
+    fill: (_, y) => if calc.odd(y) { green.lighten(90%) },
+    stroke: none,
 
-  table.header[Day][Location][Hotel or Apartment][Activities],
-  [1], [Paris, France], [Hôtel de l'Europe], [Arrival, Evening River Cruise],
-  [2], [Paris, France], [Hôtel de l'Europe], [Louvre Museum, Eiffel Tower],
- // ... remaining days omitted
-)
+    table.header[Day][Location][Hotel or Apartment][Activities],
+    [1], [Paris, France], [Hôtel de l'Europe], [Arrival, Evening River Cruise],
+    [2], [Paris, France], [Hôtel de l'Europe], [Louvre Museum, Eiffel Tower],
+   // ... remaining days omitted
+  )
 `}
   image='/assets/bf7905b60360831cefc0b9b9a5600d47.png'
   alt='Preview'
+  editable={true}
 />
 
 In the function, we calculate a horizontal and vertical alignment based on whether we are in the first column (`x == 0{:typst}`) or the first row (`y == 0{:typst}`). We then make use of the fact that we can add horizontal and vertical alignments with `+{:typst}` to receive a single, two-dimensional alignment.
@@ -640,48 +663,49 @@ The example below contains an attendance calendar for an office with in-person a
 
 <TypstPreview
   code={`
-#let ofi = [Office]
-#let rem = [_Remote_]
-#let lea = [*On leave*]
+  #let ofi = [Office]
+  #let rem = [_Remote_]
+  #let lea = [*On leave*]
 
-#show table.cell.where(y: 0): set text(
-  fill: white,
-  weight: "bold",
-)
+  #show table.cell.where(y: 0): set text(
+    fill: white,
+    weight: "bold",
+  )
 
-#table(
-  columns: 6 * (1fr,),
-  align: (x, y) => if x == 0 or y == 0 { left } else { center },
-  stroke: (x, y) => (
-    // Separate black cells with white strokes.
-    left: if y == 0 and x > 0 { white } else { black },
-    rest: black,
-  ),
-  fill: (_, y) => if y == 0 { black },
+  #table(
+    columns: 6 * (1fr,),
+    align: (x, y) => if x == 0 or y == 0 { left } else { center },
+    stroke: (x, y) => (
+      // Separate black cells with white strokes.
+      left: if y == 0 and x > 0 { white } else { black },
+      rest: black,
+    ),
+    fill: (_, y) => if y == 0 { black },
 
-  table.header(
-    [Team member],
-    [Monday],
-    [Tuesday],
-    [Wednesday],
-    [Thursday],
-    [Friday]
-  ),
-  [Evelyn Archer],
-    table.cell(colspan: 2, ofi),
-    table.cell(colspan: 2, rem),
-    ofi,
-  [Lila Montgomery],
-    table.cell(colspan: 5, lea),
-  [Nolan Pearce],
-    rem,
-    table.cell(colspan: 2, ofi),
-    rem,
-    ofi,
-)
+    table.header(
+      [Team member],
+      [Monday],
+      [Tuesday],
+      [Wednesday],
+      [Thursday],
+      [Friday]
+    ),
+    [Evelyn Archer],
+      table.cell(colspan: 2, ofi),
+      table.cell(colspan: 2, rem),
+      ofi,
+    [Lila Montgomery],
+      table.cell(colspan: 5, lea),
+    [Nolan Pearce],
+      rem,
+      table.cell(colspan: 2, ofi),
+      rem,
+      ofi,
+  )
 `}
   image='/assets/cb268a7fe2cb41bcb2dd071c5495dbdb.png'
   alt='Preview'
+  editable={true}
 />
 
 In the example, we first define variables with "Office", "Remote", and "On leave" so we don't have to write these labels out every time. We can then use these variables in the table body either directly or in a `table.cell{:typst}` call if the team member spends multiple consecutive days in office, remote, or on leave.
@@ -703,42 +727,43 @@ First, we will rotate the table on the page. The example also places some text o
 
 <TypstPreview
   code={`
-#set page("a5", columns: 2, numbering: "— 1 —")
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #set page("a5", columns: 2, numbering: "— 1 —")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#rotate(
-  -90deg,
-  reflow: true,
+  #rotate(
+    -90deg,
+    reflow: true,
 
-  table(
-    columns: (1fr,) + 5 * (auto,),
-    inset: (x: 0.6em,),
-    stroke: (_, y) => (
-      x: 1pt,
-      top: if y <= 1 { 1pt } else { 0pt },
-      bottom: 1pt,
+    table(
+      columns: (1fr,) + 5 * (auto,),
+      inset: (x: 0.6em,),
+      stroke: (_, y) => (
+        x: 1pt,
+        top: if y <= 1 { 1pt } else { 0pt },
+        bottom: 1pt,
+      ),
+      align: (left, right, right, right, right, left),
+
+      table.header(
+        [Student Name],
+        [Assignment 1], [Assignment 2],
+        [Mid-term], [Final Exam],
+        [Total Grade],
+      ),
+      [Jane Smith], [78%], [82%], [75%], [80%], [B],
+      [Alex Johnson], [90%], [95%], [94%], [96%], [A+],
+      [John Doe], [85%], [90%], [88%], [92%], [A],
+      [Maria Garcia], [88%], [84%], [89%], [85%], [B+],
+      [Zhang Wei], [93%], [89%], [90%], [91%], [A-],
+      [Marina Musterfrau], [96%], [91%], [74%], [69%], [B-],
     ),
-    align: (left, right, right, right, right, left),
+  )
 
-    table.header(
-      [Student Name],
-      [Assignment 1], [Assignment 2],
-      [Mid-term], [Final Exam],
-      [Total Grade],
-    ),
-    [Jane Smith], [78%], [82%], [75%], [80%], [B],
-    [Alex Johnson], [90%], [95%], [94%], [96%], [A+],
-    [John Doe], [85%], [90%], [88%], [92%], [A],
-    [Maria Garcia], [88%], [84%], [89%], [85%], [B+],
-    [Zhang Wei], [93%], [89%], [90%], [91%], [A-],
-    [Marina Musterfrau], [96%], [91%], [74%], [69%], [B-],
-  ),
-)
-
-#lorem(80)
+  #lorem(80)
 `}
   image='/assets/13ca3e73767b472a41277f142768fcdd.png'
   alt='Preview'
+  editable={true}
 />
 
 What we have here is a two-column document on ISO A5 paper with page numbers on the bottom. The table has six columns and contains a few customizations to [stroke](#strokes), alignment and spacing. But the most important part is that the table is wrapped in a call to the `rotate{:typst}` function with the `reflow{:typst}` argument being `true{:typst}`. This will make the table rotate 90 degrees counterclockwise. The reflow argument is needed so that the table's rotation affects the layout. If it was omitted, Typst would lay out the page as if the table was not rotated (`true{:typst}` might become the default in the future).
@@ -749,42 +774,43 @@ The second example shows how to rotate the whole page, so that the table stays u
 
 <TypstPreview
   code={`
-#set page("a5", numbering: "— 1 —")
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #set page("a5", numbering: "— 1 —")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#page(flipped: true)[
-  #table(
-    columns: (1fr,) + 5 * (auto,),
-    inset: (x: 0.6em,),
-    stroke: (_, y) => (
-      x: 1pt,
-      top: if y <= 1 { 1pt } else { 0pt },
-      bottom: 1pt,
-    ),
-    align: (left, right, right, right, right, left),
+  #page(flipped: true)[
+    #table(
+      columns: (1fr,) + 5 * (auto,),
+      inset: (x: 0.6em,),
+      stroke: (_, y) => (
+        x: 1pt,
+        top: if y <= 1 { 1pt } else { 0pt },
+        bottom: 1pt,
+      ),
+      align: (left, right, right, right, right, left),
 
-    table.header(
-      [Student Name],
-      [Assignment 1], [Assignment 2],
-      [Mid-term], [Final Exam],
-      [Total Grade],
-    ),
-    [Jane Smith], [78%], [82%], [75%], [80%], [B],
-    [Alex Johnson], [90%], [95%], [94%], [96%], [A+],
-    [John Doe], [85%], [90%], [88%], [92%], [A],
-    [Maria Garcia], [88%], [84%], [89%], [85%], [B+],
-    [Zhang Wei], [93%], [89%], [90%], [91%], [A-],
-    [Marina Musterfrau], [96%], [91%], [74%], [69%], [B-],
-  )
+      table.header(
+        [Student Name],
+        [Assignment 1], [Assignment 2],
+        [Mid-term], [Final Exam],
+        [Total Grade],
+      ),
+      [Jane Smith], [78%], [82%], [75%], [80%], [B],
+      [Alex Johnson], [90%], [95%], [94%], [96%], [A+],
+      [John Doe], [85%], [90%], [88%], [92%], [A],
+      [Maria Garcia], [88%], [84%], [89%], [85%], [B+],
+      [Zhang Wei], [93%], [89%], [90%], [91%], [A-],
+      [Marina Musterfrau], [96%], [91%], [74%], [69%], [B-],
+    )
 
-  #pad(x: 15%, top: 1.5em)[
-    = Winter 2023/24 results
-    #lorem(80)
+    #pad(x: 15%, top: 1.5em)[
+      = Winter 2023/24 results
+      #lorem(80)
+    ]
   ]
-]
 `}
   image='/assets/c3c12e1a6bceb6c12c06106b415b0541.png'
   alt='Preview'
+  editable={true}
 />
 
 Here, we take the same table and the other content we want to set with it and put it into a call to the [`page{:typst}`](/docs/reference/layout/page/) function while supplying `true{:typst}` to the `flipped{:typst}` argument. This will instruct Typst to create new pages with width and height swapped and place the contents of the function call onto a new page. Notice how the page number is also on the long edge of the paper now. At the bottom of the page, we use the [`pad{:typst}`](/docs/reference/layout/pad/) function to constrain the width of the paragraph to achieve a nice and legible line length.
@@ -797,32 +823,33 @@ If you have placed your table inside of a [figure](/docs/reference/model/figure/
 
 <TypstPreview
   code={`
-#set page(width: 9cm, height: 6cm)
-#show table.cell.where(y: 0): set text(weight: "bold")
-#show figure: set block(breakable: true)
+  #set page(width: 9cm, height: 6cm)
+  #show table.cell.where(y: 0): set text(weight: "bold")
+  #show figure: set block(breakable: true)
 
-#figure(
-  caption: [Training regimen for Marathon],
-  table(
-    columns: 3,
-    fill: (_, y) => if y == 0 { gray.lighten(75%) },
+  #figure(
+    caption: [Training regimen for Marathon],
+    table(
+      columns: 3,
+      fill: (_, y) => if y == 0 { gray.lighten(75%) },
 
-    table.header[Week][Distance (km)][Time (hh:mm:ss)],
-    [1], [5],  [00:30:00],
-    [2], [7],  [00:45:00],
-    [3], [10], [01:00:00],
-    [4], [12], [01:10:00],
-    [5], [15], [01:25:00],
-    [6], [18], [01:40:00],
-    [7], [20], [01:50:00],
-    [8], [22], [02:00:00],
-    [...], [...], [...],
-    table.footer[_Goal_][_42.195_][_02:45:00_],
+      table.header[Week][Distance (km)][Time (hh:mm:ss)],
+      [1], [5],  [00:30:00],
+      [2], [7],  [00:45:00],
+      [3], [10], [01:00:00],
+      [4], [12], [01:10:00],
+      [5], [15], [01:25:00],
+      [6], [18], [01:40:00],
+      [7], [20], [01:50:00],
+      [8], [22], [02:00:00],
+      [...], [...], [...],
+      table.footer[_Goal_][_42.195_][_02:45:00_],
+    )
   )
-)
 `}
   image='/assets/2cdf355cdb67df614a2fd121dd5563a3-0.png'
   alt='Preview page 1'
+  editable={true}
 />
 
 A figure automatically produces a [block](/docs/reference/layout/block/) which cannot break by default. However, we can reconfigure the block of the figure using a show rule to make it `breakable{:typst}`. Now, the figure spans multiple pages with the headers and footers repeating.
@@ -857,12 +884,13 @@ We have loaded our file (assuming we named it `moore.csv{:typst}`) and [bound it
 
 <TypstPreview
   code={`
-#let moore = csv("moore.csv")
+  #let moore = csv("moore.csv")
 
-#moore.slice(0, 3)
+  #moore.slice(0, 3)
 `}
   image='/assets/e16aeadb19d1635fc55013308b03e2cd.png'
   alt='Preview'
+  editable={true}
 />
 
 With the arguments `(0, 3){:typst}`, the [`slice{:typst}`](/docs/reference/foundations/array/#definitions-slice) method returns the first three items in the array (with the indices 0, 1, and 2). We can see that each row is its own array with one item per cell.
@@ -871,17 +899,18 @@ Now, let's write a loop that will transform this data into an array of cells tha
 
 <TypstPreview
   code={`
-#let moore = csv("moore.csv")
+  #let moore = csv("moore.csv")
 
-#table(
-  columns: 2,
-  ..for (.., year, count) in moore {
-    (year, count)
-  }
-)
+  #table(
+    columns: 2,
+    ..for (.., year, count) in moore {
+      (year, count)
+    }
+  )
 `}
   image='/assets/d491cb1797a018f403dc2d95d3064e36.png'
   alt='Preview'
+  editable={true}
 />
 
 The example above uses a for loop that iterates over the rows in our CSV file and returns an array for each iteration. We use the for loop's [destructuring](/docs/reference/scripting/#bindings) capability to discard all but the last two items of each row. We then create a new array with just these two. Because Typst will concatenate the array results of all the loop iterations, we get a one-dimensional array in which the year column and the number of transistors alternate. We can then insert the array as cells. For this we use the [spread operator](/docs/reference/foundations/arguments/#spreading) (`..{:typst}`). By prefixing an array, or, in our case an expression that yields an array, with two dots, we tell Typst that the array's items should be used as positional arguments.
@@ -903,29 +932,30 @@ Now that we have nice code for our table, we should try to also make the table i
 
 <TypstPreview
   code={`
-#let moore = csv("moore.csv")
-#let moore-log = moore.slice(1).map(m => {
-  let (.., year, count) = m
-  let log = calc.log(float(count))
-  let rounded = str(calc.round(log, digits: 2))
-  (year, rounded)
-})
+  #let moore = csv("moore.csv")
+  #let moore-log = moore.slice(1).map(m => {
+    let (.., year, count) = m
+    let log = calc.log(float(count))
+    let rounded = str(calc.round(log, digits: 2))
+    (year, rounded)
+  })
 
-#show table.cell.where(x: 0): strong
+  #show table.cell.where(x: 0): strong
 
-#table(
-   columns: moore-log.first().len(),
-   align: right,
-   fill: (_, y) => if calc.odd(y) { rgb("D7D9E0") },
-   stroke: none,
+  #table(
+     columns: moore-log.first().len(),
+     align: right,
+     fill: (_, y) => if calc.odd(y) { rgb("D7D9E0") },
+     stroke: none,
 
-   table.header[Year][Transistor count ($log_10$)],
-   table.hline(stroke: rgb("4D4C5B")),
-   ..moore-log.flatten(),
-)
+     table.header[Year][Transistor count ($log_10$)],
+     table.hline(stroke: rgb("4D4C5B")),
+     ..moore-log.flatten(),
+  )
 `}
   image='/assets/64e5c9c075fa94f3ff18b9f3e1e0316d.png'
   alt='Preview'
+  editable={true}
 />
 
 In this example, we first drop the header row from the data since we are adding our own. Then, we discard all but the last two columns as above. We do this by [destructuring](/docs/reference/scripting/#bindings) the array `m{:typst}`, discarding all but the two last items. We then convert the string in `count{:typst}` to a floating point number, calculate its logarithm and store it in the variable `log{:typst}`. Finally, we round it to two digits, convert it to a string, and store it in the variable `rounded{:typst}`. Then, we return an array with `year{:typst}` and `rounded{:typst}` that replaces the original row. In our table, we have added our custom header that tells the reader that we've applied a logarithm to the values. Then, we spread the flattened data as above.

@@ -14,11 +14,12 @@ This type should be used for precise arithmetic operations on numbers represente
 
 <TypstPreview
   code={`
-Decimal: #(decimal("0.1") + decimal("0.2")) 
-Float: #(0.1 + 0.2)
+  Decimal: #(decimal("0.1") + decimal("0.2")) \
+  Float: #(0.1 + 0.2)
 `}
   image='/assets/5b7d4abe1e81bdf2204e021eab6b8811.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Construction and casts
@@ -59,10 +60,11 @@ inherently imprecise.** It is easy to accidentally perform this cast by writing 
 
 <TypstPreview
   code={`
-#decimal("1.222222222222222")
+  #decimal("1.222222222222222")
 `}
   image='/assets/45faa507ce50e6521579e6c9abb4659a.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

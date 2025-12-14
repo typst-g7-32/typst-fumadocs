@@ -34,13 +34,14 @@ Can be used with [`here{:typst}`](/docs/reference/introspection/here/) to retrie
 
 <TypstPreview
   code={`
-#context [
-  I am located on
-  page #here().page()
-]
+  #context [
+    I am located on
+    page #here().page()
+  ]
 `}
   image='/assets/d13a1548b2d47ac4cb904c3f62c9c993.png'
   alt='Preview'
+  editable={true}
 />
 
 Returns a dictionary with the page number and the x, y position for this location. The page number starts at one and the coordinates are measured from the top-left of the page.

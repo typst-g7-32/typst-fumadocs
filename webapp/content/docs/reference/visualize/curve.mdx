@@ -24,17 +24,18 @@ Bézier curve control points can be skipped by passing `none{:typst}` or automat
 
 <TypstPreview
   code={`
-#curve(
-  fill: blue.lighten(80%),
-  stroke: blue,
-  curve.move((0pt, 50pt)),
-  curve.line((100pt, 50pt)),
-  curve.cubic(none, (90pt, 0pt), (50pt, 0pt)),
-  curve.close(),
-)
+  #curve(
+    fill: blue.lighten(80%),
+    stroke: blue,
+    curve.move((0pt, 50pt)),
+    curve.line((100pt, 50pt)),
+    curve.cubic(none, (90pt, 0pt), (50pt, 0pt)),
+    curve.close(),
+  )
 `}
   image='/assets/f6e8a1340bbf7443c9b7a46b757beca4.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -55,12 +56,12 @@ Bézier curve control points can be skipped by passing `none{:typst}` or automat
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'fill-rule': {
-      'description': 'The drawing rule used to fill the curve.  <TypstPreview   code={` // We use \\`.with\\` to get a new // function that has the common // arguments pre-applied. #let star = curve.with(   fill: red,   curve.move((25pt, 0pt)),   curve.line((10pt, 50pt)),   curve.line((50pt, 20pt)),   curve.line((0pt, 20pt)),   curve.line((40pt, 50pt)),   curve.close(), )  #star(fill-rule: "non-zero") #star(fill-rule: "even-odd") `}   image=\'/assets/32d08694d1725fb4fc044b295913753b.png\'   alt=\'Preview\' />',
+      'description': 'The drawing rule used to fill the curve.  <TypstPreview   code={`   // We use \\`.with\\` to get a new   // function that has the common   // arguments pre-applied.   #let star = curve.with(     fill: red,     curve.move((25pt, 0pt)),     curve.line((10pt, 50pt)),     curve.line((50pt, 20pt)),     curve.line((0pt, 20pt)),     curve.line((40pt, 50pt)),     curve.close(),   )    #star(fill-rule: "non-zero")   #star(fill-rule: "even-odd") `}   image=\'/assets/32d08694d1725fb4fc044b295913753b.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;non-zero&quot;</span></code>'
     },
     'stroke': {
-      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the curve.  Can be set to `none{:typst}` to disable the stroke or to `auto{:typst}` for a stroke of `1pt{:typst}` black if and only if no fill is given.  <TypstPreview   code={` #let down = curve.line((40pt, 40pt), relative: true) #let up = curve.line((40pt, -40pt), relative: true)  #curve(   stroke: 4pt + gradient.linear(red, blue),   down, up, down, up, down, ) `}   image=\'/assets/6e6243695ed1c92082c2dfde5dadc46.png\'   alt=\'Preview\' />',
+      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the curve.  Can be set to `none{:typst}` to disable the stroke or to `auto{:typst}` for a stroke of `1pt{:typst}` black if and only if no fill is given.  <TypstPreview   code={`   #let down = curve.line((40pt, 40pt), relative: true)   #let up = curve.line((40pt, -40pt), relative: true)    #curve(     stroke: 4pt + gradient.linear(red, blue),     down, up, down, up, down,   ) `}   image=\'/assets/6e6243695ed1c92082c2dfde5dadc46.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | length | color | gradient | stroke | tiling | dictionary',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
@@ -80,23 +81,24 @@ If no `curve.move{:typst}` element is passed, the curve will start at `(0pt, 0pt
 
 <TypstPreview
   code={`
-#curve(
-  fill: blue.lighten(80%),
-  fill-rule: "even-odd",
-  stroke: blue,
-  curve.line((50pt, 0pt)),
-  curve.line((50pt, 50pt)),
-  curve.line((0pt, 50pt)),
-  curve.close(),
-  curve.move((10pt, 10pt)),
-  curve.line((40pt, 10pt)),
-  curve.line((40pt, 40pt)),
-  curve.line((10pt, 40pt)),
-  curve.close(),
-)
+  #curve(
+    fill: blue.lighten(80%),
+    fill-rule: "even-odd",
+    stroke: blue,
+    curve.line((50pt, 0pt)),
+    curve.line((50pt, 50pt)),
+    curve.line((0pt, 50pt)),
+    curve.close(),
+    curve.move((10pt, 10pt)),
+    curve.line((40pt, 10pt)),
+    curve.line((40pt, 40pt)),
+    curve.line((10pt, 40pt)),
+    curve.close(),
+  )
 `}
   image='/assets/1955d468f48167d68b38f68a29541b16.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -126,17 +128,18 @@ Adds a straight line from the current point to a following one.
 
 <TypstPreview
   code={`
-#curve(
-  stroke: blue,
-  curve.line((50pt, 0pt)),
-  curve.line((50pt, 50pt)),
-  curve.line((100pt, 50pt)),
-  curve.line((100pt, 0pt)),
-  curve.line((150pt, 0pt)),
-)
+  #curve(
+    stroke: blue,
+    curve.line((50pt, 0pt)),
+    curve.line((50pt, 50pt)),
+    curve.line((100pt, 50pt)),
+    curve.line((100pt, 0pt)),
+    curve.line((150pt, 0pt)),
+  )
 `}
   image='/assets/876b0adef11ce302e948d0dcfb2f286e.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -155,7 +158,7 @@ Adds a straight line from the current point to a following one.
       'default': 'None'
     },
     'relative': {
-      'description': 'Whether the coordinates are relative to the previous point.  <TypstPreview   code={` #curve(   stroke: blue,   curve.line((50pt, 0pt), relative: true),   curve.line((0pt, 50pt), relative: true),   curve.line((50pt, 0pt), relative: true),   curve.line((0pt, -50pt), relative: true),   curve.line((50pt, 0pt), relative: true), ) `}   image=\'/assets/a1d4c814689467eb4fff957d859d4f8f.png\'   alt=\'Preview\' />',
+      'description': 'Whether the coordinates are relative to the previous point.  <TypstPreview   code={`   #curve(     stroke: blue,     curve.line((50pt, 0pt), relative: true),     curve.line((0pt, 50pt), relative: true),     curve.line((50pt, 0pt), relative: true),     curve.line((0pt, -50pt), relative: true),     curve.line((50pt, 0pt), relative: true),   ) `}   image=\'/assets/a1d4c814689467eb4fff957d859d4f8f.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }
@@ -166,22 +169,23 @@ Adds a quadratic Bézier curve segment from the last point to `end{:typst}`, usi
 
 <TypstPreview
   code={`
-// Function to illustrate where the control point is.
-#let mark((x, y)) = place(
-  dx: x - 1pt, dy: y - 1pt,
-  circle(fill: aqua, radius: 2pt),
-)
+  // Function to illustrate where the control point is.
+  #let mark((x, y)) = place(
+    dx: x - 1pt, dy: y - 1pt,
+    circle(fill: aqua, radius: 2pt),
+  )
 
-#mark((20pt, 20pt))
+  #mark((20pt, 20pt))
 
-#curve(
-  stroke: blue,
-  curve.move((0pt, 100pt)),
-  curve.quad((20pt, 20pt), (100pt, 0pt)),
-)
+  #curve(
+    stroke: blue,
+    curve.move((0pt, 100pt)),
+    curve.quad((20pt, 20pt), (100pt, 0pt)),
+  )
 `}
   image='/assets/724a52e2ec967c1d8032ca86a12f48a9.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -196,7 +200,7 @@ Adds a quadratic Bézier curve segment from the last point to `end{:typst}`, usi
 <TypeTable
   type={{
     'control': {
-      'description': 'The control point of the quadratic Bézier curve.  - If `auto{:typst}` and this segment follows another quadratic Bézier curve, the previous control point will be mirrored. - If `none{:typst}`, the control point defaults to `end{:typst}`, and the curve will be a straight line.  <TypstPreview   code={` #curve(   stroke: 2pt,   curve.quad((20pt, 40pt), (40pt, 40pt), relative: true),   curve.quad(auto, (40pt, -40pt), relative: true), ) `}   image=\'/assets/d47ff1e09330a54c9073cc1acf9d4f7d.png\'   alt=\'Preview\' />',
+      'description': 'The control point of the quadratic Bézier curve.  - If `auto{:typst}` and this segment follows another quadratic Bézier curve, the previous control point will be mirrored. - If `none{:typst}`, the control point defaults to `end{:typst}`, and the curve will be a straight line.  <TypstPreview   code={`   #curve(     stroke: 2pt,     curve.quad((20pt, 40pt), (40pt, 40pt), relative: true),     curve.quad(auto, (40pt, -40pt), relative: true),   ) `}   image=\'/assets/d47ff1e09330a54c9073cc1acf9d4f7d.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | array',
       'default': 'None'
     },
@@ -217,22 +221,23 @@ Adds a cubic Bézier curve segment from the last point to `end{:typst}`, using `
 
 <TypstPreview
   code={`
-// Function to illustrate where the control points are.
-#let handle(start, end) = place(
-  line(stroke: red, start: start, end: end)
-)
+  // Function to illustrate where the control points are.
+  #let handle(start, end) = place(
+    line(stroke: red, start: start, end: end)
+  )
 
-#handle((0pt, 80pt), (10pt, 20pt))
-#handle((90pt, 60pt), (100pt, 0pt))
+  #handle((0pt, 80pt), (10pt, 20pt))
+  #handle((90pt, 60pt), (100pt, 0pt))
 
-#curve(
-  stroke: blue,
-  curve.move((0pt, 80pt)),
-  curve.cubic((10pt, 20pt), (90pt, 60pt), (100pt, 0pt)),
-)
+  #curve(
+    stroke: blue,
+    curve.move((0pt, 80pt)),
+    curve.cubic((10pt, 20pt), (90pt, 60pt), (100pt, 0pt)),
+  )
 `}
   image='/assets/7a591ac9cdc0f51d93baa039d0a04122.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -248,7 +253,7 @@ Adds a cubic Bézier curve segment from the last point to `end{:typst}`, using `
 <TypeTable
   type={{
     'control-start': {
-      'description': 'The control point going out from the start of the curve segment.  - If `auto{:typst}` and this element follows another `curve.cubic{:typst}` element, the last control point will be mirrored. In SVG terms, this makes `curve.cubic{:typst}` behave like the `S{:typst}` operator instead of the `C{:typst}` operator. - If `none{:typst}`, the curve has no first control point, or equivalently, the control point defaults to the curve\'s starting point.  <TypstPreview   code={` #curve(   stroke: blue,   curve.move((0pt, 50pt)),   // - No start control point   // - End control point at \\`(20pt, 0pt)\\`   // - End point at \\`(50pt, 0pt)\\`   curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),   // - No start control point   // - No end control point   // - End point at \\`(50pt, 0pt)\\`   curve.cubic(none, none, (100pt, 50pt)), )  #curve(   stroke: blue,   curve.move((0pt, 50pt)),   curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),   // Passing \\`auto\\` instead of \\`none\\` means the start control point   // mirrors the end control point of the previous curve. Mirror of   // \\`(20pt, 0pt)\\` w.r.t \\`(50pt, 0pt)\\` is \\`(80pt, 0pt)\\`.   curve.cubic(auto, none, (100pt, 50pt)), )  #curve(   stroke: blue,   curve.move((0pt, 50pt)),   curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),   // \\`(80pt, 0pt)\\` is the same as \\`auto\\` in this case.   curve.cubic((80pt, 0pt), none, (100pt, 50pt)), ) `}   image=\'/assets/ac3fb4a5274f0715a91fd3627b8c32dd.png\'   alt=\'Preview\' />',
+      'description': 'The control point going out from the start of the curve segment.  - If `auto{:typst}` and this element follows another `curve.cubic{:typst}` element, the last control point will be mirrored. In SVG terms, this makes `curve.cubic{:typst}` behave like the `S{:typst}` operator instead of the `C{:typst}` operator. - If `none{:typst}`, the curve has no first control point, or equivalently, the control point defaults to the curve\'s starting point.  <TypstPreview   code={`   #curve(     stroke: blue,     curve.move((0pt, 50pt)),     // - No start control point     // - End control point at \\`(20pt, 0pt)\\`     // - End point at \\`(50pt, 0pt)\\`     curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),     // - No start control point     // - No end control point     // - End point at \\`(50pt, 0pt)\\`     curve.cubic(none, none, (100pt, 50pt)),   )    #curve(     stroke: blue,     curve.move((0pt, 50pt)),     curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),     // Passing \\`auto\\` instead of \\`none\\` means the start control point     // mirrors the end control point of the previous curve. Mirror of     // \\`(20pt, 0pt)\\` w.r.t \\`(50pt, 0pt)\\` is \\`(80pt, 0pt)\\`.     curve.cubic(auto, none, (100pt, 50pt)),   )    #curve(     stroke: blue,     curve.move((0pt, 50pt)),     curve.cubic(none, (20pt, 0pt), (50pt, 0pt)),     // \\`(80pt, 0pt)\\` is the same as \\`auto\\` in this case.     curve.cubic((80pt, 0pt), none, (100pt, 50pt)),   ) `}   image=\'/assets/ac3fb4a5274f0715a91fd3627b8c32dd.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | array',
       'default': 'None'
     },
@@ -274,22 +279,23 @@ Closes the curve by adding a segment from the last point to the start of the cur
 
 <TypstPreview
   code={`
-// We define a function to show the same shape with
-// both closing modes.
-#let shape(mode: "smooth") = curve(
-  fill: blue.lighten(80%),
-  stroke: blue,
-  curve.move((0pt, 50pt)),
-  curve.line((100pt, 50pt)),
-  curve.cubic(auto, (90pt, 0pt), (50pt, 0pt)),
-  curve.close(mode: mode),
-)
+  // We define a function to show the same shape with
+  // both closing modes.
+  #let shape(mode: "smooth") = curve(
+    fill: blue.lighten(80%),
+    stroke: blue,
+    curve.move((0pt, 50pt)),
+    curve.line((100pt, 50pt)),
+    curve.cubic(auto, (90pt, 0pt), (50pt, 0pt)),
+    curve.close(mode: mode),
+  )
 
-#shape(mode: "smooth")
-#shape(mode: "straight")
+  #shape(mode: "smooth")
+  #shape(mode: "straight")
 `}
   image='/assets/f4f90ea216d7104ae8866f4ba7a726.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

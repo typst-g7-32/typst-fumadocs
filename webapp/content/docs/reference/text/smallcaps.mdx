@@ -12,11 +12,12 @@ Displays text in small capitals.
 
 <TypstPreview
   code={`
-Hello 
-#smallcaps[Hello]
+  Hello \
+  #smallcaps[Hello]
 `}
   image='/assets/d860d23f8025b71987581bf155766bc1.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Smallcaps fonts
@@ -35,20 +36,21 @@ You can use a [show rule](/docs/reference/styling/#show-rules) to apply smallcap
 
 <TypstPreview
   code={`
-#set par(justify: true)
-#set heading(numbering: "I.")
+  #set par(justify: true)
+  #set heading(numbering: "I.")
 
-#show heading: smallcaps
-#show heading: set align(center)
-#show heading: set text(
-  weight: "regular"
-)
+  #show heading: smallcaps
+  #show heading: set align(center)
+  #show heading: set text(
+    weight: "regular"
+  )
 
-= Introduction
-#lorem(40)
+  = Introduction
+  #lorem(40)
 `}
   image='/assets/7f47b81d5cd6ecd285a78baa93a2efaa.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -62,7 +64,7 @@ You can use a [show rule](/docs/reference/styling/#show-rules) to apply smallcap
 <TypeTable
   type={{
     'all': {
-      'description': 'Whether to turn uppercase letters into small capitals as well.  Unless overridden by a show rule, this enables the `c2sc{:typst}` OpenType feature.  <TypstPreview   code={` #smallcaps(all: true)[UNICEF] is an agency of #smallcaps(all: true)[UN]. `}   image=\'/assets/f26ae448d07a9e76c623cf95561882ad.png\'   alt=\'Preview\' />',
+      'description': 'Whether to turn uppercase letters into small capitals as well.  Unless overridden by a show rule, this enables the `c2sc{:typst}` OpenType feature.  <TypstPreview   code={`   #smallcaps(all: true)[UNICEF] is an   agency of #smallcaps(all: true)[UN]. `}   image=\'/assets/f26ae448d07a9e76c623cf95561882ad.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

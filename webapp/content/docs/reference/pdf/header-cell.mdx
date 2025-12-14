@@ -22,34 +22,35 @@ The API of this feature is temporary. Hence, calling this function requires enab
 
 <TypstPreview
   code={`
-#show table.cell.where(x: 0): set text(weight: "medium")
-#show table.cell.where(y: 0): set text(weight: "bold")
+  #show table.cell.where(x: 0): set text(weight: "medium")
+  #show table.cell.where(y: 0): set text(weight: "bold")
 
-#table(
-  columns: 3,
-  align: (start, end, end),
+  #table(
+    columns: 3,
+    align: (start, end, end),
 
-  table.header(
-    // Top-left cell: Labels both the nutrient rows
-    // and the serving size columns.
-    pdf.header-cell(scope: "both")[Nutrient],
-    [Per 100g],
-    [Per Serving],
-  ),
+    table.header(
+      // Top-left cell: Labels both the nutrient rows
+      // and the serving size columns.
+      pdf.header-cell(scope: "both")[Nutrient],
+      [Per 100g],
+      [Per Serving],
+    ),
 
-  // First column cells are row headers
-  pdf.header-cell(scope: "row")[Calories],
-  [250 kcal], [375 kcal],
-  pdf.header-cell(scope: "row")[Protein],
-  [8g], [12g],
-  pdf.header-cell(scope: "row")[Fat],
-  [12g], [18g],
-  pdf.header-cell(scope: "row")[Carbs],
-  [30g], [45g],
-)
+    // First column cells are row headers
+    pdf.header-cell(scope: "row")[Calories],
+    [250 kcal], [375 kcal],
+    pdf.header-cell(scope: "row")[Protein],
+    [8g], [12g],
+    pdf.header-cell(scope: "row")[Fat],
+    [12g], [18g],
+    pdf.header-cell(scope: "row")[Carbs],
+    [30g], [45g],
+  )
 `}
   image='/assets/41f9acbb3490553d6e9d371bd5ea718f.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

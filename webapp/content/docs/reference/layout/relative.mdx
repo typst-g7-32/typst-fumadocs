@@ -15,20 +15,22 @@ A common use case is setting the width or height of a layout element (e.g., [blo
 
 <TypstPreview
   code={`
-#rect(width: 25%)
+  #rect(width: 25%)
 `}
   image='/assets/4d00e48a14d2fa6bbfde5bd85623a199.png'
   alt='Preview'
+  editable={true}
 />
 
 Bare lengths or ratios are always valid where relative lengths are expected, but the two can also be freely mixed:
 
 <TypstPreview
   code={`
-#rect(width: 25% + 1cm)
+  #rect(width: 25% + 1cm)
 `}
   image='/assets/9dd66f878a23031069f8f03df39872fa.png'
   alt='Preview'
+  editable={true}
 />
 
 If you're trying to size an element so that it takes up the page's _full_ width, you have a few options (this highly depends on your exact use case):
@@ -44,14 +46,15 @@ When a layout element (e.g. a [rect](/docs/reference/visualize/rect/)) is nested
 
 <TypstPreview
   code={`
-#block(
-  width: 100pt,
-  fill: aqua,
-  rect(width: 50%),
-)
+  #block(
+    width: 100pt,
+    fill: aqua,
+    rect(width: 50%),
+  )
 `}
   image='/assets/402d58027e654e20b23526448886fb40.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Scripting
@@ -65,11 +68,12 @@ A relative length has the following fields:
 
 <TypstPreview
   code={`
-#(100% - 50pt).length 
-#(100% - 50pt).ratio
+  #(100% - 50pt).length \
+  #(100% - 50pt).ratio
 `}
   image='/assets/d770a260705b27902b61e33e8c0a5f28.png'
   alt='Preview'
+  editable={true}
 />
 
 

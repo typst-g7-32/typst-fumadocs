@@ -35,10 +35,11 @@ Sans-serif font style in math.
 
 <TypstPreview
   code={`
-$ sans(A B C) $
+  $ sans(A B C) $
 `}
   image='/assets/407ec97977e50acfb00a33fc9e4056ad.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -62,10 +63,11 @@ Fraktur font style in math.
 
 <TypstPreview
   code={`
-$ frak(P) $
+  $ frak(P) $
 `}
   image='/assets/7bc5e4240760597643a9b5acf7819e79.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -89,10 +91,11 @@ Monospace font style in math.
 
 <TypstPreview
   code={`
-$ mono(x + y = z) $
+  $ mono(x + y = z) $
 `}
   image='/assets/55d904edd40fbf32537bb0710d91dc9f.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -118,12 +121,13 @@ For uppercase latin letters, blackboard bold is additionally available through [
 
 <TypstPreview
   code={`
-$ bb(b) $
-$ bb(N) = NN $
-$ f: NN -> RR $
+  $ bb(b) $
+  $ bb(N) = NN $
+  $ f: NN -> RR $
 `}
   image='/assets/eeab38b02d476b4bcefc48bf7678c7b9.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -147,10 +151,11 @@ Calligraphic (chancery) font style in math.
 
 <TypstPreview
   code={`
-Let $cal(P)$ be the set of ...
+  Let $cal(P)$ be the set of ...
 `}
   image='/assets/92ac6bdff36119c06add06619087c88f.png'
   alt='Preview'
+  editable={true}
 />
 
 This is the default calligraphic/script style for most math fonts. See [`scr{:typst}`](/docs/reference/math/variants/#functions-scr) for more on how to get the other style (roundhand).
@@ -176,11 +181,12 @@ Script (roundhand) font style in math.
 
 <TypstPreview
   code={`
-$scr(L)$ is not the set of linear
-maps $cal(L)$.
+  $scr(L)$ is not the set of linear
+  maps $cal(L)$.
 `}
   image='/assets/ff0806462518fc754f49fbae8043ab79.png'
   alt='Preview'
+  editable={true}
 />
 
 There are two ways that fonts can support differentiating `cal{:typst}` and `scr{:typst}`. The first is using Unicode variation sequences. This works out of the box in Typst, however only a few math fonts currently support this.
@@ -189,15 +195,16 @@ The other way is using [font features](/docs/reference/text/text/#parameters-fea
 
 <TypstPreview
   code={`
-#let scr(it) = text(
-  stylistic-set: 1,
-  $cal(it)$,
-)
+  #let scr(it) = text(
+    stylistic-set: 1,
+    $cal(it)$,
+  )
 
-We establish $cal(P) != scr(P)$.
+  We establish $cal(P) != scr(P)$.
 `}
   image='/assets/ef22b570a55967020c8bd88b99f68c16.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

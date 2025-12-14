@@ -17,25 +17,27 @@ Moreover, you can define custom symbols with this type's constructor function.
 
 <TypstPreview
   code={`
-#sym.arrow.r 
-#sym.gt.eq.not 
-$gt.eq.not$ 
-#emoji.face.halo
+  #sym.arrow.r \
+  #sym.gt.eq.not \
+  $gt.eq.not$ \
+  #emoji.face.halo
 `}
   image='/assets/554ec909334ebd767463138a7c508786.png'
   alt='Preview'
+  editable={true}
 />
 
 Many symbols have different variants, which can be selected by appending the modifiers with dot notation. The order of the modifiers is not relevant. Visit the documentation pages of the symbol modules and click on a symbol to see its available variants.
 
 <TypstPreview
   code={`
-$arrow.l$ 
-$arrow.r$ 
-$arrow.t.quad$
+  $arrow.l$ \
+  $arrow.r$ \
+  $arrow.t.quad$
 `}
   image='/assets/e9ba4ee331e9848b80743d649bfa9b0c.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Constructor
@@ -43,22 +45,23 @@ Create a custom symbol with modifiers.
 
 <TypstPreview
   code={`
-#let envelope = symbol(
-  "🖂",
-  ("stamped", "🖃"),
-  ("stamped.pen", "🖆"),
-  ("lightning", "🖄"),
-  ("fly", "🖅"),
-)
+  #let envelope = symbol(
+    "🖂",
+    ("stamped", "🖃"),
+    ("stamped.pen", "🖆"),
+    ("lightning", "🖄"),
+    ("fly", "🖅"),
+  )
 
-#envelope
-#envelope.stamped
-#envelope.stamped.pen
-#envelope.lightning
-#envelope.fly
+  #envelope
+  #envelope.stamped
+  #envelope.stamped.pen
+  #envelope.lightning
+  #envelope.fly
 `}
   image='/assets/29b63ba2df6949dcc2f06e985ef13f54.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

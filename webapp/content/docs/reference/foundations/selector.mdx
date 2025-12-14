@@ -27,17 +27,18 @@ Multiple selectors can be combined using the methods shown below. However, not a
 
 <TypstPreview
   code={`
-#context query(
-  heading.where(level: 1)
-    .or(heading.where(level: 2))
-)
+  #context query(
+    heading.where(level: 1)
+      .or(heading.where(level: 2))
+  )
 
-= This will be found
-== So will this
-=== But this will not.
+  = This will be found
+  == So will this
+  === But this will not.
 `}
   image='/assets/496fb688b3f52c8190d084ec07b2c611.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Constructor

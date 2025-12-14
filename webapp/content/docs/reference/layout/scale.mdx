@@ -14,12 +14,13 @@ Lets you mirror content by specifying a negative scale on a single axis.
 
 <TypstPreview
   code={`
-#set align(center)
-#scale(x: -100%)[This is mirrored.]
-#scale(x: -100%, reflow: true)[This is mirrored.]
+  #set align(center)
+  #scale(x: -100%)[This is mirrored.]
+  #scale(x: -100%, reflow: true)[This is mirrored.]
 `}
   image='/assets/4a11fc3689aa86e118aeb7546c0a6368.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -52,12 +53,12 @@ Lets you mirror content by specifying a negative scale on a single axis.
       'default': '<code><span class="typ-num">100%</span></code>'
     },
     'origin': {
-      'description': 'The origin of the transformation.  <TypstPreview   code={` A#box(scale(75%)[A])A  B#box(scale(75%, origin: bottom + left)[B])B `}   image=\'/assets/753e3d1a1bca7e3f8a8ff37f29db41a9.png\'   alt=\'Preview\' />',
+      'description': 'The origin of the transformation.  <TypstPreview   code={`   A#box(scale(75%)[A])A \\   B#box(scale(75%, origin: bottom + left)[B])B `}   image=\'/assets/753e3d1a1bca7e3f8a8ff37f29db41a9.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'alignment',
       'default': '<code>center <span class="typ-op">+</span> horizon</code>'
     },
     'reflow': {
-      'description': 'Whether the scaling impacts the layout.  If set to `false{:typst}`, the scaled content will be allowed to overlap other content. If set to `true{:typst}`, it will compute the new size of the scaled content and adjust the layout accordingly.  <TypstPreview   code={` Hello #scale(x: 20%, y: 40%, reflow: true)[World]! `}   image=\'/assets/f2a115827e2953ff282e69617b8717d9.png\'   alt=\'Preview\' />',
+      'description': 'Whether the scaling impacts the layout.  If set to `false{:typst}`, the scaled content will be allowed to overlap other content. If set to `true{:typst}`, it will compute the new size of the scaled content and adjust the layout accordingly.  <TypstPreview   code={`   Hello #scale(x: 20%, y: 40%, reflow: true)[World]! `}   image=\'/assets/f2a115827e2953ff282e69617b8717d9.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

@@ -14,20 +14,21 @@ The spacing can be absolute, relative, or fractional. In the last case, the rema
 
 <TypstPreview
   code={`
-#grid(
-  rows: 3cm,
-  columns: 6,
-  gutter: 1fr,
-  [A #parbreak() B],
-  [A #v(0pt) B],
-  [A #v(10pt) B],
-  [A #v(0pt, weak: true) B],
-  [A #v(40%, weak: true) B],
-  [A #v(1fr) B],
-)
+  #grid(
+    rows: 3cm,
+    columns: 6,
+    gutter: 1fr,
+    [A #parbreak() B],
+    [A #v(0pt) B],
+    [A #v(10pt) B],
+    [A #v(0pt, weak: true) B],
+    [A #v(40%, weak: true) B],
+    [A #v(1fr) B],
+  )
 `}
   image='/assets/cd0b69bfd17f6ce712e61cc001c42be.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -46,7 +47,7 @@ The spacing can be absolute, relative, or fractional. In the last case, the rema
       'default': 'None'
     },
     'weak': {
-      'description': 'If `true{:typst}`, the spacing collapses at the start or end of a flow. Moreover, from multiple adjacent weak spacings all but the largest one collapse. Weak spacings will always collapse adjacent paragraph spacing, even if the paragraph spacing is larger.  <TypstPreview   code={` The following theorem is foundational to the field: #v(4pt, weak: true) $ x^2 + y^2 = r^2 $ #v(4pt, weak: true) The proof is simple: `}   image=\'/assets/ed76ba665ffecd67d6680ea0a2c33fd1.png\'   alt=\'Preview\' />',
+      'description': 'If `true{:typst}`, the spacing collapses at the start or end of a flow. Moreover, from multiple adjacent weak spacings all but the largest one collapse. Weak spacings will always collapse adjacent paragraph spacing, even if the paragraph spacing is larger.  <TypstPreview   code={`   The following theorem is   foundational to the field:   #v(4pt, weak: true)   $ x^2 + y^2 = r^2 $   #v(4pt, weak: true)   The proof is simple: `}   image=\'/assets/ed76ba665ffecd67d6680ea0a2c33fd1.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }

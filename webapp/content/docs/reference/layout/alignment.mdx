@@ -22,11 +22,12 @@ These values are available globally and also in the alignment type's scope, so y
 
 <TypstPreview
   code={`
-#align(center)[Hi]
-#align(alignment.center)[Hi]
+  #align(center)[Hi]
+  #align(alignment.center)[Hi]
 `}
   image='/assets/669ac68cb04f4942797f66b87e297c20.png'
   alt='Preview'
+  editable={true}
 />
 
 ## 2D alignments
@@ -35,11 +36,12 @@ To align along both axes at the same time, add the two alignments using the `+{:
 
 <TypstPreview
   code={`
-#set page(height: 3cm)
-#align(center + bottom)[Hi]
+  #set page(height: 3cm)
+  #align(center + bottom)[Hi]
 `}
   image='/assets/5f766b5749e7d5181e3d6b4854c0785e.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Fields
@@ -48,12 +50,13 @@ The `x{:typst}` and `y{:typst}` fields hold the alignment's horizontal and verti
 
 <TypstPreview
   code={`
-#(top + right).x 
-#left.x 
-#left.y (none)
+  #(top + right).x \
+  #left.x \
+  #left.y (none)
 `}
   image='/assets/79cafc257ee34674474ab3a53a1c3047.png'
   alt='Preview'
+  editable={true}
 />
 
 
@@ -66,24 +69,26 @@ The axis this alignment belongs to.
 
 <TypstPreview
   code={`
-#left.axis() 
-#bottom.axis()
+  #left.axis() \
+  #bottom.axis()
 `}
   image='/assets/387aae8b6112fd14679b1c8e65d15622.png'
   alt='Preview'
+  editable={true}
 />
 
 The inverse alignment.
 
 <TypstPreview
   code={`
-#top.inv() 
-#left.inv() 
-#center.inv() 
-#(left + bottom).inv()
+  #top.inv() \
+  #left.inv() \
+  #center.inv() \
+  #(left + bottom).inv()
 `}
   image='/assets/b41031486714772a203469f697c3e6fd.png'
   alt='Preview'
+  editable={true}
 />
 
 

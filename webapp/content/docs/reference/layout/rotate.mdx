@@ -14,15 +14,16 @@ Rotates an element by a given angle. The layout will act as if the element was n
 
 <TypstPreview
   code={`
-#stack(
-  dir: ltr,
-  spacing: 1fr,
-  ..range(16)
-    .map(i => rotate(24deg * i)[X]),
-)
+  #stack(
+    dir: ltr,
+    spacing: 1fr,
+    ..range(16)
+      .map(i => rotate(24deg * i)[X]),
+  )
 `}
   image='/assets/2913652711733d7c7032c2817b4bd215.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -38,17 +39,17 @@ Rotates an element by a given angle. The layout will act as if the element was n
 <TypeTable
   type={{
     'angle': {
-      'description': 'The amount of rotation.  <TypstPreview   code={` #rotate(-1.571rad)[Space!] `}   image=\'/assets/fe4c7be5f5b5d6ef1363f663ea5bb2b7.png\'   alt=\'Preview\' />',
+      'description': 'The amount of rotation.  <TypstPreview   code={`   #rotate(-1.571rad)[Space!] `}   image=\'/assets/fe4c7be5f5b5d6ef1363f663ea5bb2b7.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'angle',
       'default': '<code><span class="typ-num">0deg</span></code>'
     },
     'origin': {
-      'description': 'The origin of the rotation.  If, for instance, you wanted the bottom left corner of the rotated element to stay aligned with the baseline, you would set it to `bottom + left{:typst}` instead.  <TypstPreview   code={` #set text(spacing: 8pt) #let square = square.with(width: 8pt)  #box(square()) #box(rotate(30deg, origin: center, square())) #box(rotate(30deg, origin: top + left, square())) #box(rotate(30deg, origin: bottom + right, square())) `}   image=\'/assets/673042934ca6888793e71a385d773ef1.png\'   alt=\'Preview\' />',
+      'description': 'The origin of the rotation.  If, for instance, you wanted the bottom left corner of the rotated element to stay aligned with the baseline, you would set it to `bottom + left{:typst}` instead.  <TypstPreview   code={`   #set text(spacing: 8pt)   #let square = square.with(width: 8pt)    #box(square())   #box(rotate(30deg, origin: center, square()))   #box(rotate(30deg, origin: top + left, square()))   #box(rotate(30deg, origin: bottom + right, square())) `}   image=\'/assets/673042934ca6888793e71a385d773ef1.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'alignment',
       'default': '<code>center <span class="typ-op">+</span> horizon</code>'
     },
     'reflow': {
-      'description': 'Whether the rotation impacts the layout.  If set to `false{:typst}`, the rotated content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the rotation of the content into account and adjust the layout accordingly.  <TypstPreview   code={` Hello #rotate(90deg, reflow: true)[World]! `}   image=\'/assets/8bc00ca76bf198a9f7367d30c00d59d3.png\'   alt=\'Preview\' />',
+      'description': 'Whether the rotation impacts the layout.  If set to `false{:typst}`, the rotated content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the rotation of the content into account and adjust the layout accordingly.  <TypstPreview   code={`   Hello #rotate(90deg, reflow: true)[World]! `}   image=\'/assets/8bc00ca76bf198a9f7367d30c00d59d3.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

@@ -1,3 +1,5 @@
+import textwrap
+
 from bs4 import BeautifulSoup, Tag, NavigableString
 from loguru import logger
 
@@ -141,7 +143,7 @@ def process_preview_code(element: Tag) -> str:
     image_block = element.find("img")
     if not pre_block:
         return ""
-    code_text = pre_block.get_text().replace("\\\n", "\n").rstrip()
+    code_text = pre_block.get_text().rstrip()
     if not image_block:
         return f"```typst\n{code_text}\n```"
     if image_block and pre_block:
@@ -151,8 +153,9 @@ def process_preview_code(element: Tag) -> str:
         src = image_block.get('src', "")
         alt = image_block.get('alt', "")
         code_text = code_text.replace("`", "\\`")
+        code_text = textwrap.indent(code_text, "  ")
         code_text = "{" + f"`\n{code_text}\n`" + "}"
-        return f"<TypstPreview\n  code={code_text}\n  image='{src}'\n  alt='{alt}'\n/>"
+        return f"<TypstPreview\n  code={code_text}\n  image='{src}'\n  alt='{alt}'\n  editable={{true}}\n/>"
     return ""
 
 def process_info_box(element: Tag) -> str:

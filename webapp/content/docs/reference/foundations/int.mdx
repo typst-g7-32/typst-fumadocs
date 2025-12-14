@@ -18,16 +18,17 @@ You can convert a value to an integer with this type's constructor.
 
 <TypstPreview
   code={`
-#(1 + 2) 
-#(2 - 5) 
-#(3 + 4 < 8)
+  #(1 + 2) \
+  #(2 - 5) \
+  #(3 + 4 < 8)
 
-#0xff 
-#0o10 
-#0b1001
+  #0xff \
+  #0o10 \
+  #0b1001
 `}
   image='/assets/c1fa714490d9acd7860c0dd18c480526.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Constructor
@@ -39,15 +40,16 @@ Converts a value to an integer. Raises an error if there is an attempt to parse 
 
 <TypstPreview
   code={`
-#int(false) 
-#int(true) 
-#int(2.7) 
-#int(decimal("3.8")) 
-#(int("27") + int("4")) 
-#(int("beef", base: 16))
+  #int(false) \
+  #int(true) \
+  #int(2.7) \
+  #int(decimal("3.8")) \
+  #(int("27") + int("4")) \
+  #(int("beef", base: 16))
 `}
   image='/assets/c4de2725fb7029ca72848c9f3c01a117.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -83,12 +85,13 @@ Calculates the sign of an integer.
 
 <TypstPreview
   code={`
-#(5).signum() 
-#(-5).signum() 
-#(0).signum()
+  #(5).signum() \
+  #(-5).signum() \
+  #(0).signum()
 `}
   image='/assets/562726d9517a67df2c82335941895a06.png'
   alt='Preview'
+  editable={true}
 />
 
 Calculates the bitwise NOT of an integer.
@@ -97,11 +100,12 @@ For the purposes of this function, the operand is treated as a signed integer of
 
 <TypstPreview
   code={`
-#4.bit-not() 
-#(-1).bit-not()
+  #4.bit-not() \
+  #(-1).bit-not()
 `}
   image='/assets/dc060efa9e84fb3dd52c7e2f3725842a.png'
   alt='Preview'
+  editable={true}
 />
 
 Calculates the bitwise AND between two integers.
@@ -110,10 +114,11 @@ For the purposes of this function, the operands are treated as signed integers o
 
 <TypstPreview
   code={`
-#128.bit-and(192)
+  #128.bit-and(192)
 `}
   image='/assets/927c13ad6f976e3e6ca9b71dcdaedec2.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -139,10 +144,11 @@ For the purposes of this function, the operands are treated as signed integers o
 
 <TypstPreview
   code={`
-#64.bit-or(32)
+  #64.bit-or(32)
 `}
   image='/assets/cda54a333b5f8fef1521f6cb5de24550.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -168,10 +174,11 @@ For the purposes of this function, the operands are treated as signed integers o
 
 <TypstPreview
   code={`
-#64.bit-xor(96)
+  #64.bit-xor(96)
 `}
   image='/assets/2943eab0e2f921759c1927c0845a4beb.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -197,11 +204,12 @@ For the purposes of this function, the operand is treated as a signed integer of
 
 <TypstPreview
   code={`
-#33.bit-lshift(2) 
-#(-1).bit-lshift(3)
+  #33.bit-lshift(2) \
+  #(-1).bit-lshift(3)
 `}
   image='/assets/9085484b226c6c6a4ade4fdfbb9f4ed8.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -227,12 +235,13 @@ For the purposes of this function, the operand is treated as a signed integer of
 
 <TypstPreview
   code={`
-#64.bit-rshift(2) 
-#(-8).bit-rshift(2) 
-#(-8).bit-rshift(2, logical: true)
+  #64.bit-rshift(2) \
+  #(-8).bit-rshift(2) \
+  #(-8).bit-rshift(2, logical: true)
 `}
   image='/assets/81e6da07e0993b30ed9ef7e30df8ed4e.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -262,11 +271,12 @@ Converts bytes to an integer.
 
 <TypstPreview
   code={`
-#int.from-bytes(bytes((0, 0, 0, 0, 0, 0, 0, 1))) 
-#int.from-bytes(bytes((1, 0, 0, 0, 0, 0, 0, 0)), endian: "big")
+  #int.from-bytes(bytes((0, 0, 0, 0, 0, 0, 0, 1))) \
+  #int.from-bytes(bytes((1, 0, 0, 0, 0, 0, 0, 0)), endian: "big")
 `}
   image='/assets/2342cf4345948a2d1fb61703db4728b0.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -302,11 +312,12 @@ Converts an integer to bytes.
 
 <TypstPreview
   code={`
-#array(10000.to-bytes(endian: "big")) 
-#array(10000.to-bytes(size: 4))
+  #array(10000.to-bytes(endian: "big")) \
+  #array(10000.to-bytes(size: 4))
 `}
   image='/assets/145ee0196e1e54e1216232195f2f0122.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

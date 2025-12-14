@@ -20,20 +20,21 @@ When [reading](/docs/reference/data-loading/read/) data from a file, you can dec
 
 <TypstPreview
   code={`
-#bytes((123, 160, 22, 0)) 
-#bytes("Hello 😃")
+  #bytes((123, 160, 22, 0)) \
+  #bytes("Hello 😃")
 
-#let data = read(
-  "rhino.png",
-  encoding: none,
-)
+  #let data = read(
+    "rhino.png",
+    encoding: none,
+  )
 
-// Magic bytes.
-#array(data.slice(0, 4)) 
-#str(data.slice(1, 4))
+  // Magic bytes.
+  #array(data.slice(0, 4)) \
+  #str(data.slice(1, 4))
 `}
   image='/assets/b09b581605724240d910b1078dee72c3.png'
   alt='Preview'
+  editable={false}
 />
 
 ## Constructor
@@ -44,11 +45,12 @@ Converts a value to bytes.
 
 <TypstPreview
   code={`
-#bytes("Hello 😃") 
-#bytes((123, 160, 22, 0))
+  #bytes("Hello 😃") \
+  #bytes((123, 160, 22, 0))
 `}
   image='/assets/3e57d56a31a67c32cc63aa7c5f84b707.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

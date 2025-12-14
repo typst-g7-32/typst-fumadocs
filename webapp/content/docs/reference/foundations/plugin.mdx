@@ -18,18 +18,19 @@ For security reasons, plugins run in isolation from your system. This means that
 
 <TypstPreview
   code={`
-#let myplugin = plugin("hello.wasm")
-#let concat(a, b) = str(
-  myplugin.concatenate(
-    bytes(a),
-    bytes(b),
+  #let myplugin = plugin("hello.wasm")
+  #let concat(a, b) = str(
+    myplugin.concatenate(
+      bytes(a),
+      bytes(b),
+    )
   )
-)
 
-#concat("hello", "world")
+  #concat("hello", "world")
 `}
   image='/assets/563eb9b72603c710f73876546a243de1.png'
   alt='Preview'
+  editable={true}
 />
 
 Since the plugin function returns a module, it can be used with import syntax:

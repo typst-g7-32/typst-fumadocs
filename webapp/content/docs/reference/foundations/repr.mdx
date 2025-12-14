@@ -14,13 +14,14 @@ When inserted into content, most values are displayed as this representation in 
 
 <TypstPreview
   code={`
-#none vs #repr(none) 
-#"hello" vs #repr("hello") 
-#(1, 2) vs #repr((1, 2)) 
-#[*Hi*] vs #repr([*Hi*])
+  #none vs #repr(none) \
+  #"hello" vs #repr("hello") \
+  #(1, 2) vs #repr((1, 2)) \
+  #[*Hi*] vs #repr([*Hi*])
 `}
   image='/assets/84ebd00100d33ebdd6015bb8c7c1e483.png'
   alt='Preview'
+  editable={true}
 />
 
 ## For debugging purposes only
@@ -31,13 +32,14 @@ To be specific, having the same `repr{:typst}` does not guarantee that values ar
 
 <TypstPreview
   code={`
-#assert(2pt / 3 < 0.67pt)
-#repr(2pt / 3)
+  #assert(2pt / 3 < 0.67pt)
+  #repr(2pt / 3)
 
-#repr(x => x + 1)
+  #repr(x => x + 1)
 `}
   image='/assets/38f26ff12687ae30b4bf7525a0e4dbd3.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

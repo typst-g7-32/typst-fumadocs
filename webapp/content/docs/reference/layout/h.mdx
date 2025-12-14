@@ -14,11 +14,12 @@ The spacing can be absolute, relative, or fractional. In the last case, the rema
 
 <TypstPreview
   code={`
-First #h(1cm) Second 
-First #h(30%) Second
+  First #h(1cm) Second \
+  First #h(30%) Second
 `}
   image='/assets/f302fec582d1e98ecc2e5a6822e5ffbc.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Fractional spacing
@@ -27,12 +28,13 @@ With fractional spacing, you can align things within a line without forcing a pa
 
 <TypstPreview
   code={`
-First #h(1fr) Second 
-First #h(1fr) Second #h(1fr) Third 
-First #h(2fr) Second #h(1fr) Third
+  First #h(1fr) Second \
+  First #h(1fr) Second #h(1fr) Third \
+  First #h(2fr) Second #h(1fr) Third
 `}
   image='/assets/a410aa858f4085ebab8e7cf2d9580f06.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Mathematical Spacing
@@ -55,7 +57,7 @@ In [mathematical formulas](/docs/reference/math/), you can additionally use thes
       'default': 'None'
     },
     'weak': {
-      'description': 'If `true{:typst}`, the spacing collapses at the start or end of a paragraph. Moreover, from multiple adjacent weak spacings all but the largest one collapse.  Weak spacing in markup also causes all adjacent markup spaces to be removed, regardless of the amount of spacing inserted. To force a space next to weak spacing, you can explicitly write `#" "{:typst}` (for a normal space) or `~{:typst}` (for a non-breaking space). The latter can be useful to create a construct that always attaches to the preceding word with one non-breaking space, independently of whether a markup space existed in front or not.  <TypstPreview   code={` #h(1cm, weak: true) We identified a group of _weak_ specimens that fail to manifest in most cases. However, when #h(8pt, weak: true) supported #h(8pt, weak: true) on both sides, they do show up.  Further #h(0pt, weak: true) more, even the smallest of them swallow adjacent markup spaces. `}   image=\'/assets/73fedbffd595e924c21761117468697d.png\'   alt=\'Preview\' />',
+      'description': 'If `true{:typst}`, the spacing collapses at the start or end of a paragraph. Moreover, from multiple adjacent weak spacings all but the largest one collapse.  Weak spacing in markup also causes all adjacent markup spaces to be removed, regardless of the amount of spacing inserted. To force a space next to weak spacing, you can explicitly write `#" "{:typst}` (for a normal space) or `~{:typst}` (for a non-breaking space). The latter can be useful to create a construct that always attaches to the preceding word with one non-breaking space, independently of whether a markup space existed in front or not.  <TypstPreview   code={`   #h(1cm, weak: true)   We identified a group of _weak_   specimens that fail to manifest   in most cases. However, when   #h(8pt, weak: true) supported   #h(8pt, weak: true) on both sides,   they do show up.    Further #h(0pt, weak: true) more,   even the smallest of them swallow   adjacent markup spaces. `}   image=\'/assets/73fedbffd595e924c21761117468697d.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }

@@ -16,29 +16,31 @@ The same content can have a different size depending on the [context](/docs/refe
 
 <TypstPreview
   code={`
-#let content = [Hello!]
-#content
-#set text(14pt)
-#content
+  #let content = [Hello!]
+  #content
+  #set text(14pt)
+  #content
 `}
   image='/assets/213f7d67a16c2b7124176f09e63be87.png'
   alt='Preview'
+  editable={true}
 />
 
 For this reason, you can only measure when context is available.
 
 <TypstPreview
   code={`
-#let thing(body) = context {
-  let size = measure(body)
-  [Width of "#body" is #size.width]
-}
+  #let thing(body) = context {
+    let size = measure(body)
+    [Width of "#body" is #size.width]
+  }
 
-#thing[Hey] 
-#thing[Welcome]
+  #thing[Hey] \
+  #thing[Welcome]
 `}
   image='/assets/fb2e80b8ddc9deb97b1b3d71fd54638f.png'
   alt='Preview'
+  editable={true}
 />
 
 The measure function returns a dictionary with the entries `width{:typst}` and `height{:typst}`, both of type [`length{:typst}`](/docs/reference/layout/length/).
@@ -55,7 +57,7 @@ The measure function returns a dictionary with the entries `width{:typst}` and `
 <TypeTable
   type={{
     'width': {
-      'description': 'The width available to layout the content.  Setting this to `auto{:typst}` indicates infinite available width.  Note that using the `width{:typst}` and `height{:typst}` parameters of this function is different from measuring a sized [`block{:typst}`](/docs/reference/layout/block/) containing the content. In the following example, the former will get the dimensions of the inner content instead of the dimensions of the block.  <TypstPreview   code={` #context measure(lorem(100), width: 400pt)  #context measure(block(lorem(100), width: 400pt)) `}   image=\'/assets/9063ce7197f1cd611fa96cca40225a16.png\'   alt=\'Preview\' />',
+      'description': 'The width available to layout the content.  Setting this to `auto{:typst}` indicates infinite available width.  Note that using the `width{:typst}` and `height{:typst}` parameters of this function is different from measuring a sized [`block{:typst}`](/docs/reference/layout/block/) containing the content. In the following example, the former will get the dimensions of the inner content instead of the dimensions of the block.  <TypstPreview   code={`   #context measure(lorem(100), width: 400pt)    #context measure(block(lorem(100), width: 400pt)) `}   image=\'/assets/9063ce7197f1cd611fa96cca40225a16.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'auto | length',
       'default': '<code><span class="typ-key">auto</span></code>'
     },

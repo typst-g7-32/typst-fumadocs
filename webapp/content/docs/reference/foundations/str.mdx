@@ -20,15 +20,16 @@ You can convert a value to a string with the `str{:typst}` constructor.
 
 <TypstPreview
   code={`
-#"hello world!" 
-#"\"hello\n  world\"!" 
-#"1 2 3".split() 
-#"1,2;3".split(regex("[,;]")) 
-#(regex("\\d+") in "ten euros") 
-#(regex("\\d+") in "10 euros")
+  #"hello world!" \
+  #"\"hello\n  world\"!" \
+  #"1 2 3".split() \
+  #"1,2;3".split(regex("[,;]")) \
+  #(regex("\\d+") in "ten euros") \
+  #(regex("\\d+") in "10 euros")
 `}
   image='/assets/b83a3b491d1a0f8e66341b65dada4df8.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Escape sequences
@@ -55,14 +56,15 @@ If you wish to convert from and to Unicode code points, see the [`to-unicode{:ty
 
 <TypstPreview
   code={`
-#str(10) 
-#str(4000, base: 16) 
-#str(2.7) 
-#str(1e8) 
-#str(<intro>)
+  #str(10) \
+  #str(4000, base: 16) \
+  #str(2.7) \
+  #str(1e8) \
+  #str(<intro>)
 `}
   image='/assets/d3a8d1f73f9f3fe3387aef170763059c.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -198,13 +200,14 @@ Converts a character into its corresponding code point.
 
 <TypstPreview
   code={`
-#"a".to-unicode() 
-#("a\u{0300}"
-   .codepoints()
-   .map(str.to-unicode))
+  #"a".to-unicode() \
+  #("a\u{0300}"
+     .codepoints()
+     .map(str.to-unicode))
 `}
   image='/assets/ab9d2dcfa58024f9f0b4109859b1eb23.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -228,10 +231,11 @@ Converts a unicode code point into its corresponding string.
 
 <TypstPreview
   code={`
-#str.from-unicode(97)
+  #str.from-unicode(97)
 `}
   image='/assets/bcdcdcb063b865dfeef8fe2a367c6b0d.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -385,21 +389,23 @@ The returned dictionary has the following keys:
 
 <TypstPreview
   code={`
-#let pat = regex("not (a|an) (apple|cat)")
-#"I'm a doctor, not an apple.".match(pat) 
-#"I am not a cat!".match(pat)
+  #let pat = regex("not (a|an) (apple|cat)")
+  #"I'm a doctor, not an apple.".match(pat) \
+  #"I am not a cat!".match(pat)
 `}
   image='/assets/2589c9739f95e5904f0e8d7a343e835a.png'
   alt='Preview'
+  editable={true}
 />
 
 <TypstPreview
   code={`
-#assert.eq("Is there a".match("for this?"), none)
-#"The time of my life.".match(regex("[mit]+e"))
+  #assert.eq("Is there a".match("for this?"), none)
+  #"The time of my life.".match(regex("[mit]+e"))
 `}
   image='/assets/82bd9e34267a90aa0c53d7881294a78.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -423,10 +429,11 @@ Searches for the specified pattern in the string and returns an array of diction
 
 <TypstPreview
   code={`
-#"Day by Day.".matches("Day")
+  #"Day by Day.".matches("Day")
 `}
   image='/assets/66adbcbd2e7592ad6a07b06db355a074.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

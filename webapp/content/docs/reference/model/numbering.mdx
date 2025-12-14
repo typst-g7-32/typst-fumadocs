@@ -16,19 +16,20 @@ A numbering pattern consists of counting symbols, for which the actual number is
 
 <TypstPreview
   code={`
-#numbering("1.1)", 1, 2, 3) 
-#numbering("1.a.i", 1, 2) 
-#numbering("I – 1", 12, 2) 
-#numbering(
-  (..nums) => nums
-    .pos()
-    .map(str)
-    .join(".") + ")",
-  1, 2, 3,
-)
+  #numbering("1.1)", 1, 2, 3) \
+  #numbering("1.a.i", 1, 2) \
+  #numbering("I – 1", 12, 2) \
+  #numbering(
+    (..nums) => nums
+      .pos()
+      .map(str)
+      .join(".") + ")",
+    1, 2, 3,
+  )
 `}
   image='/assets/5623388f19513634c27192c702a4d0b1.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Numbering patterns and numbering functions
@@ -39,14 +40,15 @@ The following example illustrates that a numbering function is just a regular [f
 
 <TypstPreview
   code={`
-#let unary(.., last) = "|" * last
-#set heading(numbering: unary)
-= First heading
-= Second heading
-= Third heading
+  #let unary(.., last) = "|" * last
+  #set heading(numbering: unary)
+  = First heading
+  = Second heading
+  = Third heading
 `}
   image='/assets/cb7636c53e8f2982779c917acbd6dc3f.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

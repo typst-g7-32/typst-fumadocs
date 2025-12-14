@@ -14,12 +14,13 @@ Skews an element in horizontal and/or vertical direction. The layout will act as
 
 <TypstPreview
   code={`
-#skew(ax: -12deg)[
-  This is some fake italic text.
-]
+  #skew(ax: -12deg)[
+    This is some fake italic text.
+  ]
 `}
   image='/assets/154b52c95b3e31ae6bbd43fc074c397d.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -36,22 +37,22 @@ Skews an element in horizontal and/or vertical direction. The layout will act as
 <TypeTable
   type={{
     'ax': {
-      'description': 'The horizontal skewing angle.  <TypstPreview   code={` #skew(ax: 30deg)[Skewed] `}   image=\'/assets/1fd93686547f1d8c29e4c343e34cf7ae.png\'   alt=\'Preview\' />',
+      'description': 'The horizontal skewing angle.  <TypstPreview   code={`   #skew(ax: 30deg)[Skewed] `}   image=\'/assets/1fd93686547f1d8c29e4c343e34cf7ae.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'angle',
       'default': '<code><span class="typ-num">0deg</span></code>'
     },
     'ay': {
-      'description': 'The vertical skewing angle.  <TypstPreview   code={` #skew(ay: 30deg)[Skewed] `}   image=\'/assets/c8b3992019d91ea57c698075add2fc4.png\'   alt=\'Preview\' />',
+      'description': 'The vertical skewing angle.  <TypstPreview   code={`   #skew(ay: 30deg)[Skewed] `}   image=\'/assets/c8b3992019d91ea57c698075add2fc4.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'angle',
       'default': '<code><span class="typ-num">0deg</span></code>'
     },
     'origin': {
-      'description': 'The origin of the skew transformation.  The origin will stay fixed during the operation.  <TypstPreview   code={` X #box(skew(ax: -30deg, origin: center + horizon)[X]) X  X #box(skew(ax: -30deg, origin: bottom + left)[X]) X  X #box(skew(ax: -30deg, origin: top + right)[X]) X `}   image=\'/assets/d87ab8185612d6d4aa0a796ecf78db71.png\'   alt=\'Preview\' />',
+      'description': 'The origin of the skew transformation.  The origin will stay fixed during the operation.  <TypstPreview   code={`   X #box(skew(ax: -30deg, origin: center + horizon)[X]) X \\   X #box(skew(ax: -30deg, origin: bottom + left)[X]) X \\   X #box(skew(ax: -30deg, origin: top + right)[X]) X `}   image=\'/assets/d87ab8185612d6d4aa0a796ecf78db71.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'alignment',
       'default': '<code>center <span class="typ-op">+</span> horizon</code>'
     },
     'reflow': {
-      'description': 'Whether the skew transformation impacts the layout.  If set to `false{:typst}`, the skewed content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the transformation of the content into account and adjust the layout accordingly.  <TypstPreview   code={` Hello #skew(ay: 30deg, reflow: true, "World")! `}   image=\'/assets/fa4f8f52e45ecc3faaea3eef93ec5058.png\'   alt=\'Preview\' />',
+      'description': 'Whether the skew transformation impacts the layout.  If set to `false{:typst}`, the skewed content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the transformation of the content into account and adjust the layout accordingly.  <TypstPreview   code={`   Hello #skew(ay: 30deg, reflow: true, "World")! `}   image=\'/assets/fa4f8f52e45ecc3faaea3eef93ec5058.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

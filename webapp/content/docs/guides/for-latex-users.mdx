@@ -23,13 +23,14 @@ That's easy. You just create a new, empty text file (the file extension is `.typ
 
 <TypstPreview
   code={`
-Hey there!
+  Hey there!
 
-Here are two paragraphs. The
-output is shown to the right.
+  Here are two paragraphs. The
+  output is shown to the right.
 `}
   image='/assets/d576b17fe173f96eda81c5ea2a62f28d.png'
   alt='Preview'
+  editable={true}
 />
 
 If you want to start from an preexisting LaTeX document instead, you can use [Pandoc](https://pandoc.org) to convert your source code to Typst markup. This conversion is also built into our web app, so you can upload your `.tex{:typst}` file to start your project in Typst.
@@ -66,24 +67,25 @@ Here is a list of common markup commands used in LaTeX and their Typst equivalen
 
 <TypstPreview
   code={`
-To write this list in Typst...
+  To write this list in Typst...
 
-\`\`\`latex
-\begin{itemize}
-  \item Fast
-  \item Flexible
-  \item Intuitive
-\end{itemize}
-\`\`\`
+  \`\`\`latex
+  \begin{itemize}
+    \item Fast
+    \item Flexible
+    \item Intuitive
+  \end{itemize}
+  \`\`\`
 
-...just type this:
+  ...just type this:
 
-- Fast
-- Flexible
-- Intuitive
+  - Fast
+  - Flexible
+  - Intuitive
 `}
   image='/assets/12dc490699b39fe43771a51e9bcf6639.png'
   alt='Preview'
+  editable={true}
 />
 
 Nesting lists works just by using proper indentation. Adding a blank line in between items results in a more [widely](/docs/reference/model/list/#parameters-tight) spaced list.
@@ -94,13 +96,14 @@ Note that the [`raw{:typst}` function](/docs/reference/text/raw/) and syntax (e.
 
 <TypstPreview
   code={`
-#text(
-  font: "DejaVu Sans Mono",
-  size: 0.8em,
-)[monospace *bold*]
+  #text(
+    font: "DejaVu Sans Mono",
+    size: 0.8em,
+  )[monospace *bold*]
 `}
   image='/assets/1c8b7b315c9a9231ec2f8ee31b5cc24.png'
   alt='Preview'
+  editable={true}
 />
 
 ## How do I use a command?
@@ -113,22 +116,23 @@ Within Typst's markup, you can switch to code mode for a single command (or rath
 
 <TypstPreview
   code={`
-First, a rectangle:
-#rect()
+  First, a rectangle:
+  #rect()
 
-Let me show how to do
-#underline([_underlined_ text])
+  Let me show how to do
+  #underline([_underlined_ text])
 
-We can also do some maths:
-#calc.max(3, 2 * 4)
+  We can also do some maths:
+  #calc.max(3, 2 * 4)
 
-And finally a little loop:
-#for x in range(3) [
-  Hi #x.
-]
+  And finally a little loop:
+  #for x in range(3) [
+    Hi #x.
+  ]
 `}
   image='/assets/61187e014908ab80b5988f03553820b3.png'
   alt='Preview'
+  editable={true}
 />
 
 A function call always involves the name of the function ([`rect{:typst}`](/docs/reference/visualize/rect/), [`underline{:typst}`](/docs/reference/text/underline/), [`calc.max{:typst}`](/docs/reference/foundations/calc/#functions-max), [`range{:typst}`](/docs/reference/foundations/array/#definitions-range)) followed by parentheses (as opposed to LaTeX where the square brackets and curly braces are optional if the macro requires no arguments). The expected list of arguments passed within those parentheses depends on the concrete function and is specified in the [reference](/docs/reference/).
@@ -139,14 +143,15 @@ A function can have multiple arguments. Some arguments are positional, i.e., you
 
 <TypstPreview
   code={`
-#rect(
-  width: 2cm,
-  height: 1cm,
-  stroke: red,
-)
+  #rect(
+    width: 2cm,
+    height: 1cm,
+    stroke: red,
+  )
 `}
   image='/assets/aa17a54d4d9e1338642f4ce9fff72220.png'
   alt='Preview'
+  editable={true}
 />
 
 You specify a named argument by first entering its name (above, it's `width{:typst}`, `height{:typst}`, and `stroke{:typst}`), then a colon, followed by the value (`2cm{:typst}`, `1cm{:typst}`, `red{:typst}`). You can find the available named arguments in the [reference page](/docs/reference/) for each function or in the autocomplete panel when typing. Named arguments are similar to how some LaTeX environments are configured, for example, you would type `\begin\{enumerate\}[label=\{\alph*)\}]{:typst}` to start a list with the labels `a){:typst}`, `b){:typst}`, and so on.
@@ -155,13 +160,14 @@ Often, you want to provide some [content](/docs/reference/foundations/content/) 
 
 <TypstPreview
   code={`
-Typst is an #underline[alternative]
-to LaTeX.
+  Typst is an #underline[alternative]
+  to LaTeX.
 
-#rect(fill: aqua)[Get started here!]
+  #rect(fill: aqua)[Get started here!]
 `}
   image='/assets/997bfedfa9b70b688ba2c04b2313231f.png'
   alt='Preview'
+  editable={true}
 />
 
 ### Data types
@@ -185,21 +191,22 @@ You can also store values, including functions, in your own [variables](/docs/re
 
 <TypstPreview
   code={`
-// Store the integer \`5\`.
-#let five = 5
+  // Store the integer \`5\`.
+  #let five = 5
 
-// Define a function that
-// increments a value.
-#let inc(i) = i + 1
+  // Define a function that
+  // increments a value.
+  #let inc(i) = i + 1
 
-// Reference the variables.
-I have #five fingers.
+  // Reference the variables.
+  I have #five fingers.
 
-If I had one more, I'd have
-#inc(five) fingers. Whoa!
+  If I had one more, I'd have
+  #inc(five) fingers. Whoa!
 `}
   image='/assets/74df77f136dbc2c18c9af4c5f847ac7.png'
   alt='Preview'
+  editable={true}
 />
 
 ### Commands to affect the remaining document
@@ -210,31 +217,33 @@ In Typst, the same function can be used both to affect the appearance for the re
 
 <TypstPreview
   code={`
-I am starting out with small text.
+  I am starting out with small text.
 
-#set text(14pt)
+  #set text(14pt)
 
-This is a bit #text(18pt)[larger,]
-don't you think?
+  This is a bit #text(18pt)[larger,]
+  don't you think?
 `}
   image='/assets/697fb062ab8493b7a41dd016706677fb.png'
   alt='Preview'
+  editable={true}
 />
 
 Set rules may appear anywhere in the document. They can be thought of as default argument values of their respective function:
 
 <TypstPreview
   code={`
-#set enum(numbering: "I.")
+  #set enum(numbering: "I.")
 
-Good results can only be obtained by
-+ following best practices
-+ being aware of current results
-  of other researchers
-+ checking the data for biases
+  Good results can only be obtained by
+  + following best practices
+  + being aware of current results
+    of other researchers
+  + checking the data for biases
 `}
   image='/assets/153ce40293ed8439477687e95828e77f.png'
   alt='Preview'
+  editable={true}
 />
 
 The `+{:typst}` is syntactic sugar (think of it as an abbreviation) for a call to the [`enum{:typst}`](/docs/reference/model/enum/) function, to which we apply a set rule above. [Most syntax is linked to a function in this way.](/docs/reference/syntax/) If you need to style an element beyond what its arguments enable, you can completely redefine its appearance with a [show rule](/docs/reference/styling/#show-rules) (somewhat comparable to `\renewcommand{:typst}`).
@@ -243,12 +252,13 @@ You can achieve the effects of LaTeX commands like `\textbf{:typst}`, `\textsf{:
 
 <TypstPreview
   code={`
-#show: smallcaps
+  #show: smallcaps
 
-Boisterous Accusations
+  Boisterous Accusations
 `}
   image='/assets/b8a51164b74a742d89b2c318c55936b1.png'
   alt='Preview'
+  editable={true}
 />
 
 ## How do I load a document class?
@@ -259,32 +269,33 @@ When using Typst, you style your documents with [functions](/docs/reference/foun
 
 <TypstPreview
   code={`
-#import "conf.typ": conf
-#show: conf.with(
-  title: [
-    Towards Improved Modelling
-  ],
-  authors: (
-    (
-      name: "Theresa Tungsten",
-      affiliation: "Artos Institute",
-      email: "tung@artos.edu",
+  #import "conf.typ": conf
+  #show: conf.with(
+    title: [
+      Towards Improved Modelling
+    ],
+    authors: (
+      (
+        name: "Theresa Tungsten",
+        affiliation: "Artos Institute",
+        email: "tung@artos.edu",
+      ),
+      (
+        name: "Eugene Deklan",
+        affiliation: "Honduras State",
+        email: "e.deklan@hstate.hn",
+      ),
     ),
-    (
-      name: "Eugene Deklan",
-      affiliation: "Honduras State",
-      email: "e.deklan@hstate.hn",
-    ),
-  ),
-  abstract: lorem(80),
-)
+    abstract: lorem(80),
+  )
 
-Let's get started writing this
-article by putting insightful
-paragraphs right here!
+  Let's get started writing this
+  article by putting insightful
+  paragraphs right here!
 `}
   image='/assets/938ed1adbadc6f39a4ce5faec4677570.png'
   alt='Preview'
+  editable={true}
 />
 
 The [`import{:typst}`](/docs/reference/scripting/#modules) statement makes [functions](/docs/reference/foundations/function/) (and other definitions) from another file available. In this example, it imports the `conf{:typst}` function from the `conf.typ{:typst}` file. This function formats a document as a conference article. We use a show rule to apply it to the document and also configure some metadata of the article. After applying the show rule, we can start writing our article right away!
@@ -342,13 +353,14 @@ To enter math mode in Typst, just enclose your equation in dollar signs. You can
 
 <TypstPreview
   code={`
-The sum of the numbers from
-$1$ to $n$ is:
+  The sum of the numbers from
+  $1$ to $n$ is:
 
-$ sum_(k=1)^n k = (n(n+1))/2 $
+  $ sum_(k=1)^n k = (n(n+1))/2 $
 `}
   image='/assets/fdc410cc7972bde4bafc1a195e7cf341.png'
   alt='Preview'
+  editable={true}
 />
 
 [Math mode](/docs/reference/math/) works differently than regular markup or code mode. Numbers and single characters are displayed verbatim, while multiple consecutive (non-number) characters will be interpreted as Typst variables.
@@ -361,10 +373,11 @@ Alternate and related forms of symbols can often be selected by [appending a mod
 
 <TypstPreview
   code={`
-$ delta "if" x <= 5 $
+  $ delta "if" x <= 5 $
 `}
   image='/assets/8e4d6c1b9942b3e650facda75cd4db4f.png'
   alt='Preview'
+  editable={true}
 />
 
 In Typst, delimiters will scale automatically for their expressions, just as if `\left{:typst}` and `\right{:typst}` commands were implicitly inserted in LaTeX. You can customize delimiter behaviour using the [`lr{:typst}` function](/docs/reference/math/lr/#functions-lr). To prevent a pair of delimiters from scaling, you can escape them with backslashes.
@@ -373,10 +386,11 @@ Typst will automatically set terms around a slash `/{:typst}` as a fraction whil
 
 <TypstPreview
   code={`
-$ f(x) = (x + 1) / x $
+  $ f(x) = (x + 1) / x $
 `}
   image='/assets/856a459b559bdc89f7dac4bf484207be.png'
   alt='Preview'
+  editable={true}
 />
 
 [Sub- and superscripts](/docs/reference/math/attach/#functions-attach) work similarly in Typst and LaTeX. `$x^2${:typst}` will produce a superscript, `$x_2${:typst}` yields a subscript. If you want to include more than one value in a sub- or superscript, enclose their contents in parentheses: `$x_(a -> epsilon)${:typst}`.
@@ -385,40 +399,43 @@ Since variables in math mode do not need to be prepended with a `#{:typst}` (or 
 
 <TypstPreview
   code={`
-$ f(x, y) := cases(
-  1 "if" (x dot y)/2 <= 0,
-  2 "if" x "is even",
-  3 "if" x in NN,
-  4 "else",
-) $
+  $ f(x, y) := cases(
+    1 "if" (x dot y)/2 <= 0,
+    2 "if" x "is even",
+    3 "if" x in NN,
+    4 "else",
+  ) $
 `}
   image='/assets/d17d4014f0e278177d8e26b02a9734f8.png'
   alt='Preview'
+  editable={true}
 />
 
 The above example uses the [`cases{:typst}` function](/docs/reference/math/cases/) to describe f. Within the cases function, arguments are delimited using commas and the arguments are also interpreted as math. If you need to interpret arguments as Typst values instead, prefix them with a `#{:typst}`:
 
 <TypstPreview
   code={`
-$ (a + b)^2
-  = a^2
-  + text(fill: #maroon, 2 a b)
-  + b^2 $
+  $ (a + b)^2
+    = a^2
+    + text(fill: #maroon, 2 a b)
+    + b^2 $
 `}
   image='/assets/5a6c74c1c15e1b29279ef445bfc6c8e5.png'
   alt='Preview'
+  editable={true}
 />
 
 You can use all Typst functions within math mode and insert any content. If you want them to work normally, with code mode in the argument list, you can prefix their call with a `#{:typst}`. Nobody can stop you from using rectangles or emoji as your variables anymore:
 
 <TypstPreview
   code={`
-$ sum^10_(🤓=1)
-  #rect(width: 4mm, height: 2mm)/🤓
-  = 🧠 maltese $
+  $ sum^10_(🤓=1)
+    #rect(width: 4mm, height: 2mm)/🤓
+    = 🧠 maltese $
 `}
   image='/assets/1f4eb28a5c2927fe2ba512666ced7169.png'
   alt='Preview'
+  editable={true}
 />
 
 If you'd like to enter your mathematical symbols directly as Unicode, that is possible, too!
@@ -427,15 +444,16 @@ Math calls can have two-dimensional argument lists using `;{:typst}` as a delimi
 
 <TypstPreview
   code={`
-$ mat(
-  1, 2, ..., 10;
-  2, 2, ..., 10;
-  dots.v, dots.v, dots.down, dots.v;
-  10, 10, ..., 10;
-) $
+  $ mat(
+    1, 2, ..., 10;
+    2, 2, ..., 10;
+    dots.v, dots.v, dots.down, dots.v;
+    10, 10, ..., 10;
+  ) $
 `}
   image='/assets/ca24a2958190d70441a482b738ddf8f4.png'
   alt='Preview'
+  editable={true}
 />
 
 ## How do I get the "LaTeX look?"

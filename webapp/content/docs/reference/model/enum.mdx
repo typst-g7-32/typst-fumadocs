@@ -14,53 +14,56 @@ Displays a sequence of items vertically and numbers them consecutively.
 
 <TypstPreview
   code={`
-Automatically numbered:
-+ Preparations
-+ Analysis
-+ Conclusions
+  Automatically numbered:
+  + Preparations
+  + Analysis
+  + Conclusions
 
-Manually numbered:
-2. What is the first step?
-5. I am confused.
-+  Moving on ...
+  Manually numbered:
+  2. What is the first step?
+  5. I am confused.
+  +  Moving on ...
 
-Multiple lines:
-+ This enum item has multiple
-  lines because the next line
-  is indented.
+  Multiple lines:
+  + This enum item has multiple
+    lines because the next line
+    is indented.
 
-Function call.
-#enum[First][Second]
+  Function call.
+  #enum[First][Second]
 `}
   image='/assets/1eb9c9d6644abdb5cd7fa5380e664268.png'
   alt='Preview'
+  editable={true}
 />
 
 You can easily switch all your enumerations to a different numbering style with a set rule.
 
 <TypstPreview
   code={`
-#set enum(numbering: "a)")
+  #set enum(numbering: "a)")
 
-+ Starting off ...
-+ Don't forget step two
+  + Starting off ...
+  + Don't forget step two
 `}
   image='/assets/8456faf1af030be46f7ff78c398b5533.png'
   alt='Preview'
+  editable={true}
 />
 
 You can also use [`enum.item{:typst}`](/docs/reference/model/enum/#definitions-item) to programmatically customize the number of each item in the enumeration:
 
 <TypstPreview
   code={`
-#enum(
-  enum.item(1)[First step],
-  enum.item(5)[Fifth step],
-  enum.item(10)[Tenth step]
-)
+  #enum(
+    enum.item(1)[First step],
+    enum.item(5)[Fifth step],
+    enum.item(10)[Tenth step]
+  )
 `}
   image='/assets/b9141b8d7ae4bfb17096d07196e54c30.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Syntax
@@ -91,27 +94,27 @@ Enumeration items can contain multiple paragraphs and other block-level content.
 <TypeTable
   type={{
     'tight': {
-      'description': 'Defines the default [spacing](/docs/reference/model/enum/#parameters-spacing) of the enumeration. If it is `false{:typst}`, the items are spaced apart with [paragraph spacing](/docs/reference/model/par/#parameters-spacing). If it is `true{:typst}`, they use [paragraph leading](/docs/reference/model/par/#parameters-leading) instead. This makes the list more compact, which can look better if the items are short.  In markup mode, the value of this parameter is determined based on whether items are separated with a blank line. If items directly follow each other, this is set to `true{:typst}`; if items are separated by a blank line, this is set to `false{:typst}`. The markup-defined tightness cannot be overridden with set rules.  <TypstPreview   code={` + If an enum has a lot of text, and   maybe other inline content, it   should not be tight anymore.  + To make an enum wide, simply   insert a blank line between the   items. `}   image=\'/assets/860a2d566023cbbb1db95dcf595b00d.png\'   alt=\'Preview\' />',
+      'description': 'Defines the default [spacing](/docs/reference/model/enum/#parameters-spacing) of the enumeration. If it is `false{:typst}`, the items are spaced apart with [paragraph spacing](/docs/reference/model/par/#parameters-spacing). If it is `true{:typst}`, they use [paragraph leading](/docs/reference/model/par/#parameters-leading) instead. This makes the list more compact, which can look better if the items are short.  In markup mode, the value of this parameter is determined based on whether items are separated with a blank line. If items directly follow each other, this is set to `true{:typst}`; if items are separated by a blank line, this is set to `false{:typst}`. The markup-defined tightness cannot be overridden with set rules.  <TypstPreview   code={`   + If an enum has a lot of text, and     maybe other inline content, it     should not be tight anymore.    + To make an enum wide, simply     insert a blank line between the     items. `}   image=\'/assets/860a2d566023cbbb1db95dcf595b00d.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">true</span></code>'
     },
     'numbering': {
-      'description': 'How to number the enumeration. Accepts a [numbering pattern or function](/docs/reference/model/numbering/).  If the numbering pattern contains multiple counting symbols, they apply to nested enums. If given a function, the function receives one argument if `full{:typst}` is `false{:typst}` and multiple arguments if `full{:typst}` is `true{:typst}`.  <TypstPreview   code={` #set enum(numbering: "1.a)") + Different + Numbering   + Nested   + Items + Style  #set enum(numbering: n => super[#n]) + Superscript + Numbering! `}   image=\'/assets/6ffe69a133dcf921fd85cc0ea784dc6c.png\'   alt=\'Preview\' />',
+      'description': 'How to number the enumeration. Accepts a [numbering pattern or function](/docs/reference/model/numbering/).  If the numbering pattern contains multiple counting symbols, they apply to nested enums. If given a function, the function receives one argument if `full{:typst}` is `false{:typst}` and multiple arguments if `full{:typst}` is `true{:typst}`.  <TypstPreview   code={`   #set enum(numbering: "1.a)")   + Different   + Numbering     + Nested     + Items   + Style    #set enum(numbering: n => super[#n])   + Superscript   + Numbering! `}   image=\'/assets/6ffe69a133dcf921fd85cc0ea784dc6c.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'str | function',
       'default': '<code><span class="typ-str">&quot;1.&quot;</span></code>'
     },
     'start': {
-      'description': 'Which number to start the enumeration with.  <TypstPreview   code={` #enum(   start: 3,   [Skipping],   [Ahead], ) `}   image=\'/assets/36a68c2147cbb6bab67e17fdc428636a.png\'   alt=\'Preview\' />',
+      'description': 'Which number to start the enumeration with.  <TypstPreview   code={`   #enum(     start: 3,     [Skipping],     [Ahead],   ) `}   image=\'/assets/36a68c2147cbb6bab67e17fdc428636a.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'auto | int',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'full': {
-      'description': 'Whether to display the full numbering, including the numbers of all parent enumerations.  <TypstPreview   code={` #set enum(numbering: "1.a)", full: true) + Cook   + Heat water   + Add ingredients + Eat `}   image=\'/assets/79c2f47e7f76011c7feb16cb65816454.png\'   alt=\'Preview\' />',
+      'description': 'Whether to display the full numbering, including the numbers of all parent enumerations.  <TypstPreview   code={`   #set enum(numbering: "1.a)", full: true)   + Cook     + Heat water     + Add ingredients   + Eat `}   image=\'/assets/79c2f47e7f76011c7feb16cb65816454.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'reversed': {
-      'description': 'Whether to reverse the numbering for this enumeration.  <TypstPreview   code={` #set enum(reversed: true) + Coffee + Tea + Milk `}   image=\'/assets/5528dd706f7b5b1f480846f2534d812c.png\'   alt=\'Preview\' />',
+      'description': 'Whether to reverse the numbering for this enumeration.  <TypstPreview   code={`   #set enum(reversed: true)   + Coffee   + Tea   + Milk `}   image=\'/assets/5528dd706f7b5b1f480846f2534d812c.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
@@ -131,12 +134,12 @@ Enumeration items can contain multiple paragraphs and other block-level content.
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'number-align': {
-      'description': 'The alignment that enum numbers should have.  By default, this is set to `end + top{:typst}`, which aligns enum numbers towards end of the current text direction (in left-to-right script, for example, this is the same as `right{:typst}`) and at the top of the line. The choice of `end{:typst}` for horizontal alignment of enum numbers is usually preferred over `start{:typst}`, as numbers then grow away from the text instead of towards it, avoiding certain visual issues. This option lets you override this behaviour, however. (Also to note is that the [unordered list](/docs/reference/model/list/) uses a different method for this, by giving the `marker{:typst}` content an alignment directly.).  <TypstPreview   code={` #set enum(number-align: start + bottom)  Here are some powers of two: 1. One 2. Two 4. Four 8. Eight 16. Sixteen 32. Thirty two `}   image=\'/assets/b3ecd497dafdcfac8a756e159ec2e2fc.png\'   alt=\'Preview\' />',
+      'description': 'The alignment that enum numbers should have.  By default, this is set to `end + top{:typst}`, which aligns enum numbers towards end of the current text direction (in left-to-right script, for example, this is the same as `right{:typst}`) and at the top of the line. The choice of `end{:typst}` for horizontal alignment of enum numbers is usually preferred over `start{:typst}`, as numbers then grow away from the text instead of towards it, avoiding certain visual issues. This option lets you override this behaviour, however. (Also to note is that the [unordered list](/docs/reference/model/list/) uses a different method for this, by giving the `marker{:typst}` content an alignment directly.).  <TypstPreview   code={`   #set enum(number-align: start + bottom)    Here are some powers of two:   1. One   2. Two   4. Four   8. Eight   16. Sixteen   32. Thirty two `}   image=\'/assets/b3ecd497dafdcfac8a756e159ec2e2fc.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'alignment',
       'default': '<code>end <span class="typ-op">+</span> top</code>'
     },
     'children': {
-      'description': 'The numbered list\'s items.  When using the enum syntax, adjacent items are automatically collected into enumerations, even through constructs like for loops.  <TypstPreview   code={` #for phase in (    "Launch",    "Orbit",    "Descent", ) [+ #phase] `}   image=\'/assets/f616921cf92bf200c0c7ed5c12d99ff1.png\'   alt=\'Preview\' />',
+      'description': 'The numbered list\'s items.  When using the enum syntax, adjacent items are automatically collected into enumerations, even through constructs like for loops.  <TypstPreview   code={`   #for phase in (      "Launch",      "Orbit",      "Descent",   ) [+ #phase] `}   image=\'/assets/f616921cf92bf200c0c7ed5c12d99ff1.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'content | array',
       'default': 'None'
     }

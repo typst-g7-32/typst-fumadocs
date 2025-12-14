@@ -12,19 +12,20 @@ Accepts a function that receives a single parameter, which is a dictionary with 
 
 <TypstPreview
   code={`
-#let text = lorem(30)
-#layout(size => [
-  #let (height,) = measure(
-    width: size.width,
-    text,
-  )
-  This text is #height high with
-  the current page width: 
-  #text
-])
+  #let text = lorem(30)
+  #layout(size => [
+    #let (height,) = measure(
+      width: size.width,
+      text,
+    )
+    This text is #height high with
+    the current page width: \
+    #text
+  ])
 `}
   image='/assets/cc7bcca62e697ffb30df3438570db1ab.png'
   alt='Preview'
+  editable={true}
 />
 
 Note that the `layout{:typst}` function forces its contents into a [block](/docs/reference/layout/block/)-level container, so placement relative to the page or pagebreaks are not possible within it.
@@ -35,29 +36,31 @@ To retrieve the _remaining_ height of the page rather than its full size, you ca
 
 <TypstPreview
   code={`
-#set page(height: 150pt)
+  #set page(height: 150pt)
 
-#lorem(20)
+  #lorem(20)
 
-#block(height: 1fr, layout(size => [
-  Remaining height: #size.height
-]))
+  #block(height: 1fr, layout(size => [
+    Remaining height: #size.height
+  ]))
 `}
   image='/assets/287861b8e3129cb301b74afa92ff7a07.png'
   alt='Preview'
+  editable={true}
 />
 
 You can also use this function to resolve a [`ratio{:typst}`](/docs/reference/layout/ratio/) to a fixed length. This might come in handy if you're building your own layout abstractions.
 
 <TypstPreview
   code={`
-#layout(size => {
-  let half = 50% * size.width
-  [Half a page is #half wide.]
-})
+  #layout(size => {
+    let half = 50% * size.width
+    [Half a page is #half wide.]
+  })
 `}
   image='/assets/d40a0e3eb100447da2f5971d71a9a270.png'
   alt='Preview'
+  editable={true}
 />
 
 Note that the width or height provided by `layout{:typst}` will be infinite if the corresponding page dimension is set to `auto{:typst}`.

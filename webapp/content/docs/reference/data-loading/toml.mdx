@@ -18,15 +18,16 @@ The TOML file in the example consists of a table with the keys `title{:typst}`, 
 
 <TypstPreview
   code={`
-#let details = toml("details.toml")
+  #let details = toml("details.toml")
 
-Title: #details.title 
-Version: #details.version 
-Authors: #(details.authors
-  .join(", ", last: " and "))
+  Title: #details.title \
+  Version: #details.version \
+  Authors: #(details.authors
+    .join(", ", last: " and "))
 `}
   image='/assets/7f6e9fac705651fafb6c8a26435ab058.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Conversion details

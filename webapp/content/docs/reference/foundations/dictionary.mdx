@@ -20,22 +20,23 @@ Dictionaries can be added with the `+{:typst}` operator and [joined together](/d
 
 <TypstPreview
   code={`
-#let dict = (
-  name: "Typst",
-  born: 2019,
-)
+  #let dict = (
+    name: "Typst",
+    born: 2019,
+  )
 
-#dict.name 
-#(dict.launch = 20)
-#dict.len() 
-#dict.keys() 
-#dict.values() 
-#dict.at("born") 
-#dict.insert("city", "Berlin")
-#("name" in dict)
+  #dict.name \
+  #(dict.launch = 20)
+  #dict.len() \
+  #dict.keys() \
+  #dict.values() \
+  #dict.at("born") \
+  #dict.insert("city", "Berlin")
+  #("name" in dict)
 `}
   image='/assets/e9a45e88bf57200fabfebcb669137411.png'
   alt='Preview'
+  editable={true}
 />
 
 [^1]: When spreading into a dictionary, if all items between the parentheses are spread, you have to use the special `(:..spread){:typst}` syntax. Otherwise, it will spread into an array.
@@ -47,10 +48,11 @@ Note that this function is only intended for conversion of a dictionary-like val
 
 <TypstPreview
   code={`
-#dictionary(sys).at("version")
+  #dictionary(sys).at("version")
 `}
   image='/assets/bebc0d67925f97a933ee062710eb0cd0.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -161,26 +163,28 @@ Produces a new dictionary with only the pairs from the original one for which th
 
 <TypstPreview
   code={`
-#{
-  (a: 0, b: 1, c: 2)
-    .filter(v => v > 0)
-}
+  #{
+    (a: 0, b: 1, c: 2)
+      .filter(v => v > 0)
+  }
 `}
   image='/assets/1fe5e9292e0c7d38d09b2b3b61e81033.png'
   alt='Preview'
+  editable={true}
 />
 
 <TypstPreview
   code={`
-#{
-  (a: 0, b: 1, c: 2)
-    .pairs()
-    .filter(((k, v)) => k != "a")
-    .to-dict()
-}
+  #{
+    (a: 0, b: 1, c: 2)
+      .pairs()
+      .filter(((k, v)) => k != "a")
+      .to-dict()
+  }
 `}
   image='/assets/b4a9792d51c741e728b7d73635fcfe20.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -204,10 +208,11 @@ Produces a new dictionary where the keys are the same, but the values are transf
 
 <TypstPreview
   code={`
-#(a: 0, b: 1, c: 2).map(v => v + 1)
+  #(a: 0, b: 1, c: 2).map(v => v + 1)
 `}
   image='/assets/8bd039eaf2068c7bf7d489d5839f2ad5.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

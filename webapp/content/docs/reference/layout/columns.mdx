@@ -16,18 +16,19 @@ When arranging content across multiple columns, use [`colbreak{:typst}`](/docs/r
 
 <TypstPreview
   code={`
-#columns(2, gutter: 8pt)[
-  This text is in the
-  first column.
+  #columns(2, gutter: 8pt)[
+    This text is in the
+    first column.
 
-  #colbreak()
+    #colbreak()
 
-  This text is in the
-  second column.
-]
+    This text is in the
+    second column.
+  ]
 `}
   image='/assets/83bb34143540d7c5eb201906b54e330d.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Page-level columns
@@ -40,21 +41,22 @@ To temporarily break out of columns (e.g. for a paper's title), use parent-scope
 
 <TypstPreview
   code={`
-#set page(columns: 2, height: 150pt)
+  #set page(columns: 2, height: 150pt)
 
-#place(
-  top + center,
-  scope: "parent",
-  float: true,
-  text(1.4em, weight: "bold")[
-    My document
-  ],
-)
+  #place(
+    top + center,
+    scope: "parent",
+    float: true,
+    text(1.4em, weight: "bold")[
+      My document
+    ],
+  )
 
-#lorem(40)
+  #lorem(40)
 `}
   image='/assets/a8d4661ddb4d82cf2aa44f91511f97c9.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

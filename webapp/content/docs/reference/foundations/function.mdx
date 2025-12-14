@@ -16,18 +16,19 @@ Within math mode, function calls have special behaviour. See the [math documenta
 
 <TypstPreview
   code={`
-// Call a function.
-#list([A], [B])
+  // Call a function.
+  #list([A], [B])
 
-// Named arguments and trailing
-// content blocks.
-#enum(start: 2)[A][B]
+  // Named arguments and trailing
+  // content blocks.
+  #enum(start: 2)[A][B]
 
-// Version without parentheses.
-#list[A][B]
+  // Version without parentheses.
+  #list[A][B]
 `}
   image='/assets/87cba5b2546c4d8134e4fbb8ab2e42e8.png'
   alt='Preview'
+  editable={true}
 />
 
 Functions are a fundamental building block of Typst. Typst provides functions for a variety of typesetting tasks. Moreover, the markup you write is backed by functions and all styling happens through functions. This reference lists all available functions and how you can use them. Please also refer to the documentation about [set](/docs/reference/styling/#set-rules) and [show](/docs/reference/styling/#show-rules) rules to learn about additional ways you can work with functions in Typst.
@@ -52,27 +53,28 @@ Functions that don't return any meaningful value return [`none{:typst}`](/docs/r
 
 <TypstPreview
   code={`
-#let alert(body, fill: red) = {
-  set text(white)
-  set align(center)
-  rect(
-    fill: fill,
-    inset: 8pt,
-    radius: 4pt,
-    [*Warning:\ #body*],
-  )
-}
+  #let alert(body, fill: red) = {
+    set text(white)
+    set align(center)
+    rect(
+      fill: fill,
+      inset: 8pt,
+      radius: 4pt,
+      [*Warning:\ #body*],
+    )
+  }
 
-#alert[
-  Danger is imminent!
-]
+  #alert[
+    Danger is imminent!
+  ]
 
-#alert(fill: blue)[
-  KEEP OFF TRACKS
-]
+  #alert(fill: blue)[
+    KEEP OFF TRACKS
+  ]
 `}
   image='/assets/e7ac0ae1342dcd1b7bfc1dce40ec5bed.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Importing functions
@@ -85,11 +87,12 @@ You can also create an unnamed function without creating a binding by specifying
 
 <TypstPreview
   code={`
-#show "once?": it => [#it #it]
-once?
+  #show "once?": it => [#it #it]
+  once?
 `}
   image='/assets/c9779efb0fcc717fd4868ec6868bdcf9.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Note on function purity
@@ -123,13 +126,14 @@ Returns a selector that filters for elements belonging to this function whose fi
 
 <TypstPreview
   code={`
-#show heading.where(level: 2): set text(blue)
-= Section
-== Subsection
-=== Sub-subsection
+  #show heading.where(level: 2): set text(blue)
+  = Section
+  == Subsection
+  === Sub-subsection
 `}
   image='/assets/54e4780e95888ad47cba40e40c1d918a.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

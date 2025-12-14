@@ -16,10 +16,11 @@ If you want the base to stretch to fit long top and bottom attachments (for exam
 
 <TypstPreview
   code={`
-$ sum_(i=0)^n a_i = 2^(1+i) $
+  $ sum_(i=0)^n a_i = 2^(1+i) $
 `}
   image='/assets/411437d70da7deb746bc3f0a67ecac51.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Syntax
@@ -30,13 +31,14 @@ A base with optional attachments.
 
 <TypstPreview
   code={`
-$ attach(
-  Pi, t: alpha, b: beta,
-  tl: 1, tr: 2+3, bl: 4+5, br: 6,
-) $
+  $ attach(
+    Pi, t: alpha, b: beta,
+    tl: 1, tr: 2+3, bl: 4+5, br: 6,
+  ) $
 `}
   image='/assets/84fd52f8518c49b5d0c2154d3762e8c5.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -96,10 +98,11 @@ Forces a base to display attachments as scripts.
 
 <TypstPreview
   code={`
-$ scripts(sum)_1^2 != sum_1^2 $
+  $ scripts(sum)_1^2 != sum_1^2 $
 `}
   image='/assets/c9599c27cd86c13285b8d314e2c8528c.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -123,10 +126,11 @@ Forces a base to display attachments as limits.
 
 <TypstPreview
   code={`
-$ limits(A)_1^2 != A_1^2 $
+  $ limits(A)_1^2 != A_1^2 $
 `}
   image='/assets/ffb91cddf4edf78f1af94d7ff70772ce.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

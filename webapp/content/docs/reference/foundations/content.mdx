@@ -14,11 +14,12 @@ This type is at the heart of Typst. All markup you write and most [functions](/d
 
 <TypstPreview
   code={`
-Type of *Hello!* is
-#type([*Hello!*])
+  Type of *Hello!* is
+  #type([*Hello!*])
 `}
   image='/assets/5f8a9e925db86201f749a5dfd49d2d6a.png'
   alt='Preview'
+  editable={true}
 />
 
 Content can be added with the `+{:typst}` operator, [joined together](/docs/reference/scripting/#blocks) and multiplied with integers. Wherever content is expected, you can also pass a [string](/docs/reference/foundations/str/) or `none{:typst}`.
@@ -87,13 +88,14 @@ Returns the fields of this content.
 
 <TypstPreview
   code={`
-#rect(
-  width: 10cm,
-  height: 10cm,
-).fields()
+  #rect(
+    width: 10cm,
+    height: 10cm,
+  ).fields()
 `}
   image='/assets/ccd95853027f57c192e348066aff8697.png'
   alt='Preview'
+  editable={true}
 />
 
 The location of the content. This is only available on content returned by [query](/docs/reference/introspection/query/) or provided by a [show rule](/docs/reference/styling/#show-rules), for other content it will be `none{:typst}`. The resulting location can be used with [counters](/docs/reference/introspection/counter/), [state](/docs/reference/introspection/state/) and [queries](/docs/reference/introspection/query/).

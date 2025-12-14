@@ -14,16 +14,17 @@ The `metadata{:typst}` element is especially useful for command line queries bec
 
 <TypstPreview
   code={`
-// Put metadata somewhere.
-#metadata("This is a note") <note>
+  // Put metadata somewhere.
+  #metadata("This is a note") <note>
 
-// And find it from anywhere else.
-#context {
-  query(<note>).first().value
-}
+  // And find it from anywhere else.
+  #context {
+    query(<note>).first().value
+  }
 `}
   image='/assets/b1b17f01cf3adfe808d66deaa0bf5abf.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

@@ -14,30 +14,31 @@ Can be created by either specifying a custom datetime using this type's construc
 
 <TypstPreview
   code={`
-#let date = datetime(
-  year: 2020,
-  month: 10,
-  day: 4,
-)
+  #let date = datetime(
+    year: 2020,
+    month: 10,
+    day: 4,
+  )
 
-#date.display() 
-#date.display(
-  "y:[year repr:last_two]"
-)
+  #date.display() \
+  #date.display(
+    "y:[year repr:last_two]"
+  )
 
-#let time = datetime(
-  hour: 18,
-  minute: 2,
-  second: 23,
-)
+  #let time = datetime(
+    hour: 18,
+    minute: 2,
+    second: 23,
+  )
 
-#time.display() 
-#time.display(
-  "h:[hour repr:12][period]"
-)
+  #time.display() \
+  #time.display(
+    "h:[hour repr:12][period]"
+  )
 `}
   image='/assets/689464aa0d75be9b3106ad0dcea028d2.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Datetime and Duration
@@ -46,30 +47,32 @@ You can get a [duration](/docs/reference/foundations/duration/) by subtracting t
 
 <TypstPreview
   code={`
-#let first-of-march = datetime(day: 1, month: 3, year: 2024)
-#let first-of-jan = datetime(day: 1, month: 1, year: 2024)
-#let distance = first-of-march - first-of-jan
-#distance.hours()
+  #let first-of-march = datetime(day: 1, month: 3, year: 2024)
+  #let first-of-jan = datetime(day: 1, month: 1, year: 2024)
+  #let distance = first-of-march - first-of-jan
+  #distance.hours()
 `}
   image='/assets/c4920f9ef579222c3ca2c76488051bfc.png'
   alt='Preview'
+  editable={true}
 />
 
 You can also add/subtract a datetime and a duration to retrieve a new, offset datetime:
 
 <TypstPreview
   code={`
-#let date = datetime(day: 1, month: 3, year: 2024)
-#let two-days = duration(days: 2)
-#let two-days-earlier = date - two-days
-#let two-days-later = date + two-days
+  #let date = datetime(day: 1, month: 3, year: 2024)
+  #let two-days = duration(days: 2)
+  #let two-days-earlier = date - two-days
+  #let two-days-later = date + two-days
 
-#date.display() 
-#two-days-earlier.display() 
-#two-days-later.display()
+  #date.display() \
+  #two-days-earlier.display() \
+  #two-days-later.display()
 `}
   image='/assets/47e04f8fac503056ac0313359f787f8b.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Format
@@ -120,14 +123,15 @@ Depending on how it is stored, the [`display{:typst}`](/docs/reference/foundatio
 
 <TypstPreview
   code={`
-#datetime(
-  year: 2012,
-  month: 8,
-  day: 3,
-).display()
+  #datetime(
+    year: 2012,
+    month: 8,
+    day: 3,
+  ).display()
 `}
   image='/assets/ea6a67351ca9372b235ef5ecb52a2e8b.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -185,11 +189,12 @@ In the CLI, this can be overridden with the `--creation-timestamp{:typst}` argum
 
 <TypstPreview
   code={`
-Today's date is
-#datetime.today().display().
+  Today's date is
+  #datetime.today().display().
 `}
   image='/assets/48e483281c9fcbf61b1db93b35e8e039.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

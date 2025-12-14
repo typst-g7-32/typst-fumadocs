@@ -35,24 +35,26 @@ If you are using Typst idiomatically, using the built-in markup and elements, Ty
 
 <TypstPreview
   code={`
-// ❌ Don't do this
-#text(
-  size: 16pt,
-  weight: "bold",
-)[Heading]
+  // ❌ Don't do this
+  #text(
+    size: 16pt,
+    weight: "bold",
+  )[Heading]
 `}
   image='/assets/1b3385d4711d911b023f85c4b77c69d8.png'
   alt='Preview'
+  editable={true}
 />
 
 <TypstPreview
   code={`
-// ✅ Do this
-#show heading: set text(size: 16pt)
-= Heading
+  // ✅ Do this
+  #show heading: set text(size: 16pt)
+  = Heading
 `}
   image='/assets/cea9024d2a17cd0d7d7ffffffc6673eb.png'
   alt='Preview'
+  editable={true}
 />
 
 Both of these examples look the same. They both contain the text "Heading" in boldface, sized at 16 point. However, only the second example is accessible. By using the heading markup, Typst knows that the semantic meaning of this text is that of a heading and can propagate that information to the final PDF. In the first example, it just knows that it should use boldface and larger type on otherwise normal text and cannot make the assumption that you meant that to be a heading and not a stylistic choice or some other element like a quote.
@@ -71,13 +73,14 @@ If you want to style the default appearance of an element, do not replace it wit
 
 <TypstPreview
   code={`
-// Change how text inside of strong emphasis looks
-#show strong: set text(tracking: 0.2em, fill: blue, weight: "black")
+  // Change how text inside of strong emphasis looks
+  #show strong: set text(tracking: 0.2em, fill: blue, weight: "black")
 
-When setting up your tents, *never forget* to secure the pegs.
+  When setting up your tents, *never forget* to secure the pegs.
 `}
   image='/assets/a870bd2924e6c08865ca0ef3b0046e7c.png'
   alt='Preview'
+  editable={true}
 />
 
 The show-set rule completely changes the default appearance of the [`strong{:typst}`](/docs/reference/model/strong/) element, but its semantic meaning will be preserved. If you need even more customization, you can provide show rules with fully custom layout code and Typst will still retain the semantic purpose of the element.
@@ -162,15 +165,16 @@ When you add an image, be sure to use the [`alt{:typst}` argument of the image f
 
 <TypstPreview
   code={`
-#image("heron.jpg", alt: "?")
+  #image("heron.jpg", alt: "?")
 
-Herons have feet with interdigital
-webbing, allowing for good mobility
-when swimming, and wings that span
-up to 2.3 m.
+  Herons have feet with interdigital
+  webbing, allowing for good mobility
+  when swimming, and wings that span
+  up to 2.3 m.
 `}
   image='/assets/c19e066f538edb97ce57f630f6cb56a8.png'
   alt='Preview'
+  editable={false}
 />
 
 What could be a good alternative description for [this image](https://commons.wikimedia.org/wiki/File:Reiher_im_Flug.jpg)? Let's consider a few examples for what _not_ to do:
@@ -239,16 +243,17 @@ If your document contains text in multiple languages, you can use the text funct
 
 <TypstPreview
   code={`
-This is #text(lang: "fr")[français].
+  This is #text(lang: "fr")[français].
 
-#[
-  #set text(lang: "es")
-  Este es un fragmento más largo
-  del texto en español.
-]
+  #[
+    #set text(lang: "es")
+    Este es un fragmento más largo
+    del texto en español.
+  ]
 `}
   image='/assets/e96165d4834d11194fdaf6bee05bd86b.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Document Title and Headings

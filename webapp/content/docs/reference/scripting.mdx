@@ -13,12 +13,13 @@ In Typst, markup and code are fused into one. All but the most common elements a
 
 <TypstPreview
   code={`
-#emph[Hello] 
-#emoji.face 
-#"hello".len()
+  #emph[Hello] \
+  #emoji.face \
+  #"hello".len()
 `}
   image='/assets/56fcebfd54e87e06f0936777ca6c4f31.png'
   alt='Preview'
+  editable={true}
 />
 
 The example above shows a few of the available expressions, including [function calls](/docs/reference/foundations/function/), [field accesses](/docs/reference/scripting/#fields), and [method calls](/docs/reference/scripting/#methods). More kinds of expressions are discussed in the remainder of this chapter. A few kinds of expressions are not compatible with the hash syntax (e.g. binary operator expressions). To embed these into markup, you can use parentheses, as in `#(1 + 2){:typst}`.
@@ -34,15 +35,16 @@ Content and code blocks can be nested arbitrarily. In the example below, `[hello
 
 <TypstPreview
   code={`
-#{
-  let a = [from]
-  let b = [*world*]
-  [hello ]
-  a + [ the ] + b
-}
+  #{
+    let a = [from]
+    let b = [*world*]
+    [hello ]
+    a + [ the ] + b
+  }
 `}
   image='/assets/f5f1a59a923ddd7899e3844457f683a1.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Bindings and Destructuring
@@ -51,87 +53,92 @@ As already demonstrated above, variables can be defined with `let{:typst}` bindi
 
 <TypstPreview
   code={`
-#let name = "Typst"
-This is #name's documentation.
-It explains #name.
+  #let name = "Typst"
+  This is #name's documentation.
+  It explains #name.
 
-#let my-add(x, y) = x + y
-Sum is #my-add(2, 3).
+  #let my-add(x, y) = x + y
+  Sum is #my-add(2, 3).
 `}
   image='/assets/dfc2c758706d21ff2d2522773bc64334.png'
   alt='Preview'
+  editable={true}
 />
 
 Let bindings can also be used to destructure [arrays](/docs/reference/foundations/array/) and [dictionaries](/docs/reference/foundations/dictionary/). In this case, the left-hand side of the assignment should mirror an array or dictionary. The `..{:typst}` operator can be used once in the pattern to collect the remainder of the array's or dictionary's items.
 
 <TypstPreview
   code={`
-#let (x, y) = (1, 2)
-The coordinates are #x, #y.
+  #let (x, y) = (1, 2)
+  The coordinates are #x, #y.
 
-#let (a, .., b) = (1, 2, 3, 4)
-The first element is #a.
-The last element is #b.
+  #let (a, .., b) = (1, 2, 3, 4)
+  The first element is #a.
+  The last element is #b.
 
-#let books = (
-  Shakespeare: "Hamlet",
-  Homer: "The Odyssey",
-  Austen: "Persuasion",
-)
+  #let books = (
+    Shakespeare: "Hamlet",
+    Homer: "The Odyssey",
+    Austen: "Persuasion",
+  )
 
-#let (Austen,) = books
-Austen wrote #Austen.
+  #let (Austen,) = books
+  Austen wrote #Austen.
 
-#let (Homer: h) = books
-Homer wrote #h.
+  #let (Homer: h) = books
+  Homer wrote #h.
 
-#let (Homer, ..other) = books
-#for (author, title) in other [
-  #author wrote #title.
-]
+  #let (Homer, ..other) = books
+  #for (author, title) in other [
+    #author wrote #title.
+  ]
 `}
   image='/assets/574a8a54d94246e011156a58bb988f10.png'
   alt='Preview'
+  editable={true}
 />
 
 You can use the underscore to discard elements in a destructuring pattern:
 
 <TypstPreview
   code={`
-#let (_, y, _) = (1, 2, 3)
-The y coordinate is #y.
+  #let (_, y, _) = (1, 2, 3)
+  The y coordinate is #y.
 `}
   image='/assets/2d320f557a31c13c47827649626f615e.png'
   alt='Preview'
+  editable={true}
 />
 
 Destructuring also works in argument lists of functions ...
 
 <TypstPreview
   code={`
-#let left = (2, 4, 5)
-#let right = (3, 2, 6)
-#left.zip(right).map(
-  ((a,b)) => a + b
-)
+  #let left = (2, 4, 5)
+  #let right = (3, 2, 6)
+  #left.zip(right).map(
+    ((a,b)) => a + b
+  )
 `}
   image='/assets/eb451d0a1cf36461e8a56ce203acf067.png'
   alt='Preview'
+  editable={true}
 />
 
 ... and on the left-hand side of normal assignments. This can be useful to swap variables among other things.
 
 <TypstPreview
   code={`
-#{
-  let a = 1
-  let b = 2
-  (a, b) = (b, a)
-  [a = #a, b = #b]
-}
+  #{
+    let a = 1
+    let b = 2
+    (a, b) = (b, a)
+    [a = #a, b = #b]
+  }
 `}
   image='/assets/2c2bcc6a2509a95daa0bc4e986ee7e6d.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Conditionals
@@ -140,14 +147,15 @@ With a conditional, you can display or compute different things depending on whe
 
 <TypstPreview
   code={`
-#if 1 < 2 [
-  This is shown
-] else [
-  This is not.
-]
+  #if 1 < 2 [
+    This is shown
+  ] else [
+    This is not.
+  ]
 `}
   image='/assets/9f03dfe97f385ab1a6d01127a9152c4d.png'
   alt='Preview'
+  editable={true}
 />
 
 Each branch can have a code or content block as its body.
@@ -165,18 +173,19 @@ In the example below, the three sentences created by the for loop join together 
 
 <TypstPreview
   code={`
-#for c in "ABC" [
-  #c is a letter.
-]
+  #for c in "ABC" [
+    #c is a letter.
+  ]
 
-#let n = 2
-#while n < 10 {
-  n = (n * 2) - 1
-  (n,)
-}
+  #let n = 2
+  #while n < 10 {
+    n = (n * 2) - 1
+    (n,)
+  }
 `}
   image='/assets/ef87ec09b6f156465a2deb8f2ca4620b.png'
   alt='Preview'
+  editable={true}
 />
 
 For loops can iterate over a variety of collections:
@@ -190,16 +199,17 @@ To control the execution of the loop, Typst provides the `break{:typst}` and `co
 
 <TypstPreview
   code={`
-#for letter in "abc nope" {
-  if letter == " " {
-    break
-  }
+  #for letter in "abc nope" {
+    if letter == " " {
+      break
+    }
 
-  letter
-}
+    letter
+  }
 `}
   image='/assets/8ba145cb687a39c8f9146abd55f943f9.png'
   alt='Preview'
+  editable={true}
 />
 
 The body of a loop can be a code or content block:
@@ -222,17 +232,18 @@ The value in question can be either:
 
 <TypstPreview
   code={`
-#let it = [= Heading]
-#it.body 
-#it.depth 
-#it.fields()
+  #let it = [= Heading]
+  #it.body \
+  #it.depth \
+  #it.fields()
 
-#let dict = (greet: "Hello")
-#dict.greet 
-#emoji.face
+  #let dict = (greet: "Hello")
+  #dict.greet \
+  #emoji.face
 `}
   image='/assets/e560cf75c003b55ee615a91fba54908a.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Methods
@@ -241,30 +252,32 @@ A _method call_ is a convenient way to call a function that is scoped to a value
 
 <TypstPreview
   code={`
-#str.len("abc") is the same as
-#"abc".len()
+  #str.len("abc") is the same as
+  #"abc".len()
 `}
   image='/assets/8fc9134962ea2ca6f8f3beaa1a77c940.png'
   alt='Preview'
+  editable={true}
 />
 
 The structure of a method call is `value.method(..args){:typst}` and its equivalent full function call is `type(value).method(value, ..args){:typst}`. The documentation of each type lists its scoped functions. You cannot currently define your own methods.
 
 <TypstPreview
   code={`
-#let values = (1, 2, 3, 4)
-#values.pop() 
-#values.len() 
+  #let values = (1, 2, 3, 4)
+  #values.pop() \
+  #values.len() \
 
-#("a, b, c"
-    .split(", ")
-    .join[ --- ])
+  #("a, b, c"
+      .split(", ")
+      .join[ --- ])
 
-#"abc".len() is the same as
-#str.len("abc")
+  #"abc".len() is the same as
+  #str.len("abc")
 `}
   image='/assets/69c81d74d21d4e212b8bdde97b02c949.png'
   alt='Preview'
+  editable={true}
 />
 
 There are a few special functions that modify the value they are called on (e.g. [`array.push{:typst}`](/docs/reference/foundations/array/#definitions-push)). These functions _must_ be called in method form. In some cases, when the method is only called for its side effect, its return value should be ignored (and not participate in joining). The canonical way to discard a value is with a let binding: `let _ = array.remove(1){:typst}`.
@@ -281,11 +294,12 @@ Instead of a path, you can also use a [module value](/docs/reference/foundations
 
 <TypstPreview
   code={`
-#import emoji: face
-#face.grin
+  #import emoji: face
+  #face.grin
 `}
   image='/assets/9c38d95483bccbf7479a82427087ab2a.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Packages
@@ -294,11 +308,12 @@ To reuse building blocks across projects, you can also create and import Typst _
 
 <TypstPreview
   code={`
-#import "@preview/example:0.1.0": add
-#add(2, 7)
+  #import "@preview/example:0.1.0": add
+  #add(2, 7)
 `}
   image='/assets/3d994560e3517e38057aec147c441de6.png'
   alt='Preview'
+  editable={true}
 />
 
 The `preview{:typst}` namespace contains packages shared by the community. You can find all available community packages on [Typst Universe](https://typst.app/universe/).

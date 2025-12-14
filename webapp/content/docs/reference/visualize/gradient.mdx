@@ -21,32 +21,34 @@ A gradient can be used for the following purposes:
 
 <TypstPreview
   code={`
-#stack(
-  dir: ltr,
-  spacing: 1fr,
-  square(fill: gradient.linear(..color.map.rainbow)),
-  square(fill: gradient.radial(..color.map.rainbow)),
-  square(fill: gradient.conic(..color.map.rainbow)),
-)
+  #stack(
+    dir: ltr,
+    spacing: 1fr,
+    square(fill: gradient.linear(..color.map.rainbow)),
+    square(fill: gradient.radial(..color.map.rainbow)),
+    square(fill: gradient.conic(..color.map.rainbow)),
+  )
 `}
   image='/assets/ff29eecb918a915ec00ed5fcec2f4488.png'
   alt='Preview'
+  editable={true}
 />
 
 Gradients are also supported on text, but only when setting the [relativeness](/docs/reference/visualize/gradient/#definitions-relative) to either `auto{:typst}` (the default value) or `"parent"{:typst}`. To create word-by-word or glyph-by-glyph gradients, you can wrap the words or characters of your text in [boxes](/docs/reference/layout/box/) manually or through a [show rule](/docs/reference/styling/#show-rules).
 
 <TypstPreview
   code={`
-#set text(fill: gradient.linear(red, blue))
-#let rainbow(content) = {
-  set text(fill: gradient.linear(..color.map.rainbow))
-  box(content)
-}
+  #set text(fill: gradient.linear(red, blue))
+  #let rainbow(content) = {
+    set text(fill: gradient.linear(..color.map.rainbow))
+    box(content)
+  }
 
-This is a gradient on text, but with a #rainbow[twist]!
+  This is a gradient on text, but with a #rainbow[twist]!
 `}
   image='/assets/721d0b00b502c2e4285439f1ac4fd467.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Stops
@@ -91,17 +93,18 @@ Some gradients are sensitive to direction. For example, a linear gradient has an
 
 <TypstPreview
   code={`
-#stack(
-  dir: ltr,
-  spacing: 1fr,
-  square(fill: gradient.linear(red, blue, angle: 0deg)),
-  square(fill: gradient.linear(red, blue, angle: 90deg)),
-  square(fill: gradient.linear(red, blue, angle: 180deg)),
-  square(fill: gradient.linear(red, blue, angle: 270deg)),
-)
+  #stack(
+    dir: ltr,
+    spacing: 1fr,
+    square(fill: gradient.linear(red, blue, angle: 0deg)),
+    square(fill: gradient.linear(red, blue, angle: 90deg)),
+    square(fill: gradient.linear(red, blue, angle: 180deg)),
+    square(fill: gradient.linear(red, blue, angle: 270deg)),
+  )
 `}
   image='/assets/71783179a4cfd9c8bb34bd7a6b7ac1fe.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Note on file sizes
@@ -117,16 +120,17 @@ Creates a new linear gradient, in which colors transition along a straight line.
 
 <TypstPreview
   code={`
-#rect(
-  width: 100%,
-  height: 20pt,
-  fill: gradient.linear(
-    ..color.map.viridis,
-  ),
-)
+  #rect(
+    width: 100%,
+    height: 20pt,
+    fill: gradient.linear(
+      ..color.map.viridis,
+    ),
+  )
 `}
   image='/assets/def0956800e63dc52a60e2e66b8fb072.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -178,21 +182,22 @@ Using these four values, also called the focal point for the starting circle and
 
 <TypstPreview
   code={`
-#stack(
-  dir: ltr,
-  spacing: 1fr,
-  circle(fill: gradient.radial(
-    ..color.map.viridis,
-  )),
-  circle(fill: gradient.radial(
-    ..color.map.viridis,
-    focal-center: (10%, 40%),
-    focal-radius: 5%,
-  )),
-)
+  #stack(
+    dir: ltr,
+    spacing: 1fr,
+    circle(fill: gradient.radial(
+      ..color.map.viridis,
+    )),
+    circle(fill: gradient.radial(
+      ..color.map.viridis,
+      focal-center: (10%, 40%),
+      focal-radius: 5%,
+    )),
+  )
 `}
   image='/assets/21f904edb21c2e1ac7db89749e4d2c21.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -254,20 +259,21 @@ You can control the center point of the gradient by using the `center{:typst}` a
 
 <TypstPreview
   code={`
-#stack(
-  dir: ltr,
-  spacing: 1fr,
-  circle(fill: gradient.conic(
-    ..color.map.viridis,
-  )),
-  circle(fill: gradient.conic(
-    ..color.map.viridis,
-    center: (20%, 30%),
-  )),
-)
+  #stack(
+    dir: ltr,
+    spacing: 1fr,
+    circle(fill: gradient.conic(
+      ..color.map.viridis,
+    )),
+    circle(fill: gradient.conic(
+      ..color.map.viridis,
+      center: (20%, 30%),
+    )),
+  )
 `}
   image='/assets/32a99c7b0b1cb9e924d91b259fba0aca.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -317,14 +323,15 @@ Sharp gradients have discrete jumps between colors, instead of a smooth transiti
 
 <TypstPreview
   code={`
-#set rect(width: 100%, height: 20pt)
-#let grad = gradient.linear(..color.map.rainbow)
-#rect(fill: grad)
-#rect(fill: grad.sharp(5))
-#rect(fill: grad.sharp(5, smoothness: 20%))
+  #set rect(width: 100%, height: 20pt)
+  #let grad = gradient.linear(..color.map.rainbow)
+  #rect(fill: grad)
+  #rect(fill: grad.sharp(5))
+  #rect(fill: grad.sharp(5, smoothness: 20%))
 `}
   image='/assets/93522b26f5475bd0d38d77f01dd7e1fd.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -354,15 +361,16 @@ Repeats this gradient a given number of times, optionally mirroring it at every 
 
 <TypstPreview
   code={`
-#circle(
-  radius: 40pt,
-  fill: gradient
-    .radial(aqua, white)
-    .repeat(4),
-)
+  #circle(
+    radius: 40pt,
+    fill: gradient
+      .radial(aqua, white)
+      .repeat(4),
+  )
 `}
   image='/assets/c9d6c600cc20c2f18c089a5f32cd7000.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -381,7 +389,7 @@ Repeats this gradient a given number of times, optionally mirroring it at every 
       'default': 'None'
     },
     'mirror': {
-      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  <TypstPreview   code={` #circle(   radius: 40pt,   fill: gradient     .conic(green, black)     .repeat(2, mirror: true) ) `}   image=\'/assets/12eb6ef0f82817124abc5d9167ff35dc.png\'   alt=\'Preview\' />',
+      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  <TypstPreview   code={`   #circle(     radius: 40pt,     fill: gradient       .conic(green, black)       .repeat(2, mirror: true)   ) `}   image=\'/assets/12eb6ef0f82817124abc5d9167ff35dc.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }

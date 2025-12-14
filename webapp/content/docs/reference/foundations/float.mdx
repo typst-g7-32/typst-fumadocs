@@ -18,12 +18,13 @@ NaN and positive infinity are available as `float.nan{:typst}` and `float.inf{:t
 
 <TypstPreview
   code={`
-#3.14 
-#1e4 
-#(10 / 4)
+  #3.14 \
+  #1e4 \
+  #(10 / 4)
 `}
   image='/assets/3a1ecfc8f2a14871dcc151f80926f42b.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Constructor
@@ -36,15 +37,16 @@ Converts a value to a float.
 
 <TypstPreview
   code={`
-#float(false) 
-#float(true) 
-#float(4) 
-#float(40%) 
-#float("2.7") 
-#float("1e5")
+  #float(false) \
+  #float(true) \
+  #float(4) \
+  #float(40%) \
+  #float("2.7") \
+  #float("1e5")
 `}
   image='/assets/3cc6be1ea65a2f8fbe14dff52343876a.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -72,12 +74,13 @@ In IEEE 754, more than one bit pattern represents a NaN. This function returns `
 
 <TypstPreview
   code={`
-#float.is-nan(0) 
-#float.is-nan(1) 
-#float.is-nan(float.nan)
+  #float.is-nan(0) \
+  #float.is-nan(1) \
+  #float.is-nan(float.nan)
 `}
   image='/assets/f6377c8713dcba71fb09d0925d677577.png'
   alt='Preview'
+  editable={true}
 />
 
 Checks if a float is infinite.
@@ -86,12 +89,13 @@ Floats can represent positive infinity and negative infinity. This function retu
 
 <TypstPreview
   code={`
-#float.is-infinite(0) 
-#float.is-infinite(1) 
-#float.is-infinite(float.inf)
+  #float.is-infinite(0) \
+  #float.is-infinite(1) \
+  #float.is-infinite(float.inf)
 `}
   image='/assets/8a0a86fa68abec5eb9e8923c3f4eee.png'
   alt='Preview'
+  editable={true}
 />
 
 Calculates the sign of a floating point number.
@@ -102,24 +106,26 @@ Calculates the sign of a floating point number.
 
 <TypstPreview
   code={`
-#(5.0).signum() 
-#(-5.0).signum() 
-#(0.0).signum() 
-#float.nan.signum()
+  #(5.0).signum() \
+  #(-5.0).signum() \
+  #(0.0).signum() \
+  #float.nan.signum()
 `}
   image='/assets/1c7a7ea657572682dba8012c83fda699.png'
   alt='Preview'
+  editable={true}
 />
 
 Interprets bytes as a float.
 
 <TypstPreview
   code={`
-#float.from-bytes(bytes((0, 0, 0, 0, 0, 0, 240, 63))) 
-#float.from-bytes(bytes((63, 240, 0, 0, 0, 0, 0, 0)), endian: "big")
+  #float.from-bytes(bytes((0, 0, 0, 0, 0, 0, 240, 63))) \
+  #float.from-bytes(bytes((63, 240, 0, 0, 0, 0, 0, 0)), endian: "big")
 `}
   image='/assets/4db0a29eaaeeef524a3a6ef790e25877.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -149,11 +155,12 @@ Converts a float to bytes.
 
 <TypstPreview
   code={`
-#array(1.0.to-bytes(endian: "big")) 
-#array(1.0.to-bytes())
+  #array(1.0.to-bytes(endian: "big")) \
+  #array(1.0.to-bytes())
 `}
   image='/assets/a32cf9d2d1c83a84118ffe5633a2486c.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

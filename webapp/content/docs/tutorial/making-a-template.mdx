@@ -33,40 +33,42 @@ Now, we can use the variable in our document:
 
 <TypstPreview
   code={`
-#let ipa = [taɪpst]
+  #let ipa = [taɪpst]
 
-The canonical way to
-pronounce Typst is #ipa.
+  The canonical way to
+  pronounce Typst is #ipa.
 
-#table(
-  columns: (1fr, 1fr),
-  [Name], [Typst],
-  [Pronunciation], ipa,
-)
+  #table(
+    columns: (1fr, 1fr),
+    [Name], [Typst],
+    [Pronunciation], ipa,
+  )
 `}
   image='/assets/1a33d218e9ec4ec2b683baca85e512e7.png'
   alt='Preview'
+  editable={true}
 />
 
 In the example, you can see that the variable can be used both in markup (prefixed with a `#{:typst}`) and in a function call (by just typing its name). Of course, we can change the value of the variable and all its occurrences will automatically change with it. Let's make it a bit clearer what is IPA and what is normal prose by rendering IPA in italics. We are also using slashes which, by convention, often enclose IPA.
 
 <TypstPreview
   code={`
-#let ipa = text(
-  style: "italic",
-)[/taɪpst/]
+  #let ipa = text(
+    style: "italic",
+  )[/taɪpst/]
 
-The canonical way to
-pronounce Typst is #ipa.
+  The canonical way to
+  pronounce Typst is #ipa.
 
-#table(
-  columns: (1fr, 1fr),
-  [Name], [Typst],
-  [Pronunciation], ipa,
-)
+  #table(
+    columns: (1fr, 1fr),
+    [Name], [Typst],
+    [Pronunciation], ipa,
+  )
 `}
   image='/assets/ef87ca8429247c40169a6c3d07584d47.png'
   alt='Preview'
+  editable={true}
 />
 
 Here, we called the text function and assigned its _return value_ to the variable. When you call a function, it processes its arguments and then yields another value (often content). So far in this tutorial, we called most functions directly in markup, like this: `#text(fill: red)[CRIMSON!]{:typst}`. This call to the text function returns the red text as a return value. Because we placed it in markup, its return value just immediately got inserted into the content we wrote. With variables, we can instead store it to use it later or compose it with other values.
@@ -107,12 +109,13 @@ In Typst, templates are functions in which you can wrap your whole document. To 
 
 <TypstPreview
   code={`
-#let amazed(term) = box[✨ #term ✨]
+  #let amazed(term) = box[✨ #term ✨]
 
-You are #amazed[beautiful]!
+  You are #amazed[beautiful]!
 `}
   image='/assets/85ffb432ec9336d10dbea32ea93e4896.png'
   alt='Preview'
+  editable={true}
 />
 
 Comparing this against the previous section, you may have noticed that this looks a lot like a variable definition using `let{:typst}`. This instinct is correct: Functions are just another data type. Here, we are defining the variable `amazed{:typst}`, assigning it a function that takes a single argument, `term{:typst}`, and returns content with the `term{:typst}` surrounded by sparkles. We also put the whole thing in a [`box{:typst}`](/docs/reference/layout/box/) so that the term we are amazed by cannot be separated from its sparkles by a line break. The special function definition syntax makes the definition shorter and more readable, but you can also use the regular variable definition syntax (see [the scripting reference](/docs/reference/scripting/#bindings) for details). After its definition, we are able to call the function just like all built-in functions.
@@ -121,29 +124,31 @@ Many functions that come with Typst have optional named parameters. Our function
 
 <TypstPreview
   code={`
-#let amazed(term, color: blue) = {
-  text(color, box[✨ #term ✨])
-}
+  #let amazed(term, color: blue) = {
+    text(color, box[✨ #term ✨])
+  }
 
-You are #amazed[beautiful]!
-I am #amazed(color: purple)[amazed]!
+  You are #amazed[beautiful]!
+  I am #amazed(color: purple)[amazed]!
 `}
   image='/assets/de3b1f5b9b2c4f6a9672c242956d317.png'
   alt='Preview'
+  editable={true}
 />
 
 Templates now work by wrapping our whole document in a custom function like `amazed{:typst}`. But wrapping a whole document in a giant function call would be cumbersome! Instead, we can use an "everything" show rule to achieve the same with cleaner code. To write such a show rule, put a colon directly after the show keyword and then provide a function. This function is given the rest of the document as a parameter. The function can then do anything with this content. Since the `amazed{:typst}` function can be called with a single content argument, we can just pass it by name to the show rule. Let's try it:
 
 <TypstPreview
   code={`
-#show: amazed
-I choose to focus on the good
-in my life and let go of any
-negative thoughts or beliefs.
-In fact, I am amazing!
+  #show: amazed
+  I choose to focus on the good
+  in my life and let go of any
+  negative thoughts or beliefs.
+  In fact, I am amazing!
 `}
   image='/assets/808bff8bf2db750d153f0acbf0b0fbf1.png'
   alt='Preview'
+  editable={true}
 />
 
 Our whole document will now be passed to the `amazed{:typst}` function, as if we wrapped it around it. Of course, this is not especially useful with this particular function, but when combined with set rules and named arguments, it can be very powerful.
@@ -154,56 +159,58 @@ To apply some set and show rules to our template, we can use `set{:typst}` and `
 
 <TypstPreview
   code={`
-#let template(doc) = [
-  #set text(font: "Inria Serif")
-  #show "something cool": [Typst]
-  #doc
-]
+  #let template(doc) = [
+    #set text(font: "Inria Serif")
+    #show "something cool": [Typst]
+    #doc
+  ]
 
-#show: template
-I am learning something cool today.
-It's going great so far!
+  #show: template
+  I am learning something cool today.
+  It's going great so far!
 `}
   image='/assets/3e1c39dbdd957964b7524749bf0cfd5.png'
   alt='Preview'
+  editable={true}
 />
 
 Just like we already discovered in the previous chapter, set rules will apply to everything within their content block. Since the everything show rule passes our whole document to the `template{:typst}` function, the text set rule and string show rule in our template will apply to the whole document. Let's use this knowledge to create a template that reproduces the body style of the paper we wrote in the previous chapter.
 
 <TypstPreview
   code={`
-#let conf(title, doc) = {
-  set page(
-    paper: "us-letter",
-    header: align(
-      right + horizon,
-      title
-    ),
-    columns: 2,
+  #let conf(title, doc) = {
+    set page(
+      paper: "us-letter",
+      header: align(
+        right + horizon,
+        title
+      ),
+      columns: 2,
+      ...
+    )
+    set par(justify: true)
+    set text(
+      font: "Libertinus Serif",
+      size: 11pt,
+    )
+
+    // Heading show rules.
     ...
-  )
-  set par(justify: true)
-  set text(
-    font: "Libertinus Serif",
-    size: 11pt,
+
+    doc
+  }
+
+  #show: doc => conf(
+    [Paper title],
+    doc,
   )
 
-  // Heading show rules.
+  = Introduction
   ...
-
-  doc
-}
-
-#show: doc => conf(
-  [Paper title],
-  doc,
-)
-
-= Introduction
-...
 `}
   image='/assets/400d52d31bee3faf506dfff0afe445fc.png'
   alt='Preview'
+  editable={true}
 />
 
 We copy-pasted most of that code from the previous chapter. The two differences are this:
@@ -299,43 +306,44 @@ Another thing that you can do to make applying templates just a bit more elegant
 
 <TypstPreview
   code={`
-#import "conf.typ": conf
+  #import "conf.typ": conf
 
-#set document(title: [
-  A Fluid Dynamic Model for
-  Glacier Flow
-])
+  #set document(title: [
+    A Fluid Dynamic Model for
+    Glacier Flow
+  ])
 
-#show: conf.with(
-  authors: (
-    (
-      name: "Theresa Tungsten",
-      affiliation: "Artos Institute",
-      email: "tung@artos.edu",
+  #show: conf.with(
+    authors: (
+      (
+        name: "Theresa Tungsten",
+        affiliation: "Artos Institute",
+        email: "tung@artos.edu",
+      ),
+      (
+        name: "Eugene Deklan",
+        affiliation: "Honduras State",
+        email: "e.deklan@hstate.hn",
+      ),
     ),
-    (
-      name: "Eugene Deklan",
-      affiliation: "Honduras State",
-      email: "e.deklan@hstate.hn",
-    ),
-  ),
-  abstract: lorem(80),
-)
+    abstract: lorem(80),
+  )
 
-= Introduction
-#lorem(90)
+  = Introduction
+  #lorem(90)
 
-== Motivation
-#lorem(140)
+  == Motivation
+  #lorem(140)
 
-== Problem Statement
-#lorem(50)
+  == Problem Statement
+  #lorem(50)
 
-= Related Work
-#lorem(200)
+  = Related Work
+  #lorem(200)
 `}
   image='/assets/ce3f3a18593a1c2ac64ee6bee62da151.png'
   alt='Preview'
+  editable={true}
 />
 
 We have now converted the conference paper into a reusable template for that conference! Why not share it in the [Forum](https://forum.typst.app/) or on [Typst's Discord server](https://discord.gg/2uDybryKPe) so that others can use it too?

@@ -13,15 +13,16 @@ In math, single letters are always displayed as is. Multiple letters, however, a
 
 <TypstPreview
   code={`
-$ A = pi r^2 $
-$ "area" = pi dot "radius"^2 $
-$ cal(A) :=
-    { x in RR | x "is natural" } $
-#let x = 5
-$ #x < 17 $
+  $ A = pi r^2 $
+  $ "area" = pi dot "radius"^2 $
+  $ cal(A) :=
+      { x in RR | x "is natural" } $
+  #let x = 5
+  $ #x < 17 $
 `}
   image='/assets/8524e76a7c6784dd9c30bb62d92a4897.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Symbols
@@ -30,10 +31,11 @@ Math mode makes a wide selection of [symbols](/docs/reference/symbols/sym/) like
 
 <TypstPreview
   code={`
-$ x < y => x gt.eq.not y $
+  $ x < y => x gt.eq.not y $
 `}
   image='/assets/dd08c3941abc7b8b1c9310fbebf71b6e.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Line Breaks
@@ -42,12 +44,13 @@ Formulas can also contain line breaks. Each line can contain one or multiple _al
 
 <TypstPreview
   code={`
-$ sum_(k=0)^n k
-    &= 1 + ... + n 
-    &= (n(n+1)) / 2 $
+  $ sum_(k=0)^n k
+      &= 1 + ... + n \
+      &= (n(n+1)) / 2 $
 `}
   image='/assets/e18e117e8b98666dc9823bbeed6dd264.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Function calls
@@ -61,15 +64,16 @@ Math mode supports special function calls without the hash prefix. In these "mat
 
 <TypstPreview
   code={`
-$ frac(a^2, 2) $
-$ vec(1, 2, delim: "[") $
-$ mat(1, 2; 3, 4) $
-$ mat(..#range(1, 5).chunks(2)) $
-$ lim_x =
-    op("lim", limits: #true)_x $
+  $ frac(a^2, 2) $
+  $ vec(1, 2, delim: "[") $
+  $ mat(1, 2; 3, 4) $
+  $ mat(..#range(1, 5).chunks(2)) $
+  $ lim_x =
+      op("lim", limits: #true)_x $
 `}
   image='/assets/a04e7f595e2b6bd62e8eb21bcf63a042.png'
   alt='Preview'
+  editable={true}
 />
 
 To write a verbatim comma or semicolon in a math call, escape it with a backslash. The colon on the other hand is only recognized in a special way if directly preceded by an identifier, so to display it verbatim in those cases, you can just insert a space before it.
@@ -82,13 +86,14 @@ When equations include multiple _alignment points_ (`&{:typst}`), this creates b
 
 <TypstPreview
   code={`
-$ (3x + y) / 7 &= 9 && "given" 
-  3x + y &= 63 & "multiply by 7" 
-  3x &= 63 - y && "subtract y" 
-  x &= 21 - y/3 & "divide by 3" $
+  $ (3x + y) / 7 &= 9 && "given" \
+    3x + y &= 63 & "multiply by 7" \
+    3x &= 63 - y && "subtract y" \
+    x &= 21 - y/3 & "divide by 3" $
 `}
   image='/assets/f1233da95c9167f12592cfc2f7cf3674.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Math fonts
@@ -97,11 +102,12 @@ You can set the math font by with a [show-set rule](/docs/reference/styling/#sho
 
 <TypstPreview
   code={`
-#show math.equation: set text(font: "Fira Math")
-$ sum_(i in NN) 1 + i $
+  #show math.equation: set text(font: "Fira Math")
+  $ sum_(i in NN) 1 + i $
 `}
   image='/assets/a86f5771fd97e49bb413be94448c5f66.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Math module
@@ -114,14 +120,15 @@ To make math accessible, you must provide alternative descriptions of equations 
 
 <TypstPreview
   code={`
-#math.equation(
-  alt: "d S equals delta q divided by T",
-  block: true,
-  $ dif S = (delta q) / T $,
-)
+  #math.equation(
+    alt: "d S equals delta q divided by T",
+    block: true,
+    $ dif S = (delta q) / T $,
+  )
 `}
   image='/assets/20d64e50eb0363ab3beb776d3cec11dc.png'
   alt='Preview'
+  editable={true}
 />
 
 In the future, Typst will automatically make equations without alternative descriptions accessible in HTML and PDF 2.0 export.

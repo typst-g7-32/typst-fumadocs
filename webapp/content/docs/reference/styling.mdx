@@ -13,49 +13,52 @@ With set rules, you can customize the appearance of elements. They are written a
 
 <TypstPreview
   code={`
-#set heading(numbering: "I.")
-#set text(
-  font: "New Computer Modern"
-)
+  #set heading(numbering: "I.")
+  #set text(
+    font: "New Computer Modern"
+  )
 
-= Introduction
-With set rules, you can style
-your document.
+  = Introduction
+  With set rules, you can style
+  your document.
 `}
   image='/assets/9d6d1565eca1266b69c1e10e8c947f7e.png'
   alt='Preview'
+  editable={true}
 />
 
 A top level set rule stays in effect until the end of the file. When nested inside of a block, it is only in effect until the end of that block. With a block, you can thus restrict the effect of a rule to a particular segment of your document. Below, we use a content block to scope the list styling to one particular list.
 
 <TypstPreview
   code={`
-This list is affected: #[
-  #set list(marker: [--])
-  - Dash
-]
+  This list is affected: #[
+    #set list(marker: [--])
+    - Dash
+  ]
 
-This one is not:
-- Bullet
+  This one is not:
+  - Bullet
 `}
   image='/assets/e9c9106d715f7f5cc305c7567b35f1a6.png'
   alt='Preview'
+  editable={true}
 />
 
 Sometimes, you'll want to apply a set rule conditionally. For this, you can use a _set-if_ rule.
 
 <TypstPreview
   code={`
-#let task(body, critical: false) = {
-  set text(red) if critical
-  [- #body]
-}
+  #let task(body, critical: false) = {
+    set text(red) if critical
+    [- #body]
+  }
 
-#task(critical: true)[Food today?]
-#task(critical: false)[Work deadline]
+  #task(critical: true)[Food today?]
+  #task(critical: false)[Work deadline]
 `}
   image='/assets/fd4966a8439dae633a77e390f53b005f.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Show rules
@@ -64,13 +67,14 @@ With show rules, you can deeply customize the look of a type of element. The mos
 
 <TypstPreview
   code={`
-#show heading: set text(navy)
+  #show heading: set text(navy)
 
-= This is navy-blue
-But this stays black.
+  = This is navy-blue
+  But this stays black.
 `}
   image='/assets/d2d8f7b75d586130c5564fd7947e349.png'
   alt='Preview'
+  editable={true}
 />
 
 With show-set rules you can mix and match properties from different functions to achieve many different effects. But they still limit you to what is predefined in Typst. For maximum flexibility, you can instead write a _transformational_ show rule that defines how to format an element from scratch. To write such a show rule, replace the set rule after the colon with an arbitrary [function](/docs/reference/foundations/function/). This function receives the element in question and can return arbitrary content. The function is often defined inline as `it => ..{:typst}` using the [unnamed function syntax](/docs/reference/foundations/function/#unnamed). The function's parameter is typically named `it{:typst}` by convention.
@@ -83,26 +87,27 @@ For this example, we also wanted center alignment and a different font. While we
 
 <TypstPreview
   code={`
-#set heading(numbering: "(I)")
-#show heading: set align(center)
-#show heading: set text(font: "Inria Serif")
-#show heading: it => block[
-  \~
-  #emph(it.body)
-  #counter(heading).display()
-  \~
-]
+  #set heading(numbering: "(I)")
+  #show heading: set align(center)
+  #show heading: set text(font: "Inria Serif")
+  #show heading: it => block[
+    \~
+    #emph(it.body)
+    #counter(heading).display()
+    \~
+  ]
 
-= Dragon
-With a base health of 15, the dragon is the most
-powerful creature.
+  = Dragon
+  With a base health of 15, the dragon is the most
+  powerful creature.
 
-= Manticore
-While less powerful than the dragon, the manticore
-gets extra style points.
+  = Manticore
+  While less powerful than the dragon, the manticore
+  gets extra style points.
 `}
   image='/assets/b44d750ce0fc9dcbbf4691281e0b2e29.png'
   alt='Preview'
+  editable={true}
 />
 
 Like set rules, show rules are in effect until the end of the current block or file.
@@ -117,13 +122,14 @@ Instead of a function, the right-hand side of a show rule can also take a litera
 
 <TypstPreview
   code={`
-#show "Project": smallcaps
-#show "badly": "great"
+  #show "Project": smallcaps
+  #show "badly": "great"
 
-We started Project in 2019
-and are still working on it.
-Project is progressing badly.
+  We started Project in 2019
+  and are still working on it.
+  Project is progressing badly.
 `}
   image='/assets/341cc85624eca5d9cf86c6e8dd61832c.png'
   alt='Preview'
+  editable={true}
 />

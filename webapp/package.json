@@ -11,13 +11,19 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc1",
+    "@myriaddreamin/typst.ts": "^0.7.0-rc1",
+    "codemirror": "^6.0.2",
+    "codemirror-shiki": "^0.3.0",
+    "codemirror-wrapped-line-indent": "^1.0.9",
     "fumadocs-core": "16.2.5",
     "fumadocs-mdx": "14.1.0",
     "fumadocs-ui": "16.2.5",
     "lucide-react": "^0.556.0",
     "next": "16.0.10",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "strip-indent": "^4.1.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",

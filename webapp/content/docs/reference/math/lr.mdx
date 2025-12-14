@@ -16,15 +16,16 @@ To prevent a delimiter from being matched by Typst, and thus auto-scaled, escape
 
 <TypstPreview
   code={`
-$ [a, b/2] $
-$ lr(]sum_(x=1)^n], size: #50%) x $
-$ abs((x + y) / 2) $
-$ \{ (x / y) \} $
-#set math.lr(size: 1em)
-$ { (a / b), a, b in (0; 1/2] } $
+  $ [a, b/2] $
+  $ lr(]sum_(x=1)^n], size: #50%) x $
+  $ abs((x + y) / 2) $
+  $ \{ (x / y) \} $
+  #set math.lr(size: 1em)
+  $ { (a / b), a, b in (0; 1/2] } $
 `}
   image='/assets/63330327318f138d9440594430988bbb.png'
   alt='Preview'
+  editable={true}
 />
 
 Scales delimiters.
@@ -58,10 +59,11 @@ Scales delimiters vertically to the nearest surrounding `lr(){:typst}` group.
 
 <TypstPreview
   code={`
-$ { x mid(|) sum_(i=1)^n w_i|f_i (x)| < 1 } $
+  $ { x mid(|) sum_(i=1)^n w_i|f_i (x)| < 1 } $
 `}
   image='/assets/a29f9290887cdd1f41b9003f982e3560.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -85,10 +87,11 @@ Takes the absolute value of an expression.
 
 <TypstPreview
   code={`
-$ abs(x/2) $
+  $ abs(x/2) $
 `}
   image='/assets/5892ee44ad18813000297eeafd1b6e78.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -118,10 +121,11 @@ Takes the norm of an expression.
 
 <TypstPreview
   code={`
-$ norm(x/2) $
+  $ norm(x/2) $
 `}
   image='/assets/602e918d9e4207139477dfb451df53cd.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -151,10 +155,11 @@ Floors an expression.
 
 <TypstPreview
   code={`
-$ floor(x/2) $
+  $ floor(x/2) $
 `}
   image='/assets/3c3107954755188561218b3da59b9b88.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -184,10 +189,11 @@ Ceils an expression.
 
 <TypstPreview
   code={`
-$ ceil(x/2) $
+  $ ceil(x/2) $
 `}
   image='/assets/f0cd1c0e8d2655688398c799bc806a38.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -217,10 +223,11 @@ Rounds an expression.
 
 <TypstPreview
   code={`
-$ round(x/2) $
+  $ round(x/2) $
 `}
   image='/assets/b45f33012980296a7361d593384f333c.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

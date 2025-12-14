@@ -18,21 +18,22 @@ The YAML files in the example contain objects with authors as keys, each with a 
 
 <TypstPreview
   code={`
-#let bookshelf(contents) = {
-  for (author, works) in contents {
-    author
-    for work in works [
-      - #work.title (#work.published)
-    ]
+  #let bookshelf(contents) = {
+    for (author, works) in contents {
+      author
+      for work in works [
+        - #work.title (#work.published)
+      ]
+    }
   }
-}
 
-#bookshelf(
-  yaml("scifi-authors.yaml")
-)
+  #bookshelf(
+    yaml("scifi-authors.yaml")
+  )
 `}
   image='/assets/ce1cef3a36cd7879dbe19609834df61b.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Conversion details

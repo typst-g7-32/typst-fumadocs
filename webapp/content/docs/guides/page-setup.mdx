@@ -11,23 +11,24 @@ In Typst, each page has a width, a height, and margins on all four sides. The to
 
 <TypstPreview
   code={`
-#set rect(
-  width: 100%,
-  height: 100%,
-  inset: 4pt,
-)
+  #set rect(
+    width: 100%,
+    height: 100%,
+    inset: 4pt,
+  )
 
-#set page(
-  paper: "iso-b7",
-  header: rect(fill: aqua)[Header],
-  footer: rect(fill: aqua)[Footer],
-  number-align: center,
-)
+  #set page(
+    paper: "iso-b7",
+    header: rect(fill: aqua)[Header],
+    footer: rect(fill: aqua)[Footer],
+    number-align: center,
+  )
 
-#rect(fill: aqua.lighten(40%))
+  #rect(fill: aqua.lighten(40%))
 `}
   image='/assets/7fe9722cc3b9bdd5ee00ca23dbcb3702.png'
   alt='Preview'
+  editable={true}
 />
 
 This example visualizes the dimensions for page content, headers, and footers. The page content is the page size (ISO B7) minus each side's default margin. In the top and the bottom margin, there are stroked rectangles visualizing the header and footer. They do not touch the main content, instead, they are offset by 30% of the respective margin. You can control this offset by specifying the [`header-ascent{:typst}`](/docs/reference/layout/page/#parameters-header-ascent) and [`footer-descent{:typst}`](/docs/reference/layout/page/#parameters-footer-descent) arguments.
@@ -40,24 +41,26 @@ Typst's default page size is A4 paper. Depending on your region and your use cas
 
 <TypstPreview
   code={`
-#set page("us-letter")
+  #set page("us-letter")
 
-This page likes freedom.
+  This page likes freedom.
 `}
   image='/assets/4246fd7d86f948c7c3689eb7698c9c4f.png'
   alt='Preview'
+  editable={true}
 />
 
 If you need to customize your page size to some dimensions, you can specify the named arguments [`width{:typst}`](/docs/reference/layout/page/#parameters-width) and [`height{:typst}`](/docs/reference/layout/page/#parameters-height) instead.
 
 <TypstPreview
   code={`
-#set page(width: 12cm, height: 12cm)
+  #set page(width: 12cm, height: 12cm)
 
-This page is a square.
+  This page is a square.
 `}
   image='/assets/465b6b3f98e32a2fea10d872f41f87c9.png'
   alt='Preview'
+  editable={true}
 />
 
 ### Change the page's margins
@@ -68,16 +71,17 @@ The `margin{:typst}` argument will accept a length if you want to set all margin
 
 <TypstPreview
   code={`
-#set page(margin: (
-  top: 3cm,
-  bottom: 2cm,
-  x: 1.5cm,
-))
+  #set page(margin: (
+    top: 3cm,
+    bottom: 2cm,
+    x: 1.5cm,
+  ))
 
-#lorem(100)
+  #lorem(100)
 `}
   image='/assets/c896f60e6558035f03087583440e7441.png'
   alt='Preview'
+  editable={true}
 />
 
 The page margin dictionary can have keys for each side (`top{:typst}`, `bottom{:typst}`, `left{:typst}`, `right{:typst}`), but you can also control left and right together by setting the `x{:typst}` key of the margin dictionary, like in the example. Likewise, the top and bottom margins can be adjusted together by setting the `y{:typst}` key.
@@ -111,16 +115,17 @@ In case you need more than just a page number, the best way to insert a header a
 
 <TypstPreview
   code={`
-#set page(header: [
-  _Lisa Strassner's Thesis_
-  #h(1fr)
-  National Academy of Sciences
-])
+  #set page(header: [
+    _Lisa Strassner's Thesis_
+    #h(1fr)
+    National Academy of Sciences
+  ])
 
-#lorem(150)
+  #lorem(150)
 `}
   image='/assets/f0814aae5cf80934a96205a02aad36b4.png'
   alt='Preview'
+  editable={true}
 />
 
 Headers are bottom-aligned by default so that they do not collide with the top edge of the page. You can change this by wrapping your header in the [`align{:typst}`](/docs/reference/layout/align/) function.
@@ -182,36 +187,39 @@ Page numbers help readers keep track of and reference your document more easily.
 
 <TypstPreview
   code={`
-#set page(numbering: "1")
+  #set page(numbering: "1")
 
-This is a numbered page.
+  This is a numbered page.
 `}
   image='/assets/b48b5390c93bf60c40473268b2bc55b2.png'
   alt='Preview'
+  editable={true}
 />
 
 Above, you can check out the simplest conceivable example. It adds a single Arabic page number at the center of the footer. You can specify other characters than `"1"{:typst}` to get other numerals. For example, `"i"{:typst}` will yield lowercase Roman numerals. Any character that is not interpreted as a number will be output as-is. For example, put dashes around your page number by typing this:
 
 <TypstPreview
   code={`
-#set page(numbering: "— 1 —")
+  #set page(numbering: "— 1 —")
 
-This is a — numbered — page.
+  This is a — numbered — page.
 `}
   image='/assets/d7f4767d2392e3a857f037af58edd21f.png'
   alt='Preview'
+  editable={true}
 />
 
 You can add the total number of pages by entering a second number character in the string.
 
 <TypstPreview
   code={`
-#set page(numbering: "1 of 1")
+  #set page(numbering: "1 of 1")
 
-This is one of many numbered pages.
+  This is one of many numbered pages.
 `}
   image='/assets/cbb2198058d0bedc9aabffd8b12f7c30.png'
   alt='Preview'
+  editable={true}
 />
 
 Go to the [`numbering{:typst}` function reference](/docs/reference/model/numbering/#parameters-numbering) to learn more about the arguments you can pass here.
@@ -224,19 +232,20 @@ Sometimes, you need to add other content than a page number to your footer. Howe
 
 <TypstPreview
   code={`
-#set page(footer: context [
-  *American Society of Proceedings*
-  #h(1fr)
-  #counter(page).display(
-    "1/1",
-    both: true,
-  )
-])
+  #set page(footer: context [
+    *American Society of Proceedings*
+    #h(1fr)
+    #counter(page).display(
+      "1/1",
+      both: true,
+    )
+  ])
 
-This page has a custom footer.
+  This page has a custom footer.
 `}
   image='/assets/a5ae057e4480999f126c73098458484c.png'
   alt='Preview'
+  editable={true}
 />
 
 First, we add some strongly emphasized text on the left and add free space to fill the line. Then, we call `counter(page){:typst}` to retrieve the page counter and use its `display{:typst}` function to show its current value. We also set `both{:typst}` to `true{:typst}` so that our numbering pattern applies to the current _and_ final page number.
@@ -245,26 +254,27 @@ We can also get more creative with the page number. For example, let's insert a 
 
 <TypstPreview
   code={`
-#set page(footer: context [
-  *Fun Typography Club*
-  #h(1fr)
-  #let (num,) = counter(page).get()
-  #let circles = num * (
-    box(circle(
-      radius: 2pt,
-      fill: navy,
-    )),
-  )
-  #box(
-    inset: (bottom: 1pt),
-    circles.join(h(1pt))
-  )
-])
+  #set page(footer: context [
+    *Fun Typography Club*
+    #h(1fr)
+    #let (num,) = counter(page).get()
+    #let circles = num * (
+      box(circle(
+        radius: 2pt,
+        fill: navy,
+      )),
+    )
+    #box(
+      inset: (bottom: 1pt),
+      circles.join(h(1pt))
+    )
+  ])
 
-This page has a custom footer.
+  This page has a custom footer.
 `}
   image='/assets/3f1e0c8050c6661e537d30705124bf28.png'
   alt='Preview'
+  editable={true}
 />
 
 In this example, we use the number of pages to create an array of [circles](/docs/reference/visualize/circle/). The circles are wrapped in a [box](/docs/reference/layout/box/) so they can all appear on the same line because they are blocks and would otherwise create paragraph breaks. The length of this [array](/docs/reference/foundations/array/) depends on the current page number.
@@ -293,14 +303,15 @@ In case you need to retrieve the actual page number instead of the value of the 
 
 <TypstPreview
   code={`
-#counter(page).update(n => n + 5)
+  #counter(page).update(n => n + 5)
 
-// This returns one even though the
-// page counter was incremented by 5.
-#context here().page()
+  // This returns one even though the
+  // page counter was incremented by 5.
+  #context here().page()
 `}
   image='/assets/d3dcad44515b9bf64e2f18e46b5e67fd.png'
   alt='Preview'
+  editable={true}
 />
 
 You can also obtain the page numbering pattern from the location returned by `here{:typst}` with the [`page-numbering{:typst}`](/docs/reference/introspection/location/#definitions-page-numbering) method.
@@ -313,36 +324,38 @@ To lay out your content in columns, just specify the desired number of columns i
 
 <TypstPreview
   code={`
-#set page(columns: 2)
-#set columns(gutter: 12pt)
+  #set page(columns: 2)
+  #set columns(gutter: 12pt)
 
-#lorem(30)
+  #lorem(30)
 `}
   image='/assets/160439991e4175b3b075a3ef990b2cfb.png'
   alt='Preview'
+  editable={true}
 />
 
 Very commonly, scientific papers have a single-column title and abstract, while the main body is set in two-columns. To achieve this effect, Typst's [`place{:typst}` function](/docs/reference/layout/place/) can temporarily escape the two-column layout by specifying `float: true{:typst}` and `scope: "parent"{:typst}`:
 
 <TypstPreview
   code={`
-#set page(columns: 2)
-#set par(justify: true)
+  #set page(columns: 2)
+  #set par(justify: true)
 
-#place(
-  top + center,
-  float: true,
-  scope: "parent",
-  text(1.4em, weight: "bold")[
-    Impacts of Odobenidae
-  ],
-)
+  #place(
+    top + center,
+    float: true,
+    scope: "parent",
+    text(1.4em, weight: "bold")[
+      Impacts of Odobenidae
+    ],
+  )
 
-== About seals in the wild
-#lorem(80)
+  == About seals in the wild
+  #lorem(80)
 `}
   image='/assets/af081b829515e76f76dc6155ffd6c211.png'
   alt='Preview'
+  editable={true}
 />
 
 _Floating placement_ refers to elements being pushed to the top or bottom of the column or page, with the remaining content flowing in between. It is also frequently used for [figures](/docs/reference/model/figure/#parameters-placement).
@@ -353,21 +366,22 @@ To create columns within a nested layout, e.g. within a rectangle, you can use t
 
 <TypstPreview
   code={`
-#rect(
-  width: 6cm,
-  height: 3.5cm,
-  columns(2, gutter: 12pt)[
-    In the dimly lit gas station,
-    a solitary taxi stood silently,
-    its yellow paint fading with
-    time. Its windows were dark,
-    its engine idle, and its tires
-    rested on the cold concrete.
-  ]
-)
+  #rect(
+    width: 6cm,
+    height: 3.5cm,
+    columns(2, gutter: 12pt)[
+      In the dimly lit gas station,
+      a solitary taxi stood silently,
+      its yellow paint fading with
+      time. Its windows were dark,
+      its engine idle, and its tires
+      rested on the cold concrete.
+    ]
+  )
 `}
   image='/assets/e1a95ddb12510e9685331557bbb6a251.png'
   alt='Preview'
+  editable={true}
 />
 
 ### Balanced columns
@@ -380,19 +394,20 @@ You do not need to override your page settings if you need to insert a single pa
 
 <TypstPreview
   code={`
-#page(flipped: true)[
-  = Multiplication table
+  #page(flipped: true)[
+    = Multiplication table
 
-  #table(
-    columns: 5 * (1fr,),
-    ..for x in range(1, 10) {
-      for y in range(1, 6) {
-        (str(x*y),)
+    #table(
+      columns: 5 * (1fr,),
+      ..for x in range(1, 10) {
+        for y in range(1, 6) {
+          (str(x*y),)
+        }
       }
-    }
-  )
-]
+    )
+  ]
 `}
   image='/assets/539141c80d3b642706762cd1fd76ed13.png'
   alt='Preview'
+  editable={true}
 />

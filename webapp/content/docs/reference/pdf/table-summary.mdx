@@ -18,27 +18,28 @@ The API of this feature is temporary. Hence, calling this function requires enab
 
 <TypstPreview
   code={`
-#figure(
-  pdf.table-summary(
-    // The summary just provides orientation and structural
-    // information for AT users.
-    summary: "The first two columns list the names of each participant. The last column contains cells spanning multiple rows for their assigned group.",
-    table(
-      columns: 3,
-      table.header[First Name][Given Name][Group],
-      [Mike], [Davis], table.cell(rowspan: 3)[Sales],
-      [Anna], [Smith],
-      [John], [Johnson],
-      [Sara], [Wilkins], table.cell(rowspan: 2)[Operations],
-      [Tom], [Brown],
+  #figure(
+    pdf.table-summary(
+      // The summary just provides orientation and structural
+      // information for AT users.
+      summary: "The first two columns list the names of each participant. The last column contains cells spanning multiple rows for their assigned group.",
+      table(
+        columns: 3,
+        table.header[First Name][Given Name][Group],
+        [Mike], [Davis], table.cell(rowspan: 3)[Sales],
+        [Anna], [Smith],
+        [John], [Johnson],
+        [Sara], [Wilkins], table.cell(rowspan: 2)[Operations],
+        [Tom], [Brown],
+      ),
     ),
-  ),
-  // This is the key takeaway of the table, so we put it in the caption.
-  caption: [The Sales org now has a new member],
-)
+    // This is the key takeaway of the table, so we put it in the caption.
+    caption: [The Sales org now has a new member],
+  )
 `}
   image='/assets/c201ac9a658ef04d467227539fa50795.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

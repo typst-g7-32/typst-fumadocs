@@ -13,19 +13,20 @@ The `std{:typst}` module is useful whenever you overrode a name from the global 
 
 <TypstPreview
   code={`
-#let par = [My special paragraph.]
-#let special(text) = {
-  set std.text(style: "italic")
-  set std.par.line(numbering: "1")
-  text
-}
+  #let par = [My special paragraph.]
+  #let special(text) = {
+    set std.text(style: "italic")
+    set std.par.line(numbering: "1")
+    text
+  }
 
-#special(par)
+  #special(par)
 
-#lorem(10)
+  #lorem(10)
 `}
   image='/assets/2736820672bb7a52dce20390b13a1cb0.png'
   alt='Preview'
+  editable={true}
 />
 
 ## Conditional access

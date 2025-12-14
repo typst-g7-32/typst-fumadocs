@@ -23,26 +23,28 @@ It can have any number of components (even zero).
 
 <TypstPreview
   code={`
-#version() 
-#version(1) 
-#version(1, 2, 3, 4) 
-#version((1, 2, 3, 4)) 
-#version((1, 2), 3)
+  #version() \
+  #version(1) \
+  #version(1, 2, 3, 4) \
+  #version((1, 2, 3, 4)) \
+  #version((1, 2), 3)
 `}
   image='/assets/171d7fe9db3c91b277e567ab934a88a9.png'
   alt='Preview'
+  editable={true}
 />
 
 As a practical use case, this allows comparing the current version ([`sys.version{:typst}`](/docs/reference/foundations/version/)) to a specific one.
 
 <TypstPreview
   code={`
-Current version: #sys.version 
-#(sys.version >= version(0, 14, 0)) 
-#(version(3, 2, 0) > version(4, 1, 0))
+  Current version: #sys.version \
+  #(sys.version >= version(0, 14, 0)) \
+  #(version(3, 2, 0) > version(4, 1, 0))
 `}
   image='/assets/9abdaee6d68422e95c9d5c76afd7cdcf.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

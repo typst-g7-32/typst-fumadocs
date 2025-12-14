@@ -14,16 +14,17 @@ The CSV file will be read and parsed into a 2-dimensional array of strings: Each
 
 <TypstPreview
   code={`
-#let results = csv("example.csv")
+  #let results = csv("example.csv")
 
-#table(
-  columns: 2,
-  [*Condition*], [*Result*],
-  ..results.flatten(),
-)
+  #table(
+    columns: 2,
+    [*Condition*], [*Result*],
+    ..results.flatten(),
+  )
 `}
   image='/assets/c192b88f7dd7e11a0cbe1419b109e999.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst

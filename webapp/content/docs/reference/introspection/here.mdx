@@ -19,32 +19,34 @@ Determining the current position in the document in combination with the [`posit
 
 <TypstPreview
   code={`
-#context [
-  I am located at
-  #here().position()
-]
+  #context [
+    I am located at
+    #here().position()
+  ]
 `}
   image='/assets/e4fac373c1481ceacbb3fa948d38fa8b.png'
   alt='Preview'
+  editable={true}
 />
 
 Running a [query](/docs/reference/introspection/query/) for elements before the current position:
 
 <TypstPreview
   code={`
-= Introduction
-= Background
+  = Introduction
+  = Background
 
-There are
-#context query(
-  selector(heading).before(here())
-).len()
-headings before me.
+  There are
+  #context query(
+    selector(heading).before(here())
+  ).len()
+  headings before me.
 
-= Conclusion
+  = Conclusion
 `}
   image='/assets/e43587e9371906b123b86b92c0aa9ff0.png'
   alt='Preview'
+  editable={true}
 />
 
 Refer to the [`selector{:typst}`](/docs/reference/foundations/selector/) type for more details on before/after selectors.

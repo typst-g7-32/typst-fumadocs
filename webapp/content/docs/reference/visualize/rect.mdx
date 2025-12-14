@@ -12,17 +12,18 @@ A rectangle with optional content.
 
 <TypstPreview
   code={`
-// Without content.
-#rect(width: 35%, height: 30pt)
+  // Without content.
+  #rect(width: 35%, height: 30pt)
 
-// With content.
-#rect[
-  Automatically sized 
-  to fit the content.
-]
+  // With content.
+  #rect[
+    Automatically sized \
+    to fit the content.
+  ]
 `}
   image='/assets/b8c2e4acab3c02639ef4bfaa5380982a.png'
   alt='Preview'
+  editable={true}
 />
 
 ```typst
@@ -52,17 +53,17 @@ A rectangle with optional content.
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'fill': {
-      'description': 'How to fill the rectangle.  When setting a fill, the default stroke disappears. To create a rectangle with both fill and stroke, you have to configure both.  <TypstPreview   code={` #rect(fill: blue) `}   image=\'/assets/5e9d207b0c933ecd5aaddeb58a002324.png\'   alt=\'Preview\' />',
+      'description': 'How to fill the rectangle.  When setting a fill, the default stroke disappears. To create a rectangle with both fill and stroke, you have to configure both.  <TypstPreview   code={`   #rect(fill: blue) `}   image=\'/assets/5e9d207b0c933ecd5aaddeb58a002324.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | color | gradient | tiling',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'stroke': {
-      'description': 'How to stroke the rectangle. This can be:  - `none{:typst}` to disable stroking - `auto{:typst}` for a stroke of `1pt + black{:typst}` if and only if no fill is given. - Any kind of [stroke](/docs/reference/visualize/stroke/) - A dictionary describing the stroke for each side individually. The dictionary can contain the following keys in order of precedence:    - `top{:typst}`: The top stroke.   - `right{:typst}`: The right stroke.   - `bottom{:typst}`: The bottom stroke.   - `left{:typst}`: The left stroke.   - `x{:typst}`: The horizontal stroke.   - `y{:typst}`: The vertical stroke.   - `rest{:typst}`: The stroke on all sides except those for which the dictionary explicitly sets a size. All keys are optional; omitted keys will use their previously set value, or the default stroke if never set.  <TypstPreview   code={` #stack(   dir: ltr,   spacing: 1fr,   rect(stroke: red),   rect(stroke: 2pt),   rect(stroke: 2pt + red), ) `}   image=\'/assets/44d3c9c5a1d56ba8ecfcffbc7c9144c4.png\'   alt=\'Preview\' />',
+      'description': 'How to stroke the rectangle. This can be:  - `none{:typst}` to disable stroking - `auto{:typst}` for a stroke of `1pt + black{:typst}` if and only if no fill is given. - Any kind of [stroke](/docs/reference/visualize/stroke/) - A dictionary describing the stroke for each side individually. The dictionary can contain the following keys in order of precedence:    - `top{:typst}`: The top stroke.   - `right{:typst}`: The right stroke.   - `bottom{:typst}`: The bottom stroke.   - `left{:typst}`: The left stroke.   - `x{:typst}`: The horizontal stroke.   - `y{:typst}`: The vertical stroke.   - `rest{:typst}`: The stroke on all sides except those for which the dictionary explicitly sets a size. All keys are optional; omitted keys will use their previously set value, or the default stroke if never set.  <TypstPreview   code={`   #stack(     dir: ltr,     spacing: 1fr,     rect(stroke: red),     rect(stroke: 2pt),     rect(stroke: 2pt + red),   ) `}   image=\'/assets/44d3c9c5a1d56ba8ecfcffbc7c9144c4.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | length | color | gradient | stroke | tiling | dictionary',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'radius': {
-      'description': 'How much to round the rectangle\'s corners, relative to the minimum of the width and height divided by two. This can be:  - A relative length for a uniform corner radius. - A dictionary: With a dictionary, the stroke for each side can be set individually. The dictionary can contain the following keys in order of precedence:    - `top-left{:typst}`: The top-left corner radius.   - `top-right{:typst}`: The top-right corner radius.   - `bottom-right{:typst}`: The bottom-right corner radius.   - `bottom-left{:typst}`: The bottom-left corner radius.   - `left{:typst}`: The top-left and bottom-left corner radii.   - `top{:typst}`: The top-left and top-right corner radii.   - `right{:typst}`: The top-right and bottom-right corner radii.   - `bottom{:typst}`: The bottom-left and bottom-right corner radii.   - `rest{:typst}`: The radii for all corners except those for which the dictionary explicitly sets a size.  <TypstPreview   code={` #set rect(stroke: 4pt) #rect(   radius: (     left: 5pt,     top-right: 20pt,     bottom-right: 10pt,   ),   stroke: (     left: red,     top: yellow,     right: green,     bottom: blue,   ), ) `}   image=\'/assets/3fdded0cd492aef99d7d7bf62fb32661.png\'   alt=\'Preview\' />',
+      'description': 'How much to round the rectangle\'s corners, relative to the minimum of the width and height divided by two. This can be:  - A relative length for a uniform corner radius. - A dictionary: With a dictionary, the stroke for each side can be set individually. The dictionary can contain the following keys in order of precedence:    - `top-left{:typst}`: The top-left corner radius.   - `top-right{:typst}`: The top-right corner radius.   - `bottom-right{:typst}`: The bottom-right corner radius.   - `bottom-left{:typst}`: The bottom-left corner radius.   - `left{:typst}`: The top-left and bottom-left corner radii.   - `top{:typst}`: The top-left and top-right corner radii.   - `right{:typst}`: The top-right and bottom-right corner radii.   - `bottom{:typst}`: The bottom-left and bottom-right corner radii.   - `rest{:typst}`: The radii for all corners except those for which the dictionary explicitly sets a size.  <TypstPreview   code={`   #set rect(stroke: 4pt)   #rect(     radius: (       left: 5pt,       top-right: 20pt,       bottom-right: 10pt,     ),     stroke: (       left: red,       top: yellow,       right: green,       bottom: blue,     ),   ) `}   image=\'/assets/3fdded0cd492aef99d7d7bf62fb32661.png\'   alt=\'Preview\'   editable={true} />',
       'type': 'relative | dictionary',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },
