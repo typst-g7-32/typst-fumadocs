@@ -45,7 +45,7 @@ The example below demonstrates some of the most common table options.
     [$a$: edge length]
   )
 `}
-  image='/assets/292ce306c3aab6e773c2f2ba66fa7dbb.png'
+  image='/typst-fumadocs/assets/292ce306c3aab6e773c2f2ba66fa7dbb'
   alt='Preview'
   editable={false}
 />
@@ -90,7 +90,7 @@ Much like with grids, you can use [`table.cell{:typst}`](/docs/reference/model/t
     [Robert], b, a, b,
   )
 `}
-  image='/assets/ffc1843d36a9bc64fabab2c809c2265.png'
+  image='/typst-fumadocs/assets/ffc1843d36a9bc64fabab2c809c2265'
   alt='Preview'
   editable={true}
 />
@@ -145,17 +145,17 @@ Because navigating a table by cell is more cumbersome than reading it visually, 
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">)</span></code>'
     },
     'inset': {
-      'description': 'How much to pad the cells\' content.  To specify the same inset for all cells, use a single length for all sides, or a dictionary of lengths for individual sides. See the [box\'s documentation](/docs/reference/layout/box/#parameters-inset) for more details.  To specify a varying inset for different cells, you can:  - use a single, uniform inset for all cells - use an array of insets for each column - use a function that maps a cell\'s X/Y position (both starting from zero) to its inset  See the [grid documentation](/docs/reference/layout/grid/#styling) for more details.  <TypstPreview   code={`   #table(     columns: 2,     inset: 10pt,     [Hello],     [World],   )    #table(     columns: 2,     inset: (x: 20pt, y: 10pt),     [Hello],     [World],   ) `}   image=\'/assets/cd5db0284b844bb717f37c7ea3a5989c.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'How much to pad the cells\' content.  To specify the same inset for all cells, use a single length for all sides, or a dictionary of lengths for individual sides. See the [box\'s documentation](/docs/reference/layout/box/#parameters-inset) for more details.  To specify a varying inset for different cells, you can:  - use a single, uniform inset for all cells - use an array of insets for each column - use a function that maps a cell\'s X/Y position (both starting from zero) to its inset  See the [grid documentation](/docs/reference/layout/grid/#styling) for more details.  <TypstPreview   code={`   #table(     columns: 2,     inset: 10pt,     [Hello],     [World],   )    #table(     columns: 2,     inset: (x: 20pt, y: 10pt),     [Hello],     [World],   ) `}   image=\'/typst-fumadocs/assets/cd5db0284b844bb717f37c7ea3a5989c\'   alt=\'Preview\'   editable={true} />',
       'type': 'relative | array | dictionary | function',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">5pt</span></code>'
     },
     'align': {
-      'description': 'How to align the cells\' content.  If set to `auto{:typst}`, the outer alignment is used.  You can specify the alignment in any of the following fashions:  - use a single alignment for all cells - use an array of alignments corresponding to each column - use a function that maps a cell\'s X/Y position (both starting from zero) to its alignment  See the [Table Guide](/docs/guides/tables/#alignment) for details.  <TypstPreview   code={`   #table(     columns: 3,     align: (left, center, right),     [Hello], [Hello], [Hello],     [A], [B], [C],   ) `}   image=\'/assets/fdf060a2d0a5f8bb558ef194e322452d.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'How to align the cells\' content.  If set to `auto{:typst}`, the outer alignment is used.  You can specify the alignment in any of the following fashions:  - use a single alignment for all cells - use an array of alignments corresponding to each column - use a function that maps a cell\'s X/Y position (both starting from zero) to its alignment  See the [Table Guide](/docs/guides/tables/#alignment) for details.  <TypstPreview   code={`   #table(     columns: 3,     align: (left, center, right),     [Hello], [Hello], [Hello],     [A], [B], [C],   ) `}   image=\'/typst-fumadocs/assets/fdf060a2d0a5f8bb558ef194e322452d\'   alt=\'Preview\'   editable={true} />',
       'type': 'auto | array | alignment | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'fill': {
-      'description': 'How to fill the cells.  This can be:  - a single fill for all cells - an array of fill corresponding to each column - a function that maps a cell\'s position to its fill  Most notably, arrays and functions are useful for creating striped tables. See the [Table Guide](/docs/guides/tables/#fills) for more details.  <TypstPreview   code={`   #table(     fill: (x, _) =>       if calc.odd(x) { luma(240) }       else { white },     align: (x, y) =>       if y == 0 { center }       else if x == 0 { left }       else { right },     columns: 4,     [], [*Q1*], [*Q2*], [*Q3*],     [Revenue:], [1000 €], [2000 €], [3000 €],     [Expenses:], [500 €], [1000 €], [1500 €],     [Profit:], [500 €], [1000 €], [1500 €],   ) `}   image=\'/assets/1ce6e13c91ef624898a870a344ad491f.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'How to fill the cells.  This can be:  - a single fill for all cells - an array of fill corresponding to each column - a function that maps a cell\'s position to its fill  Most notably, arrays and functions are useful for creating striped tables. See the [Table Guide](/docs/guides/tables/#fills) for more details.  <TypstPreview   code={`   #table(     fill: (x, _) =>       if calc.odd(x) { luma(240) }       else { white },     align: (x, y) =>       if y == 0 { center }       else if x == 0 { left }       else { right },     columns: 4,     [], [*Q1*], [*Q2*], [*Q3*],     [Revenue:], [1000 €], [2000 €], [3000 €],     [Expenses:], [500 €], [1000 €], [1500 €],     [Profit:], [500 €], [1000 €], [1500 €],   ) `}   image=\'/typst-fumadocs/assets/1ce6e13c91ef624898a870a344ad491f\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | color | gradient | array | tiling | function',
       'default': '<code><span class="typ-key">none</span></code>'
     },
@@ -206,7 +206,7 @@ Perhaps the most important use case of `table.cell{:typst}` is to make a cell sp
     table.cell(colspan: 2)[24.7],
   )
 `}
-  image='/assets/dab40f9bc81b4706c5aa22132650faa0.png'
+  image='/typst-fumadocs/assets/dab40f9bc81b4706c5aa22132650faa0'
   alt='Preview'
   editable={true}
 />
@@ -239,7 +239,7 @@ For example, you can override the fill, alignment or inset for a single cell:
     ),
   )
 `}
-  image='/assets/2e8ea263e8c68ccb5299513a02c8a043.png'
+  image='/typst-fumadocs/assets/2e8ea263e8c68ccb5299513a02c8a043'
   alt='Preview'
   editable={true}
 />
@@ -259,7 +259,7 @@ You may also apply a show rule on `table.cell{:typst}` to style all cells at onc
     [Vikram], [49], [Perseverance],
   )
 `}
-  image='/assets/73648fd3af6abcc0737856eb8d5b3ca7.png'
+  image='/typst-fumadocs/assets/73648fd3af6abcc0737856eb8d5b3ca7'
   alt='Preview'
   editable={true}
 />
@@ -362,7 +362,7 @@ Use this function instead of the table's `stroke{:typst}` field if you want to m
     [19:00], [Day 1 Attendee Mixer],
   )
 `}
-  image='/assets/165f96ef6c21f2194a6fbd988e52743e.png'
+  image='/typst-fumadocs/assets/165f96ef6c21f2194a6fbd988e52743e'
   alt='Preview'
   editable={true}
 />
@@ -498,7 +498,7 @@ Currently, this function is unsuitable for creating a header column or single he
     [7.34], [57],  [2],
   )
 `}
-  image='/assets/207a73a7e6fb990edcb409654b11167d-0.png'
+  image='/typst-fumadocs/assets/207a73a7e6fb990edcb409654b11167d-0'
   alt='Preview page 1'
   editable={true}
 />

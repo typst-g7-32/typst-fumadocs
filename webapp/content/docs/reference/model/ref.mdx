@@ -46,7 +46,7 @@ A `"page"{:typst}` reference produces a page reference to a label, displaying th
 
   #bibliography("works.bib")
 `}
-  image='/assets/a792745ccec945a90763138d4e45762f.png'
+  image='/typst-fumadocs/assets/a792745ccec945a90763138d4e45762f'
   alt='Preview'
   editable={false}
 />
@@ -84,7 +84,7 @@ When you only ever need to reference pages of a figure/table/heading/etc. in a d
   See @shapes for examples
   of different shapes.
 `}
-  image='/assets/809e5dd8fac922ad14ad84035d3de989-0.png'
+  image='/typst-fumadocs/assets/809e5dd8fac922ad14ad84035d3de989-0'
   alt='Preview page 1'
   editable={true}
 />
@@ -109,7 +109,7 @@ If you write a show rule for references, you can access the referenced element t
   In @beginning we prove @pythagoras.
   $ a^2 + b^2 = c^2 $ <pythagoras>
 `}
-  image='/assets/c4444a637c3c784f15880772001ccd9b.png'
+  image='/typst-fumadocs/assets/c4444a637c3c784f15880772001ccd9b'
   alt='Preview'
   editable={true}
 />
@@ -131,12 +131,12 @@ If you write a show rule for references, you can access the referenced element t
       'default': 'None'
     },
     'supplement': {
-      'description': 'A supplement for the reference.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"normal"{:typst}`:  - For references to headings or figures, this is added before the referenced number. - For citations, this can be used to add a page number.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"page"{:typst}`, then this is added before the page number of the label referenced.  If a function is specified, it is passed the referenced element and should return content.  <TypstPreview   code={`   #set heading(numbering: "1.")   #show ref.where(     form: "normal"   ): set ref(supplement: it => {     if it.func() == heading {       "Chapter"     } else {       "Thing"     }   })    = Introduction <intro>   In @intro, we see how to turn   Sections into Chapters. And   in @intro[Part], it is done   manually. `}   image=\'/assets/aa86f60f6632f6ef7a93b80a5a97c7d1.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'A supplement for the reference.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"normal"{:typst}`:  - For references to headings or figures, this is added before the referenced number. - For citations, this can be used to add a page number.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"page"{:typst}`, then this is added before the page number of the label referenced.  If a function is specified, it is passed the referenced element and should return content.  <TypstPreview   code={`   #set heading(numbering: "1.")   #show ref.where(     form: "normal"   ): set ref(supplement: it => {     if it.func() == heading {       "Chapter"     } else {       "Thing"     }   })    = Introduction <intro>   In @intro, we see how to turn   Sections into Chapters. And   in @intro[Part], it is done   manually. `}   image=\'/typst-fumadocs/assets/aa86f60f6632f6ef7a93b80a5a97c7d1\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | auto | content | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'form': {
-      'description': 'The kind of reference to produce.  <TypstPreview   code={`   #set page(numbering: "1")    Here <here> we are on   #ref(<here>, form: "page"). `}   image=\'/assets/7c0b8deae09773dbb50f5ed89759c240.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'The kind of reference to produce.  <TypstPreview   code={`   #set page(numbering: "1")    Here <here> we are on   #ref(<here>, form: "page"). `}   image=\'/typst-fumadocs/assets/7c0b8deae09773dbb50f5ed89759c240\'   alt=\'Preview\'   editable={true} />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;normal&quot;</span></code>'
     }

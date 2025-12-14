@@ -25,7 +25,7 @@ Before you starting citing, you need to add a [bibliography](/docs/reference/mod
 
   #bibliography("works.bib")
 `}
-  image='/assets/55e96c2ce29d5004db05ce402b9d7f16.png'
+  image='/typst-fumadocs/assets/55e96c2ce29d5004db05ce402b9d7f16'
   alt='Preview'
   editable={false}
 />
@@ -54,17 +54,17 @@ This function indirectly has dedicated syntax. [References](/docs/reference/mode
 <TypeTable
   type={{
     'key': {
-      'description': 'The citation key that identifies the entry in the bibliography that shall be cited, as a label.  <TypstPreview   code={`   // All the same   @netwok \\   #cite(<netwok>) \\   #cite(label("netwok")) `}   image=\'/assets/7f2bf55bb64a9e53f205533aff50ef8e.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'The citation key that identifies the entry in the bibliography that shall be cited, as a label.  <TypstPreview   code={`   // All the same   @netwok \\   #cite(<netwok>) \\   #cite(label("netwok")) `}   image=\'/typst-fumadocs/assets/7f2bf55bb64a9e53f205533aff50ef8e\'   alt=\'Preview\'   editable={true} />',
       'type': 'label',
       'default': 'None'
     },
     'supplement': {
-      'description': 'A supplement for the citation such as page or chapter number.  In reference syntax, the supplement can be added in square brackets:  <TypstPreview   code={`   This has been proven. @distress[p.~7]    #bibliography("works.bib") `}   image=\'/assets/c89f5ad2321ecda4146b0ab593e62aab.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'A supplement for the citation such as page or chapter number.  In reference syntax, the supplement can be added in square brackets:  <TypstPreview   code={`   This has been proven. @distress[p.~7]    #bibliography("works.bib") `}   image=\'/typst-fumadocs/assets/c89f5ad2321ecda4146b0ab593e62aab\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | content',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'form': {
-      'description': 'The kind of citation to produce. Different forms are useful in different scenarios: A normal citation is useful as a source at the end of a sentence, while a "prose" citation is more suitable for inclusion in the flow of text.  If set to `none{:typst}`, the cited work is included in the bibliography, but nothing will be displayed.  <TypstPreview   code={`   #cite(<netwok>, form: "prose")   show the outsized effects of   pirate life on the human psyche. `}   image=\'/assets/c426a6cd0fd21f3d6429a380072c7fac.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'The kind of citation to produce. Different forms are useful in different scenarios: A normal citation is useful as a source at the end of a sentence, while a "prose" citation is more suitable for inclusion in the flow of text.  If set to `none{:typst}`, the cited work is included in the bibliography, but nothing will be displayed.  <TypstPreview   code={`   #cite(<netwok>, form: "prose")   show the outsized effects of   pirate life on the human psyche. `}   image=\'/typst-fumadocs/assets/c426a6cd0fd21f3d6429a380072c7fac\'   alt=\'Preview\'   editable={true} />',
       'type': 'none | str',
       'default': '<code><span class="typ-str">&quot;normal&quot;</span></code>'
     },

@@ -24,7 +24,7 @@ To access the raw value of a counter, we can use the [`get{:typst}`](/docs/refer
   Raw value of heading counter is
   #context counter(heading).get()
 `}
-  image='/assets/8ea552ce797fc8605c34df5e705f0e54.png'
+  image='/typst-fumadocs/assets/8ea552ce797fc8605c34df5e705f0e54'
   alt='Preview'
   editable={true}
 />
@@ -49,7 +49,7 @@ Often, we want to display the value of a counter in a more human-readable way. T
     counter(heading).display("I")
   }
 `}
-  image='/assets/ec4522eb5a753d79b343291aff636a88.png'
+  image='/typst-fumadocs/assets/ec4522eb5a753d79b343291aff636a88'
   alt='Preview'
   editable={true}
 />
@@ -83,7 +83,7 @@ The heading counter is stepped before the heading is displayed, so `Analysis{:ty
     counter(heading).display()
   }
 `}
-  image='/assets/10e62abf96165699a2432049a18a6a40.png'
+  image='/typst-fumadocs/assets/10e62abf96165699a2432049a18a6a40'
   alt='Preview'
   editable={true}
 />
@@ -109,7 +109,7 @@ The page counter is special. It is automatically stepped at each pagebreak. But 
   page and total number of pages in
   Arabic numbers.
 `}
-  image='/assets/3c30a8aceea73d91286b71e31d456047-0.png'
+  image='/typst-fumadocs/assets/3c30a8aceea73d91286b71e31d456047-0'
   alt='Preview page 1'
   editable={true}
 />
@@ -127,7 +127,7 @@ To define your own counter, call the `counter{:typst}` function with a string as
   #mine.update(c => c * 3)
   #context mine.display()
 `}
-  image='/assets/b15cb3320af269d859e669c3cddd652.png'
+  image='/typst-fumadocs/assets/b15cb3320af269d859e669c3cddd652'
   alt='Preview'
   editable={true}
 />
@@ -148,7 +148,7 @@ When you define and use a custom counter, in general, you should first step the 
   #theorem[$1 = 1$]
   #theorem[$2 < 3$]
 `}
-  image='/assets/69fe98ee7391fc895dbd81c85839a421.png'
+  image='/typst-fumadocs/assets/69fe98ee7391fc895dbd81c85839a421'
   alt='Preview'
   editable={true}
 />
@@ -180,7 +180,7 @@ Counters can travel through time! You can find out the final value of the counte
   #mine.step()
   #mine.step()
 `}
-  image='/assets/c287511a94ac2600d9b5fb0c93f18d83.png'
+  image='/typst-fumadocs/assets/c287511a94ac2600d9b5fb0c93f18d83'
   alt='Preview'
   editable={true}
 />

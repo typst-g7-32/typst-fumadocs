@@ -29,7 +29,7 @@ A gradient can be used for the following purposes:
     square(fill: gradient.conic(..color.map.rainbow)),
   )
 `}
-  image='/assets/ff29eecb918a915ec00ed5fcec2f4488.png'
+  image='/typst-fumadocs/assets/ff29eecb918a915ec00ed5fcec2f4488'
   alt='Preview'
   editable={true}
 />
@@ -46,7 +46,7 @@ Gradients are also supported on text, but only when setting the [relativeness](/
 
   This is a gradient on text, but with a #rainbow[twist]!
 `}
-  image='/assets/721d0b00b502c2e4285439f1ac4fd467.png'
+  image='/typst-fumadocs/assets/721d0b00b502c2e4285439f1ac4fd467'
   alt='Preview'
   editable={true}
 />
@@ -84,7 +84,7 @@ However, you can choose to interpolate the gradient in any supported color space
 | [HSV](/docs/reference/visualize/color/#definitions-hsv) | _No_ |
 
 <div className="preview">
-<img src="/assets/be18b60088f1dd3f2eaeacbfe340c3b1.png" alt="Preview" />
+<img src="/typst-fumadocs/assets/be18b60088f1dd3f2eaeacbfe340c3b1" alt="Preview" />
 </div>
 
 ## Direction
@@ -102,7 +102,7 @@ Some gradients are sensitive to direction. For example, a linear gradient has an
     square(fill: gradient.linear(red, blue, angle: 270deg)),
   )
 `}
-  image='/assets/71783179a4cfd9c8bb34bd7a6b7ac1fe.png'
+  image='/typst-fumadocs/assets/71783179a4cfd9c8bb34bd7a6b7ac1fe'
   alt='Preview'
   editable={true}
 />
@@ -128,7 +128,7 @@ Creates a new linear gradient, in which colors transition along a straight line.
     ),
   )
 `}
-  image='/assets/def0956800e63dc52a60e2e66b8fb072.png'
+  image='/typst-fumadocs/assets/def0956800e63dc52a60e2e66b8fb072'
   alt='Preview'
   editable={true}
 />
@@ -195,7 +195,7 @@ Using these four values, also called the focal point for the starting circle and
     )),
   )
 `}
-  image='/assets/21f904edb21c2e1ac7db89749e4d2c21.png'
+  image='/typst-fumadocs/assets/21f904edb21c2e1ac7db89749e4d2c21'
   alt='Preview'
   editable={true}
 />
@@ -271,7 +271,7 @@ You can control the center point of the gradient by using the `center{:typst}` a
     )),
   )
 `}
-  image='/assets/32a99c7b0b1cb9e924d91b259fba0aca.png'
+  image='/typst-fumadocs/assets/32a99c7b0b1cb9e924d91b259fba0aca'
   alt='Preview'
   editable={true}
 />
@@ -329,7 +329,7 @@ Sharp gradients have discrete jumps between colors, instead of a smooth transiti
   #rect(fill: grad.sharp(5))
   #rect(fill: grad.sharp(5, smoothness: 20%))
 `}
-  image='/assets/93522b26f5475bd0d38d77f01dd7e1fd.png'
+  image='/typst-fumadocs/assets/93522b26f5475bd0d38d77f01dd7e1fd'
   alt='Preview'
   editable={true}
 />
@@ -368,7 +368,7 @@ Repeats this gradient a given number of times, optionally mirroring it at every 
       .repeat(4),
   )
 `}
-  image='/assets/c9d6c600cc20c2f18c089a5f32cd7000.png'
+  image='/typst-fumadocs/assets/c9d6c600cc20c2f18c089a5f32cd7000'
   alt='Preview'
   editable={true}
 />
@@ -389,7 +389,7 @@ Repeats this gradient a given number of times, optionally mirroring it at every 
       'default': 'None'
     },
     'mirror': {
-      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  <TypstPreview   code={`   #circle(     radius: 40pt,     fill: gradient       .conic(green, black)       .repeat(2, mirror: true)   ) `}   image=\'/assets/12eb6ef0f82817124abc5d9167ff35dc.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  <TypstPreview   code={`   #circle(     radius: 40pt,     fill: gradient       .conic(green, black)       .repeat(2, mirror: true)   ) `}   image=\'/typst-fumadocs/assets/12eb6ef0f82817124abc5d9167ff35dc\'   alt=\'Preview\'   editable={true} />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }

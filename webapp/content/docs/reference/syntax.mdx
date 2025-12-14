@@ -133,7 +133,7 @@ Comments are ignored by Typst and will not be included in the output. This is us
   that the difference is
   significant.
 `}
-  image='/assets/aa63c9c9fd83801f26f5ba5d0dc73151.png'
+  image='/typst-fumadocs/assets/aa63c9c9fd83801f26f5ba5d0dc73151'
   alt='Preview'
   editable={true}
 />
@@ -147,7 +147,7 @@ Comments can also be wrapped between `/*{:typst}` and `*/{:typst}`. In this case
      - 1000 participants.
      - 2x2 data design. */
 `}
-  image='/assets/d1b7773edfcc1952006a027c9e9b8c30.png'
+  image='/typst-fumadocs/assets/d1b7773edfcc1952006a027c9e9b8c30'
   alt='Preview'
   editable={true}
 />
@@ -161,7 +161,7 @@ Escape sequences are used to insert special characters that are hard to type or 
   I got an ice cream for
   \$1.50! \u{1f600}
 `}
-  image='/assets/d87ab5c15ab42543dde046ab1ad05951.png'
+  image='/typst-fumadocs/assets/d87ab5c15ab42543dde046ab1ad05951'
   alt='Preview'
   editable={true}
 />
@@ -186,7 +186,7 @@ For multi-word identifiers, the recommended case convention is [Kebab case](http
   // -π means -1 * π,
   // so it's not a valid identifier
 `}
-  image='/assets/77fa42f9351fc5ea2759a99ce3d73e26.png'
+  image='/typst-fumadocs/assets/77fa42f9351fc5ea2759a99ce3d73e26'
   alt='Preview'
   editable={true}
 />
@@ -196,7 +196,7 @@ For multi-word identifiers, the recommended case convention is [Kebab case](http
 Typst has various features that require a file path to reference external resources such as images, Typst files, or data files. Paths are represented as [strings](/docs/reference/foundations/str/). There are two kinds of paths: Relative and absolute.
 
 - A **relative path** searches from the location of the Typst file where the feature is invoked. It is the default: `#image("images/logo.png"){:typst}`
-- An **absolute path** searches from the _root_ of the project. It starts with a leading `/{:typst}`: `#image("/assets/logo.png"){:typst}`
+- An **absolute path** searches from the _root_ of the project. It starts with a leading `/{:typst}`: `#image("/typst-fumadocs/assets/logo"){:typst}`
 
 ### Project root
 

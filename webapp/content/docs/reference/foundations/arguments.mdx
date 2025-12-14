@@ -24,7 +24,7 @@ Like built-in functions, custom functions can also take a variable number of arg
 
   #format("ArtosFlow", "Jane", "Joe")
 `}
-  image='/assets/d6ce7ebd806b82775abf2d566f8c412.png'
+  image='/typst-fumadocs/assets/d6ce7ebd806b82775abf2d566f8c412'
   alt='Preview'
   editable={true}
 />
@@ -40,7 +40,7 @@ Inversely to an argument sink, you can _spread_ arguments, arrays and dictionari
   #let dict = (fill: blue)
   #text(..dict)[Hello]
 `}
-  image='/assets/91c9aab47f6ac6ae8183c670c0a9cc09.png'
+  image='/typst-fumadocs/assets/91c9aab47f6ac6ae8183c670c0a9cc09'
   alt='Preview'
   editable={true}
 />
@@ -55,7 +55,7 @@ This function behaves like `let args(..sink) = sink{:typst}`.
   #let args = arguments(stroke: red, inset: 1em, [Body])
   #box(..args)
 `}
-  image='/assets/25bccad3df7eaeaab4a645bea07090b2.png'
+  image='/typst-fumadocs/assets/25bccad3df7eaeaab4a645bea07090b2'
   alt='Preview'
   editable={true}
 />
@@ -121,7 +121,7 @@ Produces a new `arguments{:typst}` with only the arguments for which the value p
       .filter(v => v > 0)
   }
 `}
-  image='/assets/af5193c5a1c15556e1575985eea881dd.png'
+  image='/typst-fumadocs/assets/af5193c5a1c15556e1575985eea881dd'
   alt='Preview'
   editable={true}
 />
@@ -152,7 +152,7 @@ Produces a new `arguments{:typst}` by transforming each argument value with the 
       .map(v => v + 1)
   }
 `}
-  image='/assets/e3caf1a8e01f50e9d8e5dafd0ddba353.png'
+  image='/typst-fumadocs/assets/e3caf1a8e01f50e9d8e5dafd0ddba353'
   alt='Preview'
   editable={true}
 />

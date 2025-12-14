@@ -47,7 +47,7 @@ Let's look at a slightly different, but similar kind of state: The heading numbe
   = Introduction
   ...
 `}
-  image='/assets/382f18a61cf8fa6150847e8c9bd970c0.png'
+  image='/typst-fumadocs/assets/382f18a61cf8fa6150847e8c9bd970c0'
   alt='Preview'
   editable={true}
 />
@@ -78,7 +78,7 @@ Our initial example would now look like this:
   #compute("⭐ * 2") \
   #compute("⭐ - 5")
 `}
-  image='/assets/90558dbee771e808eca1f68cdf3a9180.png'
+  image='/typst-fumadocs/assets/90558dbee771e808eca1f68cdf3a9180'
   alt='Preview'
   editable={true}
 />
@@ -100,7 +100,7 @@ As a result, we can now also store some of the computations in variables, but th
   #compute("⭐ + 3") \
   #more
 `}
-  image='/assets/60d834289ed95a6cd0ead55e970b8e94.png'
+  image='/typst-fumadocs/assets/60d834289ed95a6cd0ead55e970b8e94'
   alt='Preview'
   editable={true}
 />
@@ -124,7 +124,7 @@ By using Typst's state management system you also get time travel capabilities! 
   #compute("⭐ * 2") \
   #compute("⭐ - 5")
 `}
-  image='/assets/51ba9ea8959d58ae8865d48419e2a96e.png'
+  image='/typst-fumadocs/assets/51ba9ea8959d58ae8865d48419e2a96e'
   alt='Preview'
   editable={true}
 />
@@ -142,7 +142,7 @@ For instance, if you generate state updates depending on the final value of a st
   #context x.update(x.final() + 1)
   #context x.get()
 `}
-  image='/assets/353191d880395aa736697d1ec67de606.png'
+  image='/typst-fumadocs/assets/353191d880395aa736697d1ec67de606'
   alt='Preview'
   editable={true}
 />
@@ -168,7 +168,7 @@ Create a new state identified by a key.
       'default': 'None'
     },
     'init': {
-      'description': 'The initial value of the state.  If you construct multiple states with the same `key{:typst}` but different `init{:typst}` values, they will each use their own initial value but share updates. Specifically, the value of a state at some location in the document will be computed from that state\'s initial value and all preceding updates for the state\'s key.  <TypstPreview   code={`   #let banana = state("key", "🍌")   #let broccoli = state("key", "🥦")    #banana.update(it => it + "😋")    #context [     - #state("key", "🍎").get()     - #banana.get()     - #broccoli.get()   ] `}   image=\'/assets/9f5105246e9a16db3f675ecc36607343.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'The initial value of the state.  If you construct multiple states with the same `key{:typst}` but different `init{:typst}` values, they will each use their own initial value but share updates. Specifically, the value of a state at some location in the document will be computed from that state\'s initial value and all preceding updates for the state\'s key.  <TypstPreview   code={`   #let banana = state("key", "🍌")   #let broccoli = state("key", "🥦")    #banana.update(it => it + "😋")    #context [     - #state("key", "🍎").get()     - #banana.get()     - #broccoli.get()   ] `}   image=\'/typst-fumadocs/assets/9f5105246e9a16db3f675ecc36607343\'   alt=\'Preview\'   editable={true} />',
       'type': 'any',
       'default': '<code><span class="typ-key">none</span></code>'
     }
@@ -226,7 +226,7 @@ In contrast to [`get{:typst}`](/docs/reference/introspection/state/#definitions-
 <TypeTable
   type={{
     'update': {
-      'description': 'A value to update to or a function to update with.  - If given a non-function value, sets the state to that value. - If given a function, that function receives the state\'s previous value and has to return the state\'s new value.  When updating the state based on its previous value, you should prefer the function form instead of retrieving the previous value from the [context](/docs/reference/context/). This allows the compiler to resolve the final state efficiently, minimizing the number of [layout iterations](/docs/reference/context/#compiler-iterations) required.  In the following example, `fill.update(f => not f){:typst}` will paint odd [items in the bullet list](/docs/reference/model/list/#definitions-item) as expected. However, if it\'s replaced with `context fill.update(not fill.get()){:typst}`, then layout will not converge within 5 attempts, as each update will take one additional iteration to propagate.  <TypstPreview   code={`   #let fill = state("fill", false)    #show list.item: it => {     fill.update(f => not f)     context {       set text(fill: fuchsia) if fill.get()       it     }   }    #lorem(5).split().map(list.item).join() `}   image=\'/assets/396ec1571afb7936e381da6ef57923c.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'A value to update to or a function to update with.  - If given a non-function value, sets the state to that value. - If given a function, that function receives the state\'s previous value and has to return the state\'s new value.  When updating the state based on its previous value, you should prefer the function form instead of retrieving the previous value from the [context](/docs/reference/context/). This allows the compiler to resolve the final state efficiently, minimizing the number of [layout iterations](/docs/reference/context/#compiler-iterations) required.  In the following example, `fill.update(f => not f){:typst}` will paint odd [items in the bullet list](/docs/reference/model/list/#definitions-item) as expected. However, if it\'s replaced with `context fill.update(not fill.get()){:typst}`, then layout will not converge within 5 attempts, as each update will take one additional iteration to propagate.  <TypstPreview   code={`   #let fill = state("fill", false)    #show list.item: it => {     fill.update(f => not f)     context {       set text(fill: fuchsia) if fill.get()       it     }   }    #lorem(5).split().map(list.item).join() `}   image=\'/typst-fumadocs/assets/396ec1571afb7936e381da6ef57923c\'   alt=\'Preview\'   editable={true} />',
       'type': 'any | function',
       'default': 'None'
     }

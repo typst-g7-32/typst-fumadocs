@@ -4,6 +4,11 @@ const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
+  output: "export",
+  basePath: "/typst-fumadocs",
+  images: {
+    unoptimized: true,
+  },
   reactStrictMode: true,
   webpack: (config, { isServer }) => {
     config.module.rules.push({

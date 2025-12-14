@@ -15,7 +15,7 @@ A mathematical fraction.
   $ 1/2 < (x+1)/2 $
   $ ((x+1)) / 2 = frac(a, b) $
 `}
-  image='/assets/f5116cafe55239b89e94f6f836bafecd.png'
+  image='/typst-fumadocs/assets/f5116cafe55239b89e94f6f836bafecd'
   alt='Preview'
   editable={true}
 />
@@ -46,7 +46,7 @@ This function also has dedicated syntax: Use a slash to turn neighbouring expres
       'default': 'None'
     },
     'style': {
-      'description': 'How the fraction should be laid out.  <TypstPreview   code={`   $ frac(x, y, style: "vertical") $   $ frac(x, y, style: "skewed") $   $ frac(x, y, style: "horizontal") $ `}   image=\'/assets/adbbde92be4a9ecb70cea4b022138cb0.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   #set math.frac(style: "skewed")   $ a / b $ `}   image=\'/assets/b7782dadccd0f86cb1c908ded011607.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   // Grouping parentheses are removed.   #set math.frac(style: "vertical")   $ (a + b) / b $    // Grouping parentheses are removed.   #set math.frac(style: "skewed")   $ (a + b) / b $    // Grouping parentheses are retained.   #set math.frac(style: "horizontal")   $ (a + b) / b $ `}   image=\'/assets/6c380fbf39a19a0853239e3e728a9c3f.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   // This changes the style for inline equations only.   #show math.equation.where(block: false): set math.frac(style: "horizontal")    This $(x-y)/z = 3$ is inline math, and this is block math:   $ (x-y)/z = 3 $ `}   image=\'/assets/914e283a2106990297213ff752860c0f.png\'   alt=\'Preview\'   editable={true} />',
+      'description': 'How the fraction should be laid out.  <TypstPreview   code={`   $ frac(x, y, style: "vertical") $   $ frac(x, y, style: "skewed") $   $ frac(x, y, style: "horizontal") $ `}   image=\'/typst-fumadocs/assets/adbbde92be4a9ecb70cea4b022138cb0.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   #set math.frac(style: "skewed")   $ a / b $ `}   image=\'/assets/b7782dadccd0f86cb1c908ded011607.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   // Grouping parentheses are removed.   #set math.frac(style: "vertical")   $ (a + b) / b $    // Grouping parentheses are removed.   #set math.frac(style: "skewed")   $ (a + b) / b $    // Grouping parentheses are retained.   #set math.frac(style: "horizontal")   $ (a + b) / b $ `}   image=\'/assets/6c380fbf39a19a0853239e3e728a9c3f.png\'   alt=\'Preview\'   editable={true} />  <TypstPreview   code={`   // This changes the style for inline equations only.   #show math.equation.where(block: false): set math.frac(style: "horizontal")    This $(x-y)/z = 3$ is inline math, and this is block math:   $ (x-y)/z = 3 $ `}   image=\'/assets/914e283a2106990297213ff752860c0f\'   alt=\'Preview\'   editable={true} />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;vertical&quot;</span></code>'
     }
