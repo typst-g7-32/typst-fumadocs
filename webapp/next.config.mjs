@@ -5,7 +5,8 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   output: "export",
-  basePath: "/typst-fumadocs",
+  basePath: process.env.NODE_ENV === "production" ? "/typst-fumadocs" : "",
+  trailingSlash: true, 
   images: {
     unoptimized: true,
   },
