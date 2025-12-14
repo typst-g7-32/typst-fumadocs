@@ -31,7 +31,7 @@ You can access and update array items with the `.at(){:typst}` method. Indices a
   #(("A", "B", "C")
       .join(", ", last: " and "))
 `}
-  image='/typst-fumadocs/assets/b82dcffb69c678f6966654cb6a9894a3'
+  image='/typst-fumadocs/assets/b82dcffb69c678f6966654cb6a9894a3.png'
   alt='Preview'
   editable={true}
 />
@@ -46,7 +46,7 @@ Note that this function is only intended for conversion of a collection-like val
   #let hi = "Hello 😃"
   #array(bytes(hi))
 `}
-  image='/typst-fumadocs/assets/5f88747ad7a056745bb4d94b9e4440e4'
+  image='/typst-fumadocs/assets/5f88747ad7a056745bb4d94b9e4440e4.png'
   alt='Preview'
   editable={true}
 />
@@ -312,7 +312,7 @@ This function is available both in the array function's scope and globally.
   #range(21, step: 4) \
   #range(5, 2, step: -1)
 `}
-  image='/typst-fumadocs/assets/ceb87963d025cafe69d4f502bb2cf46c'
+  image='/typst-fumadocs/assets/ceb87963d025cafe69d4f502bb2cf46c.png'
   alt='Preview'
   editable={true}
 />
@@ -396,7 +396,7 @@ The returned array consists of `(index, value){:typst}` pairs in the form of len
 
   #("A", "B", "C").enumerate(start: 1)
 `}
-  image='/typst-fumadocs/assets/4bbc8a9ddf0acf4358de76c1f38313a8'
+  image='/typst-fumadocs/assets/4bbc8a9ddf0acf4358de76c1f38313a8.png'
   alt='Preview'
   editable={true}
 />
@@ -456,7 +456,7 @@ Folds all items into a single value using an accumulator function.
   #let array = (1, 2, 3, 4)
   #array.fold(0, (acc, x) => acc + x)
 `}
-  image='/typst-fumadocs/assets/74abb75036c3e00c4b810d4e0d74f915'
+  image='/typst-fumadocs/assets/74abb75036c3e00c4b810d4e0d74f915.png'
   alt='Preview'
   editable={true}
 />
@@ -570,7 +570,7 @@ Split the array at occurrences of the specified value.
   code={`
   #(1, 1, 2, 3, 2, 4, 5).split(2)
 `}
-  image='/typst-fumadocs/assets/e0d10d9d30f4e678ab9479679fad56ab'
+  image='/typst-fumadocs/assets/e0d10d9d30f4e678ab9479679fad56ab.png'
   alt='Preview'
   editable={true}
 />
@@ -629,7 +629,7 @@ Returns an array with a copy of the separator value placed between adjacent elem
   code={`
   #("A", "B", "C").intersperse("-")
 `}
-  image='/typst-fumadocs/assets/9ad27cdd1677fc26080cad0c262e0c93'
+  image='/typst-fumadocs/assets/9ad27cdd1677fc26080cad0c262e0c93.png'
   alt='Preview'
   editable={true}
 />
@@ -661,7 +661,7 @@ All chunks but the last have `chunk-size{:typst}` elements. If `exact{:typst}` i
   #array.chunks(3) \
   #array.chunks(3, exact: true)
 `}
-  image='/typst-fumadocs/assets/35c1baf0f7902b3b48cc164333d55b'
+  image='/typst-fumadocs/assets/35c1baf0f7902b3b48cc164333d55b.png'
   alt='Preview'
   editable={true}
 />
@@ -698,7 +698,7 @@ If the array length is less than `window-size{:typst}`, this will return an empt
   #let array = (1, 2, 3, 4, 5, 6, 7, 8)
   #array.windows(5)
 `}
-  image='/typst-fumadocs/assets/19a732fa351d05f71c5f8ddfc73c2a3e'
+  image='/typst-fumadocs/assets/19a732fa351d05f71c5f8ddfc73c2a3e.png'
   alt='Preview'
   editable={true}
 />
@@ -735,7 +735,7 @@ To sort according to multiple criteria at once, e.g. in case of equality between
   )
   #array.sorted(key: it => (it.a, it.b))
 `}
-  image='/typst-fumadocs/assets/fe903cbcc2093647a0fabae43aaaaf52'
+  image='/typst-fumadocs/assets/fe903cbcc2093647a0fabae43aaaaf52.png'
   alt='Preview'
   editable={true}
 />
@@ -771,7 +771,7 @@ Returns a new array with all duplicate items removed. Only the first element of 
   code={`
   #(3, 3, 1, 2, 3).dedup()
 `}
-  image='/typst-fumadocs/assets/eb5537b1ca487f754e0c896313f339ba'
+  image='/typst-fumadocs/assets/eb5537b1ca487f754e0c896313f339ba.png'
   alt='Preview'
   editable={true}
 />
@@ -805,7 +805,7 @@ If the same key occurs multiple times, the last value is selected.
     ("apples", 5),
   ).to-dict()
 `}
-  image='/typst-fumadocs/assets/2e6b8e445cf77edd022ddf968946479e'
+  image='/typst-fumadocs/assets/2e6b8e445cf77edd022ddf968946479e.png'
   alt='Preview'
   editable={true}
 />
@@ -823,7 +823,7 @@ For arrays with at least one element, this is the same as [`array.fold{:typst}`]
   #let array = (2, 1, 4, 3)
   #array.reduce((acc, x) => calc.max(acc, x))
 `}
-  image='/typst-fumadocs/assets/1e6640799dfe1da6d9f5eea2ffbf5c92'
+  image='/typst-fumadocs/assets/1e6640799dfe1da6d9f5eea2ffbf5c92.png'
   alt='Preview'
   editable={true}
 />

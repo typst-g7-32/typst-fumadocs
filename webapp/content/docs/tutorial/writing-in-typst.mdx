@@ -7,7 +7,7 @@ import { TypstPreview } from '@/components/typst/preview';
 
 Let's get started! Suppose you got assigned to write a technical report for university. It will contain prose, maths, headings, and figures. To get started, you create a new project on the Typst app. You'll be taken to the editor where you see two panels: A source panel where you compose your document and a preview panel where you see the rendered document.
 
-<img src="/typst-fumadocs/assets/1-writing-app" alt="Typst app screenshot" />
+<img src="/typst-fumadocs/assets/1-writing-app.png" alt="Typst app screenshot" />
 
 You already have a good angle for your report in mind. So let's start by writing the introduction. Enter some text in the editor panel. You'll notice that the text immediately appears on the previewed page.
 
@@ -19,7 +19,7 @@ You already have a good angle for your report in mind. So let's start by writing
   contribute to the formation and
   behaviour of these natural structures.
 `}
-  image='/typst-fumadocs/assets/78f97553ed9aef0f2a9266f708b97fa0'
+  image='/typst-fumadocs/assets/78f97553ed9aef0f2a9266f708b97fa0.png'
   alt='Preview'
   editable={true}
 />
@@ -37,7 +37,7 @@ The next step is to add a heading and emphasize some text. Typst uses simple mar
   contribute to the formation and
   behaviour of these natural structures.
 `}
-  image='/typst-fumadocs/assets/a7be6ffb3ed0a950a1a6507637c1d97f'
+  image='/typst-fumadocs/assets/a7be6ffb3ed0a950a1a6507637c1d97f.png'
   alt='Preview'
   editable={true}
 />
@@ -52,7 +52,7 @@ Now we want to list a few of the circumstances that influence glacier dynamics. 
   + The topography
   + The geology
 `}
-  image='/typst-fumadocs/assets/53720741b852350f277645c8bff80fae'
+  image='/typst-fumadocs/assets/53720741b852350f277645c8bff80fae.png'
   alt='Preview'
   editable={true}
 />
@@ -67,7 +67,7 @@ If we wanted to add a bulleted list, we would use the `-{:typst}` character inst
   + The topography
   + The geology
 `}
-  image='/typst-fumadocs/assets/c664be04f88cfe00c791693dfee844fe'
+  image='/typst-fumadocs/assets/c664be04f88cfe00c791693dfee844fe.png'
   alt='Preview'
   editable={true}
 />
@@ -76,7 +76,7 @@ If we wanted to add a bulleted list, we would use the `-{:typst}` character inst
 
 You think that your report would benefit from a figure. Let's add one. Typst supports images in the formats PNG, JPEG, GIF, SVG, PDF, and WebP. To add an image file to your project, first open the _file panel_ by clicking the box icon in the left sidebar. Here, you can see a list of all files in your project. Currently, there is only one: The main Typst file you are writing in. To upload another file, click the button with the arrow in the top-right corner. This opens the upload dialog, in which you can pick files to upload from your computer. Select an image file for your report.
 
-<img src="/typst-fumadocs/assets/1-writing-upload" alt="Upload dialog" />
+<img src="/typst-fumadocs/assets/1-writing-upload.png" alt="Upload dialog" />
 
 We have seen before that specific symbols (called _markup_) have specific meaning in Typst. We can use `={:typst}`, `-{:typst}`, `+{:typst}`, and `_{:typst}` to create headings, lists and emphasized text, respectively. However, having a special symbol for everything we want to insert into our document would soon become cryptic and unwieldy. For this reason, Typst reserves markup symbols only for the most common things. Everything else is inserted with _functions._ For our image to show up on the page, we use Typst's [`image{:typst}`](/docs/reference/visualize/image/) function.
 
@@ -84,7 +84,7 @@ We have seen before that specific symbols (called _markup_) have specific meanin
   code={`
   #image("glacier.jpg")
 `}
-  image='/typst-fumadocs/assets/2b02a560255bdae159a99f1a6eddfe82'
+  image='/typst-fumadocs/assets/2b02a560255bdae159a99f1a6eddfe82.png'
   alt='Preview'
   editable={false}
 />
@@ -97,7 +97,7 @@ The inserted image uses the whole width of the page. To change that, pass the `w
   code={`
   #image("glacier.jpg", width: 70%)
 `}
-  image='/typst-fumadocs/assets/96969d2883b3704b1ffcc1a849e66084'
+  image='/typst-fumadocs/assets/96969d2883b3704b1ffcc1a849e66084.png'
   alt='Preview'
   editable={false}
 />
@@ -120,7 +120,7 @@ The caption consists of arbitrary markup. To give markup to a function, we enclo
     ],
   )
 `}
-  image='/typst-fumadocs/assets/bf93a745e50ef1f0f945f8f6689655c9'
+  image='/typst-fumadocs/assets/bf93a745e50ef1f0f945f8f6689655c9.png'
   alt='Preview'
   editable={false}
 />
@@ -141,7 +141,7 @@ You continue to write your report and now want to reference the figure. To do th
     ],
   ) <glaciers>
 `}
-  image='/typst-fumadocs/assets/730675da2437f41e0bfbfc10c213b64c'
+  image='/typst-fumadocs/assets/730675da2437f41e0bfbfc10c213b64c.png'
   alt='Preview'
   editable={false}
 />
@@ -170,7 +170,7 @@ Once the document contains a bibliography, you can start citing from it. Citatio
 
   #bibliography("works.bib")
 `}
-  image='/typst-fumadocs/assets/4063c74f5e24b1d79ad2bffcbf2d3558'
+  image='/typst-fumadocs/assets/4063c74f5e24b1d79ad2bffcbf2d3558.png'
   alt='Preview'
   editable={false}
 />
@@ -184,7 +184,7 @@ After fleshing out the methods section, you move on to the meat of the document:
   The equation $Q = rho A v + C$
   defines the glacial flow rate.
 `}
-  image='/typst-fumadocs/assets/feee418cba0c141654db383539650b76'
+  image='/typst-fumadocs/assets/feee418cba0c141654db383539650b76.png'
   alt='Preview'
   editable={true}
 />
@@ -198,7 +198,7 @@ The equation is typeset inline, on the same line as the surrounding text. If you
 
   $ Q = rho A v + C $
 `}
-  image='/typst-fumadocs/assets/1972349af18eaaa482d7ae624532be43'
+  image='/typst-fumadocs/assets/1972349af18eaaa482d7ae624532be43.png'
   alt='Preview'
   editable={true}
 />
@@ -214,7 +214,7 @@ If you want to have a variable that consists of multiple letters, you can enclos
 
   $ Q = rho A v + "time offset" $
 `}
-  image='/typst-fumadocs/assets/2526a88c6062287f852db218a9e59280'
+  image='/typst-fumadocs/assets/2526a88c6062287f852db218a9e59280.png'
   alt='Preview'
   editable={true}
 />
@@ -228,7 +228,7 @@ You'll also need a sum formula in your paper. We can use the `sum{:typst}` symbo
   $ 7.32 beta +
     sum_(i=0)^nabla Q_i / 2 $
 `}
-  image='/typst-fumadocs/assets/ad30f24c6c4995728f44726e6f700b46'
+  image='/typst-fumadocs/assets/ad30f24c6c4995728f44726e6f700b46.png'
   alt='Preview'
   editable={true}
 />
@@ -245,7 +245,7 @@ The above example also showed us how to insert fractions: Simply put a `/{:typst
     sum_(i=0)^nabla
       (Q_i (a_i - epsilon)) / 2 $
 `}
-  image='/typst-fumadocs/assets/1e0781d81c792e1ddae4d3df17a58477'
+  image='/typst-fumadocs/assets/1e0781d81c792e1ddae4d3df17a58477.png'
   alt='Preview'
   editable={true}
 />
@@ -256,7 +256,7 @@ Not all math constructs have special syntax. Instead, we use functions, just lik
   code={`
   $ v := vec(x_1, x_2, x_3) $
 `}
-  image='/typst-fumadocs/assets/9e3d2932792ea17dade45677ff1e982b'
+  image='/typst-fumadocs/assets/9e3d2932792ea17dade45677ff1e982b.png'
   alt='Preview'
   editable={true}
 />
@@ -269,7 +269,7 @@ One more thing: Many symbols, such as the arrow, have a lot of variants. You can
   code={`
   $ a arrow.squiggly b $
 `}
-  image='/typst-fumadocs/assets/d068108ad373e358feef9177152ea203'
+  image='/typst-fumadocs/assets/d068108ad373e358feef9177152ea203.png'
   alt='Preview'
   editable={true}
 />

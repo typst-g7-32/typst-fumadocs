@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config = {
   output: "export",
   basePath: process.env.NODE_ENV === "production" ? "/typst-fumadocs" : "",
-  trailingSlash: true, 
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

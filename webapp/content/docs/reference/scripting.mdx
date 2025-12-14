@@ -17,7 +17,7 @@ In Typst, markup and code are fused into one. All but the most common elements a
   #emoji.face \
   #"hello".len()
 `}
-  image='/typst-fumadocs/assets/56fcebfd54e87e06f0936777ca6c4f31'
+  image='/typst-fumadocs/assets/56fcebfd54e87e06f0936777ca6c4f31.png'
   alt='Preview'
   editable={true}
 />
@@ -42,7 +42,7 @@ Content and code blocks can be nested arbitrarily. In the example below, `[hello
     a + [ the ] + b
   }
 `}
-  image='/typst-fumadocs/assets/f5f1a59a923ddd7899e3844457f683a1'
+  image='/typst-fumadocs/assets/f5f1a59a923ddd7899e3844457f683a1.png'
   alt='Preview'
   editable={true}
 />
@@ -60,7 +60,7 @@ As already demonstrated above, variables can be defined with `let{:typst}` bindi
   #let my-add(x, y) = x + y
   Sum is #my-add(2, 3).
 `}
-  image='/typst-fumadocs/assets/dfc2c758706d21ff2d2522773bc64334'
+  image='/typst-fumadocs/assets/dfc2c758706d21ff2d2522773bc64334.png'
   alt='Preview'
   editable={true}
 />
@@ -93,7 +93,7 @@ Let bindings can also be used to destructure [arrays](/docs/reference/foundation
     #author wrote #title.
   ]
 `}
-  image='/typst-fumadocs/assets/574a8a54d94246e011156a58bb988f10'
+  image='/typst-fumadocs/assets/574a8a54d94246e011156a58bb988f10.png'
   alt='Preview'
   editable={true}
 />
@@ -105,7 +105,7 @@ You can use the underscore to discard elements in a destructuring pattern:
   #let (_, y, _) = (1, 2, 3)
   The y coordinate is #y.
 `}
-  image='/typst-fumadocs/assets/2d320f557a31c13c47827649626f615e'
+  image='/typst-fumadocs/assets/2d320f557a31c13c47827649626f615e.png'
   alt='Preview'
   editable={true}
 />
@@ -120,7 +120,7 @@ Destructuring also works in argument lists of functions ...
     ((a,b)) => a + b
   )
 `}
-  image='/typst-fumadocs/assets/eb451d0a1cf36461e8a56ce203acf067'
+  image='/typst-fumadocs/assets/eb451d0a1cf36461e8a56ce203acf067.png'
   alt='Preview'
   editable={true}
 />
@@ -136,7 +136,7 @@ Destructuring also works in argument lists of functions ...
     [a = #a, b = #b]
   }
 `}
-  image='/typst-fumadocs/assets/2c2bcc6a2509a95daa0bc4e986ee7e6d'
+  image='/typst-fumadocs/assets/2c2bcc6a2509a95daa0bc4e986ee7e6d.png'
   alt='Preview'
   editable={true}
 />
@@ -153,7 +153,7 @@ With a conditional, you can display or compute different things depending on whe
     This is not.
   ]
 `}
-  image='/typst-fumadocs/assets/9f03dfe97f385ab1a6d01127a9152c4d'
+  image='/typst-fumadocs/assets/9f03dfe97f385ab1a6d01127a9152c4d.png'
   alt='Preview'
   editable={true}
 />
@@ -183,7 +183,7 @@ In the example below, the three sentences created by the for loop join together 
     (n,)
   }
 `}
-  image='/typst-fumadocs/assets/ef87ec09b6f156465a2deb8f2ca4620b'
+  image='/typst-fumadocs/assets/ef87ec09b6f156465a2deb8f2ca4620b.png'
   alt='Preview'
   editable={true}
 />
@@ -207,7 +207,7 @@ To control the execution of the loop, Typst provides the `break{:typst}` and `co
     letter
   }
 `}
-  image='/typst-fumadocs/assets/8ba145cb687a39c8f9146abd55f943f9'
+  image='/typst-fumadocs/assets/8ba145cb687a39c8f9146abd55f943f9.png'
   alt='Preview'
   editable={true}
 />
@@ -241,7 +241,7 @@ The value in question can be either:
   #dict.greet \
   #emoji.face
 `}
-  image='/typst-fumadocs/assets/e560cf75c003b55ee615a91fba54908a'
+  image='/typst-fumadocs/assets/e560cf75c003b55ee615a91fba54908a.png'
   alt='Preview'
   editable={true}
 />
@@ -255,7 +255,7 @@ A _method call_ is a convenient way to call a function that is scoped to a value
   #str.len("abc") is the same as
   #"abc".len()
 `}
-  image='/typst-fumadocs/assets/8fc9134962ea2ca6f8f3beaa1a77c940'
+  image='/typst-fumadocs/assets/8fc9134962ea2ca6f8f3beaa1a77c940.png'
   alt='Preview'
   editable={true}
 />
@@ -275,7 +275,7 @@ The structure of a method call is `value.method(..args){:typst}` and its equival
   #"abc".len() is the same as
   #str.len("abc")
 `}
-  image='/typst-fumadocs/assets/69c81d74d21d4e212b8bdde97b02c949'
+  image='/typst-fumadocs/assets/69c81d74d21d4e212b8bdde97b02c949.png'
   alt='Preview'
   editable={true}
 />
@@ -297,7 +297,7 @@ Instead of a path, you can also use a [module value](/docs/reference/foundations
   #import emoji: face
   #face.grin
 `}
-  image='/typst-fumadocs/assets/9c38d95483bccbf7479a82427087ab2a'
+  image='/typst-fumadocs/assets/9c38d95483bccbf7479a82427087ab2a.png'
   alt='Preview'
   editable={true}
 />
@@ -311,7 +311,7 @@ To reuse building blocks across projects, you can also create and import Typst _
   #import "@preview/example:0.1.0": add
   #add(2, 7)
 `}
-  image='/typst-fumadocs/assets/3d994560e3517e38057aec147c441de6'
+  image='/typst-fumadocs/assets/3d994560e3517e38057aec147c441de6.png'
   alt='Preview'
   editable={true}
 />
