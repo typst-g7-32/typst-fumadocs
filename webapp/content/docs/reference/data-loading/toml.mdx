@@ -1,0 +1,111 @@
+---
+title: "TOML"
+description: "Documentation for the `toml` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `toml`
+
+Reads structured data from a TOML file.
+
+The file must contain a valid TOML table. The TOML values will be converted into corresponding Typst values as listed in the [table below](#conversion).
+
+The function returns a dictionary representing the TOML table.
+
+The TOML file in the example consists of a table with the keys `title{:typst}`, `version{:typst}`, and `authors{:typst}`.
+
+## Example
+
+```typst
+#let details = toml("details.toml")
+
+Title: #details.title \
+Version: #details.version \
+Authors: #(details.authors
+  .join(", ", last: " and "))
+```
+
+## Conversion details
+
+First of all, TOML documents are tables. Other values must be put in a table to be encoded or decoded.
+
+| TOML value | Converted into Typst |
+| --- | --- |
+| string | [`str{:typst}`](/docs/reference/foundations/str/) |
+| integer | [`int{:typst}`](/docs/reference/foundations/int/) |
+| float | [`float{:typst}`](/docs/reference/foundations/float/) |
+| boolean | [`bool{:typst}`](/docs/reference/foundations/bool/) |
+| datetime | [`datetime{:typst}`](/docs/reference/foundations/datetime/) |
+| array | [`array{:typst}`](/docs/reference/foundations/array/) |
+| table | [`dictionary{:typst}`](/docs/reference/foundations/dictionary/) |
+
+| Typst value | Converted into TOML |
+| --- | --- |
+| types that can be converted from TOML | corresponding TOML value |
+| `none{:typst}` | ignored |
+| [`bytes{:typst}`](/docs/reference/foundations/bytes/) | string via [`repr{:typst}`](/docs/reference/foundations/repr/) |
+| [`symbol{:typst}`](/docs/reference/foundations/symbol/) | string |
+| [`content{:typst}`](/docs/reference/foundations/content/) | a table describing the content |
+| other types ([`length{:typst}`](/docs/reference/layout/length/), etc.) | string via [`repr{:typst}`](/docs/reference/foundations/repr/) |
+
+### Notes
+
+- Be aware that TOML integers larger than 263-1 or smaller than -263 cannot be represented losslessly in Typst, and an error will be thrown according to the [specification](https://toml.io/en/v1.0.0#integer).
+- Bytes are not encoded as TOML arrays for performance and readability reasons. Consider using [`cbor.encode{:typst}`](/docs/reference/data-loading/cbor/#definitions-encode) for binary data.
+- The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
+
+```#toml(source) -> dictionary```
+
+<TypeTable
+  type={{
+    'source': {
+      'description': 'A [path](/docs/reference/syntax/#paths) to a TOML file or raw TOML bytes.',
+      'type': 'str | bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### Definitions
+
+### `decode`
+
+Reads structured data from a TOML string/bytes.
+
+```#toml.decode(data) -> dictionary```
+
+<TypeTable
+  type={{
+    'data': {
+      'description': 'TOML data.',
+      'type': 'str | bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `encode`
+
+Encodes structured data into a TOML string.
+
+```#toml.encode(value, pretty:) -> str```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'Value to be encoded.  TOML documents are tables. Therefore, only dictionaries are suitable.',
+      'type': 'dictionary',
+      'default': 'None'
+    },
+    'pretty': {
+      'description': 'Whether to pretty-print the resulting TOML.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+

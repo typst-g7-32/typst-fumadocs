@@ -1,0 +1,90 @@
+---
+title: "CBOR"
+description: "Documentation for the `cbor` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `cbor`
+
+Reads structured data from a CBOR file.
+
+The file must contain a valid CBOR serialization. The CBOR values will be converted into corresponding Typst values as listed in the [table below](#conversion).
+
+The function returns a dictionary, an array or, depending on the CBOR file, another CBOR data type.
+
+## Conversion details
+
+| CBOR value | Converted into Typst |
+| --- | --- |
+| integer | [`int{:typst}`](/docs/reference/foundations/int/) (or [`float{:typst}`](/docs/reference/foundations/float/)) |
+| bytes | [`bytes{:typst}`](/docs/reference/foundations/bytes/) |
+| float | [`float{:typst}`](/docs/reference/foundations/float/) |
+| text | [`str{:typst}`](/docs/reference/foundations/str/) |
+| bool | [`bool{:typst}`](/docs/reference/foundations/bool/) |
+| null | `none{:typst}` |
+| array | [`array{:typst}`](/docs/reference/foundations/array/) |
+| map | [`dictionary{:typst}`](/docs/reference/foundations/dictionary/) |
+
+| Typst value | Converted into CBOR |
+| --- | --- |
+| types that can be converted from CBOR | corresponding CBOR value |
+| [`symbol{:typst}`](/docs/reference/foundations/symbol/) | text |
+| [`content{:typst}`](/docs/reference/foundations/content/) | a map describing the content |
+| other types ([`length{:typst}`](/docs/reference/layout/length/), etc.) | text via [`repr{:typst}`](/docs/reference/foundations/repr/) |
+
+### Notes
+
+- Be aware that CBOR integers larger than 263-1 or smaller than -263 will be converted to floating point numbers, which may result in an approximative value.
+- CBOR tags are not supported, and an error will be thrown.
+- The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
+
+```#cbor(source) -> any```
+
+<TypeTable
+  type={{
+    'source': {
+      'description': 'A [path](/docs/reference/syntax/#paths) to a CBOR file or raw CBOR bytes.',
+      'type': 'str | bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### Definitions
+
+### `decode`
+
+Reads structured data from CBOR bytes.
+
+```#cbor.decode(data) -> any```
+
+<TypeTable
+  type={{
+    'data': {
+      'description': 'CBOR data.',
+      'type': 'bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `encode`
+
+Encode structured data into CBOR bytes.
+
+```#cbor.encode(value) -> bytes```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'Value to be encoded.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+

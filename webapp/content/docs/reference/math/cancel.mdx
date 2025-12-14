@@ -1,0 +1,59 @@
+---
+title: "Cancel"
+description: "Documentation for the `cancel` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `cancel`
+
+Displays a diagonal line over a part of an equation.
+
+This is commonly used to show the elimination of a term.
+
+## Example
+
+```typst
+Here, we can simplify:
+$ (a dot b dot cancel(x)) /
+    cancel(x) $
+```
+
+```#math.cancel(body, length:, inverted:, cross:, angle:, stroke:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content over which the line should be placed.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'length': {
+      'description': 'The length of the line, relative to the length of the diagonal spanning the whole element being "cancelled". A value of `100%{:typst}` would then have the line span precisely the element\'s diagonal.  ```typst $ a + cancel(x, length: #200%)     - cancel(x, length: #200%) $ ```',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">100%</span> <span class="typ-op">+</span> <span class="typ-num">0.3em</span></code>'
+    },
+    'inverted': {
+      'description': 'Whether the cancel line should be inverted (flipped along the y-axis). For the default angle setting, inverted means the cancel line points to the top left instead of top right.  ```typst $ (a cancel((b + c), inverted: #true)) /     cancel(b + c, inverted: #true) $ ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'cross': {
+      'description': 'Whether two opposing cancel lines should be drawn, forming a cross over the element. Overrides `inverted{:typst}`.  ```typst $ cancel(Pi, cross: #true) $ ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'angle': {
+      'description': 'How much to rotate the cancel line.  - If given an angle, the line is rotated by that angle clockwise with respect to the y-axis. - If `auto{:typst}`, the line assumes the default angle; that is, along the rising diagonal of the content box. - If given a function `angle => angle{:typst}`, the line is rotated, with respect to the y-axis, by the angle returned by that function. The function receives the default angle as its input.  ```typst $ cancel(Pi)   cancel(Pi, angle: #0deg)   cancel(Pi, angle: #45deg)   cancel(Pi, angle: #90deg)   cancel(1/(1+x), angle: #(a => a + 45deg))   cancel(1/(1+x), angle: #(a => a + 90deg)) $ ```',
+      'type': 'auto | angle | function',
+      'default': '<code><span class="typ-key">auto</span></code>'
+    },
+    'stroke': {
+      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the cancel line.  ```typst $ cancel(   sum x,   stroke: #(     paint: red,     thickness: 1.5pt,     dash: "dashed",   ), ) $ ```',
+      'type': 'length | color | gradient | stroke | tiling | dictionary',
+      'default': '<code><span class="typ-num">0.05em</span></code>'
+    }
+  }}
+/>
+
+

@@ -1,0 +1,124 @@
+---
+title: "Attach"
+description: "Documentation for the attach functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Subscript, superscripts, and limits.
+
+Attachments can be displayed either as sub/superscripts, or limits. Typst automatically decides which is more suitable depending on the base, but you can also control this manually with the `scripts{:typst}` and `limits{:typst}` functions.
+
+If you want the base to stretch to fit long top and bottom attachments (for example, an arrow with text above it), use the [`stretch{:typst}`](/docs/reference/math/stretch/) function.
+
+## Example
+
+```typst
+$ sum_(i=0)^n a_i = 2^(1+i) $
+```
+
+## Syntax
+
+This function also has dedicated syntax for attachments after the base: Use the underscore (`_{:typst}`) to indicate a subscript i.e. bottom attachment and the hat (`^{:typst}`) to indicate a superscript i.e. top attachment.
+
+
+## `attach`
+
+A base with optional attachments.
+
+```typst
+$ attach(
+  Pi, t: alpha, b: beta,
+  tl: 1, tr: 2+3, bl: 4+5, br: 6,
+) $
+```
+
+```#math.attach(base, t:, b:, tl:, bl:, tr:, br:) -> content```
+
+<TypeTable
+  type={{
+    'base': {
+      'description': 'The base to which things are attached.',
+      'type': 'content',
+      'default': 'None'
+    },
+    't': {
+      'description': 'The top attachment, smartly positioned at top-right or above the base.  You can wrap the base in `limits(){:typst}` or `scripts(){:typst}` to override the smart positioning.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'b': {
+      'description': 'The bottom attachment, smartly positioned at the bottom-right or below the base.  You can wrap the base in `limits(){:typst}` or `scripts(){:typst}` to override the smart positioning.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'tl': {
+      'description': 'The top-left attachment (before the base).',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'bl': {
+      'description': 'The bottom-left attachment (before base).',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'tr': {
+      'description': 'The top-right attachment (after the base).',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'br': {
+      'description': 'The bottom-right attachment (after the base).',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `scripts`
+
+Forces a base to display attachments as scripts.
+
+```typst
+$ scripts(sum)_1^2 != sum_1^2 $
+```
+
+```#math.scripts(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The base to attach the scripts to.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `limits`
+
+Forces a base to display attachments as limits.
+
+```typst
+$ limits(A)_1^2 != A_1^2 $
+```
+
+```#math.limits(body, inline:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The base to attach the limits to.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'inline': {
+      'description': 'Whether to also force limits in inline equations.  When applying limits globally (e.g., through a show rule), it is typically a good idea to disable this.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+

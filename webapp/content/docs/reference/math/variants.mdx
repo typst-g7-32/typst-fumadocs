@@ -1,0 +1,176 @@
+---
+title: "Variants"
+description: "Documentation for the variants functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Alternate typefaces within formulas.
+
+These functions are distinct from the [`text{:typst}`](/docs/reference/text/text/) function because math fonts contain multiple variants of each letter.
+
+
+## `serif`
+
+Serif (roman) font style in math.
+
+This is already the default.
+
+```#math.serif(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `sans`
+
+Sans-serif font style in math.
+
+```typst
+$ sans(A B C) $
+```
+
+```#math.sans(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `frak`
+
+Fraktur font style in math.
+
+```typst
+$ frak(P) $
+```
+
+```#math.frak(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `mono`
+
+Monospace font style in math.
+
+```typst
+$ mono(x + y = z) $
+```
+
+```#math.mono(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `bb`
+
+Blackboard bold (double-struck) font style in math.
+
+For uppercase latin letters, blackboard bold is additionally available through [symbols](/docs/reference/symbols/sym/) of the form `NN{:typst}` and `RR{:typst}`.
+
+```typst
+$ bb(b) $
+$ bb(N) = NN $
+$ f: NN -> RR $
+```
+
+```#math.bb(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `cal`
+
+Calligraphic (chancery) font style in math.
+
+```typst
+Let $cal(P)$ be the set of ...
+```
+
+This is the default calligraphic/script style for most math fonts. See [`scr{:typst}`](/docs/reference/math/variants/#functions-scr) for more on how to get the other style (roundhand).
+
+```#math.cal(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `scr`
+
+Script (roundhand) font style in math.
+
+```typst
+$scr(L)$ is not the set of linear
+maps $cal(L)$.
+```
+
+There are two ways that fonts can support differentiating `cal{:typst}` and `scr{:typst}`. The first is using Unicode variation sequences. This works out of the box in Typst, however only a few math fonts currently support this.
+
+The other way is using [font features](/docs/reference/text/text/#parameters-features). For example, the roundhand style might be available in a font through the _stylistic set 1_ (`ss01{:typst}`) feature. To use it in Typst, you could then define your own version of `scr{:typst}` like in the example below.
+
+```typst
+#let scr(it) = text(
+  stylistic-set: 1,
+  $cal(it)$,
+)
+
+We establish $cal(P) != scr(P)$.
+```
+
+```#math.scr(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

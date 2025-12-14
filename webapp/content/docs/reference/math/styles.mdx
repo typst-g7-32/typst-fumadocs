@@ -1,0 +1,72 @@
+---
+title: "Styles"
+description: "Documentation for the styles functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Alternate letterforms within formulas.
+
+These functions are distinct from the [`text{:typst}`](/docs/reference/text/text/) function because math fonts contain multiple variants of each letter.
+
+
+## `upright`
+
+Upright (non-italic) font style in math.
+
+```typst
+$ upright(A) != A $
+```
+
+```#math.upright(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `italic`
+
+Italic font style in math.
+
+For roman letters and greek lowercase letters, this is already the default.
+
+```#math.italic(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `bold`
+
+Bold font style in math.
+
+```typst
+$ bold(A) := B^+ $
+```
+
+```#math.bold(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to style.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

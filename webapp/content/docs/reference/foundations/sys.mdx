@@ -1,0 +1,13 @@
+---
+title: "System"
+description: "Documentation for the sys functions."
+---
+
+Module for system interactions.
+
+This module defines the following items:
+
+- The `sys.version{:typst}` constant (of type [`version{:typst}`](/docs/reference/foundations/version/)) that specifies the currently active Typst compiler version.
+- The `sys.inputs{:typst}` [dictionary](/docs/reference/foundations/dictionary/), which makes external inputs available to the project. An input specified in the command line as `--input key=value{:typst}` becomes available under `sys.inputs.key{:typst}` as `"value"{:typst}`. To include spaces in the value, it may be enclosed with single or double quotes. The value is always of type [string](/docs/reference/foundations/str/). More complex data may be parsed manually using functions like [`json{:typst}`](/docs/reference/data-loading/json/).
+
+

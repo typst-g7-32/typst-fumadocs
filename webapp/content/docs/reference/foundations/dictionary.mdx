@@ -1,0 +1,209 @@
+---
+title: "Dictionary"
+description: "Documentation for the Dictionary type."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+A map from string keys to values.
+
+You can construct a dictionary by enclosing comma-separated `key: value{:typst}` pairs in parentheses. The values do not have to be of the same type. Since empty parentheses already yield an empty array, you have to use the special `(:){:typst}` syntax to create an empty dictionary.
+
+A dictionary is conceptually similar to an [array](/docs/reference/foundations/array/), but it is indexed by strings instead of integers. You can access and create dictionary entries with the `.at(){:typst}` method. If you know the key statically, you can alternatively use [field access notation](/docs/reference/scripting/#fields) (`.key{:typst}`) to access the value. To check whether a key is present in the dictionary, use the `in{:typst}` keyword.
+
+You can iterate over the pairs in a dictionary using a [for loop](/docs/reference/scripting/#loops). This will iterate in the order the pairs were inserted / declared initially.
+
+Dictionaries can be added with the `+{:typst}` operator and [joined together](/docs/reference/scripting/#blocks). They can also be [spread](/docs/reference/foundations/arguments/#spreading) into a function call or another dictionary[1](#1) with the `..spread{:typst}` operator. In each case, if a key appears multiple times, the last value will override the others.
+
+## Example
+
+```typst
+#let dict = (
+  name: "Typst",
+  born: 2019,
+)
+
+#dict.name \
+#(dict.launch = 20)
+#dict.len() \
+#dict.keys() \
+#dict.values() \
+#dict.at("born") \
+#dict.insert("city", "Berlin")
+#("name" in dict)
+```
+
+[^1]: When spreading into a dictionary, if all items between the parentheses are spread, you have to use the special `(:..spread){:typst}` syntax. Otherwise, it will spread into an array.
+
+## Constructor
+
+### `dictionary`
+
+Converts a value into a dictionary.
+
+Note that this function is only intended for conversion of a dictionary-like value to a dictionary, not for creation of a dictionary from individual pairs. Use the dictionary syntax `(key: value){:typst}` instead.
+
+```typst
+#dictionary(sys).at("version")
+```
+
+```#dictionary(value) -> dictionary```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'The value that should be converted to a dictionary.',
+      'type': 'module',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## Methods
+
+### `len`
+
+The number of pairs in the dictionary.
+
+```#dictionary.len() -> int```
+
+### `at`
+
+Returns the value associated with the specified key in the dictionary. May be used on the left-hand side of an assignment if the key is already present in the dictionary. Returns the default value if the key is not part of the dictionary or fails with an error if no default value was specified.
+
+```#dictionary.at(key, default:) -> any```
+
+<TypeTable
+  type={{
+    'key': {
+      'description': 'The key at which to retrieve the item.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'default': {
+      'description': 'A default value to return if the key is not part of the dictionary.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `insert`
+
+Inserts a new pair into the dictionary. If the dictionary already contains this key, the value is updated.
+
+To insert multiple pairs at once, you can just alternatively another dictionary with the `+={:typst}` operator.
+
+```#dictionary.insert(key, value) -> ```
+
+<TypeTable
+  type={{
+    'key': {
+      'description': 'The key of the pair that should be inserted.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'The value of the pair that should be inserted.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `remove`
+
+Removes a pair from the dictionary by key and return the value.
+
+```#dictionary.remove(key, default:) -> any```
+
+<TypeTable
+  type={{
+    'key': {
+      'description': 'The key of the pair to remove.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'default': {
+      'description': 'A default value to return if the key does not exist.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `keys`
+
+Returns the keys of the dictionary as an array in insertion order.
+
+```#dictionary.keys() -> array```
+
+### `values`
+
+Returns the values of the dictionary as an array in insertion order.
+
+```#dictionary.values() -> array```
+
+### `pairs`
+
+Returns the keys and values of the dictionary as an array of pairs. Each pair is represented as an array of length two.
+
+```#dictionary.pairs() -> array```
+
+### `filter`
+
+Produces a new dictionary with only the pairs from the original one for which the given function returns `true{:typst}`.
+
+```typst
+#{
+  (a: 0, b: 1, c: 2)
+    .filter(v => v > 0)
+}
+```
+
+```typst
+#{
+  (a: 0, b: 1, c: 2)
+    .pairs()
+    .filter(((k, v)) => k != "a")
+    .to-dict()
+}
+```
+
+```#dictionary.filter(test) -> dictionary```
+
+<TypeTable
+  type={{
+    'test': {
+      'description': 'The function to apply to each value. Must return a boolean.',
+      'type': 'function',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `map`
+
+Produces a new dictionary where the keys are the same, but the values are transformed with the given function.
+
+```typst
+#(a: 0, b: 1, c: 2).map(v => v + 1)
+```
+
+```#dictionary.map(mapper) -> dictionary```
+
+<TypeTable
+  type={{
+    'mapper': {
+      'description': 'The function to apply to each value.',
+      'type': 'function',
+      'default': 'None'
+    }
+  }}
+/>
+
+

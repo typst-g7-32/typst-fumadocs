@@ -1,0 +1,47 @@
+---
+title: "Subscript"
+description: "Documentation for the `sub` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `sub`
+
+Renders text in subscript.
+
+The text is rendered smaller and its baseline is lowered.
+
+## Example
+
+```typst
+Revenue#sub[yearly]
+```
+
+```#sub(typographic:, baseline:, size:, body) -> content```
+
+<TypeTable
+  type={{
+    'typographic': {
+      'description': 'Whether to use subscript glyphs from the font if available.  Ideally, subscripts glyphs are provided by the font (using the `subs{:typst}` OpenType feature). Otherwise, Typst is able to synthesize subscripts by lowering and scaling down regular glyphs.  When this is set to `false{:typst}`, synthesized glyphs will be used regardless of whether the font provides dedicated subscript glyphs. When `true{:typst}`, synthesized glyphs may still be used in case the font does not provide the necessary subscript glyphs.  ```typst N#sub(typographic: true)[1] N#sub(typographic: false)[1] ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    },
+    'baseline': {
+      'description': 'The downward baseline shift for synthesized subscripts.  This only applies to synthesized subscripts. In other words, this has no effect if `typographic{:typst}` is `true{:typst}` and the font provides the necessary subscript glyphs.  If set to `auto{:typst}`, the baseline is shifted according to the metrics provided by the font, with a fallback to `0.2em{:typst}` in case the font does not define the necessary metrics.',
+      'type': 'auto | length',
+      'default': '<code><span class="typ-key">auto</span></code>'
+    },
+    'size': {
+      'description': 'The font size for synthesized subscripts.  This only applies to synthesized subscripts. In other words, this has no effect if `typographic{:typst}` is `true{:typst}` and the font provides the necessary subscript glyphs.  If set to `auto{:typst}`, the size is scaled according to the metrics provided by the font, with a fallback to `0.6em{:typst}` in case the font does not define the necessary metrics.',
+      'type': 'auto | length',
+      'default': '<code><span class="typ-key">auto</span></code>'
+    },
+    'body': {
+      'description': 'The text to display in subscript.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

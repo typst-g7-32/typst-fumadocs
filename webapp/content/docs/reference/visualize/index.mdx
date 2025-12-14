@@ -1,0 +1,94 @@
+---
+title: "Visualize"
+description: "Documentation for functions related to Visualize in Typst."
+---
+
+Drawing and data visualization.
+
+If you want to create more advanced drawings or plots, also have a look at the [CeTZ](https://github.com/johannes-wolf/cetz) package as well as more specialized [packages](https://typst.app/universe/) for your use case.
+
+## Accessibility
+
+All shapes and paths drawn by Typst are automatically marked as [artifacts](/docs/reference/pdf/artifact/) to make them invisible to Assistive Technology (AT) during PDF export. However, their contents (if any) remain accessible.
+
+If you are using the functions in this model to create an illustration with semantic meaning, make it accessible by wrapping it in a [`figure{:typst}`](/docs/reference/model/figure/) function call. Use its [`alt{:typst}` parameter](/docs/reference/model/figure/#parameters-alt) to provide an [alternative description](/docs/guides/accessibility/#textual-representations).
+
+## Definitions
+
+<table>
+  <thead>
+    <tr>
+      <th width="20px"></th>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/circle/">circle</a></code></td>
+      <td>A circle with optional content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/color/">color</a></code></td>
+      <td>A color in a specific color space.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/curve/">curve</a></code></td>
+      <td>A curve consisting of movements, lines, and Bézier segments.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/ellipse/">ellipse</a></code></td>
+      <td>An ellipse with optional content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/gradient/">gradient</a></code></td>
+      <td>A color gradient.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/image/">image</a></code></td>
+      <td>A raster or vector graphic.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/line/">line</a></code></td>
+      <td>A line from one point to another.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/path/">path</a></code></td>
+      <td>A path through a list of points, connected by Bézier curves.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/polygon/">polygon</a></code></td>
+      <td>A closed polygon.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/rect/">rect</a></code></td>
+      <td>A rectangle with optional content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/square/">square</a></code></td>
+      <td>A square with optional content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/stroke/">stroke</a></code></td>
+      <td>Defines how to draw a line.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/visualize/tiling/">tiling</a></code></td>
+      <td>A repeating tiling fill.</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,3082 @@
+---
+title: "Typed HTML"
+description: "Documentation for the typed functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+A typed layer over raw HTML elements.
+
+The `html{:typst}` module provides a typed layer over the raw [`html.elem{:typst}`](/docs/reference/html/elem/) function that allows you to conveniently create HTML elements. HTML attributes are exposed as function parameters that accept Typst types and automatically take care of converting those into the appropriate HTML.
+
+Some parameters are common to all typed HTML functions. These are listed at the bottom in the [Global Attributes](#global-attributes) section instead of explicitly on each element for readability.
+
+## Example
+
+```typst
+#html.video(
+  controls: true,
+  width: 1280,
+  height: 720,
+  src: "sunrise.mp4",
+)[
+  Your browser does not support the video tag.
+]
+```
+
+
+## `a`
+
+Hyperlink.
+
+```#html.a(download:, href:, hreflang:, ping:, referrerpolicy:, rel:, target:, type:, body) -> content```
+
+<TypeTable
+  type={{
+    'download': {
+      'description': 'Whether to download the resource instead of navigating to it, and its filename if so.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'href': {
+      'description': 'Address of the hyperlink.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'hreflang': {
+      'description': 'Language of the linked resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'ping': {
+      'description': 'URLs to ping.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'rel': {
+      'description': 'Relationship between the location in the document containing the hyperlink and the destination resource.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'target': {
+      'description': 'Navigable for hyperlink navigation.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Hint for the type of the referenced resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `abbr`
+
+Abbreviation.
+
+```#html.abbr(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `address`
+
+Contact information for a page or article element.
+
+```#html.address(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `area`
+
+Hyperlink or dead area on an image map.
+
+```#html.area(alt:, coords:, download:, href:, ping:, referrerpolicy:, rel:, shape:, target:) -> content```
+
+<TypeTable
+  type={{
+    'alt': {
+      'description': 'Replacement text for use when images are not available.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'coords': {
+      'description': 'Coordinates for the shape to be created in an image map. Expects an array of floating point numbers.',
+      'type': 'array',
+      'default': 'None'
+    },
+    'download': {
+      'description': 'Whether to download the resource instead of navigating to it, and its filename if so.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'href': {
+      'description': 'Address of the hyperlink.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'ping': {
+      'description': 'URLs to ping.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'rel': {
+      'description': 'Relationship between the location in the document containing the hyperlink and the destination resource.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'shape': {
+      'description': 'The kind of shape to be created in an image map.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'target': {
+      'description': 'Navigable for hyperlink navigation.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `article`
+
+Self-contained syndicatable or reusable composition.
+
+```#html.article(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `aside`
+
+Sidebar for tangentially related content.
+
+```#html.aside(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `audio`
+
+Audio player.
+
+```#html.audio(autoplay:, controls:, crossorigin:, loop:, muted:, preload:, src:, body) -> content```
+
+<TypeTable
+  type={{
+    'autoplay': {
+      'description': 'Hint that the media resource can be started automatically when the page is loaded.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'controls': {
+      'description': 'Show user agent controls.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'crossorigin': {
+      'description': 'How the element handles crossorigin requests.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'loop': {
+      'description': 'Whether to loop the media resource.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'muted': {
+      'description': 'Whether to mute the media resource by default.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'preload': {
+      'description': 'Hints how much buffering the media resource will likely need.',
+      'type': 'none | auto | str',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `b`
+
+Keywords.
+
+```#html.b(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `base`
+
+Base URL and default target navigable for hyperlinks and forms.
+
+```#html.base(href:, target:) -> content```
+
+<TypeTable
+  type={{
+    'href': {
+      'description': 'Document base URL.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'target': {
+      'description': 'Default navigable for hyperlink navigation and form submission.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `bdi`
+
+Text directionality isolation.
+
+```#html.bdi(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `bdo`
+
+Text directionality formatting.
+
+```#html.bdo(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `blockquote`
+
+A section quoted from another source.
+
+```#html.blockquote(cite:, body) -> content```
+
+<TypeTable
+  type={{
+    'cite': {
+      'description': 'Link to the source of the quotation or more information about the edit.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `body`
+
+Document body.
+
+```#html.body(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `br`
+
+Line break, e.g. in poem or postal address.
+
+```#html.br() -> content```
+
+## `button`
+
+Button control.
+
+```#html.button(command:, commandfor:, disabled:, form:, formaction:, formenctype:, formmethod:, formnovalidate:, formtarget:, name:, popovertarget:, popovertargetaction:, type:, value:, body) -> content```
+
+<TypeTable
+  type={{
+    'command': {
+      'description': 'Indicates to the targeted element which action to take.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'commandfor': {
+      'description': 'Targets another element to be invoked.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formaction': {
+      'description': 'URL to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formenctype': {
+      'description': 'Entry list encoding type to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formmethod': {
+      'description': 'Variant to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formnovalidate': {
+      'description': 'Bypass form control validation for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'formtarget': {
+      'description': 'Navigable for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'popovertarget': {
+      'description': 'Targets a popover element to toggle, show, or hide.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'popovertargetaction': {
+      'description': 'Indicates whether a targeted popover element is to be toggled, shown, or hidden.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of button.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'Value to be used for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `canvas`
+
+Scriptable bitmap canvas.
+
+```#html.canvas(height:, width:, body) -> content```
+
+<TypeTable
+  type={{
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `caption`
+
+Table caption.
+
+```#html.caption(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `cite`
+
+Title of a work.
+
+```#html.cite(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `code`
+
+Computer code.
+
+```#html.code(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `col`
+
+Table column.
+
+```#html.col(span:) -> content```
+
+<TypeTable
+  type={{
+    'span': {
+      'description': 'Number of columns spanned by the element.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `colgroup`
+
+Group of columns in a table.
+
+```#html.colgroup(span:, body) -> content```
+
+<TypeTable
+  type={{
+    'span': {
+      'description': 'Number of columns spanned by the element.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `data`
+
+Machine-readable equivalent.
+
+```#html.data(value:, body) -> content```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'Machine-readable value.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `datalist`
+
+Container for options for combo box control.
+
+```#html.datalist(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `dd`
+
+Content for corresponding dt element(s).
+
+```#html.dd(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `del`
+
+A removal from the document.
+
+```#html.del(cite:, datetime:, body) -> content```
+
+<TypeTable
+  type={{
+    'cite': {
+      'description': 'Link to the source of the quotation or more information about the edit.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'datetime': {
+      'description': 'Date and (optionally) time of the change.',
+      'type': 'datetime',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `details`
+
+Disclosure control for hiding details.
+
+```#html.details(name:, open:, body) -> content```
+
+<TypeTable
+  type={{
+    'name': {
+      'description': 'Name of group of mutually-exclusive details elements.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'open': {
+      'description': 'Whether the details are visible.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `dfn`
+
+Defining instance.
+
+```#html.dfn(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `dialog`
+
+Dialog box or window.
+
+```#html.dialog(open:, body) -> content```
+
+<TypeTable
+  type={{
+    'open': {
+      'description': 'Whether the dialog box is showing.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `div`
+
+Generic flow container, or container for name-value groups in dl elements.
+
+```#html.div(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `dl`
+
+Association list consisting of zero or more name-value groups.
+
+```#html.dl(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `dt`
+
+Legend for corresponding dd element(s).
+
+```#html.dt(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `em`
+
+Stress emphasis.
+
+```#html.em(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `embed`
+
+Plugin.
+
+```#html.embed(height:, src:, type:, width:) -> content```
+
+<TypeTable
+  type={{
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of embedded resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `fieldset`
+
+Group of form controls.
+
+```#html.fieldset(disabled:, form:, name:, body) -> content```
+
+<TypeTable
+  type={{
+    'disabled': {
+      'description': 'Whether the descendant form controls, except any inside legend, are disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `figcaption`
+
+Caption for figure.
+
+```#html.figcaption(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `figure`
+
+Figure with optional caption.
+
+```#html.figure(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `footer`
+
+Footer for a page or section.
+
+```#html.footer(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `form`
+
+User-submittable form.
+
+```#html.form(accept-charset:, action:, autocomplete:, enctype:, method:, name:, novalidate:, rel:, target:, body) -> content```
+
+<TypeTable
+  type={{
+    'accept-charset': {
+      'description': 'Character encodings to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'action': {
+      'description': 'URL to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'autocomplete': {
+      'description': 'Default setting for autofill feature for controls in the form.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'enctype': {
+      'description': 'Entry list encoding type to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'method': {
+      'description': 'Variant to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of form to use in the document.forms API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'novalidate': {
+      'description': 'Bypass form control validation for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'rel': {
+      'description': 'Relationship between the document containing the form and its action destination',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'target': {
+      'description': 'Navigable for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h1`
+
+Heading.
+
+```#html.h1(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h2`
+
+Heading.
+
+```#html.h2(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h3`
+
+Heading.
+
+```#html.h3(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h4`
+
+Heading.
+
+```#html.h4(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h5`
+
+Heading.
+
+```#html.h5(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `h6`
+
+Heading.
+
+```#html.h6(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `head`
+
+Container for document metadata.
+
+```#html.head(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `header`
+
+Introductory or navigational aids for a page or section.
+
+```#html.header(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `hgroup`
+
+Heading container.
+
+```#html.hgroup(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `hr`
+
+Thematic break.
+
+```#html.hr() -> content```
+
+## `html`
+
+Root element.
+
+```#html.html(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `i`
+
+Alternate voice.
+
+```#html.i(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `iframe`
+
+Child navigable.
+
+```#html.iframe(allow:, allowfullscreen:, height:, loading:, name:, referrerpolicy:, sandbox:, src:, srcdoc:, width:, body) -> content```
+
+<TypeTable
+  type={{
+    'allow': {
+      'description': 'Permissions policy to be applied to the iframe\'s contents.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'allowfullscreen': {
+      'description': 'Whether to allow the iframe\'s contents to use requestFullscreen().',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'loading': {
+      'description': 'Used when determining loading deferral.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of content navigable.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'sandbox': {
+      'description': 'Security rules for nested content.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'srcdoc': {
+      'description': 'A document to render in the iframe.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `img`
+
+Image.
+
+```#html.img(alt:, crossorigin:, decoding:, fetchpriority:, height:, ismap:, loading:, referrerpolicy:, sizes:, src:, srcset:, usemap:, width:) -> content```
+
+<TypeTable
+  type={{
+    'alt': {
+      'description': 'Replacement text for use when images are not available.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'crossorigin': {
+      'description': 'How the element handles crossorigin requests.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'decoding': {
+      'description': 'Decoding hint to use when processing this image for presentation.',
+      'type': 'auto | str',
+      'default': 'None'
+    },
+    'fetchpriority': {
+      'description': 'Sets the priority for fetches initiated by the element.',
+      'type': 'auto | str',
+      'default': 'None'
+    },
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'ismap': {
+      'description': 'Whether the image is a server-side image map.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'loading': {
+      'description': 'Used when determining loading deferral.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'sizes': {
+      'description': 'Image sizes for different page layouts. Expects an array of dictionaries with the keys `condition{:typst}` (string) and `size{:typst}` (length).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'srcset': {
+      'description': 'Images to use in different situations, e.g., high-resolution displays, small monitors, etc. Expects an array of dictionaries with the keys `src{:typst}` (string) and `width{:typst}` (integer) or `density{:typst}` (float).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'usemap': {
+      'description': 'Name of image map to use.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `input`
+
+Form control.
+
+```#html.input(accept:, alpha:, alt:, autocomplete:, checked:, colorspace:, dirname:, disabled:, form:, formaction:, formenctype:, formmethod:, formnovalidate:, formtarget:, height:, list:, max:, maxlength:, min:, minlength:, multiple:, name:, pattern:, placeholder:, popovertarget:, popovertargetaction:, readonly:, required:, size:, src:, step:, type:, value:, width:) -> content```
+
+<TypeTable
+  type={{
+    'accept': {
+      'description': 'Hint for expected file type in file upload controls.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'Allow the color\'s alpha component to be set.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'alt': {
+      'description': 'Replacement text for use when images are not available.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'autocomplete': {
+      'description': 'Hint for form autofill feature.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'checked': {
+      'description': 'Whether the control is checked.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'colorspace': {
+      'description': 'The color space of the serialized color.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'dirname': {
+      'description': 'Name of form control to use for sending the element\'s directionality in form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formaction': {
+      'description': 'URL to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formenctype': {
+      'description': 'Entry list encoding type to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formmethod': {
+      'description': 'Variant to use for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'formnovalidate': {
+      'description': 'Bypass form control validation for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'formtarget': {
+      'description': 'Navigable for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'list': {
+      'description': 'List of autocomplete options.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'max': {
+      'description': 'Maximum value.',
+      'type': 'float | datetime | str',
+      'default': 'None'
+    },
+    'maxlength': {
+      'description': 'Maximum length of value.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'min': {
+      'description': 'Minimum value.',
+      'type': 'float | datetime | str',
+      'default': 'None'
+    },
+    'minlength': {
+      'description': 'Minimum length of value.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'multiple': {
+      'description': 'Whether to allow multiple values.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'pattern': {
+      'description': 'Pattern to be matched by the form control\'s value.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'placeholder': {
+      'description': 'User-visible label to be placed within the form control.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'popovertarget': {
+      'description': 'Targets a popover element to toggle, show, or hide.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'popovertargetaction': {
+      'description': 'Indicates whether a targeted popover element is to be toggled, shown, or hidden.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'readonly': {
+      'description': 'Whether to allow the value to be edited by the user.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'required': {
+      'description': 'Whether the control is required for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'size': {
+      'description': 'Size of the control.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'step': {
+      'description': 'Granularity to be matched by the form control\'s value.',
+      'type': 'float | str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of form control.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'Value of the form control.',
+      'type': 'float | color | datetime | str | array',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `ins`
+
+An addition to the document.
+
+```#html.ins(cite:, datetime:, body) -> content```
+
+<TypeTable
+  type={{
+    'cite': {
+      'description': 'Link to the source of the quotation or more information about the edit.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'datetime': {
+      'description': 'Date and (optionally) time of the change.',
+      'type': 'datetime',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `kbd`
+
+User input.
+
+```#html.kbd(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `label`
+
+Caption for a form control.
+
+```#html.label(for:, body) -> content```
+
+<TypeTable
+  type={{
+    'for': {
+      'description': 'Associate the label with form control.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `legend`
+
+Caption for fieldset.
+
+```#html.legend(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `li`
+
+List item.
+
+```#html.li(value:, body) -> content```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'Ordinal value of the list item.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `link`
+
+Link metadata.
+
+```#html.link(as:, blocking:, color:, crossorigin:, disabled:, fetchpriority:, href:, hreflang:, imagesizes:, imagesrcset:, integrity:, media:, referrerpolicy:, rel:, sizes:, type:) -> content```
+
+<TypeTable
+  type={{
+    'as': {
+      'description': 'Potential destination for a preload request (for rel="preload" and rel="modulepreload").',
+      'type': 'str',
+      'default': 'None'
+    },
+    'blocking': {
+      'description': 'Whether the element is potentially render-blocking.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Color to use when customizing a site\'s icon (for rel="mask-icon").',
+      'type': 'color',
+      'default': 'None'
+    },
+    'crossorigin': {
+      'description': 'How the element handles crossorigin requests.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'disabled': {
+      'description': 'Whether the link is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'fetchpriority': {
+      'description': 'Sets the priority for fetches initiated by the element.',
+      'type': 'auto | str',
+      'default': 'None'
+    },
+    'href': {
+      'description': 'Address of the hyperlink.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'hreflang': {
+      'description': 'Language of the linked resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'imagesizes': {
+      'description': 'Image sizes for different page layouts (for rel="preload"). Expects an array of dictionaries with the keys `condition{:typst}` (string) and `size{:typst}` (length).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'imagesrcset': {
+      'description': 'Images to use in different situations, e.g., high-resolution displays, small monitors, etc. (for rel="preload"). Expects an array of dictionaries with the keys `src{:typst}` (string) and `width{:typst}` (integer) or `density{:typst}` (float).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'integrity': {
+      'description': 'Integrity metadata used in Subresource Integrity checks.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'media': {
+      'description': 'Applicable media.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'rel': {
+      'description': 'Relationship between the document containing the hyperlink and the destination resource.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'sizes': {
+      'description': 'Sizes of the icons (for rel="icon"). Expects an array of sizes. Each size is specified as an array of two integers (width and height).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Hint for the type of the referenced resource.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `main`
+
+Container for the dominant contents of the document.
+
+```#html.main(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `map`
+
+Image map.
+
+```#html.map(name:, body) -> content```
+
+<TypeTable
+  type={{
+    'name': {
+      'description': 'Name of image map to reference from the usemap attribute.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `mark`
+
+Highlight.
+
+```#html.mark(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `menu`
+
+Menu of commands.
+
+```#html.menu(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `meta`
+
+Text metadata.
+
+```#html.meta(charset:, content:, http-equiv:, media:, name:) -> content```
+
+<TypeTable
+  type={{
+    'charset': {
+      'description': 'Character encoding declaration.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'content': {
+      'description': 'Value of the element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'http-equiv': {
+      'description': 'Pragma directive.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'media': {
+      'description': 'Applicable media.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Metadata name.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `meter`
+
+Gauge.
+
+```#html.meter(high:, low:, max:, min:, optimum:, value:, body) -> content```
+
+<TypeTable
+  type={{
+    'high': {
+      'description': 'Low limit of high range.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'low': {
+      'description': 'High limit of low range.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'max': {
+      'description': 'Upper bound of range.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'min': {
+      'description': 'Lower bound of range.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'optimum': {
+      'description': 'Optimum value in gauge.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'Current value of the element.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `nav`
+
+Section with navigational links.
+
+```#html.nav(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `noscript`
+
+Fallback content for script.
+
+```#html.noscript(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `object`
+
+Image, child navigable, or plugin.
+
+```#html.object(data:, form:, height:, name:, type:, width:, body) -> content```
+
+<TypeTable
+  type={{
+    'data': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of content navigable.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of embedded resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `ol`
+
+Ordered list.
+
+```#html.ol(reversed:, start:, type:, body) -> content```
+
+<TypeTable
+  type={{
+    'reversed': {
+      'description': 'Number the list backwards.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'start': {
+      'description': 'Starting value of the list.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Kind of list marker.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `optgroup`
+
+Group of options in a list box.
+
+```#html.optgroup(disabled:, label:, body) -> content```
+
+<TypeTable
+  type={{
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'label': {
+      'description': 'User-visible label.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `option`
+
+Option in a list box or combo box control.
+
+```#html.option(disabled:, label:, selected:, value:, body) -> content```
+
+<TypeTable
+  type={{
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'label': {
+      'description': 'User-visible label.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'selected': {
+      'description': 'Whether the option is selected by default.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'Value to be used for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `output`
+
+Calculated output value.
+
+```#html.output(for:, form:, name:, body) -> content```
+
+<TypeTable
+  type={{
+    'for': {
+      'description': 'Specifies controls from which the output was calculated.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `p`
+
+Paragraph.
+
+```#html.p(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `picture`
+
+Image.
+
+```#html.picture(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `pre`
+
+Block of preformatted text.
+
+```#html.pre(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `progress`
+
+Progress bar.
+
+```#html.progress(max:, value:, body) -> content```
+
+<TypeTable
+  type={{
+    'max': {
+      'description': 'Upper bound of range.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'Current value of the element.',
+      'type': 'float',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `q`
+
+Quotation.
+
+```#html.q(cite:, body) -> content```
+
+<TypeTable
+  type={{
+    'cite': {
+      'description': 'Link to the source of the quotation or more information about the edit.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `rp`
+
+Parenthesis for ruby annotation text.
+
+```#html.rp(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `rt`
+
+Ruby annotation text.
+
+```#html.rt(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `ruby`
+
+Ruby annotation(s).
+
+```#html.ruby(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `s`
+
+Inaccurate text.
+
+```#html.s(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `samp`
+
+Computer output.
+
+```#html.samp(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `script`
+
+Embedded script.
+
+```#html.script(async:, blocking:, crossorigin:, defer:, fetchpriority:, integrity:, nomodule:, referrerpolicy:, src:, type:, body) -> content```
+
+<TypeTable
+  type={{
+    'async': {
+      'description': 'Execute script when available, without blocking while fetching.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'blocking': {
+      'description': 'Whether the element is potentially render-blocking.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'crossorigin': {
+      'description': 'How the element handles crossorigin requests.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'defer': {
+      'description': 'Defer script execution.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'fetchpriority': {
+      'description': 'Sets the priority for fetches initiated by the element.',
+      'type': 'auto | str',
+      'default': 'None'
+    },
+    'integrity': {
+      'description': 'Integrity metadata used in Subresource Integrity checks.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'nomodule': {
+      'description': 'Prevents execution in user agents that support module scripts.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'referrerpolicy': {
+      'description': 'Referrer policy for fetches initiated by the element.',
+      'type': 'none | str',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of script.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `search`
+
+Container for search controls.
+
+```#html.search(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `section`
+
+Generic document or application section.
+
+```#html.section(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `select`
+
+List box control.
+
+```#html.select(autocomplete:, disabled:, form:, multiple:, name:, required:, size:, body) -> content```
+
+<TypeTable
+  type={{
+    'autocomplete': {
+      'description': 'Hint for form autofill feature.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'multiple': {
+      'description': 'Whether to allow multiple values.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'required': {
+      'description': 'Whether the control is required for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'size': {
+      'description': 'Size of the control.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `slot`
+
+Shadow tree slot.
+
+```#html.slot(name:, body) -> content```
+
+<TypeTable
+  type={{
+    'name': {
+      'description': 'Name of shadow tree slot.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `small`
+
+Side comment.
+
+```#html.small(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `source`
+
+Image source for img or media source for video or audio.
+
+```#html.source(height:, media:, sizes:, src:, srcset:, type:, width:) -> content```
+
+<TypeTable
+  type={{
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'media': {
+      'description': 'Applicable media.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'sizes': {
+      'description': 'Image sizes for different page layouts. Expects an array of dictionaries with the keys `condition{:typst}` (string) and `size{:typst}` (length).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'srcset': {
+      'description': 'Images to use in different situations, e.g., high-resolution displays, small monitors, etc. Expects an array of dictionaries with the keys `src{:typst}` (string) and `width{:typst}` (integer) or `density{:typst}` (float).',
+      'type': 'array',
+      'default': 'None'
+    },
+    'type': {
+      'description': 'Type of embedded resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `span`
+
+Generic phrasing container.
+
+```#html.span(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `strong`
+
+Importance.
+
+```#html.strong(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `style`
+
+Embedded styling information.
+
+```#html.style(blocking:, media:, body) -> content```
+
+<TypeTable
+  type={{
+    'blocking': {
+      'description': 'Whether the element is potentially render-blocking.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'media': {
+      'description': 'Applicable media.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `sub`
+
+Subscript.
+
+```#html.sub(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `summary`
+
+Caption for details.
+
+```#html.summary(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `sup`
+
+Superscript.
+
+```#html.sup(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `table`
+
+Table.
+
+```#html.table(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `tbody`
+
+Group of rows in a table.
+
+```#html.tbody(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `td`
+
+Table cell.
+
+```#html.td(colspan:, headers:, rowspan:, body) -> content```
+
+<TypeTable
+  type={{
+    'colspan': {
+      'description': 'Number of columns that the cell is to span.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'headers': {
+      'description': 'The header cells for this cell.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'rowspan': {
+      'description': 'Number of rows that the cell is to span.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `template`
+
+Template.
+
+```#html.template(shadowrootclonable:, shadowrootcustomelementregistry:, shadowrootdelegatesfocus:, shadowrootmode:, shadowrootserializable:, body) -> content```
+
+<TypeTable
+  type={{
+    'shadowrootclonable': {
+      'description': 'Sets clonable on a declarative shadow root.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'shadowrootcustomelementregistry': {
+      'description': 'Enables declarative shadow roots to indicate they will use a custom element registry.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'shadowrootdelegatesfocus': {
+      'description': 'Sets delegates focus on a declarative shadow root.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'shadowrootmode': {
+      'description': 'Enables streaming declarative shadow roots.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'shadowrootserializable': {
+      'description': 'Sets serializable on a declarative shadow root.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `textarea`
+
+Multiline text controls.
+
+```#html.textarea(autocomplete:, cols:, dirname:, disabled:, form:, maxlength:, minlength:, name:, placeholder:, readonly:, required:, rows:, wrap:, body) -> content```
+
+<TypeTable
+  type={{
+    'autocomplete': {
+      'description': 'Hint for form autofill feature.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'cols': {
+      'description': 'Maximum number of characters per line.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'dirname': {
+      'description': 'Name of form control to use for sending the element\'s directionality in form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'disabled': {
+      'description': 'Whether the form control is disabled.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'form': {
+      'description': 'Associates the element with a form element.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'maxlength': {
+      'description': 'Maximum length of value.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'minlength': {
+      'description': 'Minimum length of value.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'name': {
+      'description': 'Name of the element to use for form submission and in the form.elements API.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'placeholder': {
+      'description': 'User-visible label to be placed within the form control.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'readonly': {
+      'description': 'Whether to allow the value to be edited by the user.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'required': {
+      'description': 'Whether the control is required for form submission.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'rows': {
+      'description': 'Number of lines to show.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'wrap': {
+      'description': 'How the value of the form control is to be wrapped for form submission.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `tfoot`
+
+Group of footer rows in a table.
+
+```#html.tfoot(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `th`
+
+Table header cell.
+
+```#html.th(abbr:, colspan:, headers:, rowspan:, scope:, body) -> content```
+
+<TypeTable
+  type={{
+    'abbr': {
+      'description': 'Alternative label to use for the header cell when referencing the cell in other contexts.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'colspan': {
+      'description': 'Number of columns that the cell is to span.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'headers': {
+      'description': 'The header cells for this cell.',
+      'type': 'str | array',
+      'default': 'None'
+    },
+    'rowspan': {
+      'description': 'Number of rows that the cell is to span.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'scope': {
+      'description': 'Specifies which cells the header cell applies to.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `thead`
+
+Group of heading rows in a table.
+
+```#html.thead(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `time`
+
+Machine-readable equivalent of date- or time-related data.
+
+```#html.time(datetime:, body) -> content```
+
+<TypeTable
+  type={{
+    'datetime': {
+      'description': 'Machine-readable value.',
+      'type': 'datetime | duration',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `title`
+
+Document title.
+
+```#html.title(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `tr`
+
+Table row.
+
+```#html.tr(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `track`
+
+Timed text track.
+
+```#html.track(default:, kind:, label:, src:, srclang:) -> content```
+
+<TypeTable
+  type={{
+    'default': {
+      'description': 'Enable the track if no other text track is more suitable.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'kind': {
+      'description': 'The type of text track.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'label': {
+      'description': 'User-visible label.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'srclang': {
+      'description': 'Language of the text track.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `u`
+
+Unarticulated annotation.
+
+```#html.u(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `ul`
+
+List.
+
+```#html.ul(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `var`
+
+Variable.
+
+```#html.var(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `video`
+
+Video player.
+
+```#html.video(autoplay:, controls:, crossorigin:, height:, loop:, muted:, playsinline:, poster:, preload:, src:, width:, body) -> content```
+
+<TypeTable
+  type={{
+    'autoplay': {
+      'description': 'Hint that the media resource can be started automatically when the page is loaded.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'controls': {
+      'description': 'Show user agent controls.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'crossorigin': {
+      'description': 'How the element handles crossorigin requests.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'height': {
+      'description': 'Vertical dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'loop': {
+      'description': 'Whether to loop the media resource.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'muted': {
+      'description': 'Whether to mute the media resource by default.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'playsinline': {
+      'description': 'Encourage the user agent to display video content within the element\'s playback area.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'poster': {
+      'description': 'Poster frame to show prior to video playback.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'preload': {
+      'description': 'Hints how much buffering the media resource will likely need.',
+      'type': 'none | auto | str',
+      'default': 'None'
+    },
+    'src': {
+      'description': 'Address of the resource.',
+      'type': 'str',
+      'default': 'None'
+    },
+    'width': {
+      'description': 'Horizontal dimension.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'body': {
+      'description': 'The contents of the HTML element.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `wbr`
+
+Line breaking opportunity.
+
+```#html.wbr() -> content```
+

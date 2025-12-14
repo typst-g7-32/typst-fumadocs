@@ -1,0 +1,52 @@
+---
+title: "Rotate"
+description: "Documentation for the `rotate` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `rotate`
+
+Rotates content without affecting layout.
+
+Rotates an element by a given angle. The layout will act as if the element was not rotated unless you specify `reflow: true{:typst}`.
+
+## Example
+
+```typst
+#stack(
+  dir: ltr,
+  spacing: 1fr,
+  ..range(16)
+    .map(i => rotate(24deg * i)[X]),
+)
+```
+
+```#rotate(angle, origin:, reflow:, body) -> content```
+
+<TypeTable
+  type={{
+    'angle': {
+      'description': 'The amount of rotation.  ```typst #rotate(-1.571rad)[Space!] ```',
+      'type': 'angle',
+      'default': '<code><span class="typ-num">0deg</span></code>'
+    },
+    'origin': {
+      'description': 'The origin of the rotation.  If, for instance, you wanted the bottom left corner of the rotated element to stay aligned with the baseline, you would set it to `bottom + left{:typst}` instead.  ```typst #set text(spacing: 8pt) #let square = square.with(width: 8pt)  #box(square()) #box(rotate(30deg, origin: center, square())) #box(rotate(30deg, origin: top + left, square())) #box(rotate(30deg, origin: bottom + right, square())) ```',
+      'type': 'alignment',
+      'default': '<code>center <span class="typ-op">+</span> horizon</code>'
+    },
+    'reflow': {
+      'description': 'Whether the rotation impacts the layout.  If set to `false{:typst}`, the rotated content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the rotation of the content into account and adjust the layout accordingly.  ```typst Hello #rotate(90deg, reflow: true)[World]! ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'body': {
+      'description': 'The content to rotate.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

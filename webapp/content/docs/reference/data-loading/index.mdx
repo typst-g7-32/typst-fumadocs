@@ -1,0 +1,64 @@
+---
+title: "Data Loading"
+description: "Documentation for functions related to Data Loading in Typst."
+---
+
+Data loading from external files.
+
+These functions help you with loading and embedding data, for example from the results of an experiment.
+
+## Encoding
+
+Some of the functions are also capable of encoding, e.g. [`cbor.encode{:typst}`](/docs/reference/data-loading/cbor/#definitions-encode). They facilitate passing structured data to [plugins](/docs/reference/foundations/plugin/).
+
+However, each data format has its own native types. Therefore, for an arbitrary Typst value, the encode-to-decode roundtrip might be lossy. In general, numbers, strings, and [arrays](/docs/reference/foundations/array/) or [dictionaries](/docs/reference/foundations/dictionary/) composed of them can be reliably converted, while other types may fall back to strings via [`repr{:typst}`](/docs/reference/foundations/repr/), which is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only). Please refer to the page of each data format for details.
+
+## Definitions
+
+<table>
+  <thead>
+    <tr>
+      <th width="20px"></th>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/cbor/">cbor</a></code></td>
+      <td>Reads structured data from a CBOR file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/csv/">csv</a></code></td>
+      <td>Reads structured data from a CSV file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/json/">json</a></code></td>
+      <td>Reads structured data from a JSON file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/read/">read</a></code></td>
+      <td>Reads plain text or data from a file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/toml/">toml</a></code></td>
+      <td>Reads structured data from a TOML file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/xml/">xml</a></code></td>
+      <td>Reads structured data from an XML file.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/data-loading/yaml/">yaml</a></code></td>
+      <td>Reads structured data from a YAML file.</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,86 @@
+---
+title: "XML"
+description: "Documentation for the `xml` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `xml`
+
+Reads structured data from an XML file.
+
+The XML file is parsed into an array of dictionaries and strings. XML nodes can be elements or strings. Elements are represented as dictionaries with the following keys:
+
+- `tag{:typst}`: The name of the element as a string.
+- `attrs{:typst}`: A dictionary of the element's attributes as strings.
+- `children{:typst}`: An array of the element's child nodes.
+
+The XML file in the example contains a root `news{:typst}` tag with multiple `article{:typst}` tags. Each article has a `title{:typst}`, `author{:typst}`, and `content{:typst}` tag. The `content{:typst}` tag contains one or more paragraphs, which are represented as `p{:typst}` tags.
+
+## Example
+
+```typst
+#let find-child(elem, tag) = {
+  elem.children
+    .find(e => "tag" in e and e.tag == tag)
+}
+
+#let article(elem) = {
+  let title = find-child(elem, "title")
+  let author = find-child(elem, "author")
+  let pars = find-child(elem, "content")
+
+  [= #title.children.first()]
+  text(10pt, weight: "medium")[
+    Published by
+    #author.children.first()
+  ]
+
+  for p in pars.children {
+    if type(p) == dictionary {
+      parbreak()
+      p.children.first()
+    }
+  }
+}
+
+#let data = xml("example.xml")
+#for elem in data.first().children {
+  if type(elem) == dictionary {
+    article(elem)
+  }
+}
+```
+
+```#xml(source) -> any```
+
+<TypeTable
+  type={{
+    'source': {
+      'description': 'A [path](/docs/reference/syntax/#paths) to an XML file or raw XML bytes.',
+      'type': 'str | bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### Definitions
+
+### `decode`
+
+Reads structured data from an XML string/bytes.
+
+```#xml.decode(data) -> any```
+
+<TypeTable
+  type={{
+    'data': {
+      'description': 'XML data.',
+      'type': 'str | bytes',
+      'default': 'None'
+    }
+  }}
+/>
+
+

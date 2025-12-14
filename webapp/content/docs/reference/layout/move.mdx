@@ -1,0 +1,54 @@
+---
+title: "Move"
+description: "Documentation for the `move` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `move`
+
+Moves content without affecting layout.
+
+The `move{:typst}` function allows you to move content while the layout still 'sees' it at the original positions. Containers will still be sized as if the content was not moved.
+
+## Example
+
+```typst
+#rect(inset: 0pt, fill: gray, move(
+  dx: 4pt, dy: 6pt,
+  rect(
+    inset: 8pt,
+    fill: white,
+    stroke: black,
+    [Abra cadabra]
+  )
+))
+```
+
+## Accessibility
+
+Moving is transparent to Assistive Technology (AT). Your content will be read in the order it appears in the source, regardless of any visual movement. If you need to hide content from AT altogether in PDF export, consider using [`pdf.artifact{:typst}`](/docs/reference/pdf/artifact/).
+
+```#move(dx:, dy:, body) -> content```
+
+<TypeTable
+  type={{
+    'dx': {
+      'description': 'The horizontal displacement of the content.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'dy': {
+      'description': 'The vertical displacement of the content.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'body': {
+      'description': 'The content to move.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

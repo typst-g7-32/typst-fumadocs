@@ -1,0 +1,36 @@
+---
+title: "Binomial"
+description: "Documentation for the `binom` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `binom`
+
+A binomial expression.
+
+## Example
+
+```typst
+$ binom(n, k) $
+$ binom(n, k_1, k_2, k_3, ..., k_m) $
+```
+
+```#math.binom(upper, lower) -> content```
+
+<TypeTable
+  type={{
+    'upper': {
+      'description': 'The binomial\'s upper index.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'lower': {
+      'description': 'The binomial\'s lower index.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

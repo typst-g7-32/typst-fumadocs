@@ -1,0 +1,75 @@
+---
+title: "Alignment"
+description: "Documentation for the Alignment type."
+---
+
+Where to align something along an axis.
+
+Possible values are:
+
+- `start{:typst}`: Aligns at the [start](/docs/reference/layout/direction/#definitions-start) of the [text direction](/docs/reference/text/text/#parameters-dir).
+- `end{:typst}`: Aligns at the [end](/docs/reference/layout/direction/#definitions-end) of the [text direction](/docs/reference/text/text/#parameters-dir).
+- `left{:typst}`: Align at the left.
+- `center{:typst}`: Aligns in the middle, horizontally.
+- `right{:typst}`: Aligns at the right.
+- `top{:typst}`: Aligns at the top.
+- `horizon{:typst}`: Aligns in the middle, vertically.
+- `bottom{:typst}`: Align at the bottom.
+
+These values are available globally and also in the alignment type's scope, so you can write either of the following two:
+
+```typst
+#align(center)[Hi]
+#align(alignment.center)[Hi]
+```
+
+## 2D alignments
+
+To align along both axes at the same time, add the two alignments using the `+{:typst}` operator. For example, `top + right{:typst}` aligns the content to the top right corner.
+
+```typst
+#set page(height: 3cm)
+#align(center + bottom)[Hi]
+```
+
+## Fields
+
+The `x{:typst}` and `y{:typst}` fields hold the alignment's horizontal and vertical components, respectively (as yet another `alignment{:typst}`). They may be `none{:typst}`.
+
+```typst
+#(top + right).x \
+#left.x \
+#left.y (none)
+```
+
+
+## Methods
+
+### `axis`
+
+The axis this alignment belongs to.
+
+- `"horizontal"{:typst}` for `start{:typst}`, `left{:typst}`, `center{:typst}`, `right{:typst}`, and `end{:typst}`
+- `"vertical"{:typst}` for `top{:typst}`, `horizon{:typst}`, and `bottom{:typst}`
+- `none{:typst}` for 2-dimensional alignments
+
+```typst
+#left.axis() \
+#bottom.axis()
+```
+
+```#alignment.axis() -> none str```
+
+### `inv`
+
+The inverse alignment.
+
+```typst
+#top.inv() \
+#left.inv() \
+#center.inv() \
+#(left + bottom).inv()
+```
+
+```#alignment.inv() -> alignment```
+

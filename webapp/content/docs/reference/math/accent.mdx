@@ -1,0 +1,47 @@
+---
+title: "Accent"
+description: "Documentation for the `accent` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `accent`
+
+Attaches an accent to a base.
+
+## Example
+
+```typst
+$grave(a) = accent(a, `)$ \
+$arrow(a) = accent(a, arrow)$ \
+$tilde(a) = accent(a, \u{0303})$
+```
+
+```#math.accent(base, accent, size:, dotless:) -> content```
+
+<TypeTable
+  type={{
+    'base': {
+      'description': 'The base to which the accent is applied. May consist of multiple letters.  ```typst $arrow(A B C)$ ```',
+      'type': 'content',
+      'default': 'None'
+    },
+    'accent': {
+      'description': 'The accent to apply to the base.  Supported accents include:  | Accent | Name | Codepoint | | --- | --- | --- | | Grave | `grave{:typst}` | ``` | | Acute | `acute{:typst}` | `´{:typst}` | | Circumflex | `hat{:typst}` | `^{:typst}` | | Tilde | `tilde{:typst}` | `~{:typst}` | | Macron | `macron{:typst}` | `¯{:typst}` | | Dash | `dash{:typst}` | `‾{:typst}` | | Breve | `breve{:typst}` | `˘{:typst}` | | Dot | `dot{:typst}` | `.{:typst}` | | Double dot, Diaeresis | `dot.double{:typst}`, `diaer{:typst}` | `¨{:typst}` | | Triple dot | `dot.triple{:typst}` | `⃛{:typst}` | | Quadruple dot | `dot.quad{:typst}` | `⃜{:typst}` | | Circle | `circle{:typst}` | `∘{:typst}` | | Double acute | `acute.double{:typst}` | `˝{:typst}` | | Caron | `caron{:typst}` | `ˇ{:typst}` | | Right arrow | `arrow{:typst}`, `->{:typst}` | `→{:typst}` | | Left arrow | `arrow.l{:typst}`, `<-{:typst}` | `←{:typst}` | | Left/Right arrow | `arrow.l.r{:typst}` | `↔{:typst}` | | Right harpoon | `harpoon{:typst}` | `⇀{:typst}` | | Left harpoon | `harpoon.lt{:typst}` | `↼{:typst}` |',
+      'type': 'str | content',
+      'default': 'None'
+    },
+    'size': {
+      'description': 'The size of the accent, relative to the width of the base.  ```typst $dash(A, size: #150%)$ ```',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">100%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'dotless': {
+      'description': 'Whether to remove the dot on top of lowercase i and j when adding a top accent.  This enables the `dtls{:typst}` OpenType feature.  ```typst $hat(dotless: #false, i)$ ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+

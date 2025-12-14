@@ -1,0 +1,261 @@
+---
+title: "Under/Over"
+description: "Documentation for the underover functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Delimiters above or below parts of an equation.
+
+The braces and brackets further allow you to add an optional annotation below or above themselves.
+
+
+## `underline`
+
+A horizontal line under content.
+
+```typst
+$ underline(1 + 2 + ... + 5) $
+```
+
+```#math.underline(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content above the line.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `overline`
+
+A horizontal line over content.
+
+```typst
+$ overline(1 + 2 + ... + 5) $
+```
+
+```#math.overline(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content below the line.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## `underbrace`
+
+A horizontal brace under content, with an optional annotation below.
+
+```typst
+$ underbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.underbrace(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content above the brace.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content below the brace.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `overbrace`
+
+A horizontal brace over content, with an optional annotation above.
+
+```typst
+$ overbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.overbrace(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content below the brace.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content above the brace.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `underbracket`
+
+A horizontal bracket under content, with an optional annotation below.
+
+```typst
+$ underbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.underbracket(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content above the bracket.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content below the bracket.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `overbracket`
+
+A horizontal bracket over content, with an optional annotation above.
+
+```typst
+$ overbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.overbracket(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content below the bracket.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content above the bracket.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `underparen`
+
+A horizontal parenthesis under content, with an optional annotation below.
+
+```typst
+$ underparen(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.underparen(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content above the parenthesis.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content below the parenthesis.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `overparen`
+
+A horizontal parenthesis over content, with an optional annotation above.
+
+```typst
+$ overparen(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.overparen(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content below the parenthesis.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content above the parenthesis.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `undershell`
+
+A horizontal tortoise shell bracket under content, with an optional annotation below.
+
+```typst
+$ undershell(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.undershell(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content above the tortoise shell bracket.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content below the tortoise shell bracket.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+## `overshell`
+
+A horizontal tortoise shell bracket over content, with an optional annotation above.
+
+```typst
+$ overshell(0 + 1 + dots.c + n, n + 1 "numbers") $
+```
+
+```#math.overshell(body, annotation) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content below the tortoise shell bracket.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'annotation': {
+      'description': 'The optional content above the tortoise shell bracket.',
+      'type': 'none | content',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+

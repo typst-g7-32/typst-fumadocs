@@ -1,0 +1,44 @@
+---
+title: "Emphasis"
+description: "Documentation for the `emph` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `emph`
+
+Emphasizes content by toggling italics.
+
+- If the current [text style](/docs/reference/text/text/#parameters-style) is `"normal"{:typst}`, this turns it into `"italic"{:typst}`.
+- If it is already `"italic"{:typst}` or `"oblique"{:typst}`, it turns it back to `"normal"{:typst}`.
+
+## Example
+
+```typst
+This is _emphasized._ \
+This is #emph[too.]
+
+#show emph: it => {
+  text(blue, it.body)
+}
+
+This is _emphasized_ differently.
+```
+
+## Syntax
+
+This function also has dedicated syntax: To emphasize content, simply enclose it in underscores (`_{:typst}`). Note that this only works at word boundaries. To emphasize part of a word, you have to use the function.
+
+```#emph(body) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to emphasize.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

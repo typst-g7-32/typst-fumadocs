@@ -1,0 +1,41 @@
+---
+title: "Text Operator"
+description: "Documentation for the `op` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `op`
+
+A text operator in an equation.
+
+## Example
+
+```typst
+$ tan x = (sin x)/(cos x) $
+$ op("custom",
+     limits: #true)_(n->oo) n $
+```
+
+## Predefined Operators
+
+Typst predefines the operators `arccos{:typst}`, `arcsin{:typst}`, `arctan{:typst}`, `arg{:typst}`, `cos{:typst}`, `cosh{:typst}`, `cot{:typst}`, `coth{:typst}`, `csc{:typst}`, `csch{:typst}`, `ctg{:typst}`, `deg{:typst}`, `det{:typst}`, `dim{:typst}`, `exp{:typst}`, `gcd{:typst}`, `lcm{:typst}`, `hom{:typst}`, `id{:typst}`, `im{:typst}`, `inf{:typst}`, `ker{:typst}`, `lg{:typst}`, `lim{:typst}`, `liminf{:typst}`, `limsup{:typst}`, `ln{:typst}`, `log{:typst}`, `max{:typst}`, `min{:typst}`, `mod{:typst}`, `Pr{:typst}`, `sec{:typst}`, `sech{:typst}`, `sin{:typst}`, `sinc{:typst}`, `sinh{:typst}`, `sup{:typst}`, `tan{:typst}`, `tanh{:typst}`, `tg{:typst}` and `tr{:typst}`.
+
+```#math.op(text, limits:) -> content```
+
+<TypeTable
+  type={{
+    'text': {
+      'description': 'The operator\'s text.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'limits': {
+      'description': 'Whether the operator should show attachments as limits in display mode.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    }
+  }}
+/>
+
+

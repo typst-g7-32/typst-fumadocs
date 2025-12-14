@@ -1,0 +1,107 @@
+---
+title: "Assert"
+description: "Documentation for the `assert` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `assert`
+
+Ensures that a condition is fulfilled.
+
+Fails with an error if the condition is not fulfilled. Does not produce any output in the document.
+
+If you wish to test equality between two values, see [`assert.eq{:typst}`](/docs/reference/foundations/assert/#definitions-eq) and [`assert.ne{:typst}`](/docs/reference/foundations/assert/#definitions-ne).
+
+## Example
+
+```typst
+#assert(1 < 2, message: "math broke")
+```
+
+```#assert(condition, message:) -> ```
+
+<TypeTable
+  type={{
+    'condition': {
+      'description': 'The condition that must be true for the assertion to pass.',
+      'type': 'bool',
+      'default': 'None'
+    },
+    'message': {
+      'description': 'The error message when the assertion fails.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### Definitions
+
+### `eq`
+
+Ensures that two values are equal.
+
+Fails with an error if the first value is not equal to the second. Does not produce any output in the document.
+
+```typst
+#assert.eq(10, 10)
+```
+
+```#assert.eq(left, right, message:) -> ```
+
+<TypeTable
+  type={{
+    'left': {
+      'description': 'The first value to compare.',
+      'type': 'any',
+      'default': 'None'
+    },
+    'right': {
+      'description': 'The second value to compare.',
+      'type': 'any',
+      'default': 'None'
+    },
+    'message': {
+      'description': 'An optional message to display on error instead of the representations of the compared values.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `ne`
+
+Ensures that two values are not equal.
+
+Fails with an error if the first value is equal to the second. Does not produce any output in the document.
+
+```typst
+#assert.ne(3, 4)
+```
+
+```#assert.ne(left, right, message:) -> ```
+
+<TypeTable
+  type={{
+    'left': {
+      'description': 'The first value to compare.',
+      'type': 'any',
+      'default': 'None'
+    },
+    'right': {
+      'description': 'The second value to compare.',
+      'type': 'any',
+      'default': 'None'
+    },
+    'message': {
+      'description': 'An optional message to display on error instead of the representations of the compared values.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+

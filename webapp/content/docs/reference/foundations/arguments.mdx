@@ -1,0 +1,153 @@
+---
+title: "Arguments"
+description: "Documentation for the Arguments type."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Captured arguments to a function.
+
+## Argument Sinks
+
+Like built-in functions, custom functions can also take a variable number of arguments. You can specify an _argument sink_ which collects all excess arguments as `..sink{:typst}`. The resulting `sink{:typst}` value is of the `arguments{:typst}` type. It exposes methods to access the positional and named arguments.
+
+```typst
+#let format(title, ..authors) = {
+  let by = authors
+    .pos()
+    .join(", ", last: " and ")
+
+  [*#title* \ _Written by #by;_]
+}
+
+#format("ArtosFlow", "Jane", "Joe")
+```
+
+## Spreading
+
+Inversely to an argument sink, you can _spread_ arguments, arrays and dictionaries into a function call with the `..spread{:typst}` operator:
+
+```typst
+#let array = (2, 3, 5)
+#calc.min(..array)
+#let dict = (fill: blue)
+#text(..dict)[Hello]
+```
+
+## Constructor
+
+### `arguments`
+
+Construct spreadable arguments in place.
+
+This function behaves like `let args(..sink) = sink{:typst}`.
+
+```typst
+#let args = arguments(stroke: red, inset: 1em, [Body])
+#box(..args)
+```
+
+```#arguments(arguments) -> arguments```
+
+<TypeTable
+  type={{
+    'arguments': {
+      'description': 'The arguments to construct.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+## Methods
+
+### `len`
+
+The number of arguments, positional or named.
+
+```#arguments.len() -> int```
+
+### `at`
+
+Returns the positional argument at the specified index, or the named argument with the specified name.
+
+If the key is an [integer](/docs/reference/foundations/int/), this is equivalent to first calling [`pos{:typst}`](/docs/reference/foundations/arguments/#definitions-pos) and then [`array.at{:typst}`](/docs/reference/foundations/array/#definitions-at). If it is a [string](/docs/reference/foundations/str/), this is equivalent to first calling [`named{:typst}`](/docs/reference/foundations/arguments/#definitions-named) and then [`dictionary.at{:typst}`](/docs/reference/foundations/dictionary/#definitions-at).
+
+```#arguments.at(key, default:) -> any```
+
+<TypeTable
+  type={{
+    'key': {
+      'description': 'The index or name of the argument to get.',
+      'type': 'int | str',
+      'default': 'None'
+    },
+    'default': {
+      'description': 'A default value to return if the key is invalid.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `pos`
+
+Returns the captured positional arguments as an array.
+
+```#arguments.pos() -> array```
+
+### `named`
+
+Returns the captured named arguments as a dictionary.
+
+```#arguments.named() -> dictionary```
+
+### `filter`
+
+Produces a new `arguments{:typst}` with only the arguments for which the value passes the test.
+
+```typst
+#{
+  arguments(-1, a: 0, b: 1, 2)
+    .filter(v => v > 0)
+}
+```
+
+```#arguments.filter(test) -> arguments```
+
+<TypeTable
+  type={{
+    'test': {
+      'description': 'The function to apply to each value. Must return a boolean.',
+      'type': 'function',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `map`
+
+Produces a new `arguments{:typst}` by transforming each argument value with the passed function.
+
+```typst
+#{
+  arguments(0, a: 1, 2)
+    .map(v => v + 1)
+}
+```
+
+```#arguments.map(mapper) -> arguments```
+
+<TypeTable
+  type={{
+    'mapper': {
+      'description': 'The function to apply to each value.',
+      'type': 'function',
+      'default': 'None'
+    }
+  }}
+/>
+
+

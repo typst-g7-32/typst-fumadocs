@@ -1,0 +1,54 @@
+---
+title: "Skew"
+description: "Documentation for the `skew` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `skew`
+
+Skews content.
+
+Skews an element in horizontal and/or vertical direction. The layout will act as if the element was not skewed unless you specify `reflow: true{:typst}`.
+
+## Example
+
+```typst
+#skew(ax: -12deg)[
+  This is some fake italic text.
+]
+```
+
+```#skew(ax:, ay:, origin:, reflow:, body) -> content```
+
+<TypeTable
+  type={{
+    'ax': {
+      'description': 'The horizontal skewing angle.  ```typst #skew(ax: 30deg)[Skewed] ```',
+      'type': 'angle',
+      'default': '<code><span class="typ-num">0deg</span></code>'
+    },
+    'ay': {
+      'description': 'The vertical skewing angle.  ```typst #skew(ay: 30deg)[Skewed] ```',
+      'type': 'angle',
+      'default': '<code><span class="typ-num">0deg</span></code>'
+    },
+    'origin': {
+      'description': 'The origin of the skew transformation.  The origin will stay fixed during the operation.  ```typst X #box(skew(ax: -30deg, origin: center + horizon)[X]) X \\ X #box(skew(ax: -30deg, origin: bottom + left)[X]) X \\ X #box(skew(ax: -30deg, origin: top + right)[X]) X ```',
+      'type': 'alignment',
+      'default': '<code>center <span class="typ-op">+</span> horizon</code>'
+    },
+    'reflow': {
+      'description': 'Whether the skew transformation impacts the layout.  If set to `false{:typst}`, the skewed content will retain the bounding box of the original content. If set to `true{:typst}`, the bounding box will take the transformation of the content into account and adjust the layout accordingly.  ```typst Hello #skew(ay: 30deg, reflow: true, "World")! ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'body': {
+      'description': 'The content to skew.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

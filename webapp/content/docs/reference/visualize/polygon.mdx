@@ -1,0 +1,97 @@
+---
+title: "Polygon"
+description: "Documentation for the `polygon` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `polygon`
+
+A closed polygon.
+
+The polygon is defined by its corner points and is closed automatically.
+
+## Example
+
+```typst
+#polygon(
+  fill: blue.lighten(80%),
+  stroke: blue,
+  (20%, 0pt),
+  (60%, 0pt),
+  (80%, 2cm),
+  (0%,  2cm),
+)
+```
+
+```#polygon(fill:, fill-rule:, stroke:, vertices) -> content```
+
+<TypeTable
+  type={{
+    'fill': {
+      'description': 'How to fill the polygon.  When setting a fill, the default stroke disappears. To create a rectangle with both fill and stroke, you have to configure both.',
+      'type': 'none | color | gradient | tiling',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'fill-rule': {
+      'description': 'The drawing rule used to fill the polygon.  See the [curve documentation](/docs/reference/visualize/curve/#parameters-fill-rule) for an example.',
+      'type': 'str',
+      'default': '<code><span class="typ-str">&quot;non-zero&quot;</span></code>'
+    },
+    'stroke': {
+      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the polygon.  Can be set to  `none{:typst}` to disable the stroke or to `auto{:typst}` for a stroke of `1pt{:typst}` black if and only if no fill is given.',
+      'type': 'none | auto | length | color | gradient | stroke | tiling | dictionary',
+      'default': '<code><span class="typ-key">auto</span></code>'
+    },
+    'vertices': {
+      'description': 'The vertices of the polygon. Each point is specified as an array of two [relative lengths](/docs/reference/layout/relative/).',
+      'type': 'array',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### Definitions
+
+### `regular`
+
+A regular polygon, defined by its size and number of vertices.
+
+```typst
+#polygon.regular(
+  fill: blue.lighten(80%),
+  stroke: blue,
+  size: 30pt,
+  vertices: 3,
+)
+```
+
+```#polygon.regular(fill:, stroke:, size:, vertices:) -> content```
+
+<TypeTable
+  type={{
+    'fill': {
+      'description': 'How to fill the polygon. See the general [polygon\'s documentation](/docs/reference/visualize/polygon/#parameters-fill) for more details.',
+      'type': 'none | color | gradient | tiling',
+      'default': 'None'
+    },
+    'stroke': {
+      'description': 'How to stroke the polygon. See the general [polygon\'s documentation](/docs/reference/visualize/polygon/#parameters-stroke) for more details.',
+      'type': 'none | auto | length | color | gradient | stroke | tiling | dictionary',
+      'default': 'None'
+    },
+    'size': {
+      'description': 'The diameter of the [circumcircle](https://en.wikipedia.org/wiki/Circumcircle) of the regular polygon.',
+      'type': 'length',
+      'default': '<code><span class="typ-num">1em</span></code>'
+    },
+    'vertices': {
+      'description': 'The number of vertices in the polygon.',
+      'type': 'int',
+      'default': '<code><span class="typ-num">3</span></code>'
+    }
+  }}
+/>
+
+

@@ -1,0 +1,51 @@
+---
+title: "Stack"
+description: "Documentation for the `stack` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `stack`
+
+Arranges content and spacing horizontally or vertically.
+
+The stack places a list of items along an axis, with optional spacing between each item.
+
+## Example
+
+```typst
+#stack(
+  dir: ttb,
+  rect(width: 40pt),
+  rect(width: 120pt),
+  rect(width: 90pt),
+)
+```
+
+## Accessibility
+
+Stacks do not carry any special semantics. The contents of the stack are read by Assistive Technology (AT) in the order in which they have been passed to this function.
+
+```#stack(dir:, spacing:, children) -> content```
+
+<TypeTable
+  type={{
+    'dir': {
+      'description': 'The direction along which the items are stacked. Possible values are:  - `ltr{:typst}`: Left to right. - `rtl{:typst}`: Right to left. - `ttb{:typst}`: Top to bottom. - `btt{:typst}`: Bottom to top.  You can use the `start{:typst}` and `end{:typst}` methods to obtain the initial and final points (respectively) of a direction, as `alignment{:typst}`. You can also use the `axis{:typst}` method to determine whether a direction is `"horizontal"{:typst}` or `"vertical"{:typst}`. The `inv{:typst}` method returns a direction\'s inverse direction.  For example, `ttb.start(){:typst}` is `top{:typst}`, `ttb.end(){:typst}` is `bottom{:typst}`, `ttb.axis(){:typst}` is `"vertical"{:typst}` and `ttb.inv(){:typst}` is equal to `btt{:typst}`.',
+      'type': 'direction',
+      'default': '<code>ttb</code>'
+    },
+    'spacing': {
+      'description': 'Spacing to insert between items where no explicit spacing was provided.',
+      'type': 'none | relative | fraction',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'children': {
+      'description': 'The children to stack along the axis.',
+      'type': 'relative | fraction | content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

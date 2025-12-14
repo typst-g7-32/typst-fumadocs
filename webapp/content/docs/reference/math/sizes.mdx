@@ -1,0 +1,124 @@
+---
+title: "Sizes"
+description: "Documentation for the sizes functions."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+Forced size styles for expressions within formulas.
+
+These functions allow manual configuration of the size of equation elements to make them look as in a display/inline equation or as if used in a root or sub/superscripts.
+
+
+## `display`
+
+Forced display style in math.
+
+This is the normal size for block equations.
+
+```typst
+$sum_i x_i/2 = display(sum_i x_i/2)$
+```
+
+```#math.display(body, cramped:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to size.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'cramped': {
+      'description': 'Whether to impose a height restriction for exponents, like regular sub- and superscripts do.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    }
+  }}
+/>
+
+
+## `inline`
+
+Forced inline (text) style in math.
+
+This is the normal size for inline equations.
+
+```typst
+$ sum_i x_i/2
+    = inline(sum_i x_i/2) $
+```
+
+```#math.inline(body, cramped:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to size.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'cramped': {
+      'description': 'Whether to impose a height restriction for exponents, like regular sub- and superscripts do.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    }
+  }}
+/>
+
+
+## `script`
+
+Forced script style in math.
+
+This is the smaller size used in powers or sub- or superscripts.
+
+```typst
+$sum_i x_i/2 = script(sum_i x_i/2)$
+```
+
+```#math.script(body, cramped:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to size.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'cramped': {
+      'description': 'Whether to impose a height restriction for exponents, like regular sub- and superscripts do.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+
+## `sscript`
+
+Forced second script style in math.
+
+This is the smallest size, used in second-level sub- and superscripts (script of the script).
+
+```typst
+$sum_i x_i/2 = sscript(sum_i x_i/2)$
+```
+
+```#math.sscript(body, cramped:) -> content```
+
+<TypeTable
+  type={{
+    'body': {
+      'description': 'The content to size.',
+      'type': 'content',
+      'default': 'None'
+    },
+    'cramped': {
+      'description': 'Whether to impose a height restriction for exponents, like regular sub- and superscripts do.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+

@@ -1,0 +1,34 @@
+---
+title: "Panic"
+description: "Documentation for the `panic` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `panic`
+
+Fails with an error.
+
+Arguments are displayed to the user (not rendered in the document) as strings, converting with `repr{:typst}` if necessary.
+
+## Example
+
+The code below produces the error `panicked with: "this is wrong"{:typst}`.
+
+```typst
+#panic("this is wrong")
+```
+
+```#panic(values) -> ```
+
+<TypeTable
+  type={{
+    'values': {
+      'description': 'The values to panic with and display to the user.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+

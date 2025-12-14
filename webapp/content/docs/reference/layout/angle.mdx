@@ -1,0 +1,33 @@
+---
+title: "Angle"
+description: "Documentation for the Angle type."
+---
+
+An angle describing a rotation.
+
+Typst supports the following angular units:
+
+- Degrees: `180deg{:typst}`
+- Radians: `3.14rad{:typst}`
+
+## Example
+
+```typst
+#rotate(10deg)[Hello there!]
+```
+
+
+## Methods
+
+### `rad`
+
+Converts this angle to radians.
+
+```#angle.rad() -> float```
+
+### `deg`
+
+Converts this angle to degrees.
+
+```#angle.deg() -> float```
+

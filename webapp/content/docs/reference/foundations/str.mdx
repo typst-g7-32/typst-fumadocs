@@ -1,0 +1,476 @@
+---
+title: "String"
+description: "Documentation for the String type."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+A sequence of Unicode codepoints.
+
+You can iterate over the grapheme clusters of the string using a [for loop](/docs/reference/scripting/#loops). Grapheme clusters are basically characters but keep together things that belong together, e.g. multiple codepoints that together form a flag emoji. Strings can be added with the `+{:typst}` operator, [joined together](/docs/reference/scripting/#blocks) and multiplied with integers.
+
+Typst provides utility methods for string manipulation. Many of these methods (e.g., [`split{:typst}`](/docs/reference/foundations/str/#definitions-split), [`trim{:typst}`](/docs/reference/foundations/str/#definitions-trim) and [`replace{:typst}`](/docs/reference/foundations/str/#definitions-replace)) operate on _patterns:_ A pattern can be either a string or a [regular expression](/docs/reference/foundations/regex/). This makes the methods quite versatile.
+
+All lengths and indices are expressed in terms of UTF-8 bytes. Indices are zero-based and negative indices wrap around to the end of the string.
+
+You can convert a value to a string with the `str{:typst}` constructor.
+
+## Example
+
+```typst
+#"hello world!" \
+#"\"hello\n  world\"!" \
+#"1 2 3".split() \
+#"1,2;3".split(regex("[,;]")) \
+#(regex("\\d+") in "ten euros") \
+#(regex("\\d+") in "10 euros")
+```
+
+## Escape sequences
+
+Just like in markup, you can escape a few symbols in strings:
+
+- `\\{:typst}` for a backslash
+- `\"{:typst}` for a quote
+- `\n{:typst}` for a newline
+- `\r{:typst}` for a carriage return
+- `\t{:typst}` for a tab
+- `\u{1f600}{:typst}` for a hexadecimal Unicode escape sequence
+
+## Constructor
+
+### `str`
+
+Converts a value to a string.
+
+- Integers are formatted in base 10. This can be overridden with the optional `base{:typst}` parameter.
+- Floats are formatted in base 10 and never in exponential notation.
+- Negative integers and floats are formatted with the Unicode minus sign ("−" U+2212) instead of the ASCII minus sign ("-" U+002D).
+- From labels the name is extracted.
+- Bytes are decoded as UTF-8.
+
+If you wish to convert from and to Unicode code points, see the [`to-unicode{:typst}`](/docs/reference/foundations/str/#definitions-to-unicode) and [`from-unicode{:typst}`](/docs/reference/foundations/str/#definitions-from-unicode) functions.
+
+```typst
+#str(10) \
+#str(4000, base: 16) \
+#str(2.7) \
+#str(1e8) \
+#str(<intro>)
+```
+
+```#str(value, base:) -> str```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'The value that should be converted to a string.',
+      'type': 'int | float | str | bytes | label | decimal | version | type',
+      'default': 'None'
+    },
+    'base': {
+      'description': 'The base (radix) to display integers in, between 2 and 36.',
+      'type': 'int',
+      'default': '<code><span class="typ-num">10</span></code>'
+    }
+  }}
+/>
+
+
+## Methods
+
+### `len`
+
+The length of the string in UTF-8 encoded bytes.
+
+```#str.len() -> int```
+
+### `first`
+
+Extracts the first grapheme cluster of the string.
+
+Returns the provided default value if the string is empty or fails with an error if no default value was specified.
+
+```#str.first(default:) -> str```
+
+<TypeTable
+  type={{
+    'default': {
+      'description': 'A default value to return if the string is empty.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `last`
+
+Extracts the last grapheme cluster of the string.
+
+Returns the provided default value if the string is empty or fails with an error if no default value was specified.
+
+```#str.last(default:) -> str```
+
+<TypeTable
+  type={{
+    'default': {
+      'description': 'A default value to return if the string is empty.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `at`
+
+Extracts the first grapheme cluster after the specified index. Returns the default value if the index is out of bounds or fails with an error if no default value was specified.
+
+```#str.at(index, default:) -> any```
+
+<TypeTable
+  type={{
+    'index': {
+      'description': 'The byte index. If negative, indexes from the back.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'default': {
+      'description': 'A default value to return if the index is out of bounds.',
+      'type': 'any',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `slice`
+
+Extracts a substring of the string. Fails with an error if the start or end index is out of bounds.
+
+```#str.slice(start, end, count:) -> str```
+
+<TypeTable
+  type={{
+    'start': {
+      'description': 'The start byte index (inclusive). If negative, indexes from the back.',
+      'type': 'int',
+      'default': 'None'
+    },
+    'end': {
+      'description': 'The end byte index (exclusive). If omitted, the whole slice until the end of the string is extracted. If negative, indexes from the back.',
+      'type': 'none | int',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'count': {
+      'description': 'The number of bytes to extract. This is equivalent to passing `start + count{:typst}` as the `end{:typst}` position. Mutually exclusive with `end{:typst}`.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `clusters`
+
+Returns the grapheme clusters of the string as an array of substrings.
+
+```#str.clusters() -> array```
+
+### `codepoints`
+
+Returns the Unicode codepoints of the string as an array of substrings.
+
+```#str.codepoints() -> array```
+
+### `to-unicode`
+
+Converts a character into its corresponding code point.
+
+```typst
+#"a".to-unicode() \
+#("a\u{0300}"
+   .codepoints()
+   .map(str.to-unicode))
+```
+
+```#str.to-unicode(character) -> int```
+
+<TypeTable
+  type={{
+    'character': {
+      'description': 'The character that should be converted.',
+      'type': 'str',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `from-unicode`
+
+Converts a unicode code point into its corresponding string.
+
+```typst
+#str.from-unicode(97)
+```
+
+```#str.from-unicode(value) -> str```
+
+<TypeTable
+  type={{
+    'value': {
+      'description': 'The code point that should be converted.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `normalize`
+
+Normalizes the string to the given Unicode normal form.
+
+This is useful when manipulating strings containing Unicode combining characters.
+
+```typst
+#assert.eq("é".normalize(form: "nfd"), "e\u{0301}")
+#assert.eq("ſ́".normalize(form: "nfkc"), "ś")
+```
+
+```#str.normalize(form:) -> str```
+
+<TypeTable
+  type={{
+    'form': {
+      'description': '',
+      'type': 'str',
+      'default': '<code><span class="typ-str">&quot;nfc&quot;</span></code>'
+    }
+  }}
+/>
+
+
+### `contains`
+
+Whether the string contains the specified pattern.
+
+This method also has dedicated syntax: You can write `"bc" in "abcd"{:typst}` instead of `"abcd".contains("bc"){:typst}`.
+
+```#str.contains(pattern) -> bool```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `starts-with`
+
+Whether the string starts with the specified pattern.
+
+```#str.starts-with(pattern) -> bool```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern the string might start with.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `ends-with`
+
+Whether the string ends with the specified pattern.
+
+```#str.ends-with(pattern) -> bool```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern the string might end with.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `find`
+
+Searches for the specified pattern in the string and returns the first match as a string or `none{:typst}` if there is no match.
+
+```#str.find(pattern) -> none str```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `position`
+
+Searches for the specified pattern in the string and returns the index of the first match as an integer or `none{:typst}` if there is no match.
+
+```#str.position(pattern) -> none int```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `match`
+
+Searches for the specified pattern in the string and returns a dictionary with details about the first match or `none{:typst}` if there is no match.
+
+The returned dictionary has the following keys:
+
+- `start{:typst}`: The start offset of the match
+- `end{:typst}`: The end offset of the match
+- `text{:typst}`: The text that matched.
+- `captures{:typst}`: An array containing a string for each matched capturing group. The first item of the array contains the first matched capturing, not the whole match! This is empty unless the `pattern{:typst}` was a regex with capturing groups.
+
+```typst
+#let pat = regex("not (a|an) (apple|cat)")
+#"I'm a doctor, not an apple.".match(pat) \
+#"I am not a cat!".match(pat)
+```
+
+```typst
+#assert.eq("Is there a".match("for this?"), none)
+#"The time of my life.".match(regex("[mit]+e"))
+```
+
+```#str.match(pattern) -> none dictionary```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `matches`
+
+Searches for the specified pattern in the string and returns an array of dictionaries with details about all matches. For details about the returned dictionaries, see [above](/docs/reference/foundations/str/#definitions-match).
+
+```typst
+#"Day by Day.".matches("Day")
+```
+
+```#str.matches(pattern) -> array```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `replace`
+
+Replace at most `count{:typst}` occurrences of the given pattern with a replacement string or function (beginning from the start). If no count is given, all occurrences are replaced.
+
+```#str.replace(pattern, replacement, count:) -> str```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for.',
+      'type': 'str | regex',
+      'default': 'None'
+    },
+    'replacement': {
+      'description': 'The string to replace the matches with or a function that gets a dictionary for each match and can return individual replacement strings.  The dictionary passed to the function has the same shape as the dictionary returned by [`match{:typst}`](/docs/reference/foundations/str/#definitions-match).',
+      'type': 'str | function',
+      'default': 'None'
+    },
+    'count': {
+      'description': 'If given, only the first `count{:typst}` matches of the pattern are placed.',
+      'type': 'int',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `trim`
+
+Removes matches of a pattern from one or both sides of the string, once or repeatedly and returns the resulting string.
+
+```#str.trim(pattern, at:, repeat:) -> str```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to search for. If `none{:typst}`, trims white spaces.',
+      'type': 'none | str | regex',
+      'default': '<code><span class="typ-key">none</span></code>'
+    },
+    'at': {
+      'description': 'Can be `start{:typst}` or `end{:typst}` to only trim the start or end of the string. If omitted, both sides are trimmed.',
+      'type': 'alignment',
+      'default': 'None'
+    },
+    'repeat': {
+      'description': 'Whether to repeatedly removes matches of the pattern or just once. Defaults to `true{:typst}`.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+
+### `split`
+
+Splits a string at matches of a specified pattern and returns an array of the resulting parts.
+
+When the empty string is used as a separator, it separates every character (i.e., Unicode code point) in the string, along with the beginning and end of the string. In practice, this means that the resulting list of parts will contain the empty string at the start and end of the list.
+
+```#str.split(pattern) -> array```
+
+<TypeTable
+  type={{
+    'pattern': {
+      'description': 'The pattern to split at. Defaults to whitespace.',
+      'type': 'none | str | regex',
+      'default': '<code><span class="typ-key">none</span></code>'
+    }
+  }}
+/>
+
+
+### `rev`
+
+Reverse the string.
+
+```#str.rev() -> str```
+

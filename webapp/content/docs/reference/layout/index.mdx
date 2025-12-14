@@ -1,0 +1,163 @@
+---
+title: "Layout"
+description: "Documentation for functions related to Layout in Typst."
+---
+
+Arranging elements on the page in different ways.
+
+By combining layout functions, you can create complex and automatic layouts.
+
+## Definitions
+
+<table>
+  <thead>
+    <tr>
+      <th width="20px"></th>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/align/">align</a></code></td>
+      <td>Aligns content horizontally and vertically.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/alignment/">alignment</a></code></td>
+      <td>Where to align something along an axis.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/angle/">angle</a></code></td>
+      <td>An angle describing a rotation.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/block/">block</a></code></td>
+      <td>A block-level container.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/box/">box</a></code></td>
+      <td>An inline-level container that sizes content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/colbreak/">colbreak</a></code></td>
+      <td>Forces a column break.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/columns/">columns</a></code></td>
+      <td>Separates a region into multiple equally sized columns.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/direction/">direction</a></code></td>
+      <td>The four directions into which content can be laid out.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/fraction/">fraction</a></code></td>
+      <td>Defines how the remaining space in a layout is distributed.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/grid/">grid</a></code></td>
+      <td>Arranges content in a grid.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/h/">h</a></code></td>
+      <td>Inserts horizontal spacing into a paragraph.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/hide/">hide</a></code></td>
+      <td>Hides content without affecting layout.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/layout/">layout</a></code></td>
+      <td>Provides access to the current outer container's (or page's, if none) dimensions (width and height).</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/length/">length</a></code></td>
+      <td>A size or distance, possibly expressed with contextual units.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/measure/">measure</a></code></td>
+      <td>Measures the layouted size of content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/move/">move</a></code></td>
+      <td>Moves content without affecting layout.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/pad/">pad</a></code></td>
+      <td>Adds spacing around content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/page/">page</a></code></td>
+      <td>Layouts its child onto one or multiple pages.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/pagebreak/">pagebreak</a></code></td>
+      <td>A manual page break.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/place/">place</a></code></td>
+      <td>Places content relatively to its parent container.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/ratio/">ratio</a></code></td>
+      <td>A ratio of a whole.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/relative/">relative</a></code></td>
+      <td>A length in relation to some known length.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/repeat/">repeat</a></code></td>
+      <td>Repeats content to the available space.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/rotate/">rotate</a></code></td>
+      <td>Rotates content without affecting layout.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/scale/">scale</a></code></td>
+      <td>Scales content without affecting layout.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/skew/">skew</a></code></td>
+      <td>Skews content.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/stack/">stack</a></code></td>
+      <td>Arranges content and spacing horizontally or vertically.</td>
+    </tr>
+    <tr>
+      <td width="20px" align="center">—</td>
+      <td><code><a href="/reference/layout/v/">v</a></code></td>
+      <td>Inserts vertical spacing into a flow of blocks.</td>
+    </tr>
+  </tbody>
+</table>
+

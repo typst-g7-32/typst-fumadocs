@@ -1,0 +1,71 @@
+---
+title: "Bibliography"
+description: "Documentation for the `bibliography` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `bibliography`
+
+A bibliography / reference listing.
+
+You can create a new bibliography by calling this function with a path to a bibliography file in either one of two formats:
+
+- A Hayagriva `.yaml{:typst}`/`.yml{:typst}` file. Hayagriva is a new bibliography file format designed for use with Typst. Visit its [documentation](https://github.com/typst/hayagriva/blob/main/docs/file-format.md) for more details.
+- A BibLaTeX `.bib{:typst}` file.
+
+As soon as you add a bibliography somewhere in your document, you can start citing things with reference syntax (`@key{:typst}`) or explicit calls to the [citation](/docs/reference/model/cite/) function (`#cite(<key>){:typst}`). The bibliography will only show entries for works that were referenced in the document.
+
+## Styles
+
+Typst offers a wide selection of built-in [citation and bibliography styles](/docs/reference/model/bibliography/#parameters-style). Beyond those, you can add and use custom [CSL](https://citationstyles.org/) (Citation Style Language) files. Wondering which style to use? Here are some good defaults based on what discipline you're working in:
+
+| Fields | Typical Styles |
+| --- | --- |
+| Engineering, IT | `"ieee"{:typst}` |
+| Psychology, Life Sciences | `"apa"{:typst}` |
+| Social sciences | `"chicago-author-date"{:typst}` |
+| Humanities | `"mla"{:typst}`, `"chicago-notes"{:typst}`, `"harvard-cite-them-right"{:typst}` |
+| Economics | `"harvard-cite-them-right"{:typst}` |
+| Physics | `"american-physics-society"{:typst}` |
+
+## Example
+
+```typst
+This was already noted by
+pirates long ago. @arrgh
+
+Multiple sources say ...
+@arrgh @netwok.
+
+#bibliography("works.bib")
+```
+
+```#bibliography(sources, title:, full:, style:) -> content```
+
+<TypeTable
+  type={{
+    'sources': {
+      'description': 'One or multiple paths to or raw bytes for Hayagriva `.yaml{:typst}` and/or BibLaTeX `.bib{:typst}` files.  This can be a:  - A path string to load a bibliography file from the given path. For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which the bibliography should be decoded. - An array where each item is one of the above.',
+      'type': 'str | bytes | array',
+      'default': 'None'
+    },
+    'title': {
+      'description': 'The title of the bibliography.  - When set to `auto{:typst}`, an appropriate title for the [text language](/docs/reference/text/text/#parameters-lang) will be used. This is the default. - When set to `none{:typst}`, the bibliography will not have a title. - A custom title can be set by passing content.  The bibliography\'s heading will not be numbered by default, but you can force it to be with a show-set rule: `show bibliography: set heading(numbering: "1."){:typst}`',
+      'type': 'none | auto | content',
+      'default': '<code><span class="typ-key">auto</span></code>'
+    },
+    'full': {
+      'description': 'Whether to include all works from the given bibliography files, even those that weren\'t cited in the document.  To selectively add individual cited works without showing them, you can also use the `cite{:typst}` function with [`form{:typst}`](/docs/reference/model/cite/#parameters-form) set to `none{:typst}`.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'style': {
+      'description': 'The bibliography style.  This can be:  - A string with the name of one of the built-in styles (see below). Some of the styles listed below appear twice, once with their full name and once with a short alias. - A path string to a [CSL file](https://citationstyles.org/). For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which a CSL style should be decoded.',
+      'type': 'str | bytes',
+      'default': '<code><span class="typ-str">&quot;ieee&quot;</span></code>'
+    }
+  }}
+/>
+
+

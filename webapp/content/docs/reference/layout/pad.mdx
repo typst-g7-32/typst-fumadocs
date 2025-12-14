@@ -1,0 +1,71 @@
+---
+title: "Padding"
+description: "Documentation for the `pad` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `pad`
+
+Adds spacing around content.
+
+The spacing can be specified for each side individually, or for all sides at once by specifying a positional argument.
+
+## Example
+
+```typst
+#set align(center)
+
+#pad(x: 16pt, image("typing.jpg"))
+_Typing speeds can be
+ measured in words per minute._
+```
+
+```#pad(left:, top:, right:, bottom:, x:, y:, rest:, body) -> content```
+
+<TypeTable
+  type={{
+    'left': {
+      'description': 'The padding at the left side.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'top': {
+      'description': 'The padding at the top side.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'right': {
+      'description': 'The padding at the right side.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'bottom': {
+      'description': 'The padding at the bottom side.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'x': {
+      'description': 'A shorthand to set `left{:typst}` and `right{:typst}` to the same value.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'y': {
+      'description': 'A shorthand to set `top{:typst}` and `bottom{:typst}` to the same value.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'rest': {
+      'description': 'A shorthand to set all four sides to the same value.',
+      'type': 'relative',
+      'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
+    },
+    'body': {
+      'description': 'The content to pad at the sides.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

@@ -1,0 +1,59 @@
+---
+title: "Scale"
+description: "Documentation for the `scale` function."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+
+## `scale`
+
+Scales content without affecting layout.
+
+Lets you mirror content by specifying a negative scale on a single axis.
+
+## Example
+
+```typst
+#set align(center)
+#scale(x: -100%)[This is mirrored.]
+#scale(x: -100%, reflow: true)[This is mirrored.]
+```
+
+```#scale(factor:, x:, y:, origin:, reflow:, body) -> content```
+
+<TypeTable
+  type={{
+    'factor': {
+      'description': 'The scaling factor for both axes, as a positional argument. This is just an optional shorthand notation for setting `x{:typst}` and `y{:typst}` to the same value.',
+      'type': 'auto | length | ratio',
+      'default': '<code><span class="typ-num">100%</span></code>'
+    },
+    'x': {
+      'description': 'The horizontal scaling factor.  The body will be mirrored horizontally if the parameter is negative.',
+      'type': 'auto | length | ratio',
+      'default': '<code><span class="typ-num">100%</span></code>'
+    },
+    'y': {
+      'description': 'The vertical scaling factor.  The body will be mirrored vertically if the parameter is negative.',
+      'type': 'auto | length | ratio',
+      'default': '<code><span class="typ-num">100%</span></code>'
+    },
+    'origin': {
+      'description': 'The origin of the transformation.  ```typst A#box(scale(75%)[A])A \\ B#box(scale(75%, origin: bottom + left)[B])B ```',
+      'type': 'alignment',
+      'default': '<code>center <span class="typ-op">+</span> horizon</code>'
+    },
+    'reflow': {
+      'description': 'Whether the scaling impacts the layout.  If set to `false{:typst}`, the scaled content will be allowed to overlap other content. If set to `true{:typst}`, it will compute the new size of the scaled content and adjust the layout accordingly.  ```typst Hello #scale(x: 20%, y: 40%, reflow: true)[World]! ```',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">false</span></code>'
+    },
+    'body': {
+      'description': 'The content to scale.',
+      'type': 'content',
+      'default': 'None'
+    }
+  }}
+/>
+
+

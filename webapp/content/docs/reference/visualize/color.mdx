@@ -1,0 +1,782 @@
+---
+title: "Color"
+description: "Documentation for the Color type."
+---
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+A color in a specific color space.
+
+Typst supports:
+
+- sRGB through the [`rgb{:typst}` function](/docs/reference/visualize/color/#definitions-rgb)
+- Device CMYK through the [`cmyk{:typst}` function](/docs/reference/visualize/color/#definitions-cmyk)
+- D65 Gray through the [`luma{:typst}` function](/docs/reference/visualize/color/#definitions-luma)
+- Oklab through the [`oklab{:typst}` function](/docs/reference/visualize/color/#definitions-oklab)
+- Oklch through the [`oklch{:typst}` function](/docs/reference/visualize/color/#definitions-oklch)
+- Linear RGB through the [`color.linear-rgb{:typst}` function](/docs/reference/visualize/color/#definitions-linear-rgb)
+- HSL through the [`color.hsl{:typst}` function](/docs/reference/visualize/color/#definitions-hsl)
+- HSV through the [`color.hsv{:typst}` function](/docs/reference/visualize/color/#definitions-hsv)
+
+## Example
+
+```typst
+#rect(fill: aqua)
+```
+
+## Predefined colors
+
+Typst defines the following built-in colors:
+
+| Color | Definition |
+| --- | --- |
+| `black{:typst}` | `luma(0){:typst}` |
+| `gray{:typst}` | `luma(170){:typst}` |
+| `silver{:typst}` | `luma(221){:typst}` |
+| `white{:typst}` | `luma(255){:typst}` |
+| `navy{:typst}` | `rgb("#001f3f"){:typst}` |
+| `blue{:typst}` | `rgb("#0074d9"){:typst}` |
+| `aqua{:typst}` | `rgb("#7fdbff"){:typst}` |
+| `teal{:typst}` | `rgb("#39cccc"){:typst}` |
+| `eastern{:typst}` | `rgb("#239dad"){:typst}` |
+| `purple{:typst}` | `rgb("#b10dc9"){:typst}` |
+| `fuchsia{:typst}` | `rgb("#f012be"){:typst}` |
+| `maroon{:typst}` | `rgb("#85144b"){:typst}` |
+| `red{:typst}` | `rgb("#ff4136"){:typst}` |
+| `orange{:typst}` | `rgb("#ff851b"){:typst}` |
+| `yellow{:typst}` | `rgb("#ffdc00"){:typst}` |
+| `olive{:typst}` | `rgb("#3d9970"){:typst}` |
+| `green{:typst}` | `rgb("#2ecc40"){:typst}` |
+| `lime{:typst}` | `rgb("#01ff70"){:typst}` |
+
+The predefined colors and the most important color constructors are available globally and also in the color type's scope, so you can write either `color.red{:typst}` or just `red{:typst}`.
+
+<div className="preview">
+<img src="/assets/216bd4010ab6d547b5ceef60c23721fa.png" alt="Preview" />
+</div>
+
+## Predefined color maps
+
+Typst also includes a number of preset color maps that can be used for [gradients](/docs/reference/visualize/gradient/#stops). These are simply arrays of colors defined in the module `color.map{:typst}`.
+
+```typst
+#circle(fill: gradient.linear(..color.map.crest))
+```
+
+| Map | Details |
+| --- | --- |
+| `turbo{:typst}` | A perceptually uniform rainbow-like color map. Read [this blog post](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html) for more details. |
+| `cividis{:typst}` | A blue to gray to yellow color map. See [this blog post](https://bids.github.io/colormap/) for more details. |
+| `rainbow{:typst}` | Cycles through the full color spectrum. This color map is best used by setting the interpolation color space to [HSL](/docs/reference/visualize/color/#definitions-hsl). The rainbow gradient is **not suitable** for data visualization because it is not perceptually uniform, so the differences between values become unclear to your readers. It should only be used for decorative purposes. |
+| `spectral{:typst}` | Red to yellow to blue color map. |
+| `viridis{:typst}` | A purple to teal to yellow color map. |
+| `inferno{:typst}` | A black to red to yellow color map. |
+| `magma{:typst}` | A black to purple to yellow color map. |
+| `plasma{:typst}` | A purple to pink to yellow color map. |
+| `rocket{:typst}` | A black to red to white color map. |
+| `mako{:typst}` | A black to teal to white color map. |
+| `coolwarm{:typst}` | A blue to white to red color map with smooth transitions. |
+| `vlag{:typst}` | A light blue to white to red color map. |
+| `icefire{:typst}` | A light teal to black to orange color map. |
+| `flare{:typst}` | A orange to purple color map that is perceptually uniform. |
+| `crest{:typst}` | A light green to blue color map. |
+
+Some popular presets are not included because they are not available under a free licence. Others, like [Jet](https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/), are not included because they are not color blind friendly. Feel free to use or create a package with other presets that are useful to you!
+
+<div className="preview">
+<img src="/assets/6fc8a047369f6c137523f46ea9d59bd3.png" alt="Preview" />
+</div>
+
+
+## Methods
+
+### `luma`
+
+Create a grayscale color.
+
+A grayscale color is represented internally by a single `lightness{:typst}` component.
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#for x in range(250, step: 50) {
+  box(square(fill: luma(x)))
+}
+```
+
+```#color.luma(lightness, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'lightness': {
+      'description': 'The lightness component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to grayscale.  If this is given, the `lightness{:typst}` should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `oklab`
+
+Create an [Oklab](https://bottosson.github.io/posts/oklab/) color.
+
+This color space is well suited for the following use cases:
+
+- Color manipulation such as saturating while keeping perceived hue
+- Creating grayscale images with uniform perceived lightness
+- Creating smooth and uniform color transition and gradients
+
+A linear Oklab color is represented internally by an array of four components:
+
+- lightness ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- a ([`float{:typst}`](/docs/reference/foundations/float/) or [`ratio{:typst}`](/docs/reference/layout/ratio/). Ratios are relative to `0.4{:typst}`; meaning `50%{:typst}` is equal to `0.2{:typst}`)
+- b ([`float{:typst}`](/docs/reference/foundations/float/) or [`ratio{:typst}`](/docs/reference/layout/ratio/). Ratios are relative to `0.4{:typst}`; meaning `50%{:typst}` is equal to `0.2{:typst}`)
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(
+  fill: oklab(27%, 20%, -3%, 50%)
+)
+```
+
+```#color.oklab(lightness, a, b, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'lightness': {
+      'description': 'The lightness component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'a': {
+      'description': 'The a ("green/red") component.',
+      'type': 'float | ratio',
+      'default': 'None'
+    },
+    'b': {
+      'description': 'The b ("blue/yellow") component.',
+      'type': 'float | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to Oklab.  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `oklch`
+
+Create an [Oklch](https://bottosson.github.io/posts/oklab/) color.
+
+This color space is well suited for the following use cases:
+
+- Color manipulation involving lightness, chroma, and hue
+- Creating grayscale images with uniform perceived lightness
+- Creating smooth and uniform color transition and gradients
+
+A linear Oklch color is represented internally by an array of four components:
+
+- lightness ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- chroma ([`float{:typst}`](/docs/reference/foundations/float/) or [`ratio{:typst}`](/docs/reference/layout/ratio/). Ratios are relative to `0.4{:typst}`; meaning `50%{:typst}` is equal to `0.2{:typst}`)
+- hue ([`angle{:typst}`](/docs/reference/layout/angle/))
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(
+  fill: oklch(40%, 0.2, 160deg, 50%)
+)
+```
+
+```#color.oklch(lightness, chroma, hue, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'lightness': {
+      'description': 'The lightness component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'chroma': {
+      'description': 'The chroma component.',
+      'type': 'float | ratio',
+      'default': 'None'
+    },
+    'hue': {
+      'description': 'The hue component.',
+      'type': 'angle',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to Oklch.  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `linear-rgb`
+
+Create an RGB(A) color with linear luma.
+
+This color space is similar to sRGB, but with the distinction that the color component are not gamma corrected. This makes it easier to perform color operations such as blending and interpolation. Although, you should prefer to use the [`oklab{:typst}` function](/docs/reference/visualize/color/#definitions-oklab) for these.
+
+A linear RGB(A) color is represented internally by an array of four components:
+
+- red ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- green ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- blue ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(fill: color.linear-rgb(
+  30%, 50%, 10%,
+))
+```
+
+```#color.linear-rgb(red, green, blue, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'red': {
+      'description': 'The red component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'green': {
+      'description': 'The green component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'blue': {
+      'description': 'The blue component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to linear RGB(A).  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `rgb`
+
+Create an RGB(A) color.
+
+The color is specified in the sRGB color space.
+
+An RGB(A) color is represented internally by an array of four components:
+
+- red ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- green ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- blue ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(fill: rgb("#b1f2eb"))
+#square(fill: rgb(87, 127, 230))
+#square(fill: rgb(25%, 13%, 65%))
+```
+
+```#color.rgb(red, green, blue, alpha, hex, color) -> color```
+
+<TypeTable
+  type={{
+    'red': {
+      'description': 'The red component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'green': {
+      'description': 'The green component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'blue': {
+      'description': 'The blue component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'hex': {
+      'description': 'Alternatively: The color in hexadecimal notation.  Accepts three, four, six or eight hexadecimal digits and optionally a leading hash.  If this is given, the individual components should not be given.  ```typst #text(16pt, rgb("#239dad"))[   *Typst* ] ```',
+      'type': 'str',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to RGB(a).  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `cmyk`
+
+Create a CMYK color.
+
+This is useful if you want to target a specific printer. The conversion to RGB for display preview might differ from how your printer reproduces the color.
+
+A CMYK color is represented internally by an array of four components:
+
+- cyan ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- magenta ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- yellow ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- key ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+Note that CMYK colors are not currently supported when PDF/A output is enabled.
+
+```typst
+#square(
+  fill: cmyk(27%, 0%, 3%, 5%)
+)
+```
+
+```#color.cmyk(cyan, magenta, yellow, key, color) -> color```
+
+<TypeTable
+  type={{
+    'cyan': {
+      'description': 'The cyan component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'magenta': {
+      'description': 'The magenta component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'yellow': {
+      'description': 'The yellow component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'key': {
+      'description': 'The key component.',
+      'type': 'ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to CMYK.  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `hsl`
+
+Create an HSL color.
+
+This color space is useful for specifying colors by hue, saturation and lightness. It is also useful for color manipulation, such as saturating while keeping perceived hue.
+
+An HSL color is represented internally by an array of four components:
+
+- hue ([`angle{:typst}`](/docs/reference/layout/angle/))
+- saturation ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- lightness ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(
+  fill: color.hsl(30deg, 50%, 60%)
+)
+```
+
+```#color.hsl(hue, saturation, lightness, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'hue': {
+      'description': 'The hue angle.',
+      'type': 'angle',
+      'default': 'None'
+    },
+    'saturation': {
+      'description': 'The saturation component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'lightness': {
+      'description': 'The lightness component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to HSL.  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `hsv`
+
+Create an HSV color.
+
+This color space is useful for specifying colors by hue, saturation and value. It is also useful for color manipulation, such as saturating while keeping perceived hue.
+
+An HSV color is represented internally by an array of four components:
+
+- hue ([`angle{:typst}`](/docs/reference/layout/angle/))
+- saturation ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- value ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+- alpha ([`ratio{:typst}`](/docs/reference/layout/ratio/))
+
+These components are also available using the [`components{:typst}`](/docs/reference/visualize/color/#definitions-components) method.
+
+```typst
+#square(
+  fill: color.hsv(30deg, 50%, 60%)
+)
+```
+
+```#color.hsv(hue, saturation, value, alpha, color) -> color```
+
+<TypeTable
+  type={{
+    'hue': {
+      'description': 'The hue angle.',
+      'type': 'angle',
+      'default': 'None'
+    },
+    'saturation': {
+      'description': 'The saturation component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'value': {
+      'description': 'The value component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'alpha': {
+      'description': 'The alpha component.',
+      'type': 'int | ratio',
+      'default': 'None'
+    },
+    'color': {
+      'description': 'Alternatively: The color to convert to HSL.  If this is given, the individual components should not be given.',
+      'type': 'color',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `components`
+
+Extracts the components of this color.
+
+The size and values of this array depends on the color space. You can obtain the color space using [`space{:typst}`](/docs/reference/visualize/color/#definitions-space). Below is a table of the color spaces and their components:
+
+| Color space | C1 | C2 | C3 | C4 |
+| --- | --- | --- | --- | --- |
+| [`luma{:typst}`](/docs/reference/visualize/color/#definitions-luma) | Lightness |  |  |  |
+| [`oklab{:typst}`](/docs/reference/visualize/color/#definitions-oklab) | Lightness | `a{:typst}` | `b{:typst}` | Alpha |
+| [`oklch{:typst}`](/docs/reference/visualize/color/#definitions-oklch) | Lightness | Chroma | Hue | Alpha |
+| [`linear-rgb{:typst}`](/docs/reference/visualize/color/#definitions-linear-rgb) | Red | Green | Blue | Alpha |
+| [`rgb{:typst}`](/docs/reference/visualize/color/#definitions-rgb) | Red | Green | Blue | Alpha |
+| [`cmyk{:typst}`](/docs/reference/visualize/color/#definitions-cmyk) | Cyan | Magenta | Yellow | Key |
+| [`hsl{:typst}`](/docs/reference/visualize/color/#definitions-hsl) | Hue | Saturation | Lightness | Alpha |
+| [`hsv{:typst}`](/docs/reference/visualize/color/#definitions-hsv) | Hue | Saturation | Value | Alpha |
+
+For the meaning and type of each individual value, see the documentation of the corresponding color space. The alpha component is optional and only included if the `alpha{:typst}` argument is `true{:typst}`. The length of the returned array depends on the number of components and whether the alpha component is included.
+
+```typst
+// note that the alpha component is included by default
+#rgb(40%, 60%, 80%).components()
+```
+
+```#color.components(alpha:) -> array```
+
+<TypeTable
+  type={{
+    'alpha': {
+      'description': 'Whether to include the alpha component.',
+      'type': 'bool',
+      'default': '<code><span class="typ-key">true</span></code>'
+    }
+  }}
+/>
+
+
+### `space`
+
+Returns the constructor function for this color's space.
+
+Returns one of:
+
+- [`luma{:typst}`](/docs/reference/visualize/color/#definitions-luma)
+- [`oklab{:typst}`](/docs/reference/visualize/color/#definitions-oklab)
+- [`oklch{:typst}`](/docs/reference/visualize/color/#definitions-oklch)
+- [`linear-rgb{:typst}`](/docs/reference/visualize/color/#definitions-linear-rgb)
+- [`rgb{:typst}`](/docs/reference/visualize/color/#definitions-rgb)
+- [`cmyk{:typst}`](/docs/reference/visualize/color/#definitions-cmyk)
+- [`hsl{:typst}`](/docs/reference/visualize/color/#definitions-hsl)
+- [`hsv{:typst}`](/docs/reference/visualize/color/#definitions-hsv)
+
+```typst
+#let color = cmyk(1%, 2%, 3%, 4%)
+#(color.space() == cmyk)
+```
+
+```#color.space() -> any```
+
+### `to-hex`
+
+Returns the color's RGB(A) hex representation (such as `#ffaa32{:typst}` or `#020304fe{:typst}`). The alpha component (last two digits in `#020304fe{:typst}`) is omitted if it is equal to `ff{:typst}` (255 / 100%).
+
+```#color.to-hex() -> str```
+
+### `lighten`
+
+Lightens a color by a given factor.
+
+```#color.lighten(factor) -> color```
+
+<TypeTable
+  type={{
+    'factor': {
+      'description': 'The factor to lighten the color by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `darken`
+
+Darkens a color by a given factor.
+
+```#color.darken(factor) -> color```
+
+<TypeTable
+  type={{
+    'factor': {
+      'description': 'The factor to darken the color by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `saturate`
+
+Increases the saturation of a color by a given factor.
+
+```#color.saturate(factor) -> color```
+
+<TypeTable
+  type={{
+    'factor': {
+      'description': 'The factor to saturate the color by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `desaturate`
+
+Decreases the saturation of a color by a given factor.
+
+```#color.desaturate(factor) -> color```
+
+<TypeTable
+  type={{
+    'factor': {
+      'description': 'The factor to desaturate the color by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `negate`
+
+Produces the complementary color using a provided color space. You can think of it as the opposite side on a color wheel.
+
+```typst
+#square(fill: yellow)
+#square(fill: yellow.negate())
+#square(fill: yellow.negate(space: rgb))
+```
+
+```#color.negate(space:) -> color```
+
+<TypeTable
+  type={{
+    'space': {
+      'description': 'The color space used for the transformation. By default, a perceptual color space is used.',
+      'type': 'any',
+      'default': '<code>oklab</code>'
+    }
+  }}
+/>
+
+
+### `rotate`
+
+Rotates the hue of the color by a given angle.
+
+```#color.rotate(angle, space:) -> color```
+
+<TypeTable
+  type={{
+    'angle': {
+      'description': 'The angle to rotate the hue by.',
+      'type': 'angle',
+      'default': 'None'
+    },
+    'space': {
+      'description': 'The color space used to rotate. By default, this happens in a perceptual color space ([`oklch{:typst}`](/docs/reference/visualize/color/#definitions-oklch)).',
+      'type': 'any',
+      'default': '<code>oklch</code>'
+    }
+  }}
+/>
+
+
+### `mix`
+
+Create a color by mixing two or more colors.
+
+In color spaces with a hue component (hsl, hsv, oklch), only two colors can be mixed at once. Mixing more than two colors in such a space will result in an error!
+
+```typst
+#set block(height: 20pt, width: 100%)
+#block(fill: red.mix(blue))
+#block(fill: red.mix(blue, space: rgb))
+#block(fill: color.mix(red, blue, white))
+#block(fill: color.mix((red, 70%), (blue, 30%)))
+```
+
+```#color.mix(colors, space:) -> color```
+
+<TypeTable
+  type={{
+    'colors': {
+      'description': 'The colors, optionally with weights, specified as a pair (array of length two) of color and weight (float or ratio).  The weights do not need to add to `100%{:typst}`, they are relative to the sum of all weights.',
+      'type': 'color | array',
+      'default': 'None'
+    },
+    'space': {
+      'description': 'The color space to mix in. By default, this happens in a perceptual color space ([`oklab{:typst}`](/docs/reference/visualize/color/#definitions-oklab)).',
+      'type': 'any',
+      'default': '<code>oklab</code>'
+    }
+  }}
+/>
+
+
+### `transparentize`
+
+Makes a color more transparent by a given factor.
+
+This method is relative to the existing alpha value. If the scale is positive, calculates `alpha - alpha * scale{:typst}`. Negative scales behave like `color.opacify(-scale){:typst}`.
+
+```typst
+#block(fill: red)[opaque]
+#block(fill: red.transparentize(50%))[half red]
+#block(fill: red.transparentize(75%))[quarter red]
+```
+
+```#color.transparentize(scale) -> color```
+
+<TypeTable
+  type={{
+    'scale': {
+      'description': 'The factor to change the alpha value by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
+### `opacify`
+
+Makes a color more opaque by a given scale.
+
+This method is relative to the existing alpha value. If the scale is positive, calculates `alpha + scale - alpha * scale{:typst}`. Negative scales behave like `color.transparentize(-scale){:typst}`.
+
+```typst
+#let half-red = red.transparentize(50%)
+#block(fill: half-red.opacify(100%))[opaque]
+#block(fill: half-red.opacify(50%))[three quarters red]
+#block(fill: half-red.opacify(-50%))[one quarter red]
+```
+
+```#color.opacify(scale) -> color```
+
+<TypeTable
+  type={{
+    'scale': {
+      'description': 'The scale to change the alpha value by.',
+      'type': 'ratio',
+      'default': 'None'
+    }
+  }}
+/>
+
+
