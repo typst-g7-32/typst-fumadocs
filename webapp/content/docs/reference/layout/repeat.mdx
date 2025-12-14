@@ -2,10 +2,9 @@
 title: "Repeat"
 description: "Documentation for the `repeat` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `repeat`
+import { TypstPreview } from '@/components/typst/preview';
 
 Repeats content to the available space.
 
@@ -17,7 +16,8 @@ Errors if there are no bounds on the available space, as it would create infinit
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 Sign on the dotted line:
 #box(width: 1fr, repeat[.])
 
@@ -26,13 +26,23 @@ Sign on the dotted line:
 #align(right)[
   Berlin, the 22nd of December, 2022
 ]
-```
+`}
+  image='/assets/2c620b6b8e39dd107ac681286f399070.png'
+  alt='Preview'
+/>
 
 ## Accessibility
 
 Repeated content is automatically marked as an [artifact](/docs/reference/pdf/artifact/) and hidden from Assistive Technology (AT). Do not use this function to create content that contributes to the meaning of your document.
 
-```#repeat(body, gap:, justify:) -> content```
+```typst
+#repeat(
+  body,
+  gap: length,
+  justify: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

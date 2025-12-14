@@ -2,10 +2,9 @@
 title: "Block"
 description: "Documentation for the `block` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `block`
+import { TypstPreview } from '@/components/typst/preview';
 
 A block-level container.
 
@@ -17,7 +16,8 @@ Blocks are also the primary way to control whether text becomes part of a paragr
 
 With a block, you can give a background to content while still allowing it to break across multiple pages.
 
-```typst
+<TypstPreview
+  code={`
 #set page(height: 100pt)
 #block(
   fill: luma(230),
@@ -25,11 +25,15 @@ With a block, you can give a background to content while still allowing it to br
   radius: 4pt,
   lorem(30),
 )
-```
+`}
+  image='/assets/d35b757571be311e1c4ebaa94cc073-0.png'
+  alt='Preview page 1'
+/>
 
 Blocks are also useful to force elements that would otherwise be inline to become block-level, especially when writing show rules.
 
-```typst
+<TypstPreview
+  code={`
 #show heading: it => it.body
 = Blockless
 More text.
@@ -37,24 +41,45 @@ More text.
 #show heading: it => block(it.body)
 = Blocky
 More text.
-```
+`}
+  image='/assets/a31ac3f6f1c0a9c6fef602c490517f3d.png'
+  alt='Preview'
+/>
 
-```#block(width:, height:, breakable:, fill:, stroke:, radius:, inset:, outset:, spacing:, above:, below:, clip:, sticky:, body) -> content```
+```typst
+#block(
+  width: auto | relative,
+  height: auto | relative | fraction,
+  breakable: bool,
+  fill: none | color | gradient | tiling,
+  stroke: none | length | color | gradient | stroke | tiling | dictionary,
+  radius: relative | dictionary,
+  inset: relative | dictionary,
+  outset: relative | dictionary,
+  spacing: relative | fraction,
+  above: auto | relative | fraction,
+  below: auto | relative | fraction,
+  clip: bool,
+  sticky: bool,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'width': {
-      'description': 'The block\'s width.  ```typst #set align(center) #block(   width: 60%,   inset: 8pt,   fill: silver,   lorem(10), ) ```',
+      'description': 'The block\'s width.  <TypstPreview   code={` #set align(center) #block(   width: 60%,   inset: 8pt,   fill: silver,   lorem(10), ) `}   image=\'/assets/ae64d29594fe17355970f40654b3888b.png\'   alt=\'Preview\' />',
       'type': 'auto | relative',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'height': {
-      'description': 'The block\'s height. When the height is larger than the remaining space on a page and [`breakable{:typst}`](/docs/reference/layout/block/#parameters-breakable) is `true{:typst}`, the block will continue on the next page with the remaining height.  ```typst #set page(height: 80pt) #set align(center) #block(   width: 80%,   height: 150%,   fill: aqua, ) ```',
+      'description': 'The block\'s height. When the height is larger than the remaining space on a page and [`breakable{:typst}`](/docs/reference/layout/block/#parameters-breakable) is `true{:typst}`, the block will continue on the next page with the remaining height.  <TypstPreview   code={` #set page(height: 80pt) #set align(center) #block(   width: 80%,   height: 150%,   fill: aqua, ) `}   image=\'/assets/95ecf1fed181223374cbbda47ab8fbc9-0.png\'   alt=\'Preview page 1\' />',
       'type': 'auto | relative | fraction',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'breakable': {
-      'description': 'Whether the block can be broken and continue on the next page.  ```typst #set page(height: 80pt) The following block will jump to its own page. #block(   breakable: false,   lorem(15), ) ```',
+      'description': 'Whether the block can be broken and continue on the next page.  <TypstPreview   code={` #set page(height: 80pt) The following block will jump to its own page. #block(   breakable: false,   lorem(15), ) `}   image=\'/assets/2381cccce0230146d6f912b46bf6151c-0.png\'   alt=\'Preview page 1\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">true</span></code>'
     },
@@ -84,7 +109,7 @@ More text.
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },
     'spacing': {
-      'description': 'The spacing around the block. When `auto{:typst}`, inherits the paragraph [`spacing{:typst}`](/docs/reference/model/par/#parameters-spacing).  For two adjacent blocks, the larger of the first block\'s `above{:typst}` and the second block\'s `below{:typst}` spacing wins. Moreover, block spacing takes precedence over paragraph [`spacing{:typst}`](/docs/reference/model/par/#parameters-spacing).  Note that this is only a shorthand to set `above{:typst}` and `below{:typst}` to the same value. Since the values for `above{:typst}` and `below{:typst}` might differ, a [context](/docs/reference/context/) block only provides access to `block.above{:typst}` and `block.below{:typst}`, not to `block.spacing{:typst}` directly.  This property can be used in combination with a show rule to adjust the spacing around arbitrary block-level elements.  ```typst #set align(center) #show math.equation: set block(above: 8pt, below: 16pt)  This sum of $x$ and $y$: $ x + y = z $ A second paragraph. ```',
+      'description': 'The spacing around the block. When `auto{:typst}`, inherits the paragraph [`spacing{:typst}`](/docs/reference/model/par/#parameters-spacing).  For two adjacent blocks, the larger of the first block\'s `above{:typst}` and the second block\'s `below{:typst}` spacing wins. Moreover, block spacing takes precedence over paragraph [`spacing{:typst}`](/docs/reference/model/par/#parameters-spacing).  Note that this is only a shorthand to set `above{:typst}` and `below{:typst}` to the same value. Since the values for `above{:typst}` and `below{:typst}` might differ, a [context](/docs/reference/context/) block only provides access to `block.above{:typst}` and `block.below{:typst}`, not to `block.spacing{:typst}` directly.  This property can be used in combination with a show rule to adjust the spacing around arbitrary block-level elements.  <TypstPreview   code={` #set align(center) #show math.equation: set block(above: 8pt, below: 16pt)  This sum of $x$ and $y$: $ x + y = z $ A second paragraph. `}   image=\'/assets/f99d00eb0b5ee536c467a984c133ef9e.png\'   alt=\'Preview\' />',
       'type': 'relative | fraction',
       'default': '<code><span class="typ-num">1.2em</span></code>'
     },
@@ -99,12 +124,12 @@ More text.
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'clip': {
-      'description': 'Whether to clip the content inside the block.  Clipping is useful when the block\'s content is larger than the block itself, as any content that exceeds the block\'s bounds will be hidden.  ```typst #block(   width: 50pt,   height: 50pt,   clip: true,   image("tiger.jpg", width: 100pt, height: 100pt) ) ```',
+      'description': 'Whether to clip the content inside the block.  Clipping is useful when the block\'s content is larger than the block itself, as any content that exceeds the block\'s bounds will be hidden.  <TypstPreview   code={` #block(   width: 50pt,   height: 50pt,   clip: true,   image("tiger.jpg", width: 100pt, height: 100pt) ) `}   image=\'/assets/555e171d6e5e2c7fe5b28e8cc072baa5.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'sticky': {
-      'description': 'Whether this block must stick to the following one, with no break in between.  This is, by default, set on heading blocks to prevent orphaned headings at the bottom of the page.  ```typst // Disable stickiness of headings. #show heading: set block(sticky: false) #lorem(20)  = Chapter #lorem(10) ```',
+      'description': 'Whether this block must stick to the following one, with no break in between.  This is, by default, set on heading blocks to prevent orphaned headings at the bottom of the page.  <TypstPreview   code={` // Disable stickiness of headings. #show heading: set block(sticky: false) #lorem(20)  = Chapter #lorem(10) `}   image=\'/assets/f6b4eb2256c858de9f455dbe80ea228d-0.png\'   alt=\'Preview page 1\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

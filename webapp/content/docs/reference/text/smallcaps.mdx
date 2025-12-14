@@ -2,19 +2,22 @@
 title: "Small Capitals"
 description: "Documentation for the `smallcaps` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `smallcaps`
+import { TypstPreview } from '@/components/typst/preview';
 
 Displays text in small capitals.
 
 ## Example
 
-```typst
-Hello \
+<TypstPreview
+  code={`
+Hello 
 #smallcaps[Hello]
-```
+`}
+  image='/assets/d860d23f8025b71987581bf155766bc1.png'
+  alt='Preview'
+/>
 
 ## Smallcaps fonts
 
@@ -30,7 +33,8 @@ In the future, this function will support synthesizing smallcaps from normal let
 
 You can use a [show rule](/docs/reference/styling/#show-rules) to apply smallcaps formatting to all your headings. In the example below, we also center-align our headings and disable the standard bold font.
 
-```typst
+<TypstPreview
+  code={`
 #set par(justify: true)
 #set heading(numbering: "I.")
 
@@ -42,14 +46,23 @@ You can use a [show rule](/docs/reference/styling/#show-rules) to apply smallcap
 
 = Introduction
 #lorem(40)
-```
+`}
+  image='/assets/7f47b81d5cd6ecd285a78baa93a2efaa.png'
+  alt='Preview'
+/>
 
-```#smallcaps(all:, body) -> content```
+```typst
+#smallcaps(
+  all: bool,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'all': {
-      'description': 'Whether to turn uppercase letters into small capitals as well.  Unless overridden by a show rule, this enables the `c2sc{:typst}` OpenType feature.  ```typst #smallcaps(all: true)[UNICEF] is an agency of #smallcaps(all: true)[UN]. ```',
+      'description': 'Whether to turn uppercase letters into small capitals as well.  Unless overridden by a show rule, this enables the `c2sc{:typst}` OpenType feature.  <TypstPreview   code={` #smallcaps(all: true)[UNICEF] is an agency of #smallcaps(all: true)[UN]. `}   image=\'/assets/f26ae448d07a9e76c623cf95561882ad.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },

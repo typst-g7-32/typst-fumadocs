@@ -2,7 +2,9 @@
 title: "Symbol"
 description: "Documentation for the Symbol type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A Unicode symbol.
 
@@ -13,28 +15,34 @@ Typst defines common symbols so that they can easily be written with standard ke
 
 Moreover, you can define custom symbols with this type's constructor function.
 
-```typst
-#sym.arrow.r \
-#sym.gt.eq.not \
-$gt.eq.not$ \
+<TypstPreview
+  code={`
+#sym.arrow.r 
+#sym.gt.eq.not 
+$gt.eq.not$ 
 #emoji.face.halo
-```
+`}
+  image='/assets/554ec909334ebd767463138a7c508786.png'
+  alt='Preview'
+/>
 
 Many symbols have different variants, which can be selected by appending the modifiers with dot notation. The order of the modifiers is not relevant. Visit the documentation pages of the symbol modules and click on a symbol to see its available variants.
 
-```typst
-$arrow.l$ \
-$arrow.r$ \
+<TypstPreview
+  code={`
+$arrow.l$ 
+$arrow.r$ 
 $arrow.t.quad$
-```
+`}
+  image='/assets/e9ba4ee331e9848b80743d649bfa9b0c.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `symbol`
-
 Create a custom symbol with modifiers.
 
-```typst
+<TypstPreview
+  code={`
 #let envelope = symbol(
   "🖂",
   ("stamped", "🖃"),
@@ -48,9 +56,17 @@ Create a custom symbol with modifiers.
 #envelope.stamped.pen
 #envelope.lightning
 #envelope.fly
-```
+`}
+  image='/assets/29b63ba2df6949dcc2f06e985ef13f54.png'
+  alt='Preview'
+/>
 
-```#symbol(variants) -> symbol```
+```typst
+#symbol(
+  variants
+) -> symbol
+```
+### Parameters
 
 <TypeTable
   type={{

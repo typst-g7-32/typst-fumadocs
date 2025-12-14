@@ -2,26 +2,38 @@
 title: "Duration"
 description: "Documentation for the Duration type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Represents a positive or negative span of time.
 
 ## Constructor
-
-### `duration`
-
 Creates a new duration.
 
 You can specify the [duration](/docs/reference/foundations/duration/) using weeks, days, hours, minutes and seconds. You can also get a duration by subtracting two [datetimes](/docs/reference/foundations/datetime/).
 
-```typst
+<TypstPreview
+  code={`
 #duration(
   days: 3,
   hours: 12,
 ).hours()
-```
+`}
+  image='/assets/1a61bd24ab10644a9c59709ce7688889.png'
+  alt='Preview'
+/>
 
-```#duration(seconds:, minutes:, hours:, days:, weeks:) -> duration```
+```typst
+#duration(
+  seconds: int,
+  minutes: int,
+  hours: int,
+  days: int,
+  weeks: int
+) -> duration
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -55,44 +67,24 @@ You can specify the [duration](/docs/reference/foundations/duration/) using week
 
 
 ## Methods
-
-### `seconds`
-
 The duration expressed in seconds.
 
 This function returns the total duration represented in seconds as a floating-point number rather than the second component of the duration.
-
-```#duration.seconds() -> float```
-
-### `minutes`
 
 The duration expressed in minutes.
 
 This function returns the total duration represented in minutes as a floating-point number rather than the second component of the duration.
 
-```#duration.minutes() -> float```
-
-### `hours`
-
 The duration expressed in hours.
 
 This function returns the total duration represented in hours as a floating-point number rather than the second component of the duration.
-
-```#duration.hours() -> float```
-
-### `days`
 
 The duration expressed in days.
 
 This function returns the total duration represented in days as a floating-point number rather than the second component of the duration.
 
-```#duration.days() -> float```
-
-### `weeks`
-
 The duration expressed in weeks.
 
 This function returns the total duration represented in weeks as a floating-point number rather than the second component of the duration.
 
-```#duration.weeks() -> float```
 

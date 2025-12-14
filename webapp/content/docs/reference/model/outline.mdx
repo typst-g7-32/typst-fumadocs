@@ -2,10 +2,9 @@
 title: "Outline"
 description: "Documentation for the `outline` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `outline`
+import { TypstPreview } from '@/components/typst/preview';
 
 A table of contents, figures, or other elements.
 
@@ -13,7 +12,8 @@ This function generates a list of all occurrences of an element in the document,
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 #outline()
 
@@ -23,7 +23,10 @@ This function generates a list of all occurrences of an element in the document,
 = Methods
 == Setup
 #lorem(10)
-```
+`}
+  image='/assets/2f8dbcfcc2a5c0869ffd07d1406ee6b0.png'
+  alt='Preview'
+/>
 
 ## Alternative outlines
 
@@ -33,7 +36,8 @@ In the example below, we list all figures containing images by setting `target{:
 
 We could also set it to just `figure{:typst}`, without using a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector, but then the list would contain _all_ figures, be it ones containing images, tables, or other material.
 
-```typst
+<TypstPreview
+  code={`
 #outline(
   title: [List of Figures],
   target: figure.where(kind: image),
@@ -43,7 +47,10 @@ We could also set it to just `figure{:typst}`, without using a [`where{:typst}`]
   image("tiger.jpg"),
   caption: [A nice figure!],
 )
-```
+`}
+  image='/assets/2b41608abfcce886ce9e5c454e9468c8.png'
+  alt='Preview'
+/>
 
 ## Styling the outline
 
@@ -55,7 +62,8 @@ Richer customization is possible through configuration of the outline's [entries
 
 Outline entries are [blocks](/docs/reference/layout/block/), so you can adjust the spacing between them with normal block-spacing rules:
 
-```typst
+<TypstPreview
+  code={`
 #show outline.entry.where(
   level: 1
 ): set block(above: 1.2em)
@@ -67,7 +75,10 @@ Outline entries are [blocks](/docs/reference/layout/block/), so you can adjust t
 === Origins
 = Products
 == ACME Tools
-```
+`}
+  image='/assets/e05b998d9a6ae5807b6352756f823b6c.png'
+  alt='Preview'
+/>
 
 ### Building an outline entry from its parts
 
@@ -90,7 +101,8 @@ The default show rule for an outline entry looks like this[1](#1):
 
 You can use these individual functions to format the outline entry in different ways. Let's say, you'd like to fully remove the filler and page numbers. To achieve this, you could write a show rule like this:
 
-```typst
+<TypstPreview
+  code={`
 #show outline.entry: it => link(
   it.element.location(),
   // Keep just the body, dropping
@@ -102,11 +114,22 @@ You can use these individual functions to format the outline entry in different 
 
 = About ACME Corp.
 == History
-```
+`}
+  image='/assets/1f3ff9aa7aff1ec866e0bc1e9ba7f289.png'
+  alt='Preview'
+/>
 
 [^1]: The outline of equations is the exception to this rule as it does not have a body and thus does not use indented layout.
 
-```#outline(title:, target:, depth:, indent:) -> content```
+```typst
+#outline(
+  title: none | auto | content,
+  target: label | selector | location | function,
+  depth: none | int,
+  indent: auto | relative | function
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -116,17 +139,17 @@ You can use these individual functions to format the outline entry in different 
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'target': {
-      'description': 'The type of element to include in the outline.  To list figures containing a specific kind of element, like an image or a table, you can specify the desired kind in a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector. See the section on [alternative outlines](/docs/reference/model/outline/#alternative-outlines) for more details.  ```typst #outline(   title: [List of Tables],   target: figure.where(kind: table), )  #figure(   table(     columns: 4,     [t], [1], [2], [3],     [y], [0.3], [0.7], [0.5],   ),   caption: [Experiment results], ) ```',
+      'description': 'The type of element to include in the outline.  To list figures containing a specific kind of element, like an image or a table, you can specify the desired kind in a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector. See the section on [alternative outlines](/docs/reference/model/outline/#alternative-outlines) for more details.  <TypstPreview   code={` #outline(   title: [List of Tables],   target: figure.where(kind: table), )  #figure(   table(     columns: 4,     [t], [1], [2], [3],     [y], [0.3], [0.7], [0.5],   ),   caption: [Experiment results], ) `}   image=\'/assets/f680ff60eff769a37ce5c022c5e04fda.png\'   alt=\'Preview\' />',
       'type': 'label | selector | location | function',
       'default': '<code>heading</code>'
     },
     'depth': {
-      'description': 'The maximum level up to which elements are included in the outline. When this argument is `none{:typst}`, all elements are included.  ```typst #set heading(numbering: "1.") #outline(depth: 2)  = Yes Top-level section.  == Still Subsection.  === Nope Not included. ```',
+      'description': 'The maximum level up to which elements are included in the outline. When this argument is `none{:typst}`, all elements are included.  <TypstPreview   code={` #set heading(numbering: "1.") #outline(depth: 2)  = Yes Top-level section.  == Still Subsection.  === Nope Not included. `}   image=\'/assets/7d811f81352691b1f4b246dc30a79217.png\'   alt=\'Preview\' />',
       'type': 'none | int',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'indent': {
-      'description': 'How to indent the outline\'s entries.  - `auto{:typst}`: Indents the numbering/prefix of a nested entry with the title of its parent entry. If the entries are not numbered (e.g., via [heading numbering](/docs/reference/model/heading/#parameters-numbering)), this instead simply inserts a fixed amount of `1.2em{:typst}` indent per level. - [Relative length](/docs/reference/layout/relative/): Indents the entry by the specified length per nesting level. Specifying `2em{:typst}`, for instance, would indent top-level headings by `0em{:typst}` (not nested), second level headings by `2em{:typst}` (nested once), third-level headings by `4em{:typst}` (nested twice) and so on. - [Function](/docs/reference/foundations/function/): You can further customize this setting with a function. That function receives the nesting level as a parameter (starting at 0 for top-level headings/elements) and should return a (relative) length. For example, `n => n * 2em{:typst}` would be equivalent to just specifying `2em{:typst}`.  ```typst #set heading(numbering: "I-I.") #set outline(title: none)  #outline() #line(length: 100%) #outline(indent: 3em)  = Software engineering technologies == Requirements == Tools and technologies === Code editors == Analyzing alternatives = Designing software components = Testing and integration ```',
+      'description': 'How to indent the outline\'s entries.  - `auto{:typst}`: Indents the numbering/prefix of a nested entry with the title of its parent entry. If the entries are not numbered (e.g., via [heading numbering](/docs/reference/model/heading/#parameters-numbering)), this instead simply inserts a fixed amount of `1.2em{:typst}` indent per level. - [Relative length](/docs/reference/layout/relative/): Indents the entry by the specified length per nesting level. Specifying `2em{:typst}`, for instance, would indent top-level headings by `0em{:typst}` (not nested), second level headings by `2em{:typst}` (nested once), third-level headings by `4em{:typst}` (nested twice) and so on. - [Function](/docs/reference/foundations/function/): You can further customize this setting with a function. That function receives the nesting level as a parameter (starting at 0 for top-level headings/elements) and should return a (relative) length. For example, `n => n * 2em{:typst}` would be equivalent to just specifying `2em{:typst}`.  <TypstPreview   code={` #set heading(numbering: "I-I.") #set outline(title: none)  #outline() #line(length: 100%) #outline(indent: 3em)  = Software engineering technologies == Requirements == Tools and technologies === Code editors == Analyzing alternatives = Designing software components = Testing and integration `}   image=\'/assets/a83e9e2a7da65576576b7b22388124c5.png\'   alt=\'Preview\' />',
       'type': 'auto | relative | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     }
@@ -135,14 +158,18 @@ You can use these individual functions to format the outline entry in different 
 
 
 ### Definitions
-
-### `entry`
-
 Represents an entry line in an outline.
 
 With show-set and show rules on outline entries, you can richly customize the outline's appearance. See the [section on styling the outline](/docs/reference/model/outline/#styling-the-outline) for details.
 
-```#outline.entry(level, element, fill:) -> content```
+```typst
+#outline.entry(
+  level,
+  element,
+  fill: none | content
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -157,7 +184,7 @@ With show-set and show rules on outline entries, you can richly customize the ou
       'default': 'None'
     },
     'fill': {
-      'description': 'Content to fill the space between the title and the page number. Can be set to `none{:typst}` to disable filling.  The `fill{:typst}` will be placed into a fractionally sized box that spans the space between the entry\'s body and the page number. When using show rules to override outline entries, it is thus recommended to wrap the fill in a [`box{:typst}`](/docs/reference/layout/box/) with fractional width, i.e. `box(width: 1fr, it.fill){:typst}`.  When using [`repeat{:typst}`](/docs/reference/layout/repeat/), the [`gap{:typst}`](/docs/reference/layout/repeat/#parameters-gap) property can be useful to tweak the visual weight of the fill.  ```typst #set outline.entry(fill: line(length: 100%)) #outline()  = A New Beginning ```',
+      'description': 'Content to fill the space between the title and the page number. Can be set to `none{:typst}` to disable filling.  The `fill{:typst}` will be placed into a fractionally sized box that spans the space between the entry\'s body and the page number. When using show rules to override outline entries, it is thus recommended to wrap the fill in a [`box{:typst}`](/docs/reference/layout/box/) with fractional width, i.e. `box(width: 1fr, it.fill){:typst}`.  When using [`repeat{:typst}`](/docs/reference/layout/repeat/), the [`gap{:typst}`](/docs/reference/layout/repeat/#parameters-gap) property can be useful to tweak the visual weight of the fill.  <TypstPreview   code={` #set outline.entry(fill: line(length: 100%)) #outline()  = A New Beginning `}   image=\'/assets/ef524710c756d05f113284640dc3f53b.png\'   alt=\'Preview\' />',
       'type': 'none | content',
       'default': '<code><span class="typ-func">repeat</span><span class="typ-punct">(</span>body<span class="typ-punct">:</span> <span class="typ-punct">[</span>.<span class="typ-punct">]</span><span class="typ-punct">,</span> gap<span class="typ-punct">:</span> <span class="typ-num">0.15em</span><span class="typ-punct">)</span></code>'
     }
@@ -166,16 +193,20 @@ With show-set and show rules on outline entries, you can richly customize the ou
 
 
 #### Definitions
-
-#### `indented`
-
 A helper function for producing an indented entry layout: Lays out a prefix and the rest of the entry in an indent-aware way.
 
 If the parent outline's [`indent{:typst}`](/docs/reference/model/outline/#parameters-indent) is `auto{:typst}`, the inner content of all entries at level `N{:typst}` is aligned with the prefix of all entries at level `N + 1{:typst}`, leaving at least `gap{:typst}` space between the prefix and inner parts. Furthermore, the `inner{:typst}` contents of all entries at the same level are aligned.
 
 If the outline's indent is a fixed value or a function, the prefixes are indented, but the inner contents are simply offset from the prefix by the specified `gap{:typst}`, rather than aligning outline-wide. For a visual explanation, see [`outline.indent{:typst}`](/docs/reference/model/outline/#parameters-indent).
 
-```#entry.indented(prefix, inner, gap:) -> content```
+```typst
+#entry.indented(
+  prefix,
+  inner,
+  gap: length
+) -> content
+```
+#### Parameters
 
 <TypeTable
   type={{
@@ -197,32 +228,16 @@ If the outline's indent is a fixed value or a function, the prefixes are indente
   }}
 />
 
-
-#### `prefix`
-
 Formats the element's numbering (if any).
 
 This also appends the element's supplement in case of figures or equations. For instance, it would output `1.1{:typst}` for a heading, but `Figure 1{:typst}` for a figure, as is usual for outlines.
-
-```#entry.prefix() -> none content```
-
-#### `inner`
 
 Creates the default inner content of the entry.
 
 This includes the body, the fill, and page number.
 
-```#entry.inner() -> content```
-
-#### `body`
-
 The content which is displayed in place of the referred element at its entry in the outline. For a heading, this is its [`body{:typst}`](/docs/reference/model/heading/#parameters-body); for a figure a caption and for equations, it is empty.
-
-```#entry.body() -> content```
-
-#### `page`
 
 The page number of this entry's element, formatted with the numbering set for the referenced page.
 
-```#entry.page() -> content```
 

@@ -2,7 +2,9 @@
 title: "Version"
 description: "Documentation for the Version type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A version with an arbitrary number of components.
 
@@ -15,30 +17,40 @@ The current version of the Typst compiler is available as `sys.version{:typst}`.
 You can convert a version to an array of explicitly given components using the [`array{:typst}`](/docs/reference/foundations/array/) constructor.
 
 ## Constructor
-
-### `version`
-
 Creates a new version.
 
 It can have any number of components (even zero).
 
-```typst
-#version() \
-#version(1) \
-#version(1, 2, 3, 4) \
-#version((1, 2, 3, 4)) \
+<TypstPreview
+  code={`
+#version() 
+#version(1) 
+#version(1, 2, 3, 4) 
+#version((1, 2, 3, 4)) 
 #version((1, 2), 3)
-```
+`}
+  image='/assets/171d7fe9db3c91b277e567ab934a88a9.png'
+  alt='Preview'
+/>
 
 As a practical use case, this allows comparing the current version ([`sys.version{:typst}`](/docs/reference/foundations/version/)) to a specific one.
 
-```typst
-Current version: #sys.version \
-#(sys.version >= version(0, 14, 0)) \
+<TypstPreview
+  code={`
+Current version: #sys.version 
+#(sys.version >= version(0, 14, 0)) 
 #(version(3, 2, 0) > version(4, 1, 0))
-```
+`}
+  image='/assets/9abdaee6d68422e95c9d5c76afd7cdcf.png'
+  alt='Preview'
+/>
 
-```#version(components) -> version```
+```typst
+#version(
+  components
+) -> version
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -52,14 +64,16 @@ Current version: #sys.version \
 
 
 ## Methods
-
-### `at`
-
 Retrieves a component of a version.
 
 The returned integer is always non-negative. Returns `0{:typst}` if the version isn't specified to the necessary length.
 
-```#version.at(index) -> int```
+```typst
+#version.at(
+  index
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{

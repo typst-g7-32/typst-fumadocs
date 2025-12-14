@@ -2,10 +2,9 @@
 title: "Strong Emphasis"
 description: "Documentation for the `strong` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `strong`
+import { TypstPreview } from '@/components/typst/preview';
 
 Strongly emphasizes content by increasing the font weight.
 
@@ -13,24 +12,34 @@ Increases the current font weight by a given `delta{:typst}`.
 
 ## Example
 
-```typst
-This is *strong.* \
-This is #strong[too.] \
+<TypstPreview
+  code={`
+This is *strong.* 
+This is #strong[too.] 
 
 #show strong: set text(red)
 And this is *evermore.*
-```
+`}
+  image='/assets/f0f155e1250d5cd6db61ef6e1d6d484c.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
 This function also has dedicated syntax: To strongly emphasize content, simply enclose it in stars/asterisks (`*{:typst}`). Note that this only works at word boundaries. To strongly emphasize part of a word, you have to use the function.
 
-```#strong(delta:, body) -> content```
+```typst
+#strong(
+  delta: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'delta': {
-      'description': 'The delta to apply on the font weight.  ```typst #set strong(delta: 0) No *effect!* ```',
+      'description': 'The delta to apply on the font weight.  <TypstPreview   code={` #set strong(delta: 0) No *effect!* `}   image=\'/assets/482ecb9a7454c6daefc502f7df57e97c.png\'   alt=\'Preview\' />',
       'type': 'int',
       'default': '<code><span class="typ-num">300</span></code>'
     },

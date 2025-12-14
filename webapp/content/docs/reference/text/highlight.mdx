@@ -2,50 +2,64 @@
 title: "Highlight"
 description: "Documentation for the `highlight` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `highlight`
+import { TypstPreview } from '@/components/typst/preview';
 
 Highlights text with a background color.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 This is #highlight[important].
-```
+`}
+  image='/assets/42da40ea2afd5161477973d1af6803f4.png'
+  alt='Preview'
+/>
 
-```#highlight(fill:, stroke:, top-edge:, bottom-edge:, extent:, radius:, body) -> content```
+```typst
+#highlight(
+  fill: none | color | gradient | tiling,
+  stroke: none | length | color | gradient | stroke | tiling | dictionary,
+  top-edge: length | str,
+  bottom-edge: length | str,
+  extent: length,
+  radius: relative | dictionary,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'fill': {
-      'description': 'The color to highlight the text with.  ```typst This is #highlight(   fill: blue )[highlighted with blue]. ```',
+      'description': 'The color to highlight the text with.  <TypstPreview   code={` This is #highlight(   fill: blue )[highlighted with blue]. `}   image=\'/assets/a16fbe0f26297ecde73ff95938897ae6.png\'   alt=\'Preview\' />',
       'type': 'none | color | gradient | tiling',
       'default': '<code><span class="typ-func">rgb</span><span class="typ-punct">(</span><span class="typ-str">&quot;#fffd11a1&quot;</span><span class="typ-punct">)</span></code>'
     },
     'stroke': {
-      'description': 'The highlight\'s border color. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-stroke) for more details.  ```typst This is a #highlight(   stroke: fuchsia )[stroked highlighting]. ```',
+      'description': 'The highlight\'s border color. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-stroke) for more details.  <TypstPreview   code={` This is a #highlight(   stroke: fuchsia )[stroked highlighting]. `}   image=\'/assets/55d6650499e446077347fe0beb9ccacd.png\'   alt=\'Preview\' />',
       'type': 'none | length | color | gradient | stroke | tiling | dictionary',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },
     'top-edge': {
-      'description': 'The top end of the background rectangle.  ```typst #set highlight(top-edge: "ascender") #highlight[a] #highlight[aib]  #set highlight(top-edge: "x-height") #highlight[a] #highlight[aib] ```',
+      'description': 'The top end of the background rectangle.  <TypstPreview   code={` #set highlight(top-edge: "ascender") #highlight[a] #highlight[aib]  #set highlight(top-edge: "x-height") #highlight[a] #highlight[aib] `}   image=\'/assets/df7c3a2968aabd2accab8d62139a1bfd.png\'   alt=\'Preview\' />',
       'type': 'length | str',
       'default': '<code><span class="typ-str">&quot;ascender&quot;</span></code>'
     },
     'bottom-edge': {
-      'description': 'The bottom end of the background rectangle.  ```typst #set highlight(bottom-edge: "descender") #highlight[a] #highlight[ap]  #set highlight(bottom-edge: "baseline") #highlight[a] #highlight[ap] ```',
+      'description': 'The bottom end of the background rectangle.  <TypstPreview   code={` #set highlight(bottom-edge: "descender") #highlight[a] #highlight[ap]  #set highlight(bottom-edge: "baseline") #highlight[a] #highlight[ap] `}   image=\'/assets/b594de9ba44041727c385cc8acbe809c.png\'   alt=\'Preview\' />',
       'type': 'length | str',
       'default': '<code><span class="typ-str">&quot;descender&quot;</span></code>'
     },
     'extent': {
-      'description': 'The amount by which to extend the background to the sides beyond (or within if negative) the content.  ```typst A long #highlight(extent: 4pt)[background]. ```',
+      'description': 'The amount by which to extend the background to the sides beyond (or within if negative) the content.  <TypstPreview   code={` A long #highlight(extent: 4pt)[background]. `}   image=\'/assets/2f6c1fda8ce0be0320da2237151f4b75.png\'   alt=\'Preview\' />',
       'type': 'length',
       'default': '<code><span class="typ-num">0pt</span></code>'
     },
     'radius': {
-      'description': 'How much to round the highlight\'s corners. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-radius) for more details.  ```typst Listen #highlight(   radius: 5pt, extent: 2pt )[carefully], it will be on the test. ```',
+      'description': 'How much to round the highlight\'s corners. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-radius) for more details.  <TypstPreview   code={` Listen #highlight(   radius: 5pt, extent: 2pt )[carefully], it will be on the test. `}   image=\'/assets/31d0f4700eee1a1ee9db3df6dfcd3f90.png\'   alt=\'Preview\' />',
       'type': 'relative | dictionary',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },

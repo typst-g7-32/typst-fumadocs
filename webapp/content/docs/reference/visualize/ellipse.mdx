@@ -2,28 +2,42 @@
 title: "Ellipse"
 description: "Documentation for the `ellipse` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `ellipse`
+import { TypstPreview } from '@/components/typst/preview';
 
 An ellipse with optional content.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 // Without content.
 #ellipse(width: 35%, height: 30pt)
 
 // With content.
 #ellipse[
   #set align(center)
-  Automatically sized \
+  Automatically sized 
   to fit the content.
 ]
-```
+`}
+  image='/assets/bb7e4b149327d0b0cbc5406a39d8e6be.png'
+  alt='Preview'
+/>
 
-```#ellipse(width:, height:, fill:, stroke:, inset:, outset:, body) -> content```
+```typst
+#ellipse(
+  width: auto | relative,
+  height: auto | relative | fraction,
+  fill: none | color | gradient | tiling,
+  stroke: none | auto | length | color | gradient | stroke | tiling | dictionary,
+  inset: relative | dictionary,
+  outset: relative | dictionary,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

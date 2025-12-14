@@ -2,21 +2,30 @@
 title: "Binomial"
 description: "Documentation for the `binom` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `binom`
+import { TypstPreview } from '@/components/typst/preview';
 
 A binomial expression.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ binom(n, k) $
 $ binom(n, k_1, k_2, k_3, ..., k_m) $
-```
+`}
+  image='/assets/c7b7b5ca81a7cbaedc5f4233071a7af4.png'
+  alt='Preview'
+/>
 
-```#math.binom(upper, lower) -> content```
+```typst
+#math.binom(
+  upper,
+  lower
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

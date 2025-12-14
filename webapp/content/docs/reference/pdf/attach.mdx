@@ -2,10 +2,8 @@
 title: "Attach"
 description: "Documentation for the `attach` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `attach`
 
 A file that will be attached to the output PDF.
 
@@ -29,7 +27,16 @@ Some international standards use this mechanism to attach machine-readable data 
 - This element is ignored if exporting to a format other than PDF.
 - File attachments are not currently supported for PDF/A-2, even if the attached file conforms to PDF/A-1 or PDF/A-2.
 
-```#pdf.attach(path, data, relationship:, mime-type:, description:) -> content```
+```typst
+#pdf.attach(
+  path,
+  data,
+  relationship: none | str,
+  mime-type: none | str,
+  description: none | str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,9 @@
 title: "Hide"
 description: "Documentation for the `hide` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `hide`
+import { TypstPreview } from '@/components/typst/preview';
 
 Hides content without affecting layout.
 
@@ -13,10 +12,14 @@ The `hide{:typst}` function allows you to hide content while the layout still "s
 
 ## Example
 
-```typst
-Hello Jane \
+<TypstPreview
+  code={`
+Hello Jane 
 #hide[Hello] Joe
-```
+`}
+  image='/assets/c348a83fa35ef3b84e31782980f262ae.png'
+  alt='Preview'
+/>
 
 ## Redaction
 
@@ -24,7 +27,12 @@ This function may also be useful for redacting content as its arguments are neit
 
 Note that, depending on the circumstances, it may be possible for content to be reverse engineered based on its size in the layout. We thus do not recommend using this function to hide highly sensitive information.
 
-```#hide(body) -> content```
+```typst
+#hide(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

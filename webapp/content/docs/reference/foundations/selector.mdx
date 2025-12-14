@@ -2,7 +2,9 @@
 title: "Selector"
 description: "Documentation for the Selector type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A filter for selecting elements within the document.
 
@@ -23,7 +25,8 @@ Multiple selectors can be combined using the methods shown below. However, not a
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #context query(
   heading.where(level: 1)
     .or(heading.where(level: 2))
@@ -32,12 +35,12 @@ Multiple selectors can be combined using the methods shown below. However, not a
 = This will be found
 == So will this
 === But this will not.
-```
+`}
+  image='/assets/496fb688b3f52c8190d084ec07b2c611.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `selector`
-
 Turns a value into a selector. The following values are accepted:
 
 - An element function like a `heading{:typst}` or `figure{:typst}`.
@@ -46,7 +49,12 @@ Turns a value into a selector. The following values are accepted:
 - A [`location{:typst}`](/docs/reference/introspection/location/).
 - A more complex selector like `heading.where(level: 1){:typst}`.
 
-```#selector(target) -> selector```
+```typst
+#selector(
+  target
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -60,12 +68,14 @@ Turns a value into a selector. The following values are accepted:
 
 
 ## Methods
-
-### `or`
-
 Selects all elements that match this or any of the other selectors.
 
-```#selector.or(others) -> selector```
+```typst
+#selector.or(
+  others
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -76,13 +86,15 @@ Selects all elements that match this or any of the other selectors.
     }
   }}
 />
-
-
-### `and`
 
 Selects all elements that match this and all of the other selectors.
 
-```#selector.and(others) -> selector```
+```typst
+#selector.and(
+  others
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -94,12 +106,15 @@ Selects all elements that match this and all of the other selectors.
   }}
 />
 
-
-### `before`
-
 Returns a modified selector that will only match elements that occur before the first match of `end{:typst}`.
 
-```#selector.before(end, inclusive:) -> selector```
+```typst
+#selector.before(
+  end,
+  inclusive: bool
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -116,12 +131,15 @@ Returns a modified selector that will only match elements that occur before the 
   }}
 />
 
-
-### `after`
-
 Returns a modified selector that will only match elements that occur after the first match of `start{:typst}`.
 
-```#selector.after(start, inclusive:) -> selector```
+```typst
+#selector.after(
+  start,
+  inclusive: bool
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{

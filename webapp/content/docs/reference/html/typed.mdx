@@ -2,6 +2,7 @@
 title: "Typed HTML"
 description: "Documentation for the typed functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 
 A typed layer over raw HTML elements.
@@ -23,12 +24,22 @@ Some parameters are common to all typed HTML functions. These are listed at the 
 ]
 ```
 
-
-## `a`
-
 Hyperlink.
 
-```#html.a(download:, href:, hreflang:, ping:, referrerpolicy:, rel:, target:, type:, body) -> content```
+```typst
+#html.a(
+  download: str,
+  href: str,
+  hreflang: str,
+  ping: str | array,
+  referrerpolicy: none | str,
+  rel: str | array,
+  target: str,
+  type: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -80,12 +91,14 @@ Hyperlink.
   }}
 />
 
-
-## `abbr`
-
 Abbreviation.
 
-```#html.abbr(body) -> content```
+```typst
+#html.abbr(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -96,13 +109,15 @@ Abbreviation.
     }
   }}
 />
-
-
-## `address`
 
 Contact information for a page or article element.
 
-```#html.address(body) -> content```
+```typst
+#html.address(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -114,12 +129,22 @@ Contact information for a page or article element.
   }}
 />
 
-
-## `area`
-
 Hyperlink or dead area on an image map.
 
-```#html.area(alt:, coords:, download:, href:, ping:, referrerpolicy:, rel:, shape:, target:) -> content```
+```typst
+#html.area(
+  alt: str,
+  coords: array,
+  download: str,
+  href: str,
+  ping: str | array,
+  referrerpolicy: none | str,
+  rel: str | array,
+  shape: str,
+  target: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -171,12 +196,14 @@ Hyperlink or dead area on an image map.
   }}
 />
 
-
-## `article`
-
 Self-contained syndicatable or reusable composition.
 
-```#html.article(body) -> content```
+```typst
+#html.article(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -187,13 +214,15 @@ Self-contained syndicatable or reusable composition.
     }
   }}
 />
-
-
-## `aside`
 
 Sidebar for tangentially related content.
 
-```#html.aside(body) -> content```
+```typst
+#html.aside(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -205,12 +234,21 @@ Sidebar for tangentially related content.
   }}
 />
 
-
-## `audio`
-
 Audio player.
 
-```#html.audio(autoplay:, controls:, crossorigin:, loop:, muted:, preload:, src:, body) -> content```
+```typst
+#html.audio(
+  autoplay: bool,
+  controls: bool,
+  crossorigin: str,
+  loop: bool,
+  muted: bool,
+  preload: none | auto | str,
+  src: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -257,12 +295,14 @@ Audio player.
   }}
 />
 
-
-## `b`
-
 Keywords.
 
-```#html.b(body) -> content```
+```typst
+#html.b(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -274,12 +314,15 @@ Keywords.
   }}
 />
 
-
-## `base`
-
 Base URL and default target navigable for hyperlinks and forms.
 
-```#html.base(href:, target:) -> content```
+```typst
+#html.base(
+  href: str,
+  target: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -296,12 +339,14 @@ Base URL and default target navigable for hyperlinks and forms.
   }}
 />
 
-
-## `bdi`
-
 Text directionality isolation.
 
-```#html.bdi(body) -> content```
+```typst
+#html.bdi(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -312,13 +357,15 @@ Text directionality isolation.
     }
   }}
 />
-
-
-## `bdo`
 
 Text directionality formatting.
 
-```#html.bdo(body) -> content```
+```typst
+#html.bdo(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -330,12 +377,15 @@ Text directionality formatting.
   }}
 />
 
-
-## `blockquote`
-
 A section quoted from another source.
 
-```#html.blockquote(cite:, body) -> content```
+```typst
+#html.blockquote(
+  cite: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -352,12 +402,14 @@ A section quoted from another source.
   }}
 />
 
-
-## `body`
-
 Document body.
 
-```#html.body(body) -> content```
+```typst
+#html.body(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -369,18 +421,30 @@ Document body.
   }}
 />
 
-
-## `br`
-
 Line break, e.g. in poem or postal address.
-
-```#html.br() -> content```
-
-## `button`
 
 Button control.
 
-```#html.button(command:, commandfor:, disabled:, form:, formaction:, formenctype:, formmethod:, formnovalidate:, formtarget:, name:, popovertarget:, popovertargetaction:, type:, value:, body) -> content```
+```typst
+#html.button(
+  command: str,
+  commandfor: str,
+  disabled: bool,
+  form: str,
+  formaction: str,
+  formenctype: str,
+  formmethod: str,
+  formnovalidate: bool,
+  formtarget: str,
+  name: str,
+  popovertarget: str,
+  popovertargetaction: str,
+  type: str,
+  value: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -462,12 +526,16 @@ Button control.
   }}
 />
 
-
-## `canvas`
-
 Scriptable bitmap canvas.
 
-```#html.canvas(height:, width:, body) -> content```
+```typst
+#html.canvas(
+  height: int,
+  width: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -489,12 +557,14 @@ Scriptable bitmap canvas.
   }}
 />
 
-
-## `caption`
-
 Table caption.
 
-```#html.caption(body) -> content```
+```typst
+#html.caption(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -505,13 +575,15 @@ Table caption.
     }
   }}
 />
-
-
-## `cite`
 
 Title of a work.
 
-```#html.cite(body) -> content```
+```typst
+#html.cite(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -522,13 +594,15 @@ Title of a work.
     }
   }}
 />
-
-
-## `code`
 
 Computer code.
 
-```#html.code(body) -> content```
+```typst
+#html.code(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -540,12 +614,14 @@ Computer code.
   }}
 />
 
-
-## `col`
-
 Table column.
 
-```#html.col(span:) -> content```
+```typst
+#html.col(
+  span: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -557,12 +633,15 @@ Table column.
   }}
 />
 
-
-## `colgroup`
-
 Group of columns in a table.
 
-```#html.colgroup(span:, body) -> content```
+```typst
+#html.colgroup(
+  span: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -579,12 +658,15 @@ Group of columns in a table.
   }}
 />
 
-
-## `data`
-
 Machine-readable equivalent.
 
-```#html.data(value:, body) -> content```
+```typst
+#html.data(
+  value: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -601,12 +683,14 @@ Machine-readable equivalent.
   }}
 />
 
-
-## `datalist`
-
 Container for options for combo box control.
 
-```#html.datalist(body) -> content```
+```typst
+#html.datalist(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -617,13 +701,15 @@ Container for options for combo box control.
     }
   }}
 />
-
-
-## `dd`
 
 Content for corresponding dt element(s).
 
-```#html.dd(body) -> content```
+```typst
+#html.dd(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -635,12 +721,16 @@ Content for corresponding dt element(s).
   }}
 />
 
-
-## `del`
-
 A removal from the document.
 
-```#html.del(cite:, datetime:, body) -> content```
+```typst
+#html.del(
+  cite: str,
+  datetime: datetime,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -662,12 +752,16 @@ A removal from the document.
   }}
 />
 
-
-## `details`
-
 Disclosure control for hiding details.
 
-```#html.details(name:, open:, body) -> content```
+```typst
+#html.details(
+  name: str,
+  open: bool,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -689,12 +783,14 @@ Disclosure control for hiding details.
   }}
 />
 
-
-## `dfn`
-
 Defining instance.
 
-```#html.dfn(body) -> content```
+```typst
+#html.dfn(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -706,12 +802,15 @@ Defining instance.
   }}
 />
 
-
-## `dialog`
-
 Dialog box or window.
 
-```#html.dialog(open:, body) -> content```
+```typst
+#html.dialog(
+  open: bool,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -728,12 +827,14 @@ Dialog box or window.
   }}
 />
 
-
-## `div`
-
 Generic flow container, or container for name-value groups in dl elements.
 
-```#html.div(body) -> content```
+```typst
+#html.div(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -744,13 +845,15 @@ Generic flow container, or container for name-value groups in dl elements.
     }
   }}
 />
-
-
-## `dl`
 
 Association list consisting of zero or more name-value groups.
 
-```#html.dl(body) -> content```
+```typst
+#html.dl(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -761,13 +864,15 @@ Association list consisting of zero or more name-value groups.
     }
   }}
 />
-
-
-## `dt`
 
 Legend for corresponding dd element(s).
 
-```#html.dt(body) -> content```
+```typst
+#html.dt(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -778,13 +883,15 @@ Legend for corresponding dd element(s).
     }
   }}
 />
-
-
-## `em`
 
 Stress emphasis.
 
-```#html.em(body) -> content```
+```typst
+#html.em(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -796,12 +903,17 @@ Stress emphasis.
   }}
 />
 
-
-## `embed`
-
 Plugin.
 
-```#html.embed(height:, src:, type:, width:) -> content```
+```typst
+#html.embed(
+  height: int,
+  src: str,
+  type: str,
+  width: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -828,12 +940,17 @@ Plugin.
   }}
 />
 
-
-## `fieldset`
-
 Group of form controls.
 
-```#html.fieldset(disabled:, form:, name:, body) -> content```
+```typst
+#html.fieldset(
+  disabled: bool,
+  form: str,
+  name: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -860,12 +977,14 @@ Group of form controls.
   }}
 />
 
-
-## `figcaption`
-
 Caption for figure.
 
-```#html.figcaption(body) -> content```
+```typst
+#html.figcaption(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -876,13 +995,15 @@ Caption for figure.
     }
   }}
 />
-
-
-## `figure`
 
 Figure with optional caption.
 
-```#html.figure(body) -> content```
+```typst
+#html.figure(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -893,13 +1014,15 @@ Figure with optional caption.
     }
   }}
 />
-
-
-## `footer`
 
 Footer for a page or section.
 
-```#html.footer(body) -> content```
+```typst
+#html.footer(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -911,12 +1034,23 @@ Footer for a page or section.
   }}
 />
 
-
-## `form`
-
 User-submittable form.
 
-```#html.form(accept-charset:, action:, autocomplete:, enctype:, method:, name:, novalidate:, rel:, target:, body) -> content```
+```typst
+#html.form(
+  accept-charset: str,
+  action: str,
+  autocomplete: bool,
+  enctype: str,
+  method: str,
+  name: str,
+  novalidate: bool,
+  rel: str | array,
+  target: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -973,12 +1107,14 @@ User-submittable form.
   }}
 />
 
-
-## `h1`
-
 Heading.
 
-```#html.h1(body) -> content```
+```typst
+#html.h1(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -990,12 +1126,14 @@ Heading.
   }}
 />
 
-
-## `h2`
-
 Heading.
 
-```#html.h2(body) -> content```
+```typst
+#html.h2(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1007,12 +1145,14 @@ Heading.
   }}
 />
 
-
-## `h3`
-
 Heading.
 
-```#html.h3(body) -> content```
+```typst
+#html.h3(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1024,12 +1164,14 @@ Heading.
   }}
 />
 
-
-## `h4`
-
 Heading.
 
-```#html.h4(body) -> content```
+```typst
+#html.h4(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1041,12 +1183,14 @@ Heading.
   }}
 />
 
-
-## `h5`
-
 Heading.
 
-```#html.h5(body) -> content```
+```typst
+#html.h5(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1058,12 +1202,14 @@ Heading.
   }}
 />
 
-
-## `h6`
-
 Heading.
 
-```#html.h6(body) -> content```
+```typst
+#html.h6(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1074,13 +1220,15 @@ Heading.
     }
   }}
 />
-
-
-## `head`
 
 Container for document metadata.
 
-```#html.head(body) -> content```
+```typst
+#html.head(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1091,13 +1239,15 @@ Container for document metadata.
     }
   }}
 />
-
-
-## `header`
 
 Introductory or navigational aids for a page or section.
 
-```#html.header(body) -> content```
+```typst
+#html.header(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1108,13 +1258,15 @@ Introductory or navigational aids for a page or section.
     }
   }}
 />
-
-
-## `hgroup`
 
 Heading container.
 
-```#html.hgroup(body) -> content```
+```typst
+#html.hgroup(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1125,19 +1277,17 @@ Heading container.
     }
   }}
 />
-
-
-## `hr`
 
 Thematic break.
 
-```#html.hr() -> content```
-
-## `html`
-
 Root element.
 
-```#html.html(body) -> content```
+```typst
+#html.html(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1148,13 +1298,15 @@ Root element.
     }
   }}
 />
-
-
-## `i`
 
 Alternate voice.
 
-```#html.i(body) -> content```
+```typst
+#html.i(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1166,12 +1318,24 @@ Alternate voice.
   }}
 />
 
-
-## `iframe`
-
 Child navigable.
 
-```#html.iframe(allow:, allowfullscreen:, height:, loading:, name:, referrerpolicy:, sandbox:, src:, srcdoc:, width:, body) -> content```
+```typst
+#html.iframe(
+  allow: str,
+  allowfullscreen: bool,
+  height: int,
+  loading: str,
+  name: str,
+  referrerpolicy: none | str,
+  sandbox: str | array,
+  src: str,
+  srcdoc: str,
+  width: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1233,12 +1397,26 @@ Child navigable.
   }}
 />
 
-
-## `img`
-
 Image.
 
-```#html.img(alt:, crossorigin:, decoding:, fetchpriority:, height:, ismap:, loading:, referrerpolicy:, sizes:, src:, srcset:, usemap:, width:) -> content```
+```typst
+#html.img(
+  alt: str,
+  crossorigin: str,
+  decoding: auto | str,
+  fetchpriority: auto | str,
+  height: int,
+  ismap: bool,
+  loading: str,
+  referrerpolicy: none | str,
+  sizes: array,
+  src: str,
+  srcset: array,
+  usemap: str,
+  width: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1310,12 +1488,47 @@ Image.
   }}
 />
 
-
-## `input`
-
 Form control.
 
-```#html.input(accept:, alpha:, alt:, autocomplete:, checked:, colorspace:, dirname:, disabled:, form:, formaction:, formenctype:, formmethod:, formnovalidate:, formtarget:, height:, list:, max:, maxlength:, min:, minlength:, multiple:, name:, pattern:, placeholder:, popovertarget:, popovertargetaction:, readonly:, required:, size:, src:, step:, type:, value:, width:) -> content```
+```typst
+#html.input(
+  accept: str | array,
+  alpha: bool,
+  alt: str,
+  autocomplete: str | array,
+  checked: bool,
+  colorspace: str,
+  dirname: str,
+  disabled: bool,
+  form: str,
+  formaction: str,
+  formenctype: str,
+  formmethod: str,
+  formnovalidate: bool,
+  formtarget: str,
+  height: int,
+  list: str,
+  max: float | datetime | str,
+  maxlength: int,
+  min: float | datetime | str,
+  minlength: int,
+  multiple: bool,
+  name: str,
+  pattern: str,
+  placeholder: str,
+  popovertarget: str,
+  popovertargetaction: str,
+  readonly: bool,
+  required: bool,
+  size: int,
+  src: str,
+  step: float | str,
+  type: str,
+  value: float | color | datetime | str | array,
+  width: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1492,12 +1705,16 @@ Form control.
   }}
 />
 
-
-## `ins`
-
 An addition to the document.
 
-```#html.ins(cite:, datetime:, body) -> content```
+```typst
+#html.ins(
+  cite: str,
+  datetime: datetime,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1519,12 +1736,14 @@ An addition to the document.
   }}
 />
 
-
-## `kbd`
-
 User input.
 
-```#html.kbd(body) -> content```
+```typst
+#html.kbd(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1536,12 +1755,15 @@ User input.
   }}
 />
 
-
-## `label`
-
 Caption for a form control.
 
-```#html.label(for:, body) -> content```
+```typst
+#html.label(
+  for: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1558,12 +1780,14 @@ Caption for a form control.
   }}
 />
 
-
-## `legend`
-
 Caption for fieldset.
 
-```#html.legend(body) -> content```
+```typst
+#html.legend(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1575,12 +1799,15 @@ Caption for fieldset.
   }}
 />
 
-
-## `li`
-
 List item.
 
-```#html.li(value:, body) -> content```
+```typst
+#html.li(
+  value: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1597,12 +1824,29 @@ List item.
   }}
 />
 
-
-## `link`
-
 Link metadata.
 
-```#html.link(as:, blocking:, color:, crossorigin:, disabled:, fetchpriority:, href:, hreflang:, imagesizes:, imagesrcset:, integrity:, media:, referrerpolicy:, rel:, sizes:, type:) -> content```
+```typst
+#html.link(
+  as: str,
+  blocking: str | array,
+  color: color,
+  crossorigin: str,
+  disabled: bool,
+  fetchpriority: auto | str,
+  href: str,
+  hreflang: str,
+  imagesizes: array,
+  imagesrcset: array,
+  integrity: str,
+  media: str,
+  referrerpolicy: none | str,
+  rel: str | array,
+  sizes: array,
+  type: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1689,12 +1933,14 @@ Link metadata.
   }}
 />
 
-
-## `main`
-
 Container for the dominant contents of the document.
 
-```#html.main(body) -> content```
+```typst
+#html.main(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1706,12 +1952,15 @@ Container for the dominant contents of the document.
   }}
 />
 
-
-## `map`
-
 Image map.
 
-```#html.map(name:, body) -> content```
+```typst
+#html.map(
+  name: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1728,12 +1977,14 @@ Image map.
   }}
 />
 
-
-## `mark`
-
 Highlight.
 
-```#html.mark(body) -> content```
+```typst
+#html.mark(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1744,13 +1995,15 @@ Highlight.
     }
   }}
 />
-
-
-## `menu`
 
 Menu of commands.
 
-```#html.menu(body) -> content```
+```typst
+#html.menu(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1762,12 +2015,18 @@ Menu of commands.
   }}
 />
 
-
-## `meta`
-
 Text metadata.
 
-```#html.meta(charset:, content:, http-equiv:, media:, name:) -> content```
+```typst
+#html.meta(
+  charset: str,
+  content: str,
+  http-equiv: str,
+  media: str,
+  name: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1799,12 +2058,20 @@ Text metadata.
   }}
 />
 
-
-## `meter`
-
 Gauge.
 
-```#html.meter(high:, low:, max:, min:, optimum:, value:, body) -> content```
+```typst
+#html.meter(
+  high: float,
+  low: float,
+  max: float,
+  min: float,
+  optimum: float,
+  value: float,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1846,12 +2113,14 @@ Gauge.
   }}
 />
 
-
-## `nav`
-
 Section with navigational links.
 
-```#html.nav(body) -> content```
+```typst
+#html.nav(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1862,13 +2131,15 @@ Section with navigational links.
     }
   }}
 />
-
-
-## `noscript`
 
 Fallback content for script.
 
-```#html.noscript(body) -> content```
+```typst
+#html.noscript(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1880,12 +2151,20 @@ Fallback content for script.
   }}
 />
 
-
-## `object`
-
 Image, child navigable, or plugin.
 
-```#html.object(data:, form:, height:, name:, type:, width:, body) -> content```
+```typst
+#html.object(
+  data: str,
+  form: str,
+  height: int,
+  name: str,
+  type: str,
+  width: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1927,12 +2206,17 @@ Image, child navigable, or plugin.
   }}
 />
 
-
-## `ol`
-
 Ordered list.
 
-```#html.ol(reversed:, start:, type:, body) -> content```
+```typst
+#html.ol(
+  reversed: bool,
+  start: int,
+  type: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1959,12 +2243,16 @@ Ordered list.
   }}
 />
 
-
-## `optgroup`
-
 Group of options in a list box.
 
-```#html.optgroup(disabled:, label:, body) -> content```
+```typst
+#html.optgroup(
+  disabled: bool,
+  label: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -1986,12 +2274,18 @@ Group of options in a list box.
   }}
 />
 
-
-## `option`
-
 Option in a list box or combo box control.
 
-```#html.option(disabled:, label:, selected:, value:, body) -> content```
+```typst
+#html.option(
+  disabled: bool,
+  label: str,
+  selected: bool,
+  value: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2023,12 +2317,17 @@ Option in a list box or combo box control.
   }}
 />
 
-
-## `output`
-
 Calculated output value.
 
-```#html.output(for:, form:, name:, body) -> content```
+```typst
+#html.output(
+  for: str | array,
+  form: str,
+  name: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2055,12 +2354,14 @@ Calculated output value.
   }}
 />
 
-
-## `p`
-
 Paragraph.
 
-```#html.p(body) -> content```
+```typst
+#html.p(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2071,13 +2372,15 @@ Paragraph.
     }
   }}
 />
-
-
-## `picture`
 
 Image.
 
-```#html.picture(body) -> content```
+```typst
+#html.picture(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2088,13 +2391,15 @@ Image.
     }
   }}
 />
-
-
-## `pre`
 
 Block of preformatted text.
 
-```#html.pre(body) -> content```
+```typst
+#html.pre(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2106,12 +2411,16 @@ Block of preformatted text.
   }}
 />
 
-
-## `progress`
-
 Progress bar.
 
-```#html.progress(max:, value:, body) -> content```
+```typst
+#html.progress(
+  max: float,
+  value: float,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2133,12 +2442,15 @@ Progress bar.
   }}
 />
 
-
-## `q`
-
 Quotation.
 
-```#html.q(cite:, body) -> content```
+```typst
+#html.q(
+  cite: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2155,12 +2467,14 @@ Quotation.
   }}
 />
 
-
-## `rp`
-
 Parenthesis for ruby annotation text.
 
-```#html.rp(body) -> content```
+```typst
+#html.rp(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2171,13 +2485,15 @@ Parenthesis for ruby annotation text.
     }
   }}
 />
-
-
-## `rt`
 
 Ruby annotation text.
 
-```#html.rt(body) -> content```
+```typst
+#html.rt(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2188,13 +2504,15 @@ Ruby annotation text.
     }
   }}
 />
-
-
-## `ruby`
 
 Ruby annotation(s).
 
-```#html.ruby(body) -> content```
+```typst
+#html.ruby(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2205,13 +2523,15 @@ Ruby annotation(s).
     }
   }}
 />
-
-
-## `s`
 
 Inaccurate text.
 
-```#html.s(body) -> content```
+```typst
+#html.s(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2222,13 +2542,15 @@ Inaccurate text.
     }
   }}
 />
-
-
-## `samp`
 
 Computer output.
 
-```#html.samp(body) -> content```
+```typst
+#html.samp(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2240,12 +2562,24 @@ Computer output.
   }}
 />
 
-
-## `script`
-
 Embedded script.
 
-```#html.script(async:, blocking:, crossorigin:, defer:, fetchpriority:, integrity:, nomodule:, referrerpolicy:, src:, type:, body) -> content```
+```typst
+#html.script(
+  async: bool,
+  blocking: str | array,
+  crossorigin: str,
+  defer: bool,
+  fetchpriority: auto | str,
+  integrity: str,
+  nomodule: bool,
+  referrerpolicy: none | str,
+  src: str,
+  type: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2307,12 +2641,14 @@ Embedded script.
   }}
 />
 
-
-## `search`
-
 Container for search controls.
 
-```#html.search(body) -> content```
+```typst
+#html.search(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2323,13 +2659,15 @@ Container for search controls.
     }
   }}
 />
-
-
-## `section`
 
 Generic document or application section.
 
-```#html.section(body) -> content```
+```typst
+#html.section(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2341,12 +2679,21 @@ Generic document or application section.
   }}
 />
 
-
-## `select`
-
 List box control.
 
-```#html.select(autocomplete:, disabled:, form:, multiple:, name:, required:, size:, body) -> content```
+```typst
+#html.select(
+  autocomplete: str | array,
+  disabled: bool,
+  form: str,
+  multiple: bool,
+  name: str,
+  required: bool,
+  size: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2393,12 +2740,15 @@ List box control.
   }}
 />
 
-
-## `slot`
-
 Shadow tree slot.
 
-```#html.slot(name:, body) -> content```
+```typst
+#html.slot(
+  name: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2415,12 +2765,14 @@ Shadow tree slot.
   }}
 />
 
-
-## `small`
-
 Side comment.
 
-```#html.small(body) -> content```
+```typst
+#html.small(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2432,12 +2784,20 @@ Side comment.
   }}
 />
 
-
-## `source`
-
 Image source for img or media source for video or audio.
 
-```#html.source(height:, media:, sizes:, src:, srcset:, type:, width:) -> content```
+```typst
+#html.source(
+  height: int,
+  media: str,
+  sizes: array,
+  src: str,
+  srcset: array,
+  type: str,
+  width: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2479,12 +2839,14 @@ Image source for img or media source for video or audio.
   }}
 />
 
-
-## `span`
-
 Generic phrasing container.
 
-```#html.span(body) -> content```
+```typst
+#html.span(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2495,13 +2857,15 @@ Generic phrasing container.
     }
   }}
 />
-
-
-## `strong`
 
 Importance.
 
-```#html.strong(body) -> content```
+```typst
+#html.strong(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2513,12 +2877,16 @@ Importance.
   }}
 />
 
-
-## `style`
-
 Embedded styling information.
 
-```#html.style(blocking:, media:, body) -> content```
+```typst
+#html.style(
+  blocking: str | array,
+  media: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2540,12 +2908,14 @@ Embedded styling information.
   }}
 />
 
-
-## `sub`
-
 Subscript.
 
-```#html.sub(body) -> content```
+```typst
+#html.sub(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2556,13 +2926,15 @@ Subscript.
     }
   }}
 />
-
-
-## `summary`
 
 Caption for details.
 
-```#html.summary(body) -> content```
+```typst
+#html.summary(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2573,13 +2945,15 @@ Caption for details.
     }
   }}
 />
-
-
-## `sup`
 
 Superscript.
 
-```#html.sup(body) -> content```
+```typst
+#html.sup(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2590,13 +2964,15 @@ Superscript.
     }
   }}
 />
-
-
-## `table`
 
 Table.
 
-```#html.table(body) -> content```
+```typst
+#html.table(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2607,13 +2983,15 @@ Table.
     }
   }}
 />
-
-
-## `tbody`
 
 Group of rows in a table.
 
-```#html.tbody(body) -> content```
+```typst
+#html.tbody(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2625,12 +3003,17 @@ Group of rows in a table.
   }}
 />
 
-
-## `td`
-
 Table cell.
 
-```#html.td(colspan:, headers:, rowspan:, body) -> content```
+```typst
+#html.td(
+  colspan: int,
+  headers: str | array,
+  rowspan: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2657,12 +3040,19 @@ Table cell.
   }}
 />
 
-
-## `template`
-
 Template.
 
-```#html.template(shadowrootclonable:, shadowrootcustomelementregistry:, shadowrootdelegatesfocus:, shadowrootmode:, shadowrootserializable:, body) -> content```
+```typst
+#html.template(
+  shadowrootclonable: bool,
+  shadowrootcustomelementregistry: bool,
+  shadowrootdelegatesfocus: bool,
+  shadowrootmode: str,
+  shadowrootserializable: bool,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2699,12 +3089,27 @@ Template.
   }}
 />
 
-
-## `textarea`
-
 Multiline text controls.
 
-```#html.textarea(autocomplete:, cols:, dirname:, disabled:, form:, maxlength:, minlength:, name:, placeholder:, readonly:, required:, rows:, wrap:, body) -> content```
+```typst
+#html.textarea(
+  autocomplete: str | array,
+  cols: int,
+  dirname: str,
+  disabled: bool,
+  form: str,
+  maxlength: int,
+  minlength: int,
+  name: str,
+  placeholder: str,
+  readonly: bool,
+  required: bool,
+  rows: int,
+  wrap: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2781,12 +3186,14 @@ Multiline text controls.
   }}
 />
 
-
-## `tfoot`
-
 Group of footer rows in a table.
 
-```#html.tfoot(body) -> content```
+```typst
+#html.tfoot(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2798,12 +3205,19 @@ Group of footer rows in a table.
   }}
 />
 
-
-## `th`
-
 Table header cell.
 
-```#html.th(abbr:, colspan:, headers:, rowspan:, scope:, body) -> content```
+```typst
+#html.th(
+  abbr: str,
+  colspan: int,
+  headers: str | array,
+  rowspan: int,
+  scope: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2840,12 +3254,14 @@ Table header cell.
   }}
 />
 
-
-## `thead`
-
 Group of heading rows in a table.
 
-```#html.thead(body) -> content```
+```typst
+#html.thead(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2857,12 +3273,15 @@ Group of heading rows in a table.
   }}
 />
 
-
-## `time`
-
 Machine-readable equivalent of date- or time-related data.
 
-```#html.time(datetime:, body) -> content```
+```typst
+#html.time(
+  datetime: datetime | duration,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2879,12 +3298,14 @@ Machine-readable equivalent of date- or time-related data.
   }}
 />
 
-
-## `title`
-
 Document title.
 
-```#html.title(body) -> content```
+```typst
+#html.title(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2895,13 +3316,15 @@ Document title.
     }
   }}
 />
-
-
-## `tr`
 
 Table row.
 
-```#html.tr(body) -> content```
+```typst
+#html.tr(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2913,12 +3336,18 @@ Table row.
   }}
 />
 
-
-## `track`
-
 Timed text track.
 
-```#html.track(default:, kind:, label:, src:, srclang:) -> content```
+```typst
+#html.track(
+  default: bool,
+  kind: str,
+  label: str,
+  src: str,
+  srclang: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2950,12 +3379,14 @@ Timed text track.
   }}
 />
 
-
-## `u`
-
 Unarticulated annotation.
 
-```#html.u(body) -> content```
+```typst
+#html.u(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2966,13 +3397,15 @@ Unarticulated annotation.
     }
   }}
 />
-
-
-## `ul`
 
 List.
 
-```#html.ul(body) -> content```
+```typst
+#html.ul(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -2983,13 +3416,15 @@ List.
     }
   }}
 />
-
-
-## `var`
 
 Variable.
 
-```#html.var(body) -> content```
+```typst
+#html.var(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -3001,12 +3436,25 @@ Variable.
   }}
 />
 
-
-## `video`
-
 Video player.
 
-```#html.video(autoplay:, controls:, crossorigin:, height:, loop:, muted:, playsinline:, poster:, preload:, src:, width:, body) -> content```
+```typst
+#html.video(
+  autoplay: bool,
+  controls: bool,
+  crossorigin: str,
+  height: int,
+  loop: bool,
+  muted: bool,
+  playsinline: bool,
+  poster: str,
+  preload: none | auto | str,
+  src: str,
+  width: int,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -3073,10 +3521,6 @@ Video player.
   }}
 />
 
-
-## `wbr`
-
 Line breaking opportunity.
 
-```#html.wbr() -> content```
 

@@ -2,27 +2,38 @@
 title: "Accent"
 description: "Documentation for the `accent` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `accent`
+import { TypstPreview } from '@/components/typst/preview';
 
 Attaches an accent to a base.
 
 ## Example
 
-```typst
-$grave(a) = accent(a, `)$ \
-$arrow(a) = accent(a, arrow)$ \
+<TypstPreview
+  code={`
+$grave(a) = accent(a, \`)$ 
+$arrow(a) = accent(a, arrow)$ 
 $tilde(a) = accent(a, \u{0303})$
-```
+`}
+  image='/assets/c1d2d9103d9cbed5ca014ef9bcab402b.png'
+  alt='Preview'
+/>
 
-```#math.accent(base, accent, size:, dotless:) -> content```
+```typst
+#math.accent(
+  base,
+  accent,
+  size: relative,
+  dotless: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'base': {
-      'description': 'The base to which the accent is applied. May consist of multiple letters.  ```typst $arrow(A B C)$ ```',
+      'description': 'The base to which the accent is applied. May consist of multiple letters.  <TypstPreview   code={` $arrow(A B C)$ `}   image=\'/assets/695a59b99713825042bc5f246e3c4dec.png\'   alt=\'Preview\' />',
       'type': 'content',
       'default': 'None'
     },
@@ -32,12 +43,12 @@ $tilde(a) = accent(a, \u{0303})$
       'default': 'None'
     },
     'size': {
-      'description': 'The size of the accent, relative to the width of the base.  ```typst $dash(A, size: #150%)$ ```',
+      'description': 'The size of the accent, relative to the width of the base.  <TypstPreview   code={` $dash(A, size: #150%)$ `}   image=\'/assets/86ae8b36db880e0350036e149fff5a22.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">100%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
     },
     'dotless': {
-      'description': 'Whether to remove the dot on top of lowercase i and j when adding a top accent.  This enables the `dtls{:typst}` OpenType feature.  ```typst $hat(dotless: #false, i)$ ```',
+      'description': 'Whether to remove the dot on top of lowercase i and j when adding a top accent.  This enables the `dtls{:typst}` OpenType feature.  <TypstPreview   code={` $hat(dotless: #false, i)$ `}   image=\'/assets/739dfe1b39a87e4783e3d11d043a9fb6.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">true</span></code>'
     }

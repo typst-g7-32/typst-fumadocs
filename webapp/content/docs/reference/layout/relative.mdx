@@ -3,6 +3,8 @@ title: "Relative Length"
 description: "Documentation for the Relative Length type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 A length in relation to some known length.
 
 This type is a combination of a [length](/docs/reference/layout/length/) with a [ratio](/docs/reference/layout/ratio/). It results from addition and subtraction of a length and a ratio. Wherever a relative length is expected, you can also use a bare length or ratio.
@@ -11,15 +13,23 @@ This type is a combination of a [length](/docs/reference/layout/length/) with a 
 
 A common use case is setting the width or height of a layout element (e.g., [block](/docs/reference/layout/block/), [rect](/docs/reference/visualize/rect/), etc.) as a certain percentage of the width of the page. Here, the rectangle's width is set to `25%{:typst}`, so it takes up one fourth of the page's _inner_ width (the width minus margins).
 
-```typst
+<TypstPreview
+  code={`
 #rect(width: 25%)
-```
+`}
+  image='/assets/4d00e48a14d2fa6bbfde5bd85623a199.png'
+  alt='Preview'
+/>
 
 Bare lengths or ratios are always valid where relative lengths are expected, but the two can also be freely mixed:
 
-```typst
+<TypstPreview
+  code={`
 #rect(width: 25% + 1cm)
-```
+`}
+  image='/assets/9dd66f878a23031069f8f03df39872fa.png'
+  alt='Preview'
+/>
 
 If you're trying to size an element so that it takes up the page's _full_ width, you have a few options (this highly depends on your exact use case):
 
@@ -32,13 +42,17 @@ If you're trying to size an element so that it takes up the page's _full_ width,
 
 When a layout element (e.g. a [rect](/docs/reference/visualize/rect/)) is nested in another layout container (e.g. a [block](/docs/reference/layout/block/)) instead of being a direct descendant of the page, relative widths become relative to the container:
 
-```typst
+<TypstPreview
+  code={`
 #block(
   width: 100pt,
   fill: aqua,
   rect(width: 50%),
 )
-```
+`}
+  image='/assets/402d58027e654e20b23526448886fb40.png'
+  alt='Preview'
+/>
 
 ## Scripting
 
@@ -49,9 +63,13 @@ A relative length has the following fields:
 - `length{:typst}`: Its [length](/docs/reference/layout/length/) component.
 - `ratio{:typst}`: Its [ratio](/docs/reference/layout/ratio/) component.
 
-```typst
-#(100% - 50pt).length \
+<TypstPreview
+  code={`
+#(100% - 50pt).length 
 #(100% - 50pt).ratio
-```
+`}
+  image='/assets/d770a260705b27902b61e33e8c0a5f28.png'
+  alt='Preview'
+/>
 
 

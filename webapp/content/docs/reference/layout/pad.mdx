@@ -2,10 +2,9 @@
 title: "Padding"
 description: "Documentation for the `pad` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `pad`
+import { TypstPreview } from '@/components/typst/preview';
 
 Adds spacing around content.
 
@@ -13,15 +12,31 @@ The spacing can be specified for each side individually, or for all sides at onc
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set align(center)
 
 #pad(x: 16pt, image("typing.jpg"))
 _Typing speeds can be
  measured in words per minute._
-```
+`}
+  image='/assets/627bf363796cd87adc3e0a240ccc55ab.png'
+  alt='Preview'
+/>
 
-```#pad(left:, top:, right:, bottom:, x:, y:, rest:, body) -> content```
+```typst
+#pad(
+  left: relative,
+  top: relative,
+  right: relative,
+  bottom: relative,
+  x: relative,
+  y: relative,
+  rest: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

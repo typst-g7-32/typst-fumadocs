@@ -2,10 +2,9 @@
 title: "Query"
 description: "Documentation for the `query` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `query`
+import { TypstPreview } from '@/components/typst/preview';
 
 Finds elements in the document.
 
@@ -19,7 +18,8 @@ To do this, we first query for all headings in the document at level 1 and where
 
 Note that we open a `context{:typst}` to be able to use the `query{:typst}` function.
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "1")
 
 #heading(outlined: false)[
@@ -48,7 +48,10 @@ Note that we open a `context{:typst}` to be able to use the `query{:typst}` func
 
 = Discussion
 #lorem(18)
-```
+`}
+  image='/assets/3edc5078e7b11f1a26f8b996bb5222cb-0.png'
+  alt='Preview page 1'
+/>
 
 To get the page numbers, we first get the location of the elements returned by `query{:typst}` with [`location{:typst}`](/docs/reference/foundations/content/#definitions-location). We then also retrieve the [page numbering](/docs/reference/introspection/location/#definitions-page-numbering) and [page counter](/docs/reference/introspection/counter/#page-counter) at that location and apply the numbering to the counter.
 
@@ -60,14 +63,18 @@ In the example below, we query for all headings in the document. We then generat
 
 In general, you should try not to write queries that affect themselves. The same words of caution also apply to other introspection features like [counters](/docs/reference/introspection/counter/) and [state](/docs/reference/introspection/state/).
 
-```typst
+<TypstPreview
+  code={`
 = Real
 #context {
   let elems = query(heading)
   let count = elems.len()
   count * [= Fake]
 }
-```
+`}
+  image='/assets/b66e3cb3bae911d3a0525883200bcf7.png'
+  alt='Preview'
+/>
 
 ## Command line queries
 
@@ -80,6 +87,7 @@ You can also perform queries from the command line with the `typst query{:typst}
 You can execute a query on it as follows using Typst's CLI:
 
 ```typst
+
 $ typst query example.typ "<note>"
 [
   {
@@ -95,6 +103,7 @@ $ typst query example.typ "<note>"
 Frequently, you're interested in only one specific field of the resulting elements. In the case of the `metadata{:typst}` element, the `value{:typst}` field is the interesting one. You can extract just this field with the `--field{:typst}` argument.
 
 ```typst
+
 $ typst query example.typ "<note>" --field value
 ["This is a note"]
 ```
@@ -102,6 +111,7 @@ $ typst query example.typ "<note>" --field value
 If you are interested in just a single element, you can use the `--one{:typst}` flag to extract just it.
 
 ```typst
+
 $ typst query example.typ "<note>" --field value --one
 "This is a note"
 ```
@@ -110,7 +120,12 @@ $ typst query example.typ "<note>" --field value --one
 
 In case you need to query a document when exporting for a specific target, you can use the `--target{:typst}` argument. Valid values are `paged{:typst}`, and `html{:typst}` (if the [`html{:typst}`](/docs/reference/html/) feature is enabled).
 
-```#query(target) -> array```
+```typst
+#query(
+  target
+) -> array
+```
+## Parameters
 
 <TypeTable
   type={{

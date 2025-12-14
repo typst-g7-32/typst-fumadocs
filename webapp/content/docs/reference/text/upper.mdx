@@ -2,22 +2,30 @@
 title: "Uppercase"
 description: "Documentation for the `upper` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `upper`
+import { TypstPreview } from '@/components/typst/preview';
 
 Converts a string or content to uppercase.
 
 ## Example
 
-```typst
-#upper("abc") \
-#upper[*my text*] \
+<TypstPreview
+  code={`
+#upper("abc") 
+#upper[*my text*] 
 #upper[ALREADY HIGH]
-```
+`}
+  image='/assets/d2b70b743a4ffbb1b48455a85b7f89fb.png'
+  alt='Preview'
+/>
 
-```#upper(text) -> str content```
+```typst
+#upper(
+  text
+) -> str content
+```
+## Parameters
 
 <TypeTable
   type={{

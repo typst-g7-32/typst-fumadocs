@@ -2,10 +2,9 @@
 title: "Line Break"
 description: "Documentation for the `linebreak` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `linebreak`
+import { TypstPreview } from '@/components/typst/preview';
 
 Inserts a line break.
 
@@ -13,22 +12,31 @@ Advances the paragraph to the next line. A single trailing line break at the end
 
 ## Example
 
-```typst
-*Date:* 26.12.2022 \
-*Topic:* Infrastructure Test \
-*Severity:* High \
-```
+<TypstPreview
+  code={`
+*Date:* 26.12.2022 
+*Topic:* Infrastructure Test 
+*Severity:* High
+`}
+  image='/assets/384cb289bb242b86c8b1387b41ca7b38.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
 This function also has dedicated syntax: To insert a line break, simply write a backslash followed by whitespace. This always creates an unjustified break.
 
-```#linebreak(justify:) -> content```
+```typst
+#linebreak(
+  justify: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'justify': {
-      'description': 'Whether to justify the line before the break.  This is useful if you found a better line break opportunity in your justified text than Typst did.  ```typst #set par(justify: true) #let jb = linebreak(justify: true)  I have manually tuned the #jb line breaks in this paragraph #jb for an _interesting_ result. #jb ```',
+      'description': 'Whether to justify the line before the break.  This is useful if you found a better line break opportunity in your justified text than Typst did.  <TypstPreview   code={` #set par(justify: true) #let jb = linebreak(justify: true)  I have manually tuned the #jb line breaks in this paragraph #jb for an _interesting_ result. #jb `}   image=\'/assets/4652670040cf88f551099ee9a0e1d33b.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }

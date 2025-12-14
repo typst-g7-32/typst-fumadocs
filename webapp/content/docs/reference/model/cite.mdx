@@ -2,10 +2,9 @@
 title: "Cite"
 description: "Documentation for the `cite` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `cite`
+import { TypstPreview } from '@/components/typst/preview';
 
 Cite a work from the bibliography.
 
@@ -13,18 +12,22 @@ Before you starting citing, you need to add a [bibliography](/docs/reference/mod
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 This was already noted by
 pirates long ago. @arrgh
 
 Multiple sources say ...
 @arrgh @netwok.
 
-You can also call `cite`
+You can also call \`cite\`
 explicitly. #cite(<arrgh>)
 
 #bibliography("works.bib")
-```
+`}
+  image='/assets/55e96c2ce29d5004db05ce402b9d7f16.png'
+  alt='Preview'
+/>
 
 If your source name contains certain characters such as slashes, which are not recognized by the `<>{:typst}` syntax, you can explicitly call `label{:typst}` instead.
 
@@ -37,22 +40,30 @@ Computer Modern is an example of a modernist serif typeface.
 
 This function indirectly has dedicated syntax. [References](/docs/reference/model/ref/) can be used to cite works from the bibliography. The label then corresponds to the citation key.
 
-```#cite(key, supplement:, form:, style:) -> content```
+```typst
+#cite(
+  key,
+  supplement: none | content,
+  form: none | str,
+  style: auto | str | bytes
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'key': {
-      'description': 'The citation key that identifies the entry in the bibliography that shall be cited, as a label.  ```typst // All the same @netwok \\ #cite(<netwok>) \\ #cite(label("netwok")) ```',
+      'description': 'The citation key that identifies the entry in the bibliography that shall be cited, as a label.  <TypstPreview   code={` // All the same @netwok  #cite(<netwok>)  #cite(label("netwok")) `}   image=\'/assets/7f2bf55bb64a9e53f205533aff50ef8e.png\'   alt=\'Preview\' />',
       'type': 'label',
       'default': 'None'
     },
     'supplement': {
-      'description': 'A supplement for the citation such as page or chapter number.  In reference syntax, the supplement can be added in square brackets:  ```typst This has been proven. @distress[p.~7]  #bibliography("works.bib") ```',
+      'description': 'A supplement for the citation such as page or chapter number.  In reference syntax, the supplement can be added in square brackets:  <TypstPreview   code={` This has been proven. @distress[p.~7]  #bibliography("works.bib") `}   image=\'/assets/c89f5ad2321ecda4146b0ab593e62aab.png\'   alt=\'Preview\' />',
       'type': 'none | content',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'form': {
-      'description': 'The kind of citation to produce. Different forms are useful in different scenarios: A normal citation is useful as a source at the end of a sentence, while a "prose" citation is more suitable for inclusion in the flow of text.  If set to `none{:typst}`, the cited work is included in the bibliography, but nothing will be displayed.  ```typst #cite(<netwok>, form: "prose") show the outsized effects of pirate life on the human psyche. ```',
+      'description': 'The kind of citation to produce. Different forms are useful in different scenarios: A normal citation is useful as a source at the end of a sentence, while a "prose" citation is more suitable for inclusion in the flow of text.  If set to `none{:typst}`, the cited work is included in the bibliography, but nothing will be displayed.  <TypstPreview   code={` #cite(<netwok>, form: "prose") show the outsized effects of pirate life on the human psyche. `}   image=\'/assets/c426a6cd0fd21f3d6429a380072c7fac.png\'   alt=\'Preview\' />',
       'type': 'none | str',
       'default': '<code><span class="typ-str">&quot;normal&quot;</span></code>'
     },

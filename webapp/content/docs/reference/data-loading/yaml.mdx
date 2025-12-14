@@ -2,10 +2,9 @@
 title: "YAML"
 description: "Documentation for the `yaml` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `yaml`
+import { TypstPreview } from '@/components/typst/preview';
 
 Reads structured data from a YAML file.
 
@@ -17,7 +16,8 @@ The YAML files in the example contain objects with authors as keys, each with a 
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let bookshelf(contents) = {
   for (author, works) in contents {
     author
@@ -30,7 +30,10 @@ The YAML files in the example contain objects with authors as keys, each with a 
 #bookshelf(
   yaml("scifi-authors.yaml")
 )
-```
+`}
+  image='/assets/ce1cef3a36cd7879dbe19609834df61b.png'
+  alt='Preview'
+/>
 
 ## Conversion details
 
@@ -58,7 +61,12 @@ The YAML files in the example contain objects with authors as keys, each with a 
 - Bytes are not encoded as YAML sequences for performance and readability reasons. Consider using [`cbor.encode{:typst}`](/docs/reference/data-loading/cbor/#definitions-encode) for binary data.
 - The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
 
-```#yaml(source) -> any```
+```typst
+#yaml(
+  source
+) -> any
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -72,12 +80,14 @@ The YAML files in the example contain objects with authors as keys, each with a 
 
 
 ### Definitions
-
-### `decode`
-
 Reads structured data from a YAML string/bytes.
 
-```#yaml.decode(data) -> any```
+```typst
+#yaml.decode(
+  data
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -89,12 +99,14 @@ Reads structured data from a YAML string/bytes.
   }}
 />
 
-
-### `encode`
-
 Encode structured data into a YAML string.
 
-```#yaml.encode(value) -> str```
+```typst
+#yaml.encode(
+  value
+) -> str
+```
+### Parameters
 
 <TypeTable
   type={{

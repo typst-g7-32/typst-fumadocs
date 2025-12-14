@@ -2,10 +2,9 @@
 title: "Place"
 description: "Documentation for the `place` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `place`
+import { TypstPreview } from '@/components/typst/preview';
 
 Places content relatively to its parent container.
 
@@ -15,7 +14,8 @@ The parent can be any container such as a [`block{:typst}`](/docs/reference/layo
 
 ## Examples
 
-```typst
+<TypstPreview
+  code={`
 #set page(height: 120pt)
 Hello, world!
 
@@ -30,7 +30,10 @@ Hello, world!
   dx: -5pt,
   square(size: 5pt, fill: red),
 )
-```
+`}
+  image='/assets/6f751edfbb0d9761c3a6c972a39b6b7e.png'
+  alt='Preview'
+/>
 
 ## Effect on the position of other elements
 
@@ -38,7 +41,8 @@ Overlaid elements don't take space in the flow of content, but a `place{:typst}`
 
 For example, the following defines a function for attaching an annotation to the following word:
 
-```typst
+<TypstPreview
+  code={`
 #let annotate(..args) = {
   box(place(..args))
   sym.wj
@@ -47,7 +51,10 @@ For example, the following defines a function for attaching an annotation to the
 
 A placed #annotate(square(), dy: 2pt)
 square in my text.
-```
+`}
+  image='/assets/40826a3ec000a798ea7be101e1b645d6.png'
+  alt='Preview'
+/>
 
 The zero-width weak spacing serves to discard spaces between the function call and the next word.
 
@@ -55,7 +62,18 @@ The zero-width weak spacing serves to discard spaces between the function call a
 
 Assistive Technology (AT) will always read the placed element at the point where it logically appears in the document, regardless of where this function physically moved it. Put its markup where it would make the most sense in the reading order.
 
-```#place(alignment, scope:, float:, clearance:, dx:, dy:, body) -> content```
+```typst
+#place(
+  alignment,
+  scope: str,
+  float: bool,
+  clearance: length,
+  dx: relative,
+  dy: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -65,12 +83,12 @@ Assistive Technology (AT) will always read the placed element at the point where
       'default': '<code>start</code>'
     },
     'scope': {
-      'description': 'Relative to which containing scope something is placed.  The parent scope is primarily used with figures and, for this reason, the figure function has a mirrored [`scope{:typst}` parameter](/docs/reference/model/figure/#parameters-scope). Nonetheless, it can also be more generally useful to break out of the columns. A typical example would be to [create a single-column title section](/docs/guides/page-setup/#columns) in a two-column document.  Note that parent-scoped placement is currently only supported if `float{:typst}` is `true{:typst}`. This may change in the future.  ```typst #set page(height: 150pt, columns: 2) #place(   top + center,   scope: "parent",   float: true,   rect(width: 80%, fill: aqua), )  #lorem(25) ```',
+      'description': 'Relative to which containing scope something is placed.  The parent scope is primarily used with figures and, for this reason, the figure function has a mirrored [`scope{:typst}` parameter](/docs/reference/model/figure/#parameters-scope). Nonetheless, it can also be more generally useful to break out of the columns. A typical example would be to [create a single-column title section](/docs/guides/page-setup/#columns) in a two-column document.  Note that parent-scoped placement is currently only supported if `float{:typst}` is `true{:typst}`. This may change in the future.  <TypstPreview   code={` #set page(height: 150pt, columns: 2) #place(   top + center,   scope: "parent",   float: true,   rect(width: 80%, fill: aqua), )  #lorem(25) `}   image=\'/assets/f718445c168dda0dcdf558eeec653317.png\'   alt=\'Preview\' />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;column&quot;</span></code>'
     },
     'float': {
-      'description': 'Whether the placed element has floating layout.  Floating elements are positioned at the top or bottom of the parent container, displacing in-flow content. They are always placed in the in-flow order relative to each other, as well as before any content following a later [`place.flush{:typst}`](/docs/reference/layout/place/#definitions-flush) element.  ```typst #set page(height: 150pt) #let note(where, body) = place(   center + where,   float: true,   clearance: 6pt,   rect(body), )  #lorem(10) #note(bottom)[Bottom 1] #note(bottom)[Bottom 2] #lorem(40) #note(top)[Top] #lorem(10) ```',
+      'description': 'Whether the placed element has floating layout.  Floating elements are positioned at the top or bottom of the parent container, displacing in-flow content. They are always placed in the in-flow order relative to each other, as well as before any content following a later [`place.flush{:typst}`](/docs/reference/layout/place/#definitions-flush) element.  <TypstPreview   code={` #set page(height: 150pt) #let note(where, body) = place(   center + where,   float: true,   clearance: 6pt,   rect(body), )  #lorem(10) #note(bottom)[Bottom 1] #note(bottom)[Bottom 2] #lorem(40) #note(top)[Top] #lorem(10) `}   image=\'/assets/b79489e3dba54a5087e52813387db424-0.png\'   alt=\'Preview page 1\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
@@ -80,7 +98,7 @@ Assistive Technology (AT) will always read the placed element at the point where
       'default': '<code><span class="typ-num">1.5em</span></code>'
     },
     'dx': {
-      'description': 'The horizontal displacement of the placed content.  ```typst #set page(height: 100pt) #for x in range(-8, 8) {   place(center + horizon,     dx: x * 8pt, dy: x * 4pt,     text(       size: calc.root(x + 10, 3) * 6pt,       fill: color.mix((green, 8 - x), (blue, 8 + x)),     )[T]   ) } ```  This does not affect the layout of in-flow content. In other words, the placed content is treated as if it were wrapped in a [`move{:typst}`](/docs/reference/layout/move/) element.',
+      'description': 'The horizontal displacement of the placed content.  <TypstPreview   code={` #set page(height: 100pt) #for x in range(-8, 8) {   place(center + horizon,     dx: x * 8pt, dy: x * 4pt,     text(       size: calc.root(x + 10, 3) * 6pt,       fill: color.mix((green, 8 - x), (blue, 8 + x)),     )[T]   ) } `}   image=\'/assets/3ca14568aada6ee32a74ee01d1846737.png\'   alt=\'Preview\' />  This does not affect the layout of in-flow content. In other words, the placed content is treated as if it were wrapped in a [`move{:typst}`](/docs/reference/layout/move/) element.',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
     },
@@ -99,14 +117,12 @@ Assistive Technology (AT) will always read the placed element at the point where
 
 
 ### Definitions
-
-### `flush`
-
 Asks the layout algorithm to place pending floating elements before continuing with the content.
 
 This is useful for preventing floating figures from spilling into the next section.
 
-```typst
+<TypstPreview
+  code={`
 #lorem(15)
 
 #figure(
@@ -118,7 +134,9 @@ This is useful for preventing floating figures from spilling into the next secti
 #place.flush()
 
 This text appears after the figure.
-```
+`}
+  image='/assets/f2aa79bdf50898cb675e77738d00ac35-0.png'
+  alt='Preview page 1'
+/>
 
-```#place.flush() -> content```
 

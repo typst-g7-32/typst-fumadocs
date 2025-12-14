@@ -2,10 +2,8 @@
 title: "CBOR"
 description: "Documentation for the `cbor` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `cbor`
 
 Reads structured data from a CBOR file.
 
@@ -39,7 +37,12 @@ The function returns a dictionary, an array or, depending on the CBOR file, anot
 - CBOR tags are not supported, and an error will be thrown.
 - The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
 
-```#cbor(source) -> any```
+```typst
+#cbor(
+  source
+) -> any
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -53,12 +56,14 @@ The function returns a dictionary, an array or, depending on the CBOR file, anot
 
 
 ### Definitions
-
-### `decode`
-
 Reads structured data from CBOR bytes.
 
-```#cbor.decode(data) -> any```
+```typst
+#cbor.decode(
+  data
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -70,12 +75,14 @@ Reads structured data from CBOR bytes.
   }}
 />
 
-
-### `encode`
-
 Encode structured data into CBOR bytes.
 
-```#cbor.encode(value) -> bytes```
+```typst
+#cbor.encode(
+  value
+) -> bytes
+```
+### Parameters
 
 <TypeTable
   type={{

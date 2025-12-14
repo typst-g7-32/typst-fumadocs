@@ -3,6 +3,8 @@ title: "Context"
 description: "How to deal with content that reacts to its location in the document."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Sometimes, we want to create content that reacts to its location in the document. This could be a localized phrase that depends on the configured text language or something as simple as a heading number which prints the right value based on how many headings came before it. However, Typst code isn't directly aware of its location in the document. Some code at the beginning of the source text could yield content that ends up at the back of the document.
 
 To produce content that is reactive to its surroundings, we must thus specifically instruct Typst: We do this with the `context{:typst}` keyword, which precedes an expression and ensures that it is computed with knowledge of its environment. In return, the context expression itself ends up opaque. We cannot directly access whatever results from it in our code, precisely because it is contextual: There is no one correct result, there may be multiple results in different places of the document. For this reason, everything that depends on the contextual data must happen inside of the context expression.
@@ -13,14 +15,19 @@ Aside from explicit context expressions, context is also established implicitly 
 
 With set rules, we can adjust style properties for parts or the whole of our document. We cannot access these without a known context, as they may change throughout the course of the document. When context is available, we can retrieve them simply by accessing them as fields on the respective element function.
 
-```typst
+<TypstPreview
+  code={`
 #set text(lang: "de")
 #context text.lang
-```
+`}
+  image='/assets/1137ad51a48ad89d691e97514545b36a.png'
+  alt='Preview'
+/>
 
 As explained above, a context expression is reactive to the different environments it is placed into. In the example below, we create a single context expression, store it in the `value{:typst}` variable and use it multiple times. Each use properly reacts to the current surroundings.
 
-```typst
+<TypstPreview
+  code={`
 #let value = context text.lang
 #value
 
@@ -29,7 +36,10 @@ As explained above, a context expression is reactive to the different environmen
 
 #set text(lang: "fr")
 #value
-```
+`}
+  image='/assets/7142666b497eed6d8f9b4b5710a2668c.png'
+  alt='Preview'
+/>
 
 Crucially, upon creation, `value{:typst}` becomes opaque [content](/docs/reference/foundations/content/) that we cannot peek into. It can only be resolved when placed somewhere because only then the context is known. The body of a context expression may be evaluated zero, one, or multiple times, depending on how many different places it is put into.
 
@@ -39,7 +49,8 @@ We've already seen that context gives us access to set rule values. But it can d
 
 Some functions like [`counter.get{:typst}`](/docs/reference/introspection/counter/#definitions-get) implicitly access the current location. In the example below, we want to retrieve the value of the heading counter. Since it changes throughout the document, we need to first enter a context expression. Then, we use `get{:typst}` to retrieve the counter's current value. This function accesses the current location from the context to resolve the counter value. Counters have multiple levels and `get{:typst}` returns an array with the resolved numbers. Thus, we get the following result:
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction
@@ -51,7 +62,10 @@ Some functions like [`counter.get{:typst}`](/docs/reference/introspection/counte
 #lorem(5)
 
 #context counter(heading).get()
-```
+`}
+  image='/assets/6d038d5175695d636eb9410eacbb33a5.png'
+  alt='Preview'
+/>
 
 For more flexibility, we can also use the [`here{:typst}`](/docs/reference/introspection/here/) function to directly extract the current [location](/docs/reference/introspection/location/) from the context. The example below demonstrates this:
 
@@ -59,7 +73,8 @@ For more flexibility, we can also use the [`here{:typst}`](/docs/reference/intro
 - We then use the more powerful  [`counter.at{:typst}`](/docs/reference/introspection/counter/#definitions-at) with [`here{:typst}`](/docs/reference/introspection/here/), which in combination is equivalent to `get{:typst}`, and thus get `(2,){:typst}`.
 - Finally, we use `at{:typst}` with a [label](/docs/reference/foundations/label/) to retrieve the value of the counter at a _different_ location in the document, in our case that of the introduction heading. This yields `(1,){:typst}`. Typst's context system gives us time travel abilities and lets us retrieve the values of any counters and states at _any_ location in the document.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction <intro>
@@ -69,16 +84,20 @@ For more flexibility, we can also use the [`here{:typst}`](/docs/reference/intro
 #lorem(5)
 
 #context [
-  #counter(heading).get() \
-  #counter(heading).at(here()) \
+  #counter(heading).get() 
+  #counter(heading).at(here()) 
   #counter(heading).at(<intro>)
 ]
-```
+`}
+  image='/assets/822a7dba085e89a6327630048f6fe36e.png'
+  alt='Preview'
+/>
 
 As mentioned before, we can also use context to get the physical position of elements on the pages. We do this with the [`locate{:typst}`](/docs/reference/introspection/locate/) function, which works similarly to `counter.at{:typst}`: It takes a location or other [selector](/docs/reference/foundations/selector/) that resolves to a unique element (could also be a label) and returns the position on the pages for that element.
 
-```typst
-Background is at: \
+<TypstPreview
+  code={`
+Background is at: 
 #context locate(<back>).position()
 
 = Introduction <intro>
@@ -87,7 +106,10 @@ Background is at: \
 
 = Background <back>
 #lorem(5)
-```
+`}
+  image='/assets/15d46686485c6a70637c453971b72de-0.png'
+  alt='Preview page 1'
+/>
 
 There are other functions that make use of the location context, most prominently [`query{:typst}`](/docs/reference/introspection/query/). Take a look at the [introspection](/docs/reference/introspection/) category for more details on those.
 
@@ -95,27 +117,36 @@ There are other functions that make use of the location context, most prominentl
 
 Context is also accessible from within function calls nested in context blocks. In the example below, `foo{:typst}` itself becomes a contextual function, just like [`to-absolute{:typst}`](/docs/reference/layout/length/#definitions-to-absolute) is.
 
-```typst
+<TypstPreview
+  code={`
 #let foo() = 1em.to-absolute()
 #context {
   foo() == text.size
 }
-```
+`}
+  image='/assets/b4160bb9fbad465465d9927f3c09bea3.png'
+  alt='Preview'
+/>
 
 Context blocks can be nested. Contextual code will then always access the innermost context. The example below demonstrates this: The first `text.lang{:typst}` will access the outer context block's styles and as such, it will **not** see the effect of `set text(lang: "fr"){:typst}`. The nested context block around the second `text.lang{:typst}`, however, starts after the set rule and will thus show its effect.
 
-```typst
+<TypstPreview
+  code={`
 #set text(lang: "de")
 #context [
   #set text(lang: "fr")
-  #text.lang \
+  #text.lang 
   #context text.lang
 ]
-```
+`}
+  image='/assets/fbc647b8dd00903360d605e600eed7db.png'
+  alt='Preview'
+/>
 
 You might wonder why Typst ignores the French set rule when computing the first `text.lang{:typst}` in the example above. The reason is that, in the general case, Typst cannot know all the styles that will apply as set rules can be applied to content after it has been constructed. Below, `text.lang{:typst}` is already computed when the template function is applied. As such, it cannot possibly be aware of the language change to French in the template.
 
-```typst
+<TypstPreview
+  code={`
 #let template(body) = {
   set text(lang: "fr")
   upper(body)
@@ -124,24 +155,31 @@ You might wonder why Typst ignores the French set rule when computing the first 
 #set text(lang: "de")
 #context [
   #show: template
-  #text.lang \
+  #text.lang 
   #context text.lang
 ]
-```
+`}
+  image='/assets/a6d31a15dab2710195f259b4ea0dbdfa.png'
+  alt='Preview'
+/>
 
 The second `text.lang{:typst}`, however, _does_ react to the language change because evaluation of its surrounding context block is deferred until the styles for it are known. This illustrates the importance of picking the right insertion point for a context to get access to precisely the right styles.
 
 The same also holds true for the location context. Below, the first `c.display(){:typst}` call will access the outer context block and will thus not see the effect of `c.update(2){:typst}` while the second `c.display(){:typst}` accesses the inner context and will thus see it.
 
-```typst
+<TypstPreview
+  code={`
 #let c = counter("mycounter")
 #c.update(1)
 #context [
   #c.update(2)
-  #c.display() \
+  #c.display() 
   #context c.display()
 ]
-```
+`}
+  image='/assets/ea69407d29bbeb8eaf88ee12f2e6ba83.png'
+  alt='Preview'
+/>
 
 ## Compiler iterations
 

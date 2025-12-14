@@ -2,7 +2,9 @@
 title: "Gradient"
 description: "Documentation for the Gradient type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A color gradient.
 
@@ -17,7 +19,8 @@ A gradient can be used for the following purposes:
 
 ## Examples
 
-```typst
+<TypstPreview
+  code={`
 #stack(
   dir: ltr,
   spacing: 1fr,
@@ -25,11 +28,15 @@ A gradient can be used for the following purposes:
   square(fill: gradient.radial(..color.map.rainbow)),
   square(fill: gradient.conic(..color.map.rainbow)),
 )
-```
+`}
+  image='/assets/ff29eecb918a915ec00ed5fcec2f4488.png'
+  alt='Preview'
+/>
 
 Gradients are also supported on text, but only when setting the [relativeness](/docs/reference/visualize/gradient/#definitions-relative) to either `auto{:typst}` (the default value) or `"parent"{:typst}`. To create word-by-word or glyph-by-glyph gradients, you can wrap the words or characters of your text in [boxes](/docs/reference/layout/box/) manually or through a [show rule](/docs/reference/styling/#show-rules).
 
-```typst
+<TypstPreview
+  code={`
 #set text(fill: gradient.linear(red, blue))
 #let rainbow(content) = {
   set text(fill: gradient.linear(..color.map.rainbow))
@@ -37,7 +44,10 @@ Gradients are also supported on text, but only when setting the [relativeness](/
 }
 
 This is a gradient on text, but with a #rainbow[twist]!
-```
+`}
+  image='/assets/721d0b00b502c2e4285439f1ac4fd467.png'
+  alt='Preview'
+/>
 
 ## Stops
 
@@ -79,7 +89,8 @@ However, you can choose to interpolate the gradient in any supported color space
 
 Some gradients are sensitive to direction. For example, a linear gradient has an angle that determines its direction. Typst uses a clockwise angle, with 0° being from left to right, 90° from top to bottom, 180° from right to left, and 270° from bottom to top.
 
-```typst
+<TypstPreview
+  code={`
 #stack(
   dir: ltr,
   spacing: 1fr,
@@ -88,7 +99,10 @@ Some gradients are sensitive to direction. For example, a linear gradient has an
   square(fill: gradient.linear(red, blue, angle: 180deg)),
   square(fill: gradient.linear(red, blue, angle: 270deg)),
 )
-```
+`}
+  image='/assets/71783179a4cfd9c8bb34bd7a6b7ac1fe.png'
+  alt='Preview'
+/>
 
 ## Note on file sizes
 
@@ -99,12 +113,10 @@ Gradients can be quite large, especially if they have many stops. This is becaus
 
 
 ## Methods
-
-### `linear`
-
 Creates a new linear gradient, in which colors transition along a straight line.
 
-```typst
+<TypstPreview
+  code={`
 #rect(
   width: 100%,
   height: 20pt,
@@ -112,9 +124,21 @@ Creates a new linear gradient, in which colors transition along a straight line.
     ..color.map.viridis,
   ),
 )
-```
+`}
+  image='/assets/def0956800e63dc52a60e2e66b8fb072.png'
+  alt='Preview'
+/>
 
-```#gradient.linear(stops, space:, relative:, dir, angle) -> gradient```
+```typst
+#gradient.linear(
+  stops,
+  space: any,
+  relative: auto | str,
+  dir,
+  angle
+) -> gradient
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -146,16 +170,14 @@ Creates a new linear gradient, in which colors transition along a straight line.
   }}
 />
 
-
-### `radial`
-
 Creates a new radial gradient, in which colors radiate away from an origin.
 
 The gradient is defined by two circles: the focal circle and the end circle. The focal circle is a circle with center `focal-center{:typst}` and radius `focal-radius{:typst}`, that defines the points at which the gradient starts and has the color of the first stop. The end circle is a circle with center `center{:typst}` and radius `radius{:typst}`, that defines the points at which the gradient ends and has the color of the last stop. The gradient is then interpolated between these two circles.
 
 Using these four values, also called the focal point for the starting circle and the center and radius for the end circle, we can define a gradient with more interesting properties than a basic radial gradient.
 
-```typst
+<TypstPreview
+  code={`
 #stack(
   dir: ltr,
   spacing: 1fr,
@@ -168,9 +190,23 @@ Using these four values, also called the focal point for the starting circle and
     focal-radius: 5%,
   )),
 )
-```
+`}
+  image='/assets/21f904edb21c2e1ac7db89749e4d2c21.png'
+  alt='Preview'
+/>
 
-```#gradient.radial(stops, space:, relative:, center:, radius:, focal-center:, focal-radius:) -> gradient```
+```typst
+#gradient.radial(
+  stops,
+  space: any,
+  relative: auto | str,
+  center: array,
+  radius: ratio,
+  focal-center: auto | array,
+  focal-radius: ratio
+) -> gradient
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -212,14 +248,12 @@ Using these four values, also called the focal point for the starting circle and
   }}
 />
 
-
-### `conic`
-
 Creates a new conic gradient, in which colors change radially around a center point.
 
 You can control the center point of the gradient by using the `center{:typst}` argument. By default, the center point is the center of the shape.
 
-```typst
+<TypstPreview
+  code={`
 #stack(
   dir: ltr,
   spacing: 1fr,
@@ -231,9 +265,21 @@ You can control the center point of the gradient by using the `center{:typst}` a
     center: (20%, 30%),
   )),
 )
-```
+`}
+  image='/assets/32a99c7b0b1cb9e924d91b259fba0aca.png'
+  alt='Preview'
+/>
 
-```#gradient.conic(stops, angle:, space:, relative:, center:) -> gradient```
+```typst
+#gradient.conic(
+  stops,
+  angle: angle,
+  space: any,
+  relative: auto | str,
+  center: array
+) -> gradient
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -265,22 +311,29 @@ You can control the center point of the gradient by using the `center{:typst}` a
   }}
 />
 
-
-### `sharp`
-
 Creates a sharp version of this gradient.
 
 Sharp gradients have discrete jumps between colors, instead of a smooth transition. They are particularly useful for creating color lists for a preset gradient.
 
-```typst
+<TypstPreview
+  code={`
 #set rect(width: 100%, height: 20pt)
 #let grad = gradient.linear(..color.map.rainbow)
 #rect(fill: grad)
 #rect(fill: grad.sharp(5))
 #rect(fill: grad.sharp(5, smoothness: 20%))
-```
+`}
+  image='/assets/93522b26f5475bd0d38d77f01dd7e1fd.png'
+  alt='Preview'
+/>
 
-```#gradient.sharp(steps, smoothness:) -> gradient```
+```typst
+#gradient.sharp(
+  steps,
+  smoothness: ratio
+) -> gradient
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -297,21 +350,28 @@ Sharp gradients have discrete jumps between colors, instead of a smooth transiti
   }}
 />
 
-
-### `repeat`
-
 Repeats this gradient a given number of times, optionally mirroring it at every second repetition.
 
-```typst
+<TypstPreview
+  code={`
 #circle(
   radius: 40pt,
   fill: gradient
     .radial(aqua, white)
     .repeat(4),
 )
-```
+`}
+  image='/assets/c9d6c600cc20c2f18c089a5f32cd7000.png'
+  alt='Preview'
+/>
 
-```#gradient.repeat(repetitions, mirror:) -> gradient```
+```typst
+#gradient.repeat(
+  repetitions,
+  mirror: bool
+) -> gradient
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -321,85 +381,51 @@ Repeats this gradient a given number of times, optionally mirroring it at every 
       'default': 'None'
     },
     'mirror': {
-      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  ```typst #circle(   radius: 40pt,   fill: gradient     .conic(green, black)     .repeat(2, mirror: true) ) ```',
+      'description': 'Whether to mirror the gradient at every second repetition, i.e., the first instance (and all odd ones) stays unchanged.  <TypstPreview   code={` #circle(   radius: 40pt,   fill: gradient     .conic(green, black)     .repeat(2, mirror: true) ) `}   image=\'/assets/12eb6ef0f82817124abc5d9167ff35dc.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     }
   }}
 />
 
-
-### `kind`
-
 Returns the kind of this gradient.
-
-```#gradient.kind() -> function```
-
-### `stops`
 
 Returns the stops of this gradient.
 
-```#gradient.stops() -> array```
-
-### `space`
-
 Returns the mixing space of this gradient.
 
-```#gradient.space() -> any```
-
-### `relative`
-
 Returns the relative placement of this gradient.
-
-```#gradient.relative() -> auto str```
-
-### `angle`
 
 Returns the angle of this gradient.
 
 Returns `none{:typst}` if the gradient is neither linear nor conic.
 
-```#gradient.angle() -> none angle```
-
-### `center`
-
 Returns the center of this gradient.
 
 Returns `none{:typst}` if the gradient is neither radial nor conic.
-
-```#gradient.center() -> none array```
-
-### `radius`
 
 Returns the radius of this gradient.
 
 Returns `none{:typst}` if the gradient is not radial.
 
-```#gradient.radius() -> none ratio```
-
-### `focal-center`
-
 Returns the focal-center of this gradient.
 
 Returns `none{:typst}` if the gradient is not radial.
-
-```#gradient.focal-center() -> none array```
-
-### `focal-radius`
 
 Returns the focal-radius of this gradient.
 
 Returns `none{:typst}` if the gradient is not radial.
 
-```#gradient.focal-radius() -> none ratio```
-
-### `sample`
-
 Sample the gradient at a given position.
 
 The position is either a position along the gradient (a [ratio](/docs/reference/layout/ratio/) between `0%{:typst}` and `100%{:typst}`) or an [angle](/docs/reference/layout/angle/). Any value outside of this range will be clamped.
 
-```#gradient.sample(t) -> color```
+```typst
+#gradient.sample(
+  t
+) -> color
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -411,12 +437,14 @@ The position is either a position along the gradient (a [ratio](/docs/reference/
   }}
 />
 
-
-### `samples`
-
 Samples the gradient at multiple positions at once and returns the results as an array.
 
-```#gradient.samples(ts) -> array```
+```typst
+#gradient.samples(
+  ts
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{

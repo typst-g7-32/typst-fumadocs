@@ -3,8 +3,7 @@ title: "Target"
 description: "Documentation for the `target` function."
 ---
 
-
-## `target`
+import { TypstPreview } from '@/components/typst/preview';
 
 Returns the current export target.
 
@@ -25,7 +24,8 @@ This function is [contextual](/docs/reference/context/) as the target can vary w
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let kbd(it) = context {
   if target() == "html" {
     html.elem("kbd", it)
@@ -44,7 +44,9 @@ This function is [contextual](/docs/reference/context/) as the target can vary w
 }
 
 Press #kbd("F1") for help.
-```
+`}
+  image='/assets/d9ee13e0a44e198decccc6c1bd269c76.png'
+  alt='Preview'
+/>
 
-```#target() -> str```
 

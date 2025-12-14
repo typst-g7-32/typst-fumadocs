@@ -2,10 +2,9 @@
 title: "Metadata"
 description: "Documentation for the `metadata` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `metadata`
+import { TypstPreview } from '@/components/typst/preview';
 
 Exposes a value to the query system without producing visible content.
 
@@ -13,7 +12,8 @@ This element can be retrieved with the [`query{:typst}`](/docs/reference/introsp
 
 The `metadata{:typst}` element is especially useful for command line queries because it allows you to expose arbitrary values to the outside world.
 
-```typst
+<TypstPreview
+  code={`
 // Put metadata somewhere.
 #metadata("This is a note") <note>
 
@@ -21,9 +21,17 @@ The `metadata{:typst}` element is especially useful for command line queries bec
 #context {
   query(<note>).first().value
 }
-```
+`}
+  image='/assets/b1b17f01cf3adfe808d66deaa0bf5abf.png'
+  alt='Preview'
+/>
 
-```#metadata(value) -> content```
+```typst
+#metadata(
+  value
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

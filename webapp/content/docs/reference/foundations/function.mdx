@@ -2,7 +2,9 @@
 title: "Function"
 description: "Documentation for the Function type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A mapping from argument values to a return value.
 
@@ -12,7 +14,8 @@ Within math mode, function calls have special behaviour. See the [math documenta
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 // Call a function.
 #list([A], [B])
 
@@ -22,7 +25,10 @@ Within math mode, function calls have special behaviour. See the [math documenta
 
 // Version without parentheses.
 #list[A][B]
-```
+`}
+  image='/assets/87cba5b2546c4d8134e4fbb8ab2e42e8.png'
+  alt='Preview'
+/>
 
 Functions are a fundamental building block of Typst. Typst provides functions for a variety of typesetting tasks. Moreover, the markup you write is backed by functions and all styling happens through functions. This reference lists all available functions and how you can use them. Please also refer to the documentation about [set](/docs/reference/styling/#set-rules) and [show](/docs/reference/styling/#show-rules) rules to learn about additional ways you can work with functions in Typst.
 
@@ -44,7 +50,8 @@ Within a function body, the `return{:typst}` keyword can be used to exit early a
 
 Functions that don't return any meaningful value return [`none{:typst}`](/docs/reference/foundations/none/) instead. The return type of such functions is not explicitly specified in the documentation. (An example of this is [`array.push{:typst}`](/docs/reference/foundations/array/#definitions-push)).
 
-```typst
+<TypstPreview
+  code={`
 #let alert(body, fill: red) = {
   set text(white)
   set align(center)
@@ -63,7 +70,10 @@ Functions that don't return any meaningful value return [`none{:typst}`](/docs/r
 #alert(fill: blue)[
   KEEP OFF TRACKS
 ]
-```
+`}
+  image='/assets/e7ac0ae1342dcd1b7bfc1dce40ec5bed.png'
+  alt='Preview'
+/>
 
 ## Importing functions
 
@@ -73,10 +83,14 @@ Functions can be imported from one file ([`module{:typst}`](/docs/reference/scri
 
 You can also create an unnamed function without creating a binding by specifying a parameter list followed by `=>{:typst}` and the function body. If your function has just one parameter, the parentheses around the parameter list are optional. Unnamed functions are mainly useful for show rules, but also for settable properties that take functions like the page function's [`footer{:typst}`](/docs/reference/layout/page/#parameters-footer) property.
 
-```typst
+<TypstPreview
+  code={`
 #show "once?": it => [#it #it]
 once?
-```
+`}
+  image='/assets/c9779efb0fcc717fd4868ec6868bdcf9.png'
+  alt='Preview'
+/>
 
 ## Note on function purity
 
@@ -86,12 +100,14 @@ The only exception are built-in methods like [`array.push(value){:typst}`](/docs
 
 
 ## Methods
-
-### `with`
-
 Returns a new function that has the given arguments pre-applied.
 
-```#function.with(arguments) -> function```
+```typst
+#function.with(
+  arguments
+) -> function
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -103,19 +119,25 @@ Returns a new function that has the given arguments pre-applied.
   }}
 />
 
-
-### `where`
-
 Returns a selector that filters for elements belonging to this function whose fields have the values of the given arguments.
 
-```typst
+<TypstPreview
+  code={`
 #show heading.where(level: 2): set text(blue)
 = Section
 == Subsection
 === Sub-subsection
-```
+`}
+  image='/assets/54e4780e95888ad47cba40e40c1d918a.png'
+  alt='Preview'
+/>
 
-```#function.where(fields) -> selector```
+```typst
+#function.where(
+  fields
+) -> selector
+```
+### Parameters
 
 <TypeTable
   type={{

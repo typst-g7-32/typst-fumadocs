@@ -2,16 +2,16 @@
 title: "Line"
 description: "Documentation for the `line` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `line`
+import { TypstPreview } from '@/components/typst/preview';
 
 A line from one point to another.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set page(height: 100pt)
 
 #line(length: 100%)
@@ -20,9 +20,21 @@ A line from one point to another.
   length: 4cm,
   stroke: 2pt + maroon,
 )
-```
+`}
+  image='/assets/20174b08a5b487d90d5ace96ffc0ca03.png'
+  alt='Preview'
+/>
 
-```#line(start:, end:, length:, angle:, stroke:) -> content```
+```typst
+#line(
+  start: array,
+  end: none | array,
+  length: relative,
+  angle: angle,
+  stroke: length | color | gradient | stroke | tiling | dictionary
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -47,7 +59,7 @@ A line from one point to another.
       'default': '<code><span class="typ-num">0deg</span></code>'
     },
     'stroke': {
-      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the line.  ```typst #set line(length: 100%) #stack(   spacing: 1em,   line(stroke: 2pt + red),   line(stroke: (paint: blue, thickness: 4pt, cap: "round")),   line(stroke: (paint: blue, thickness: 1pt, dash: "dashed")),   line(stroke: (paint: blue, thickness: 1pt, dash: ("dot", 2pt, 4pt, 2pt))), ) ```',
+      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the line.  <TypstPreview   code={` #set line(length: 100%) #stack(   spacing: 1em,   line(stroke: 2pt + red),   line(stroke: (paint: blue, thickness: 4pt, cap: "round")),   line(stroke: (paint: blue, thickness: 1pt, dash: "dashed")),   line(stroke: (paint: blue, thickness: 1pt, dash: ("dot", 2pt, 4pt, 2pt))), ) `}   image=\'/assets/4a1c2aa65f57ad6920e80d57cc1a24e8.png\'   alt=\'Preview\' />',
       'type': 'length | color | gradient | stroke | tiling | dictionary',
       'default': '<code><span class="typ-num">1pt</span> <span class="typ-op">+</span> black</code>'
     }

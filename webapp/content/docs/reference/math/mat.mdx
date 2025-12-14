@@ -2,10 +2,9 @@
 title: "Matrix"
 description: "Documentation for the `mat` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `mat`
+import { TypstPreview } from '@/components/typst/preview';
 
 A matrix.
 
@@ -15,51 +14,66 @@ Content in cells can be aligned with the [`align{:typst}`](/docs/reference/math/
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ mat(
   1, 2, ..., 10;
   2, 2, ..., 10;
   dots.v, dots.v, dots.down, dots.v;
   10, 10, ..., 10;
 ) $
-```
+`}
+  image='/assets/ca24a2958190d70441a482b738ddf8f4.png'
+  alt='Preview'
+/>
 
-```#math.mat(delim:, align:, augment:, gap:, row-gap:, column-gap:, rows) -> content```
+```typst
+#math.mat(
+  delim: none | str | array | symbol,
+  align: alignment,
+  augment: none | int | dictionary,
+  gap: relative,
+  row-gap: relative,
+  column-gap: relative,
+  rows
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'delim': {
-      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  ```typst #set math.mat(delim: "[") $ mat(1, 2; 3, 4) $ ```',
+      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  <TypstPreview   code={` #set math.mat(delim: "[") $ mat(1, 2; 3, 4) $ `}   image=\'/assets/a90805f7e282235aafa3bde73f34aa1.png\'   alt=\'Preview\' />',
       'type': 'none | str | array | symbol',
       'default': '<code><span class="typ-punct">(</span><span class="typ-str">&quot;(&quot;</span><span class="typ-punct">,</span> <span class="typ-str">&quot;)&quot;</span><span class="typ-punct">)</span></code>'
     },
     'align': {
-      'description': 'The horizontal alignment that each cell should have.  ```typst #set math.mat(align: right) $ mat(-1, 1, 1; 1, -1, 1; 1, 1, -1) $ ```',
+      'description': 'The horizontal alignment that each cell should have.  <TypstPreview   code={` #set math.mat(align: right) $ mat(-1, 1, 1; 1, -1, 1; 1, 1, -1) $ `}   image=\'/assets/5f741736d817a8455441fbc945038f47.png\'   alt=\'Preview\' />',
       'type': 'alignment',
       'default': '<code>center</code>'
     },
     'augment': {
-      'description': 'Draws augmentation lines in a matrix.  - `none{:typst}`: No lines are drawn. - A single number: A vertical augmentation line is drawn after the specified column number. Negative numbers start from the end. - A dictionary: With a dictionary, multiple augmentation lines can be drawn both horizontally and vertically. Additionally, the style of the lines can be set. The dictionary can contain the following keys:    - `hline{:typst}`: The offsets at which horizontal lines should be drawn. For example, an offset of `2{:typst}` would result in a horizontal line being drawn after the second row of the matrix. Accepts either an integer for a single line, or an array of integers for multiple lines. Like for a single number, negative numbers start from the end.   - `vline{:typst}`: The offsets at which vertical lines should be drawn. For example, an offset of `2{:typst}` would result in a vertical line being drawn after the second column of the matrix. Accepts either an integer for a single line, or an array of integers for multiple lines. Like for a single number, negative numbers start from the end.   - `stroke{:typst}`: How to [stroke](/docs/reference/visualize/stroke/) the line. If set to `auto{:typst}`, takes on a thickness of 0.05 em and square line caps.  ```typst $ mat(1, 0, 1; 0, 1, 2; augment: #2) $ // Equivalent to: $ mat(1, 0, 1; 0, 1, 2; augment: #(-1)) $ ```  ```typst $ mat(0, 0, 0; 1, 1, 1; augment: #(hline: 1, stroke: 2pt + green)) $ ```',
+      'description': 'Draws augmentation lines in a matrix.  - `none{:typst}`: No lines are drawn. - A single number: A vertical augmentation line is drawn after the specified column number. Negative numbers start from the end. - A dictionary: With a dictionary, multiple augmentation lines can be drawn both horizontally and vertically. Additionally, the style of the lines can be set. The dictionary can contain the following keys:    - `hline{:typst}`: The offsets at which horizontal lines should be drawn. For example, an offset of `2{:typst}` would result in a horizontal line being drawn after the second row of the matrix. Accepts either an integer for a single line, or an array of integers for multiple lines. Like for a single number, negative numbers start from the end.   - `vline{:typst}`: The offsets at which vertical lines should be drawn. For example, an offset of `2{:typst}` would result in a vertical line being drawn after the second column of the matrix. Accepts either an integer for a single line, or an array of integers for multiple lines. Like for a single number, negative numbers start from the end.   - `stroke{:typst}`: How to [stroke](/docs/reference/visualize/stroke/) the line. If set to `auto{:typst}`, takes on a thickness of 0.05 em and square line caps.  <TypstPreview   code={` $ mat(1, 0, 1; 0, 1, 2; augment: #2) $ // Equivalent to: $ mat(1, 0, 1; 0, 1, 2; augment: #(-1)) $ `}   image=\'/assets/e228a9d19f69a430344b19c91c98a191.png\'   alt=\'Preview\' />  <TypstPreview   code={` $ mat(0, 0, 0; 1, 1, 1; augment: #(hline: 1, stroke: 2pt + green)) $ `}   image=\'/assets/dcf1c0269b2f89267e46ab5bdec05de0.png\'   alt=\'Preview\' />',
       'type': 'none | int | dictionary',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'gap': {
-      'description': 'The gap between rows and columns.  This is a shorthand to set `row-gap{:typst}` and `column-gap{:typst}` to the same value.  ```typst #set math.mat(gap: 1em) $ mat(1, 2; 3, 4) $ ```',
+      'description': 'The gap between rows and columns.  This is a shorthand to set `row-gap{:typst}` and `column-gap{:typst}` to the same value.  <TypstPreview   code={` #set math.mat(gap: 1em) $ mat(1, 2; 3, 4) $ `}   image=\'/assets/91aca9252744d4fd6539667e70c329c8.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0pt</span></code>'
     },
     'row-gap': {
-      'description': 'The gap between rows.  ```typst #set math.mat(row-gap: 1em) $ mat(1, 2; 3, 4) $ ```',
+      'description': 'The gap between rows.  <TypstPreview   code={` #set math.mat(row-gap: 1em) $ mat(1, 2; 3, 4) $ `}   image=\'/assets/60d549f2e0a73efaecf1ed1891621016.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0.2em</span></code>'
     },
     'column-gap': {
-      'description': 'The gap between columns.  ```typst #set math.mat(column-gap: 1em) $ mat(1, 2; 3, 4) $ ```',
+      'description': 'The gap between columns.  <TypstPreview   code={` #set math.mat(column-gap: 1em) $ mat(1, 2; 3, 4) $ `}   image=\'/assets/b4a9ab4d1c58c1520bf31ecde2d9d1c9.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0.5em</span></code>'
     },
     'rows': {
-      'description': 'An array of arrays with the rows of the matrix.  ```typst #let data = ((1, 2, 3), (4, 5, 6)) #let matrix = math.mat(..data) $ v := matrix $ ```',
+      'description': 'An array of arrays with the rows of the matrix.  <TypstPreview   code={` #let data = ((1, 2, 3), (4, 5, 6)) #let matrix = math.mat(..data) $ v := matrix $ `}   image=\'/assets/37eedc689e05b0f94e76556b52b364f6.png\'   alt=\'Preview\' />',
       'type': 'array',
       'default': 'None'
     }

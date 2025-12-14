@@ -2,10 +2,9 @@
 title: "Data Cell"
 description: "Documentation for the `data-cell` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `data-cell`
+import { TypstPreview } from '@/components/typst/preview';
 
 Explicitly defines this cell as a data cell.
 
@@ -15,7 +14,8 @@ If your header contains a cell that is not a header cell, you can use this funct
 
 The API of this feature is temporary. Hence, calling this function requires enabling the `a11y-extras{:typst}` feature flag at the moment. In a future Typst release, this functionality may move out of the `pdf{:typst}` module so that tables in other export targets can contain the same information.
 
-```typst
+<TypstPreview
+  code={`
 #show table.cell.where(x: 0): set text(weight: "bold")
 #show table.cell.where(x: 1): set text(style: "italic")
 #show table.cell.where(x: 1, y: 0): set text(style: "normal")
@@ -43,9 +43,17 @@ The API of this feature is temporary. Hence, calling this function requires enab
   [], [Achieve \$2M ARR], [\$1.8M],
   [], [Close 50 enterprise deals], [38],
 )
-```
+`}
+  image='/assets/5fd6ab244673f7a5952eb2add1819b8d.png'
+  alt='Preview'
+/>
 
-```#pdf.data-cell(cell) -> content```
+```typst
+#pdf.data-cell(
+  cell
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

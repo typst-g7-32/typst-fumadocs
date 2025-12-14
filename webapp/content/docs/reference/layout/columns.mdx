@@ -2,10 +2,9 @@
 title: "Columns"
 description: "Documentation for the `columns` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `columns`
+import { TypstPreview } from '@/components/typst/preview';
 
 Separates a region into multiple equally sized columns.
 
@@ -15,7 +14,8 @@ When arranging content across multiple columns, use [`colbreak{:typst}`](/docs/r
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #columns(2, gutter: 8pt)[
   This text is in the
   first column.
@@ -25,7 +25,10 @@ When arranging content across multiple columns, use [`colbreak{:typst}`](/docs/r
   This text is in the
   second column.
 ]
-```
+`}
+  image='/assets/83bb34143540d7c5eb201906b54e330d.png'
+  alt='Preview'
+/>
 
 ## Page-level columns
 
@@ -35,7 +38,8 @@ If you need to insert columns across your whole document, use the `page{:typst}`
 
 To temporarily break out of columns (e.g. for a paper's title), use parent-scoped floating placement:
 
-```typst
+<TypstPreview
+  code={`
 #set page(columns: 2, height: 150pt)
 
 #place(
@@ -48,9 +52,19 @@ To temporarily break out of columns (e.g. for a paper's title), use parent-scope
 )
 
 #lorem(40)
-```
+`}
+  image='/assets/a8d4661ddb4d82cf2aa44f91511f97c9.png'
+  alt='Preview'
+/>
 
-```#columns(count, gutter:, body) -> content```
+```typst
+#columns(
+  count,
+  gutter: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,9 @@
 title: "Locate"
 description: "Documentation for the `locate` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `locate`
+import { TypstPreview } from '@/components/typst/preview';
 
 Determines the location of an element in the document.
 
@@ -15,16 +14,25 @@ Takes a selector that must match exactly one element and returns that element's 
 
 Locating a specific element:
 
-```typst
+<TypstPreview
+  code={`
 #context [
-  Introduction is at: \
+  Introduction is at: 
   #locate(<intro>).position()
 ]
 
 = Introduction <intro>
-```
+`}
+  image='/assets/7e2cf137b2fb2fb13cb96a5377cfe632.png'
+  alt='Preview'
+/>
 
-```#locate(selector) -> location```
+```typst
+#locate(
+  selector
+) -> location
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,9 @@
 title: "Raw Text / Code"
 description: "Documentation for the `raw` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `raw`
+import { TypstPreview } from '@/components/typst/preview';
 
 Raw text with optional syntax highlighting.
 
@@ -15,30 +14,38 @@ Note that text given to this element cannot contain arbitrary formatting, such a
 
 ## Example
 
-```typst
-Adding `rbx` to `rcx` gives
+<TypstPreview
+  code={`
+Adding \`rbx\` to \`rcx\` gives
 the desired result.
 
-What is ```rust fn main()``` in Rust
-would be ```c int main()``` in C.
+What is \`\`\`rust fn main()\`\`\` in Rust
+would be \`\`\`c int main()\`\`\` in C.
 
-```rust
+\`\`\`rust
 fn main() {
     println!("Hello World!");
 }
-```
+\`\`\`
 
-This has ``` `backticks` ``` in it
+This has \`\`\` \`backticks\` \`\`\` in it
 (but the spaces are trimmed). And
-``` here``` the leading space is
+\`\`\` here\`\`\` the leading space is
 also trimmed.
-```
+`}
+  image='/assets/1c6e6aa444c644eee774123542b7a4f6.png'
+  alt='Preview'
+/>
 
 You can also construct a [`raw{:typst}`](/docs/reference/text/raw/) element programmatically from a string (and provide the language tag via the optional [`lang{:typst}`](/docs/reference/text/raw/#parameters-lang) argument).
 
-```typst
+<TypstPreview
+  code={`
 #raw("fn " + "main() {}", lang: "rust")
-```
+`}
+  image='/assets/30d00188c2b14f13cf697cc8c1fb8f3d.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
@@ -56,7 +63,8 @@ By default, the `raw{:typst}` element uses the `DejaVu Sans Mono{:typst}` font (
 
 You can customize these properties with show-set rules:
 
-```typst
+<TypstPreview
+  code={`
 // Switch to Cascadia Code for both
 // inline and block raw.
 #show raw: set text(font: "Cascadia Code")
@@ -65,14 +73,17 @@ You can customize these properties with show-set rules:
 // but keep inline raw at the reduced size.
 #show raw.where(block: true): set text(1em / 0.8)
 
-Now using the `Cascadia Code` font for raw text.
+Now using the \`Cascadia Code\` font for raw text.
 Here's some Python code. It looks larger now:
 
-```py
+\`\`\`py
 def python():
   return 5 + 5
-```
-```
+\`\`\`
+`}
+  image='/assets/1cb40ec7f2b6b3f87ab00f8e81b82038.png'
+  alt='Preview'
+/>
 
 In addition, you can customize the syntax highlighting colors by setting a custom theme through the [`theme{:typst}`](/docs/reference/text/raw/#parameters-theme) field.
 
@@ -80,42 +91,53 @@ For complete customization of the appearance of a raw block, a show rule on [`ra
 
 Note that, in raw text, typesetting features like [hyphenation](/docs/reference/text/text/#parameters-hyphenate), [overhang](/docs/reference/text/text/#parameters-overhang), [CJK-Latin spacing](/docs/reference/text/text/#parameters-cjk-latin-spacing) (and [justification](/docs/reference/model/par/#parameters-justify) for [raw blocks](/docs/reference/text/raw/#parameters-block)) will be disabled by default.
 
-```#raw(text, block:, lang:, align:, syntaxes:, theme:, tab-size:) -> content```
+```typst
+#raw(
+  text,
+  block: bool,
+  lang: none | str,
+  align: alignment,
+  syntaxes: str | bytes | array,
+  theme: none | auto | str | bytes,
+  tab-size: int
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'text': {
-      'description': 'The raw text.  You can also use raw blocks creatively to create custom syntaxes for your automations.  ```typst // Parse numbers in raw blocks with the // `mydsl` tag and sum them up. #show raw.where(lang: "mydsl"): it => {   let sum = 0   for part in it.text.split("+") {     sum += int(part.trim())   }   sum }  ```mydsl 1 + 2 + 3 + 4 + 5 ``` ```',
+      'description': 'The raw text.  You can also use raw blocks creatively to create custom syntaxes for your automations.  <TypstPreview   code={` // Parse numbers in raw blocks with the // \\`mydsl\\` tag and sum them up. #show raw.where(lang: "mydsl"): it => {   let sum = 0   for part in it.text.split("+") {     sum += int(part.trim())   }   sum }  \\`\\`\\`mydsl 1 + 2 + 3 + 4 + 5 \\`\\`\\` `}   image=\'/assets/e95a5eae34283fc132d0b8949399b41d.png\'   alt=\'Preview\' />',
       'type': 'str',
       'default': 'None'
     },
     'block': {
-      'description': 'Whether the raw text is displayed as a separate block.  In markup mode, using one-backtick notation makes this `false{:typst}`. Using three-backtick notation makes it `true{:typst}` if the enclosed content contains at least one line break.  ```typst // Display inline code in a small box // that retains the correct baseline. #show raw.where(block: false): box.with(   fill: luma(240),   inset: (x: 3pt, y: 0pt),   outset: (y: 3pt),   radius: 2pt, )  // Display block code in a larger block // with more padding. #show raw.where(block: true): block.with(   fill: luma(240),   inset: 10pt,   radius: 4pt, )  With `rg`, you can search through your files quickly. This example searches the current directory recursively for the text `Hello World`:  ```bash rg "Hello World" ``` ```',
+      'description': 'Whether the raw text is displayed as a separate block.  In markup mode, using one-backtick notation makes this `false{:typst}`. Using three-backtick notation makes it `true{:typst}` if the enclosed content contains at least one line break.  <TypstPreview   code={` // Display inline code in a small box // that retains the correct baseline. #show raw.where(block: false): box.with(   fill: luma(240),   inset: (x: 3pt, y: 0pt),   outset: (y: 3pt),   radius: 2pt, )  // Display block code in a larger block // with more padding. #show raw.where(block: true): block.with(   fill: luma(240),   inset: 10pt,   radius: 4pt, )  With \\`rg\\`, you can search through your files quickly. This example searches the current directory recursively for the text \\`Hello World\\`:  \\`\\`\\`bash rg "Hello World" \\`\\`\\` `}   image=\'/assets/3e05c29a6af60a7e77667a5640e9ccc3.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'lang': {
-      'description': 'The language to syntax-highlight in.  Apart from typical language tags known from Markdown, this supports the `"typ"{:typst}`, `"typc"{:typst}`, and `"typm"{:typst}` tags for [Typst markup](/docs/reference/syntax/#markup), [Typst code](/docs/reference/syntax/#code), and [Typst math](/docs/reference/syntax/#math), respectively.  ```typst ```typ This is *Typst!* ```  This is ```typ also *Typst*```, but inline! ```',
+      'description': 'The language to syntax-highlight in.  Apart from typical language tags known from Markdown, this supports the `"typ"{:typst}`, `"typc"{:typst}`, and `"typm"{:typst}` tags for [Typst markup](/docs/reference/syntax/#markup), [Typst code](/docs/reference/syntax/#code), and [Typst math](/docs/reference/syntax/#math), respectively.  <TypstPreview   code={` \\`\\`\\`typ This is *Typst!* \\`\\`\\`  This is \\`\\`\\`typ also *Typst*\\`\\`\\`, but inline! `}   image=\'/assets/6e35373cc945b3d9ac522ef64138479c.png\'   alt=\'Preview\' />',
       'type': 'none | str',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'align': {
-      'description': 'The horizontal alignment that each line in a raw block should have. This option is ignored if this is not a raw block (if specified `block: false{:typst}` or single backticks were used in markup mode).  By default, this is set to `start{:typst}`, meaning that raw text is aligned towards the start of the text direction inside the block by default, regardless of the current context\'s alignment (allowing you to center the raw block itself without centering the text inside it, for example).  ```typst #set raw(align: center)  ```typc let f(x) = x code = "centered" ``` ```',
+      'description': 'The horizontal alignment that each line in a raw block should have. This option is ignored if this is not a raw block (if specified `block: false{:typst}` or single backticks were used in markup mode).  By default, this is set to `start{:typst}`, meaning that raw text is aligned towards the start of the text direction inside the block by default, regardless of the current context\'s alignment (allowing you to center the raw block itself without centering the text inside it, for example).  <TypstPreview   code={` #set raw(align: center)  \\`\\`\\`typc let f(x) = x code = "centered" \\`\\`\\` `}   image=\'/assets/42863ad475a373b308500053afc9afc3.png\'   alt=\'Preview\' />',
       'type': 'alignment',
       'default': '<code>start</code>'
     },
     'syntaxes': {
-      'description': 'Additional syntax definitions to load. The syntax definitions should be in the [`sublime-syntax{:typst}` file format](https://www.sublimetext.com/docs/syntax.html).  You can pass any of the following values:  - A path string to load a syntax file from the given path. For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which the syntax should be decoded. - An array where each item is one of the above.  ```typst #set raw(syntaxes: "SExpressions.sublime-syntax")  ```sexp (defun factorial (x)   (if (zerop x)     ; with a comment     1     (* x (factorial (- x 1))))) ``` ```',
+      'description': 'Additional syntax definitions to load. The syntax definitions should be in the [`sublime-syntax{:typst}` file format](https://www.sublimetext.com/docs/syntax.html).  You can pass any of the following values:  - A path string to load a syntax file from the given path. For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which the syntax should be decoded. - An array where each item is one of the above.  <TypstPreview   code={` #set raw(syntaxes: "SExpressions.sublime-syntax")  \\`\\`\\`sexp (defun factorial (x)   (if (zerop x)     ; with a comment     1     (* x (factorial (- x 1))))) \\`\\`\\` `}   image=\'/assets/7f5c04b4a7636eec32f8b54d18867f8a.png\'   alt=\'Preview\' />',
       'type': 'str | bytes | array',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">)</span></code>'
     },
     'theme': {
-      'description': 'The theme to use for syntax highlighting. Themes should be in the [`tmTheme{:typst}` file format](https://www.sublimetext.com/docs/color_schemes_tmtheme.html).  You can pass any of the following values:  - `none{:typst}`: Disables syntax highlighting. - `auto{:typst}`: Highlights with Typst\'s default theme. - A path string to load a theme file from the given path. For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which the theme should be decoded.  Applying a theme only affects the color of specifically highlighted text. It does not consider the theme\'s foreground and background properties, so that you retain control over the color of raw text. You can apply the foreground color yourself with the [`text{:typst}`](/docs/reference/text/text/) function and the background with a [filled block](/docs/reference/layout/block/#parameters-fill). You could also use the [`xml{:typst}`](/docs/reference/data-loading/xml/) function to extract these properties from the theme.  ```typst #set raw(theme: "halcyon.tmTheme") #show raw: it => block(   fill: rgb("#1d2433"),   inset: 8pt,   radius: 5pt,   text(fill: rgb("#a2aabc"), it) )  ```typ = Chapter 1 #let hi = "Hello World" ``` ```',
+      'description': 'The theme to use for syntax highlighting. Themes should be in the [`tmTheme{:typst}` file format](https://www.sublimetext.com/docs/color_schemes_tmtheme.html).  You can pass any of the following values:  - `none{:typst}`: Disables syntax highlighting. - `auto{:typst}`: Highlights with Typst\'s default theme. - A path string to load a theme file from the given path. For more details about paths, see the [Paths section](/docs/reference/syntax/#paths). - Raw bytes from which the theme should be decoded.  Applying a theme only affects the color of specifically highlighted text. It does not consider the theme\'s foreground and background properties, so that you retain control over the color of raw text. You can apply the foreground color yourself with the [`text{:typst}`](/docs/reference/text/text/) function and the background with a [filled block](/docs/reference/layout/block/#parameters-fill). You could also use the [`xml{:typst}`](/docs/reference/data-loading/xml/) function to extract these properties from the theme.  <TypstPreview   code={` #set raw(theme: "halcyon.tmTheme") #show raw: it => block(   fill: rgb("#1d2433"),   inset: 8pt,   radius: 5pt,   text(fill: rgb("#a2aabc"), it) )  \\`\\`\\`typ = Chapter 1 #let hi = "Hello World" \\`\\`\\` `}   image=\'/assets/ff79dd534cb52ac3a90c032ff7df46c3.png\'   alt=\'Preview\' />',
       'type': 'none | auto | str | bytes',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'tab-size': {
-      'description': 'The size for a tab stop in spaces. A tab is replaced with enough spaces to align with the next multiple of the size.  ```typst #set raw(tab-size: 8) ```tsv Year	Month	Day 2000	2	3 2001	2	1 2002	3	10 ``` ```',
+      'description': 'The size for a tab stop in spaces. A tab is replaced with enough spaces to align with the next multiple of the size.  <TypstPreview   code={` #set raw(tab-size: 8) \\`\\`\\`tsv Year	Month	Day 2000	2	3 2001	2	1 2002	3	10 \\`\\`\\` `}   image=\'/assets/38037df252d0e30521ad3ae36d5093cb.png\'   alt=\'Preview\' />',
       'type': 'int',
       'default': '<code><span class="typ-num">2</span></code>'
     }
@@ -124,16 +146,21 @@ Note that, in raw text, typesetting features like [hyphenation](/docs/reference/
 
 
 ### Definitions
-
-### `line`
-
 A highlighted line of raw text.
 
 This is a helper element that is synthesized by [`raw{:typst}`](/docs/reference/text/raw/) elements.
 
 It allows you to access various properties of the line, such as the line number, the raw non-highlighted text, the highlighted text, and whether it is the first or last line of the raw block.
 
-```#raw.line(number, count, text, body) -> content```
+```typst
+#raw.line(
+  number,
+  count,
+  text,
+  body
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{

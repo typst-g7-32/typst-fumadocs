@@ -3,13 +3,16 @@ title: "Formatting"
 description: "Typst's tutorial."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 So far, you have written a report with some text, a few equations and images. However, it still looks very plain. Your teaching assistant does not yet know that you are using a new typesetting system, and you want your report to fit in with the other student's submissions. In this chapter, we will see how to format your report using Typst's styling system.
 
 ## Set rules
 
 As we have seen in the previous chapter, Typst has functions that _insert_ content (e.g. the [`image{:typst}`](/docs/reference/visualize/image/) function) and others that _manipulate_ content that they received as arguments (e.g. the [`align{:typst}`](/docs/reference/layout/align/) function). The first impulse you might have when you want, for example, to change the font, could be to look for a function that does that and wrap the complete document in it.
 
-```typst
+<TypstPreview
+  code={`
 #text(font: "New Computer Modern")[
   = Background
   In the case of glaciers, fluid
@@ -21,7 +24,10 @@ As we have seen in the previous chapter, Typst has functions that _insert_ conte
   presence of other fluids (such as
   water).
 ]
-```
+`}
+  image='/assets/331b3b0f46e67088a6a43b6f56bef8ae.png'
+  alt='Preview'
+/>
 
 Wait, shouldn't all arguments of a function be specified within parentheses? Why is there a second set of square brackets with content _after_ the parentheses? The answer is that, as passing content to a function is such a common thing to do in Typst, there is special syntax for it: Instead of putting the content inside of the argument list, you can write it in square brackets directly after the normal arguments, saving on punctuation.
 
@@ -29,7 +35,8 @@ As seen above, that works. With the [`text{:typst}`](/docs/reference/text/text/)
 
 Fortunately, Typst has a more elegant solution. With _set rules,_ you can apply style properties to all occurrences of some kind of content. You write a set rule by entering the `set{:typst}` keyword, followed by the name of the function whose properties you want to set, and a list of arguments in parentheses.
 
-```typst
+<TypstPreview
+  code={`
 #set text(
   font: "New Computer Modern"
 )
@@ -43,7 +50,10 @@ influenced by factors such as
 temperature, pressure, and the
 presence of other fluids (such as
 water).
-```
+`}
+  image='/assets/c8049d728c921fe8eac88c71c130e525.png'
+  alt='Preview'
+/>
 
 <Callout>
 Want to know in more technical terms what is happening here?
@@ -71,7 +81,8 @@ Not all function parameters can be set. In general, only parameters that tell a 
 
 Let's add a few more styles to our document. We want larger margins and a serif font. For the purposes of the example, we'll also set another page size.
 
-```typst
+<TypstPreview
+  code={`
 #set page(
   paper: "a6",
   margin: (x: 1.8cm, y: 1.5cm),
@@ -101,7 +112,10 @@ behaviour of these natural structures.
   part of the earth's climate
   system.*
 ]
-```
+`}
+  image='/assets/bd7be31b07c68299397a8ed4e0255631.png'
+  alt='Preview'
+/>
 
 There are a few things of note here.
 
@@ -117,7 +131,8 @@ Finally, we have bottom aligned our image by adding a vertical alignment to our 
 
 To structure our document more clearly, we now want to number our headings. We can do this by setting the `numbering{:typst}` parameter of the [`heading{:typst}`](/docs/reference/model/heading/) function.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction
@@ -128,11 +143,15 @@ To structure our document more clearly, we now want to number our headings. We c
 
 == Methods
 #lorem(15)
-```
+`}
+  image='/assets/e16b45d2ef3501cceeac862bc2945d73.png'
+  alt='Preview'
+/>
 
 We specified the string `"1."{:typst}` as the numbering parameter. This tells Typst to number the headings with arabic numerals and to put a dot between the number of each level. We can also use [letters, roman numerals, and symbols](/docs/reference/model/numbering/) for our headings:
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.a")
 
 = Introduction
@@ -143,7 +162,10 @@ We specified the string `"1."{:typst}` as the numbering parameter. This tells Ty
 
 == Methods
 #lorem(15)
-```
+`}
+  image='/assets/2e5bf40eb67a53e40a7f5be3bb6c0fe1.png'
+  alt='Preview'
+/>
 
 This example also uses the [`lorem{:typst}`](/docs/reference/text/lorem/) function to generate some placeholder text. This function takes a number as an argument and generates that many words of _Lorem Ipsum_ text.
 
@@ -161,7 +183,8 @@ You consider your options. You could add an `#image("logo.svg"){:typst}` call be
 
 With show rules, you can redefine how Typst displays certain elements. You specify which elements Typst should show differently and how they should look. Show rules can be applied to instances of text, many functions, and even the whole document.
 
-```typst
+<TypstPreview
+  code={`
 #show "ArtosFlow": name => box[
   #box(image(
     "logo.svg",
@@ -173,7 +196,10 @@ With show rules, you can redefine how Typst displays certain elements. You speci
 This report is embedded in the
 ArtosFlow project. ArtosFlow is a
 project of the Artos Institute.
-```
+`}
+  image='/assets/df8f7f22dc78fab4de371cc998da1fbe.png'
+  alt='Preview'
+/>
 
 There is a lot of new syntax in this example: We write the `show{:typst}` keyword, followed by a string of text we want to show differently and a colon. Then, we write a function that takes the content that shall be shown as an argument. Here, we called that argument `name{:typst}`. We can now use the `name{:typst}` variable in the function's body to print the ArtosFlow name. Our show rule adds the logo image in front of the name and puts the result into a box to prevent linebreaks from occurring between logo and name. The image is also put inside of a box, so that it does not appear in its own paragraph.
 

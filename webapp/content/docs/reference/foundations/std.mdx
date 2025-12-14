@@ -3,13 +3,16 @@ title: "Standard Library"
 description: "Documentation for the std functions."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 A module that contains all globally accessible items.
 
 ## Using "shadowed" definitions
 
 The `std{:typst}` module is useful whenever you overrode a name from the global scope (this is called _shadowing_). For instance, you might have used the name `text{:typst}` for a parameter. To still access the `text{:typst}` element, write `std.text{:typst}`.
 
-```typst
+<TypstPreview
+  code={`
 #let par = [My special paragraph.]
 #let special(text) = {
   set std.text(style: "italic")
@@ -20,7 +23,10 @@ The `std{:typst}` module is useful whenever you overrode a name from the global 
 #special(par)
 
 #lorem(10)
-```
+`}
+  image='/assets/2736820672bb7a52dce20390b13a1cb0.png'
+  alt='Preview'
+/>
 
 ## Conditional access
 

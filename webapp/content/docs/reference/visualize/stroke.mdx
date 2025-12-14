@@ -2,7 +2,9 @@
 title: "Stroke"
 description: "Documentation for the Stroke type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Defines how to draw a line.
 
@@ -10,7 +12,8 @@ A stroke has a _paint_ (a solid color or gradient), a _thickness,_ a line _cap,_
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set line(length: 100%)
 #stack(
   spacing: 1em,
@@ -19,7 +22,10 @@ A stroke has a _paint_ (a solid color or gradient), a _thickness,_ a line _cap,_
   line(stroke: (paint: blue, thickness: 1pt, dash: "dashed")),
   line(stroke: 2pt + gradient.linear(..color.map.rainbow)),
 )
-```
+`}
+  image='/assets/dcda1fb9b6f022596876c15ac2535df3.png'
+  alt='Preview'
+/>
 
 ## Simple strokes
 
@@ -36,24 +42,35 @@ For full control, you can also provide a [dictionary](/docs/reference/foundation
 On a stroke object, you can access any of the fields listed in the constructor function. For example, `(2pt + blue).thickness{:typst}` is `2pt{:typst}`. Meanwhile, `stroke(red).cap{:typst}` is `auto{:typst}` because it's unspecified. Fields set to `auto{:typst}` are inherited.
 
 ## Constructor
-
-### `stroke`
-
 Converts a value to a stroke or constructs a stroke with the given parameters.
 
 Note that in most cases you do not need to convert values to strokes in order to use them, as they will be converted automatically. However, this constructor can be useful to ensure a value has all the fields of a stroke.
 
-```typst
+<TypstPreview
+  code={`
 #let my-func(x) = {
     x = stroke(x) // Convert to a stroke
     [Stroke has thickness #x.thickness.]
 }
-#my-func(3pt) \
-#my-func(red) \
+#my-func(3pt) 
+#my-func(red) 
 #my-func(stroke(cap: "round", thickness: 1pt))
-```
+`}
+  image='/assets/a2e95c5c335ca6e9c24b156f08f5cc25.png'
+  alt='Preview'
+/>
 
-```#stroke(paint, thickness, cap, join, dash, miter-limit) -> stroke```
+```typst
+#stroke(
+  paint,
+  thickness,
+  cap,
+  join,
+  dash,
+  miter-limit
+) -> stroke
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -78,12 +95,12 @@ Note that in most cases you do not need to convert values to strokes in order to
       'default': 'None'
     },
     'dash': {
-      'description': 'The dash pattern to use. This can be:  - One of the predefined patterns:    - `"solid"{:typst}` or `none{:typst}`   - `"dotted"{:typst}`   - `"densely-dotted"{:typst}`   - `"loosely-dotted"{:typst}`   - `"dashed"{:typst}`   - `"densely-dashed"{:typst}`   - `"loosely-dashed"{:typst}`   - `"dash-dotted"{:typst}`   - `"densely-dash-dotted"{:typst}`   - `"loosely-dash-dotted"{:typst}` - An [array](/docs/reference/foundations/array/) with alternating lengths for dashes and gaps. You can also use the string `"dot"{:typst}` for a length equal to the line thickness. - A [dictionary](/docs/reference/foundations/dictionary/) with the keys `array{:typst}` (same as the array above), and `phase{:typst}` (of type [length](/docs/reference/layout/length/)), which defines where in the pattern to start drawing.  If set to `auto{:typst}`, the value is inherited, defaulting to `none{:typst}`.  ```typst #set line(length: 100%, stroke: 2pt) #stack(   spacing: 1em,   line(stroke: (dash: "dashed")),   line(stroke: (dash: (10pt, 5pt, "dot", 5pt))),   line(stroke: (dash: (array: (10pt, 5pt, "dot", 5pt), phase: 10pt))), ) ```',
+      'description': 'The dash pattern to use. This can be:  - One of the predefined patterns:    - `"solid"{:typst}` or `none{:typst}`   - `"dotted"{:typst}`   - `"densely-dotted"{:typst}`   - `"loosely-dotted"{:typst}`   - `"dashed"{:typst}`   - `"densely-dashed"{:typst}`   - `"loosely-dashed"{:typst}`   - `"dash-dotted"{:typst}`   - `"densely-dash-dotted"{:typst}`   - `"loosely-dash-dotted"{:typst}` - An [array](/docs/reference/foundations/array/) with alternating lengths for dashes and gaps. You can also use the string `"dot"{:typst}` for a length equal to the line thickness. - A [dictionary](/docs/reference/foundations/dictionary/) with the keys `array{:typst}` (same as the array above), and `phase{:typst}` (of type [length](/docs/reference/layout/length/)), which defines where in the pattern to start drawing.  If set to `auto{:typst}`, the value is inherited, defaulting to `none{:typst}`.  <TypstPreview   code={` #set line(length: 100%, stroke: 2pt) #stack(   spacing: 1em,   line(stroke: (dash: "dashed")),   line(stroke: (dash: (10pt, 5pt, "dot", 5pt))),   line(stroke: (dash: (array: (10pt, 5pt, "dot", 5pt), phase: 10pt))), ) `}   image=\'/assets/3f7f20165b8a65cc3ae1675947ce671e.png\'   alt=\'Preview\' />',
       'type': 'none | auto | str | array | dictionary',
       'default': 'None'
     },
     'miter-limit': {
-      'description': 'Number at which protruding sharp bends are rendered with a bevel instead or a miter join. The higher the number, the sharper an angle can be before it is bevelled. Only applicable if `join{:typst}` is `"miter"{:typst}`.  Specifically, the miter limit is the maximum ratio between the corner\'s protrusion length and the stroke\'s thickness.  If set to `auto{:typst}`, the value is inherited, defaulting to `4.0{:typst}`.  ```typst #let items = (   curve.move((15pt, 0pt)),   curve.line((0pt, 30pt)),   curve.line((30pt, 30pt)),   curve.line((10pt, 20pt)), )  #set curve(stroke: 6pt + blue) #stack(   dir: ltr,   spacing: 1cm,   curve(stroke: (miter-limit: 1), ..items),   curve(stroke: (miter-limit: 4), ..items),   curve(stroke: (miter-limit: 5), ..items), ) ```',
+      'description': 'Number at which protruding sharp bends are rendered with a bevel instead or a miter join. The higher the number, the sharper an angle can be before it is bevelled. Only applicable if `join{:typst}` is `"miter"{:typst}`.  Specifically, the miter limit is the maximum ratio between the corner\'s protrusion length and the stroke\'s thickness.  If set to `auto{:typst}`, the value is inherited, defaulting to `4.0{:typst}`.  <TypstPreview   code={` #let items = (   curve.move((15pt, 0pt)),   curve.line((0pt, 30pt)),   curve.line((30pt, 30pt)),   curve.line((10pt, 20pt)), )  #set curve(stroke: 6pt + blue) #stack(   dir: ltr,   spacing: 1cm,   curve(stroke: (miter-limit: 1), ..items),   curve(stroke: (miter-limit: 4), ..items),   curve(stroke: (miter-limit: 5), ..items), ) `}   image=\'/assets/33818a9431604770d2115dd8e445c269.png\'   alt=\'Preview\' />',
       'type': 'auto | float',
       'default': 'None'
     }

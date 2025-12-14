@@ -3,6 +3,8 @@ title: "Angle"
 description: "Documentation for the Angle type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 An angle describing a rotation.
 
 Typst supports the following angular units:
@@ -12,22 +14,18 @@ Typst supports the following angular units:
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #rotate(10deg)[Hello there!]
-```
+`}
+  image='/assets/6c3cab70b4f3af679198659e651376fd.png'
+  alt='Preview'
+/>
 
 
 ## Methods
-
-### `rad`
-
 Converts this angle to radians.
-
-```#angle.rad() -> float```
-
-### `deg`
 
 Converts this angle to degrees.
 
-```#angle.deg() -> float```
 

@@ -2,22 +2,30 @@
 title: "Lowercase"
 description: "Documentation for the `lower` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `lower`
+import { TypstPreview } from '@/components/typst/preview';
 
 Converts a string or content to lowercase.
 
 ## Example
 
-```typst
-#lower("ABC") \
-#lower[*My Text*] \
+<TypstPreview
+  code={`
+#lower("ABC") 
+#lower[*My Text*] 
 #lower[already low]
-```
+`}
+  image='/assets/cdb81d65cc20e0a9dcf9e3f2953d33a5.png'
+  alt='Preview'
+/>
 
-```#lower(text) -> str content```
+```typst
+#lower(
+  text
+) -> str content
+```
+## Parameters
 
 <TypeTable
   type={{

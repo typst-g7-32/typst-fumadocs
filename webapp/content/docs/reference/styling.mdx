@@ -3,13 +3,16 @@ title: "Styling"
 description: "All concepts needed to style your document with Typst."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Typst includes a flexible styling system that automatically applies styling of your choice to your document. With _set rules,_ you can configure basic properties of elements. This way, you create most common styles. However, there might not be a built-in property for everything you wish to do. For this reason, Typst further supports _show rules_ that can completely redefine the appearance of elements.
 
 ## Set rules
 
 With set rules, you can customize the appearance of elements. They are written as a [function call](/docs/reference/foundations/function/) to an [element function](/docs/reference/foundations/function/#element-functions) preceded by the `set{:typst}` keyword (or `#set{:typst}` in markup). Only optional parameters of that function can be provided to the set rule. Refer to each function's documentation to see which parameters are optional. In the example below, we use two set rules to change the [font family](/docs/reference/text/text/#parameters-font) and [heading numbering](/docs/reference/model/heading/#parameters-numbering).
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "I.")
 #set text(
   font: "New Computer Modern"
@@ -18,11 +21,15 @@ With set rules, you can customize the appearance of elements. They are written a
 = Introduction
 With set rules, you can style
 your document.
-```
+`}
+  image='/assets/9d6d1565eca1266b69c1e10e8c947f7e.png'
+  alt='Preview'
+/>
 
 A top level set rule stays in effect until the end of the file. When nested inside of a block, it is only in effect until the end of that block. With a block, you can thus restrict the effect of a rule to a particular segment of your document. Below, we use a content block to scope the list styling to one particular list.
 
-```typst
+<TypstPreview
+  code={`
 This list is affected: #[
   #set list(marker: [--])
   - Dash
@@ -30,11 +37,15 @@ This list is affected: #[
 
 This one is not:
 - Bullet
-```
+`}
+  image='/assets/e9c9106d715f7f5cc305c7567b35f1a6.png'
+  alt='Preview'
+/>
 
 Sometimes, you'll want to apply a set rule conditionally. For this, you can use a _set-if_ rule.
 
-```typst
+<TypstPreview
+  code={`
 #let task(body, critical: false) = {
   set text(red) if critical
   [- #body]
@@ -42,18 +53,25 @@ Sometimes, you'll want to apply a set rule conditionally. For this, you can use 
 
 #task(critical: true)[Food today?]
 #task(critical: false)[Work deadline]
-```
+`}
+  image='/assets/fd4966a8439dae633a77e390f53b005f.png'
+  alt='Preview'
+/>
 
 ## Show rules
 
 With show rules, you can deeply customize the look of a type of element. The most basic form of show rule is a _show-set rule._ Such a rule is written as the `show{:typst}` keyword followed by a [selector](/docs/reference/foundations/selector/), a colon and then a set rule. The most basic form of selector is an [element function](/docs/reference/foundations/function/#element-functions). This lets the set rule only apply to the selected element. In the example below, headings become dark blue while all other text stays black.
 
-```typst
+<TypstPreview
+  code={`
 #show heading: set text(navy)
 
 = This is navy-blue
 But this stays black.
-```
+`}
+  image='/assets/d2d8f7b75d586130c5564fd7947e349.png'
+  alt='Preview'
+/>
 
 With show-set rules you can mix and match properties from different functions to achieve many different effects. But they still limit you to what is predefined in Typst. For maximum flexibility, you can instead write a _transformational_ show rule that defines how to format an element from scratch. To write such a show rule, replace the set rule after the colon with an arbitrary [function](/docs/reference/foundations/function/). This function receives the element in question and can return arbitrary content. The function is often defined inline as `it => ..{:typst}` using the [unnamed function syntax](/docs/reference/foundations/function/#unnamed). The function's parameter is typically named `it{:typst}` by convention.
 
@@ -63,7 +81,8 @@ The show rule itself adds tilde characters around the title (these must be escap
 
 For this example, we also wanted center alignment and a different font. While we could've added these set rules into the existing show rule, we instead added them as separate show-set rules. This is good practice because now these rules can still be overridden by later show-set rules in the document, keeping styling composable. In contrast, set rules within a transformational show rule would not be overridable anymore.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "(I)")
 #show heading: set align(center)
 #show heading: set text(font: "Inria Serif")
@@ -81,7 +100,10 @@ powerful creature.
 = Manticore
 While less powerful than the dragon, the manticore
 gets extra style points.
-```
+`}
+  image='/assets/b44d750ce0fc9dcbbf4691281e0b2e29.png'
+  alt='Preview'
+/>
 
 Like set rules, show rules are in effect until the end of the current block or file.
 
@@ -93,11 +115,15 @@ Instead of a function, the right-hand side of a show rule can also take a litera
 - **Function with fields:** `show heading.where(level: 1): ..{:typst}`  Transform only elements that have the specified fields. For example, you might want to only change the style of level-1 headings.
 - **Label:** `show <intro>: ..{:typst}`  Select and transform elements that have the specified label. See the documentation of the [`label{:typst}` type](/docs/reference/foundations/label/) for more details.
 
-```typst
+<TypstPreview
+  code={`
 #show "Project": smallcaps
 #show "badly": "great"
 
 We started Project in 2019
 and are still working on it.
 Project is progressing badly.
-```
+`}
+  image='/assets/341cc85624eca5d9cf86c6e8dd61832c.png'
+  alt='Preview'
+/>

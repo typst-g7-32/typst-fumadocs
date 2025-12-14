@@ -2,7 +2,9 @@
 title: "Content"
 description: "Documentation for the Content type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A piece of document content.
 
@@ -10,10 +12,14 @@ This type is at the heart of Typst. All markup you write and most [functions](/d
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 Type of *Hello!* is
 #type([*Hello!*])
-```
+`}
+  image='/assets/5f8a9e925db86201f749a5dfd49d2d6a.png'
+  alt='Preview'
+/>
 
 Content can be added with the `+{:typst}` operator, [joined together](/docs/reference/scripting/#blocks) and multiplied with integers. Wherever content is expected, you can also pass a [string](/docs/reference/foundations/str/) or `none{:typst}`.
 
@@ -31,18 +37,16 @@ In the web app, you can hover over a content variable to see exactly which eleme
 
 
 ## Methods
-
-### `func`
-
 The content's element function. This function can be used to create the element contained in this content. It can be used in set and show rules for the element. Can be compared with global functions to check whether you have a specific kind of element.
-
-```#content.func() -> function```
-
-### `has`
 
 Whether the content has the specified field.
 
-```#content.has(field) -> bool```
+```typst
+#content.has(
+  field
+) -> bool
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -54,12 +58,15 @@ Whether the content has the specified field.
   }}
 />
 
-
-### `at`
-
 Access the specified field on the content. Returns the default value if the field does not exist or fails with an error if no default value was specified.
 
-```#content.at(field, default:) -> any```
+```typst
+#content.at(
+  field,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -76,23 +83,19 @@ Access the specified field on the content. Returns the default value if the fiel
   }}
 />
 
-
-### `fields`
-
 Returns the fields of this content.
 
-```typst
+<TypstPreview
+  code={`
 #rect(
   width: 10cm,
   height: 10cm,
 ).fields()
-```
-
-```#content.fields() -> dictionary```
-
-### `location`
+`}
+  image='/assets/ccd95853027f57c192e348066aff8697.png'
+  alt='Preview'
+/>
 
 The location of the content. This is only available on content returned by [query](/docs/reference/introspection/query/) or provided by a [show rule](/docs/reference/styling/#show-rules), for other content it will be `none{:typst}`. The resulting location can be used with [counters](/docs/reference/introspection/counter/), [state](/docs/reference/introspection/state/) and [queries](/docs/reference/introspection/query/).
 
-```#content.location() -> none location```
 

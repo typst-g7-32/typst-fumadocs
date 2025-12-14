@@ -2,10 +2,9 @@
 title: "Read"
 description: "Documentation for the `read` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `read`
+import { TypstPreview } from '@/components/typst/preview';
 
 Reads plain text or data from a file.
 
@@ -15,16 +14,26 @@ If you specify `encoding: none{:typst}`, this returns raw [bytes](/docs/referenc
 
 ## Example
 
-```typst
-An example for a HTML file: \
+<TypstPreview
+  code={`
+An example for a HTML file: 
 #let text = read("example.html")
 #raw(text, block: true, lang: "html")
 
 Raw bytes:
 #read("tiger.jpg", encoding: none)
-```
+`}
+  image='/assets/5beb8b2f71dd3bc914c1c85e2a66bc77.png'
+  alt='Preview'
+/>
 
-```#read(path, encoding:) -> str bytes```
+```typst
+#read(
+  path,
+  encoding: none | str
+) -> str bytes
+```
+## Parameters
 
 <TypeTable
   type={{

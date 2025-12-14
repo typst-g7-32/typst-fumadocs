@@ -2,10 +2,9 @@
 title: "TOML"
 description: "Documentation for the `toml` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `toml`
+import { TypstPreview } from '@/components/typst/preview';
 
 Reads structured data from a TOML file.
 
@@ -17,14 +16,18 @@ The TOML file in the example consists of a table with the keys `title{:typst}`, 
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let details = toml("details.toml")
 
-Title: #details.title \
-Version: #details.version \
+Title: #details.title 
+Version: #details.version 
 Authors: #(details.authors
   .join(", ", last: " and "))
-```
+`}
+  image='/assets/7f6e9fac705651fafb6c8a26435ab058.png'
+  alt='Preview'
+/>
 
 ## Conversion details
 
@@ -55,7 +58,12 @@ First of all, TOML documents are tables. Other values must be put in a table to 
 - Bytes are not encoded as TOML arrays for performance and readability reasons. Consider using [`cbor.encode{:typst}`](/docs/reference/data-loading/cbor/#definitions-encode) for binary data.
 - The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
 
-```#toml(source) -> dictionary```
+```typst
+#toml(
+  source
+) -> dictionary
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -69,12 +77,14 @@ First of all, TOML documents are tables. Other values must be put in a table to 
 
 
 ### Definitions
-
-### `decode`
-
 Reads structured data from a TOML string/bytes.
 
-```#toml.decode(data) -> dictionary```
+```typst
+#toml.decode(
+  data
+) -> dictionary
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -86,12 +96,15 @@ Reads structured data from a TOML string/bytes.
   }}
 />
 
-
-### `encode`
-
 Encodes structured data into a TOML string.
 
-```#toml.encode(value, pretty:) -> str```
+```typst
+#toml.encode(
+  value,
+  pretty: bool
+) -> str
+```
+### Parameters
 
 <TypeTable
   type={{

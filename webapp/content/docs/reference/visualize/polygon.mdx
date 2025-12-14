@@ -2,10 +2,9 @@
 title: "Polygon"
 description: "Documentation for the `polygon` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `polygon`
+import { TypstPreview } from '@/components/typst/preview';
 
 A closed polygon.
 
@@ -13,7 +12,8 @@ The polygon is defined by its corner points and is closed automatically.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #polygon(
   fill: blue.lighten(80%),
   stroke: blue,
@@ -22,9 +22,20 @@ The polygon is defined by its corner points and is closed automatically.
   (80%, 2cm),
   (0%,  2cm),
 )
-```
+`}
+  image='/assets/4eecc04e899aad583ed0d99456edd014.png'
+  alt='Preview'
+/>
 
-```#polygon(fill:, fill-rule:, stroke:, vertices) -> content```
+```typst
+#polygon(
+  fill: none | color | gradient | tiling,
+  fill-rule: str,
+  stroke: none | auto | length | color | gradient | stroke | tiling | dictionary,
+  vertices
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -53,21 +64,30 @@ The polygon is defined by its corner points and is closed automatically.
 
 
 ### Definitions
-
-### `regular`
-
 A regular polygon, defined by its size and number of vertices.
 
-```typst
+<TypstPreview
+  code={`
 #polygon.regular(
   fill: blue.lighten(80%),
   stroke: blue,
   size: 30pt,
   vertices: 3,
 )
-```
+`}
+  image='/assets/9d2280c3e700486008c43a2bbf75321e.png'
+  alt='Preview'
+/>
 
-```#polygon.regular(fill:, stroke:, size:, vertices:) -> content```
+```typst
+#polygon.regular(
+  fill: none | color | gradient | tiling,
+  stroke: none | auto | length | color | gradient | stroke | tiling | dictionary,
+  size: length,
+  vertices: int
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{

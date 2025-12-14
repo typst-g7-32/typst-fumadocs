@@ -2,10 +2,9 @@
 title: "Grid"
 description: "Documentation for the `grid` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `grid`
+import { TypstPreview } from '@/components/typst/preview';
 
 Arranges content in a grid.
 
@@ -27,8 +26,9 @@ To specify a single track, the array can be omitted in favor of a single value. 
 
 The example below demonstrates the different track sizing options. It also shows how you can use [`grid.cell{:typst}`](/docs/reference/layout/grid/#definitions-cell) to make an individual cell span two grid tracks.
 
-```typst
-// We use `rect` to emphasize the
+<TypstPreview
+  code={`
+// We use \`rect\` to emphasize the
 // area of cells.
 #set rect(
   inset: 8pt,
@@ -49,17 +49,24 @@ The example below demonstrates the different track sizing options. It also shows
     image("tiger.jpg", width: 100%),
   ),
 )
-```
+`}
+  image='/assets/9d4e8714750ff00270cb0fc4f0bc09ae.png'
+  alt='Preview'
+/>
 
 You can also [spread](/docs/reference/foundations/arguments/#spreading) an array of strings or content into a grid to populate its cells.
 
-```typst
+<TypstPreview
+  code={`
 #grid(
   columns: 5,
   gutter: 5pt,
   ..range(25).map(str)
 )
-```
+`}
+  image='/assets/aad11723d596b2524d0d3d305af58082.png'
+  alt='Preview'
+/>
 
 ## Styling the grid
 
@@ -82,7 +89,8 @@ To configure an overall style for a grid, you may instead specify the option in 
 - As an array of values corresponding to each column. The array will be cycled if there are more columns than the array has items.
 - As a function in the form of `(x, y) => value{:typst}`. It receives the cell's column and row indices (both starting from zero) and should return the value to apply to that cell.
 
-```typst
+<TypstPreview
+  code={`
 #grid(
   columns: 5,
 
@@ -97,7 +105,10 @@ To configure an overall style for a grid, you may instead specify the option in 
 
   ..range(5 * 3).map(n => numbering("A", n + 1))
 )
-```
+`}
+  image='/assets/5ba008cb625404be10f2b8abc3412fab.png'
+  alt='Preview'
+/>
 
 On top of that, you may [apply styling rules](/docs/reference/styling/) to [`grid{:typst}`](/docs/reference/layout/grid/) and [`grid.cell{:typst}`](/docs/reference/layout/grid/#definitions-cell). Especially, the [`x{:typst}`](/docs/reference/layout/grid/#definitions-cell-x) and [`y{:typst}`](/docs/reference/layout/grid/#definitions-cell-y) fields of `grid.cell{:typst}` can be used in a [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selector, making it possible to style cells at specific columns or rows, or individual positions.
 
@@ -113,7 +124,21 @@ Grids do not carry any special semantics. Assistive Technology (AT) does not off
 
 AT will read the grid cells in their semantic order. Usually, this is the order in which you passed them to the grid. However, if you manually positioned them using [`grid.cell{:typst}`'s `x{:typst}` and `y{:typst}` arguments](/docs/reference/layout/grid/#definitions-cell-x), cells will be read row by row, from left to right (in left-to-right documents). A cell will be read when its position is first reached.
 
-```#grid(columns:, rows:, gutter:, column-gutter:, row-gutter:, inset:, align:, fill:, stroke:, children) -> content```
+```typst
+#grid(
+  columns: auto | int | relative | fraction | array,
+  rows: auto | int | relative | fraction | array,
+  gutter: auto | int | relative | fraction | array,
+  column-gutter: auto | int | relative | fraction | array,
+  row-gutter: auto | int | relative | fraction | array,
+  inset: relative | array | dictionary | function,
+  align: auto | array | alignment | function,
+  fill: none | color | gradient | array | tiling | function,
+  stroke: none | length | color | gradient | array | stroke | tiling | dictionary | function,
+  children
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -153,12 +178,12 @@ AT will read the grid cells in their semantic order. Usually, this is the order 
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'fill': {
-      'description': 'How to fill the cells.  This can be:  - a single color for all cells - an array of colors corresponding to each column - a function that maps a cell\'s position to its color  Most notably, arrays and functions are useful for creating striped grids. See the [styling section](#styling) above for more details.  ```typst #grid(   fill: (x, y) =>     if calc.even(x + y) { luma(230) }     else { white },   align: center + horizon,   columns: 4,   inset: 2pt,   [X], [O], [X], [O],   [O], [X], [O], [X],   [X], [O], [X], [O],   [O], [X], [O], [X], ) ```',
+      'description': 'How to fill the cells.  This can be:  - a single color for all cells - an array of colors corresponding to each column - a function that maps a cell\'s position to its color  Most notably, arrays and functions are useful for creating striped grids. See the [styling section](#styling) above for more details.  <TypstPreview   code={` #grid(   fill: (x, y) =>     if calc.even(x + y) { luma(230) }     else { white },   align: center + horizon,   columns: 4,   inset: 2pt,   [X], [O], [X], [O],   [O], [X], [O], [X],   [X], [O], [X], [O],   [O], [X], [O], [X], ) `}   image=\'/assets/616a52b479521e50994e6526049b3d5d.png\'   alt=\'Preview\' />',
       'type': 'none | color | gradient | array | tiling | function',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'stroke': {
-      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the cells.  Grids have no strokes by default, which can be changed by setting this option to the desired stroke.  If it is necessary to place lines which can cross spacing between cells produced by the [`gutter{:typst}`](/docs/reference/layout/grid/#parameters-gutter) option, or to override the stroke between multiple specific cells, consider specifying one or more of [`grid.hline{:typst}`](/docs/reference/layout/grid/#definitions-hline) and [`grid.vline{:typst}`](/docs/reference/layout/grid/#definitions-vline) alongside your grid cells.  To specify the same stroke for all cells, you can use a single [stroke](/docs/reference/visualize/stroke/) for all sides, or a dictionary of [strokes](/docs/reference/visualize/stroke/) for individual sides. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-stroke) for more details.  To specify varying strokes for different cells, you can:  - use a single stroke for all cells - use an array of strokes corresponding to each column - use a function that maps a cell\'s position to its stroke  See the [styling section](#styling) above for more details.  ```typst #set page(width: 420pt) #set text(number-type: "old-style") #show grid.cell.where(y: 0): set text(size: 1.3em)  #grid(   columns: (1fr, 2fr, 2fr),   row-gutter: 1.5em,   inset: (left: 0.5em),   stroke: (x, y) => if x > 0 { (left: 0.5pt + gray) },   align: horizon,    [Winter \\ 2007 \\ Season],   [Aaron Copland \\ *The Tender Land* \\ January 2007],   [Eric Satie \\ *Gymnopedie 1, 2* \\ February 2007],    [],   [Jan 12 \\ *Middlebury College \\ Center for the Arts* \\ 20:00],   [Feb 2 \\ *Johnson State College Dibden Center for the Arts* \\ 19:30],    [],   [Skip a week \\ #text(0.8em)[_Prepare your exams!_]],   [Feb 9 \\ *Castleton State College \\ Fine Arts Center* \\ 19:30],    [],   [Jan 26, 27 \\ *Lyndon State College Alexander Twilight Theater* \\ 20:00],   [     Feb 17 --- #smallcaps[Anniversary] \\     *Middlebury College \\ Center for the Arts* \\     19:00 #text(0.7em)[(for a special guest)]   ], ) ```  ```typst #set page(height: 13em, width: 26em)  #let cv(..jobs) = grid(   columns: 2,   inset: 5pt,   stroke: (x, y) => if x == 0 and y > 0 {     (right: (       paint: luma(180),       thickness: 1.5pt,       dash: "dotted",     ))   },   grid.header(grid.cell(colspan: 2)[     *Professional Experience*     #box(width: 1fr, line(length: 100%, stroke: luma(180)))   ]),   ..{     let last = none     for job in jobs.pos() {       (         if job.year != last [*#job.year*],         [           *#job.company* - #job.role _(#job.timeframe)_ \\           #job.details         ]       )       last = job.year     }   } )  #cv(   (     year: 2012,     company: [Pear Seed & Co.],     role: [Lead Engineer],     timeframe: [Jul - Dec],     details: [       - Raised engineers from 3x to 10x       - Did a great job     ],   ),   (     year: 2012,     company: [Mega Corp.],     role: [VP of Sales],     timeframe: [Mar - Jun],     details: [- Closed tons of customers],   ),   (     year: 2013,     company: [Tiny Co.],     role: [CEO],     timeframe: [Jan - Dec],     details: [- Delivered 4x more shareholder value],   ),   (     year: 2014,     company: [Glorbocorp Ltd],     role: [CTO],     timeframe: [Jan - Mar],     details: [- Drove containerization forward],   ), ) ```',
+      'description': 'How to [stroke](/docs/reference/visualize/stroke/) the cells.  Grids have no strokes by default, which can be changed by setting this option to the desired stroke.  If it is necessary to place lines which can cross spacing between cells produced by the [`gutter{:typst}`](/docs/reference/layout/grid/#parameters-gutter) option, or to override the stroke between multiple specific cells, consider specifying one or more of [`grid.hline{:typst}`](/docs/reference/layout/grid/#definitions-hline) and [`grid.vline{:typst}`](/docs/reference/layout/grid/#definitions-vline) alongside your grid cells.  To specify the same stroke for all cells, you can use a single [stroke](/docs/reference/visualize/stroke/) for all sides, or a dictionary of [strokes](/docs/reference/visualize/stroke/) for individual sides. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-stroke) for more details.  To specify varying strokes for different cells, you can:  - use a single stroke for all cells - use an array of strokes corresponding to each column - use a function that maps a cell\'s position to its stroke  See the [styling section](#styling) above for more details.  <TypstPreview   code={` #set page(width: 420pt) #set text(number-type: "old-style") #show grid.cell.where(y: 0): set text(size: 1.3em)  #grid(   columns: (1fr, 2fr, 2fr),   row-gutter: 1.5em,   inset: (left: 0.5em),   stroke: (x, y) => if x > 0 { (left: 0.5pt + gray) },   align: horizon,    [Winter \\ 2007 \\ Season],   [Aaron Copland \\ *The Tender Land* \\ January 2007],   [Eric Satie \\ *Gymnopedie 1, 2* \\ February 2007],    [],   [Jan 12 \\ *Middlebury College \\ Center for the Arts* \\ 20:00],   [Feb 2 \\ *Johnson State College Dibden Center for the Arts* \\ 19:30],    [],   [Skip a week \\ #text(0.8em)[_Prepare your exams!_]],   [Feb 9 \\ *Castleton State College \\ Fine Arts Center* \\ 19:30],    [],   [Jan 26, 27 \\ *Lyndon State College Alexander Twilight Theater* \\ 20:00],   [     Feb 17 --- #smallcaps[Anniversary]      *Middlebury College \\ Center for the Arts*      19:00 #text(0.7em)[(for a special guest)]   ], ) `}   image=\'/assets/93123d099493092251a0af3841def084.png\'   alt=\'Preview\' />  <TypstPreview   code={` #set page(height: 13em, width: 26em)  #let cv(..jobs) = grid(   columns: 2,   inset: 5pt,   stroke: (x, y) => if x == 0 and y > 0 {     (right: (       paint: luma(180),       thickness: 1.5pt,       dash: "dotted",     ))   },   grid.header(grid.cell(colspan: 2)[     *Professional Experience*     #box(width: 1fr, line(length: 100%, stroke: luma(180)))   ]),   ..{     let last = none     for job in jobs.pos() {       (         if job.year != last [*#job.year*],         [           *#job.company* - #job.role _(#job.timeframe)_            #job.details         ]       )       last = job.year     }   } )  #cv(   (     year: 2012,     company: [Pear Seed & Co.],     role: [Lead Engineer],     timeframe: [Jul - Dec],     details: [       - Raised engineers from 3x to 10x       - Did a great job     ],   ),   (     year: 2012,     company: [Mega Corp.],     role: [VP of Sales],     timeframe: [Mar - Jun],     details: [- Closed tons of customers],   ),   (     year: 2013,     company: [Tiny Co.],     role: [CEO],     timeframe: [Jan - Dec],     details: [- Delivered 4x more shareholder value],   ),   (     year: 2014,     company: [Glorbocorp Ltd],     role: [CTO],     timeframe: [Jan - Mar],     details: [- Drove containerization forward],   ), ) `}   image=\'/assets/f94d003f6832c75b4ed1d250cc259abf-0.png\'   alt=\'Preview page 1\' />',
       'type': 'none | length | color | gradient | array | stroke | tiling | dictionary | function',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },
@@ -172,14 +197,12 @@ AT will read the grid cells in their semantic order. Usually, this is the order 
 
 
 ### Definitions
-
-### `cell`
-
 A cell in the grid. You can use this function in the argument list of a grid to override grid style properties for an individual cell or manually positioning it within the grid. You can also use this function in show rules to apply certain styles to multiple cells at once.
 
 For example, you can override the position and stroke for a single cell:
 
-```typst
+<TypstPreview
+  code={`
 #set text(15pt, font: "Noto Sans Symbols 2")
 #show regex("[♚-♟︎]"): set text(fill: rgb("21212A"))
 #show regex("[♔-♙]"): set text(fill: rgb("111015"))
@@ -204,11 +227,28 @@ For example, you can override the position and stroke for a single cell:
   ..([♜], [♞], [♝], [♛], [♚], [♝], [♞], [♜])
     .map(grid.cell.with(y: 7)),
 )
-```
+`}
+  image='/assets/85a80ca20c73818a35cfef42a986e689.png'
+  alt='Preview'
+/>
 
 You may also apply a show rule on `grid.cell{:typst}` to style all cells at once, which allows you, for example, to apply styles based on a cell's position. Refer to the examples of the [`table.cell{:typst}`](/docs/reference/model/table/#definitions-cell) element to learn more about this.
 
-```#grid.cell(body, x:, y:, colspan:, rowspan:, inset:, align:, fill:, stroke:, breakable:) -> content```
+```typst
+#grid.cell(
+  body,
+  x: auto | int,
+  y: auto | int,
+  colspan: int,
+  rowspan: int,
+  inset: auto | relative | dictionary,
+  align: auto | alignment,
+  fill: none | auto | color | gradient | tiling,
+  stroke: none | length | color | gradient | stroke | tiling | dictionary,
+  breakable: auto | bool
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -218,12 +258,12 @@ You may also apply a show rule on `grid.cell{:typst}` to style all cells at once
       'default': 'None'
     },
     'x': {
-      'description': 'The cell\'s column (zero-indexed). This field may be used in show rules to style a cell depending on its column.  You may override this field to pick in which column the cell must be placed. If no row (`y{:typst}`) is chosen, the cell will be placed in the first row (starting at row 0) with that column available (or a new row if none). If both `x{:typst}` and `y{:typst}` are chosen, however, the cell will be placed in that exact position. An error is raised if that position is not available (thus, it is usually wise to specify cells with a custom position before cells with automatic positions).  ```typst #let circ(c) = circle(     fill: c, width: 5mm )  #grid(   columns: 4,   rows: 7mm,   stroke: .5pt + blue,   align: center + horizon,   inset: 1mm,    grid.cell(x: 2, y: 2, circ(aqua)),   circ(yellow),   grid.cell(x: 3, circ(green)),   circ(black), ) ```',
+      'description': 'The cell\'s column (zero-indexed). This field may be used in show rules to style a cell depending on its column.  You may override this field to pick in which column the cell must be placed. If no row (`y{:typst}`) is chosen, the cell will be placed in the first row (starting at row 0) with that column available (or a new row if none). If both `x{:typst}` and `y{:typst}` are chosen, however, the cell will be placed in that exact position. An error is raised if that position is not available (thus, it is usually wise to specify cells with a custom position before cells with automatic positions).  <TypstPreview   code={` #let circ(c) = circle(     fill: c, width: 5mm )  #grid(   columns: 4,   rows: 7mm,   stroke: .5pt + blue,   align: center + horizon,   inset: 1mm,    grid.cell(x: 2, y: 2, circ(aqua)),   circ(yellow),   grid.cell(x: 3, circ(green)),   circ(black), ) `}   image=\'/assets/d4295624ceed58586c2323592650f5a3.png\'   alt=\'Preview\' />',
       'type': 'auto | int',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'y': {
-      'description': 'The cell\'s row (zero-indexed). This field may be used in show rules to style a cell depending on its row.  You may override this field to pick in which row the cell must be placed. If no column (`x{:typst}`) is chosen, the cell will be placed in the first column (starting at column 0) available in the chosen row. If all columns in the chosen row are already occupied, an error is raised.  ```typst #let tri(c) = polygon.regular(   fill: c,   size: 5mm,   vertices: 3, )  #grid(   columns: 2,   stroke: blue,   inset: 1mm,    tri(black),   grid.cell(y: 1, tri(teal)),   grid.cell(y: 1, tri(red)),   grid.cell(y: 2, tri(orange)) ) ```',
+      'description': 'The cell\'s row (zero-indexed). This field may be used in show rules to style a cell depending on its row.  You may override this field to pick in which row the cell must be placed. If no column (`x{:typst}`) is chosen, the cell will be placed in the first column (starting at column 0) available in the chosen row. If all columns in the chosen row are already occupied, an error is raised.  <TypstPreview   code={` #let tri(c) = polygon.regular(   fill: c,   size: 5mm,   vertices: 3, )  #grid(   columns: 2,   stroke: blue,   inset: 1mm,    tri(black),   grid.cell(y: 1, tri(teal)),   grid.cell(y: 1, tri(red)),   grid.cell(y: 2, tri(orange)) ) `}   image=\'/assets/2aa1128c7723558f82b243152265c648.png\'   alt=\'Preview\' />',
       'type': 'auto | int',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
@@ -265,16 +305,22 @@ You may also apply a show rule on `grid.cell{:typst}` to style all cells at once
   }}
 />
 
-
-### `hline`
-
 A horizontal line in the grid.
 
 Overrides any per-cell stroke, including stroke specified through the grid's `stroke{:typst}` field. Can cross spacing between cells created through the grid's `column-gutter{:typst}` option.
 
 An example for this function can be found at the [`table.hline{:typst}`](/docs/reference/model/table/#definitions-hline) element.
 
-```#grid.hline(y:, start:, end:, stroke:, position:) -> content```
+```typst
+#grid.hline(
+  y: auto | int,
+  start: int,
+  end: none | int,
+  stroke: none | length | color | gradient | stroke | tiling | dictionary,
+  position: alignment
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -306,14 +352,20 @@ An example for this function can be found at the [`table.hline{:typst}`](/docs/r
   }}
 />
 
-
-### `vline`
-
 A vertical line in the grid.
 
 Overrides any per-cell stroke, including stroke specified through the grid's `stroke{:typst}` field. Can cross spacing between cells created through the grid's `row-gutter{:typst}` option.
 
-```#grid.vline(x:, start:, end:, stroke:, position:) -> content```
+```typst
+#grid.vline(
+  x: auto | int,
+  start: int,
+  end: none | int,
+  stroke: none | length | color | gradient | stroke | tiling | dictionary,
+  position: alignment
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -345,14 +397,18 @@ Overrides any per-cell stroke, including stroke specified through the grid's `st
   }}
 />
 
-
-### `header`
-
 A repeatable grid header.
 
 If `repeat{:typst}` is set to `true{:typst}`, the header will be repeated across pages. For an example, refer to the [`table.header{:typst}`](/docs/reference/model/table/#definitions-header) element and the [`grid.stroke{:typst}`](/docs/reference/layout/grid/#parameters-stroke) parameter.
 
-```#grid.header(repeat:, level:, children) -> content```
+```typst
+#grid.header(
+  repeat: bool,
+  level: int,
+  children
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -374,16 +430,19 @@ If `repeat{:typst}` is set to `true{:typst}`, the header will be repeated across
   }}
 />
 
-
-### `footer`
-
 A repeatable grid footer.
 
 Just like the [`grid.header{:typst}`](/docs/reference/layout/grid/#definitions-header) element, the footer can repeat itself on every page of the grid.
 
 No other grid cells may be placed after the footer.
 
-```#grid.footer(repeat:, children) -> content```
+```typst
+#grid.footer(
+  repeat: bool,
+  children
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{

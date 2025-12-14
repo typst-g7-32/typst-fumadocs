@@ -2,10 +2,9 @@
 title: "Header Cell"
 description: "Documentation for the `header-cell` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `header-cell`
+import { TypstPreview } from '@/components/typst/preview';
 
 Explicitly defines a cell as a header cell.
 
@@ -21,7 +20,8 @@ The `pdf.header-cell{:typst}` function allows you to indicate that a cell is a h
 
 The API of this feature is temporary. Hence, calling this function requires enabling the `a11y-extras{:typst}` feature flag at the moment. In a future Typst release, this functionality may move out of the `pdf{:typst}` module so that tables in other export targets can contain the same information.
 
-```typst
+<TypstPreview
+  code={`
 #show table.cell.where(x: 0): set text(weight: "medium")
 #show table.cell.where(y: 0): set text(weight: "bold")
 
@@ -47,9 +47,19 @@ The API of this feature is temporary. Hence, calling this function requires enab
   pdf.header-cell(scope: "row")[Carbs],
   [30g], [45g],
 )
-```
+`}
+  image='/assets/41f9acbb3490553d6e9d371bd5ea718f.png'
+  alt='Preview'
+/>
 
-```#pdf.header-cell(level:, scope:, cell) -> content```
+```typst
+#pdf.header-cell(
+  level: int,
+  scope: str,
+  cell
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

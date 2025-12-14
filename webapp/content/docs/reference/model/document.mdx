@@ -2,25 +2,37 @@
 title: "Document"
 description: "Documentation for the `document` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `document`
+import { TypstPreview } from '@/components/typst/preview';
 
 The root element of a document and its metadata.
 
 All documents are automatically wrapped in a `document{:typst}` element. You cannot create a document element yourself. This function is only used with [set rules](/docs/reference/styling/#set-rules) to specify document metadata. Such a set rule must not occur inside of any layout container.
 
-```typst
+<TypstPreview
+  code={`
 #set document(title: [Hello])
 
 This has no visible output, but
 embeds metadata into the PDF!
-```
+`}
+  image='/assets/83e478c245ceb459ebe50983447ca754.png'
+  alt='Preview'
+/>
 
 Note that metadata set with this function is not rendered within the document. Instead, it is embedded in the compiled PDF file.
 
-```#document(title:, author:, description:, keywords:, date:) -> content```
+```typst
+#document(
+  title: none | content,
+  author: str | array,
+  description: none | content,
+  keywords: str | array,
+  date: none | auto | datetime
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

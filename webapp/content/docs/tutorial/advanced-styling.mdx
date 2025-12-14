@@ -3,6 +3,8 @@ title: "Advanced Styling"
 description: "Typst's tutorial."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 In the previous two chapters of this tutorial, you have learned how to write a document in Typst and how to change its formatting. The report you wrote throughout the last two chapters got a straight A and your supervisor wants to base a conference paper on it! The report will of course have to comply with the conference's style guide. Let's see how we can achieve that.
 
 Before we start, let's create a team, invite your supervisor and add them to the team. You can do this by going back to the app dashboard with the back icon in the top left corner of the editor. Then, choose the plus icon in the left toolbar and create a team. Finally, click on the new team and go to its settings by clicking 'manage team' next to the team name. Now you can invite your supervisor by email.
@@ -32,7 +34,8 @@ We already know how to do many of these things, but for some of them, we'll need
 
 Let's start by writing some set rules for the document.
 
-```typst
+<TypstPreview
+  code={`
 #set page(
   paper: "us-letter",
   header: align(right)[
@@ -48,7 +51,10 @@ Let's start by writing some set rules for the document.
 )
 
 #lorem(600)
-```
+`}
+  image='/assets/39e9b50304410f17939935dca5419e30.png'
+  alt='Preview'
+/>
 
 You are already familiar with most of what is going on here. We set the text size to `11pt{:typst}` and the font to Libertinus Serif. We also enable paragraph justification and set the page size to US letter.
 
@@ -60,12 +66,16 @@ Last but not least is the `numbering{:typst}` argument. Here, we can provide a [
 
 Now, let's add a title and an abstract. We'll start with the title. Typst comes with a [`title{:typst}`](/docs/reference/model/title/) function. Let's start by providing our title as an argument:
 
-```typst
+<TypstPreview
+  code={`
 #title[
   A Fluid Dynamic Model
   for Glacier Flow
 ]
-```
+`}
+  image='/assets/7c3916cddb3a9663f05c41ab1762416b.png'
+  alt='Preview'
+/>
 
 You can see that the title is already boldfaced and has some space around it. However, it is left-aligned and not exactly 17pt large. Hence, we need to adjust its appearance. The title function does not come with any arguments for font or text size we could set. Instead, these properties are defined on the `text{:typst}` and `align{:typst}` functions.
 
@@ -88,7 +98,8 @@ Let's recall: We want to center-align the title and make it 17pt large. Hence, w
 
 Our example now looks like this:
 
-```typst
+<TypstPreview
+  code={`
 #show title: set text(size: 17pt)
 #show title: set align(center)
 
@@ -96,31 +107,40 @@ Our example now looks like this:
   A Fluid Dynamic Model
   for Glacier Flow
 ]
-```
+`}
+  image='/assets/c2969040db7c93ade24a461b5ba45124.png'
+  alt='Preview'
+/>
 
 This looks right. Let's also add the author list: Since we are writing this paper together with our supervisor, we'll add our own and their name.
 
-```typst
+<TypstPreview
+  code={`
+
 #grid(
   columns: (1fr, 1fr),
   align(center)[
-    Therese Tungsten \
-    Artos Institute \
+    Therese Tungsten 
+    Artos Institute 
     #link("mailto:tung@artos.edu")
   ],
   align(center)[
-    Dr. John Doe \
-    Artos Institute \
+    Dr. John Doe 
+    Artos Institute 
     #link("mailto:doe@artos.edu")
   ]
 )
-```
+`}
+  image='/assets/4790f48caf3dcd84b8fea8c0326a2aee.png'
+  alt='Preview'
+/>
 
 The two author blocks are laid out next to each other. We use the [`grid{:typst}`](/docs/reference/layout/grid/) function to create this layout. With a grid, we can control exactly how large each column is and which content goes into which cell. The `columns{:typst}` argument takes an array of [relative lengths](/docs/reference/layout/relative/) or [fractions](/docs/reference/layout/fraction/). In this case, we passed it two equal fractional sizes, telling it to split the available space into two equal columns. We then passed two content arguments to the grid function. The first with our own details, and the second with our supervisors'. We again use the `align{:typst}` function to center the content within the column. The grid takes an arbitrary number of content arguments specifying the cells. Rows are added automatically, but they can also be manually sized with the `rows{:typst}` argument.
 
 Looking at the authors and the title, they are a bit too close together. You can address this by using another show-set rule to configure the space below the title. The title, the grid, paragraphs, and all other elements that Typst arranges from the top to the bottom of the page are called _blocks._ Each block is controlled by the [`block{:typst}`](/docs/reference/layout/block/) function. It controls behaviors like their distance and whether a block can contain a page break. That means that we can write another show-set rule that selects the title to set the block spacing:
 
-```typst
+<TypstPreview
+  code={`
 #show title: set text(size: 17pt)
 #show title: set align(center)
 #show title: set block(below: 1.2em)
@@ -133,19 +153,26 @@ Looking at the authors and the title, they are a bit too close together. You can
 #grid(
   // ...
 )
-```
+`}
+  image='/assets/bba2b16bdf14870a0d236a8c3a62a89f.png'
+  alt='Preview'
+/>
 
 With this show-set rule, we overrode the spacing below the title. We have used the `em{:typst}` unit: It allows us to express lengths as multiples of the font size. Here, we used it to space the title and the author list exactly 1.2× the font size apart. Now, let's add the abstract. Remember that the conference wants the abstract to be set ragged and centered.
 
-```typst
+<TypstPreview
+  code={`
 ...
 
 #align(center)[
   #set par(justify: false)
-  *Abstract* \
+  *Abstract* 
   #lorem(80)
 ]
-```
+`}
+  image='/assets/41f337ec4affe1f096129a26c54f7f2e.png'
+  alt='Preview'
+/>
 
 Well done! One notable thing is that we used a set rule within the content argument of `align{:typst}` to turn off justification for the abstract. This does not affect the remainder of the document even though it was specified after the first set rule because content blocks _scope_ styling. Anything set within a content block will only affect the content within that block.
 
@@ -161,7 +188,8 @@ Now, we need a way to retrieve the value we set in the main title and the header
 
 Using _context,_ we can retrieve the contents of any values we have set on elements before. When we use the `context{:typst}` keyword, we can access any property of any element, including the document element's title property. Its use looks like this:
 
-```typst
+<TypstPreview
+  code={`
 #set document(title: [
   A Fluid Dynamic Model
   for Glacier Flow
@@ -182,7 +210,10 @@ Using _context,_ we can retrieve the contents of any values we have set on eleme
 #title()
 
 ...
-```
+`}
+  image='/assets/15b893af691b49beed091b0e62baa2df.png'
+  alt='Preview'
+/>
 
 First, notice how we called the title function with empty, round parentheses. Because no argument was passed, it defaulted to what we set for the document element above. The distinction between empty round and empty square brackets is important: While empty round brackets show that you are passing nothing, empty square brackets mean that you are passing one argument: an empty content block. If called that way, the title would have no visible content.
 
@@ -219,17 +250,22 @@ The paper above unfortunately looks like a wall of lead. To fix that, let's add 
 
 By adding `columns: 2{:typst}` to the argument list, we have wrapped the whole document in two columns. However, that would also affect the title and authors overview. To keep them spanning the whole page, we can wrap them in a function call to [`place{:typst}`](/docs/reference/layout/place/). Place expects an alignment and the content it should place as positional arguments. Using the named `scope{:typst}` argument, we can decide if the items should be placed relative to the current column or its parent (the page). There is one more thing to configure: If no other arguments are provided, `place{:typst}` takes its content out of the flow of the document and positions it over the other content without affecting the layout of other content in its container:
 
-```typst
+<TypstPreview
+  code={`
 #place(
   top + center,
   rect(fill: black),
 )
 #lorem(30)
-```
+`}
+  image='/assets/df4b3b714f57dfa956dbceab25713747.png'
+  alt='Preview'
+/>
 
 If we hadn't used `place{:typst}` here, the square would be in its own line, but here it overlaps the few lines of text following it. Likewise, that text acts as if there was no square. To change this behavior, we can pass the argument `float: true{:typst}` to ensure that the space taken up by the placed item at the top or bottom of the page is not occupied by any other content.
 
-```typst
+<TypstPreview
+  code={`
 #set page(
   paper: "us-letter",
   header: align(
@@ -249,7 +285,7 @@ If we hadn't used `place{:typst}` here, the square would be in its own line, but
   ...
 
   #par(justify: false)[
-    *Abstract* \
+    *Abstract* 
     #lorem(80)
   ]
 ]
@@ -259,7 +295,10 @@ If we hadn't used `place{:typst}` here, the square would be in its own line, but
 
 = Related Work
 #lorem(200)
-```
+`}
+  image='/assets/7423f42127d2f3c6b66ce2764863df00.png'
+  alt='Preview'
+/>
 
 In this example, we also used the `clearance{:typst}` argument of the `place{:typst}` function to provide the space between it and the body instead of using the [`v{:typst}`](/docs/reference/layout/v/) function. We can also remove the explicit `align(center, ..){:typst}` calls around the various parts since they inherit the center alignment from the placement.
 
@@ -269,7 +308,8 @@ Now there is only one thing left to do: Style our headings. We need to make them
 - A show-set rule to make headings 13pt large and use the regular weight
 - A show rule to wrap the headings in a call to the `smallcaps{:typst}` function
 
-```typst
+<TypstPreview
+  code={`
 #show heading: set align(center)
 #show heading: set text(
   size: 13pt,
@@ -284,13 +324,17 @@ Now there is only one thing left to do: Style our headings. We need to make them
 
 == Motivation
 ...
-```
+`}
+  image='/assets/484bf0b02bc25230ddf8cb08f231826c.png'
+  alt='Preview'
+/>
 
 This looks great! We used show rules that apply to all headings. In the final show rule, we applied the `smallcaps{:typst}` function to the complete heading. As we will see in the next example, we can also provide a custom rule to completely override the default look of headings.
 
 The only remaining problem is that all headings look the same now. The "Motivation" and "Problem Statement" subsections ought to be italic run-in headers, but right now, they look indistinguishable from the section headings. We can fix that by using a `where{:typst}` selector on our show rule: This is a [method](/docs/reference/scripting/#methods) we can call on headings (and other elements) that allows us to filter them by their properties. We can use it to differentiate between section and subsection headings:
 
-```typst
+<TypstPreview
+  code={`
 #show heading.where(level: 1): set align(center)
 #show heading.where(level: 1): set text(size: 13pt, weight: "regular")
 #show heading.where(level: 1): smallcaps
@@ -303,7 +347,10 @@ The only remaining problem is that all headings look the same now. The "Motivati
 #show heading.where(level: 2): it => {
   it.body + [.]
 }
-```
+`}
+  image='/assets/c988e50827cad35a48eef259d8ef12ae.png'
+  alt='Preview'
+/>
 
 In this example, we first scope our previous rules to first-level headings by using `.where(level: 1){:typst}` to make the selector more specific. Then, we add a show-set rule for the second heading level. Finally, we need a show rule with a custom function: Headings enclose their contents with a block by default. This has the effect that the heading gets its own line. However, we want it to run into the text, so we need to provide our own show rule to get rid of this block.
 

@@ -3,6 +3,7 @@ title: "PNG"
 description: "Documentation for functions related to PNG in Typst."
 ---
 
+
 Instead of creating a PDF, Typst can also directly render pages to PNG raster graphics. PNGs are losslessly compressed images that can contain one page at a time. When exporting a multi-page document, Typst will emit multiple PNGs. PNGs are a good choice when you want to use Typst's output in an image editing software or when you can use none of Typst's other export formats.
 
 In contrast to Typst's other export formats, PNGs are bound to a specific resolution. When exporting to PNG, you can configure the resolution as pixels per inch (PPI). If the medium you view the PNG on has a finer resolution than the PNG you exported, you will notice a loss of quality. Typst calculates the resolution of your PNGs based on each page's physical dimensions and the PPI. If you need guidance for choosing a PPI value, consider the following:
@@ -24,9 +25,9 @@ Pass `--format png{:typst}` to the `compile{:typst}` or `watch{:typst}` subcomma
 
 If your document has more than one page, Typst will create multiple image files. The output file name must then be a template string containing at least one of
 
-- `{p}{:typst}`, which will be replaced by the page number
-- `{0p}{:typst}`, which will be replaced by the zero-padded page number (so that all numbers have the same length)
-- `{t}{:typst}`, which will be replaced by the total number of pages
+- `\{p\}{:typst}`, which will be replaced by the page number
+- `\{0p\}{:typst}`, which will be replaced by the zero-padded page number (so that all numbers have the same length)
+- `\{t\}{:typst}`, which will be replaced by the total number of pages
 
 When exporting to PNG, you have the following configuration options:
 
@@ -39,19 +40,3 @@ Click "File" \> "Export as" \> "PNG" or click the downwards-facing arrow next to
 
 - The resolution at which the pages should be rendered, as a number of pixels per inch. The default is `144{:typst}`.
 - Which pages to export. Valid options are "All pages", "Current page", and "Custom ranges". Custom ranges are a comma-separated list of numbers or dash-separated number ranges. Ranges can be half-open. Example: `2,3,7-9,11-{:typst}`.
-
-## Definitions
-
-<table>
-  <thead>
-    <tr>
-      <th width="20px"></th>
-      <th align="left">Name</th>
-      <th align="left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  </tbody>
-</table>
-

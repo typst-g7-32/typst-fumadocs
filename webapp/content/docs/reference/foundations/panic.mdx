@@ -2,10 +2,8 @@
 title: "Panic"
 description: "Documentation for the `panic` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `panic`
 
 Fails with an error.
 
@@ -19,7 +17,12 @@ The code below produces the error `panicked with: "this is wrong"{:typst}`.
 #panic("this is wrong")
 ```
 
-```#panic(values) -> ```
+```typst
+#panic(
+  values
+) -> 
+```
+## Parameters
 
 <TypeTable
   type={{

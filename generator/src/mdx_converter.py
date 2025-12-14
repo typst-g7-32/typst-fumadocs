@@ -23,8 +23,10 @@ def render_details(details: Union[str, list, dict]) -> str:
                 kind = item.get("kind") or "html"
                 content = item.get("content")
                 if kind == "html":
+                    content = content or ""
                     result.append(html_to_mdx(content))
                 elif kind == "example":
+                    content = content or {}
                     ex_body = content.get("body", "")
                     result.append(html_to_mdx(ex_body))
             elif isinstance(item, str):
@@ -72,24 +74,24 @@ def render_func(func: dict, heading_level: int = 2) -> str:
     name = func['name']
     path = ".".join(func.get('path', []) + [name])
     
-    result = f"\n{head} `{name}`\n\n"
-    
+    result = ""
     result += render_details(func.get("details", "")) + "\n\n"
     
     params_sig = []
     for p in func.get("params", []):
-        p_name = p['name']
+        param = "  " + p['name']
         if p.get('named'):
-            p_name += ":"
-        params_sig.append(p_name)
-    
-    signature = f"#{path}({', '.join(params_sig)})"
-    if 'returns' in func:
-        signature += f" -> {' '.join(func['returns'])}"
-        
-    result += f"```{signature}```\n"
+            param += ":"
+            p_types = " | ".join(p.get('types', []))
+            param += f" {p_types}"
+        params_sig.append(param)
 
     if func.get("params"):
+        signature = f"#{path}(\n{',\n'.join(params_sig)}\n)"
+        if 'returns' in func:
+            signature += f" -> {' '.join(func['returns'])}"
+        result += f"```typst\n{signature}\n```"
+        result += f"\n{head} Parameters\n"
         result += render_type_table(func["params"]) + "\n"
 
     if func.get("example"):
@@ -138,6 +140,11 @@ def get_pages_recursive(json_data: dict, result_list: list, on_item_processed: C
 
 def render_category(category: dict) -> str:
     details = render_details(category.get("details", ""))
+
+    items = category.get("items", [])
+
+    if not items:
+        return details
     
     rows = "\n".join(
         f'    <tr>\n'
@@ -145,7 +152,7 @@ def render_category(category: dict) -> str:
         f'      <td><code><a href="{item["route"]}">{item["name"]}</a></code></td>\n'
         f'      <td>{item["oneliner"]}</td>\n'
         f'    </tr>'
-        for item in category["items"]
+        for item in items
     )
 
     table = f"""
@@ -219,24 +226,25 @@ def convert_page_to_mdx(page: dict) -> str:
     
     body = page.get("body")
     body_content_str = ""
-    
-    needs_type_table = False
-    
+
+    imports_dict = {
+        "<TypeTable": "import { TypeTable } from 'fumadocs-ui/components/type-table';",
+        "<TypstPreview": "import { TypstPreview } from '@/components/typst/preview';"
+    }
     if body:
         body_type = body.get("kind")
         body_data = body.get("content")
         body_content_str = render_body(body_type, body_data)
-        
-        if "<TypeTable" in body_content_str:
-            needs_type_table = True
 
     imports = ""
-    if needs_type_table:
-        imports = "import { TypeTable } from 'fumadocs-ui/components/type-table';\n"
+    for import_name in imports_dict.keys():
+        if import_name in body_content_str:
+            imports += imports_dict[import_name] + "\n"
+
     content = f"""---
 title: "{title}"
 description: "{description}"
----\n{imports}
+---\n\n{imports}
 {body_content_str}
 """
     return content

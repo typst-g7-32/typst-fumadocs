@@ -2,10 +2,9 @@
 title: "Image"
 description: "Documentation for the `image` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `image`
+import { TypstPreview } from '@/components/typst/preview';
 
 A raster or vector graphic.
 
@@ -15,7 +14,8 @@ Like most elements, images are _block-level_ by default and thus do not integrat
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #figure(
   image("molecular.jpg", width: 80%),
   caption: [
@@ -23,19 +23,35 @@ Like most elements, images are _block-level_ by default and thus do not integrat
     pipeline of our lab.
   ],
 )
-```
+`}
+  image='/assets/ce75a73e1e074f91aba6411c6e77cec4.png'
+  alt='Preview'
+/>
 
-```#image(source, format:, width:, height:, alt:, page:, fit:, scaling:, icc:) -> content```
+```typst
+#image(
+  source,
+  format: auto | str | dictionary,
+  width: auto | relative,
+  height: auto | relative | fraction,
+  alt: none | str,
+  page: int,
+  fit: str,
+  scaling: auto | str,
+  icc: auto | str | bytes
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'source': {
-      'description': 'A [path](/docs/reference/syntax/#paths) to an image file or raw bytes making up an image in one of the supported [formats](/docs/reference/visualize/image/#parameters-format).  Bytes can be used to specify raw pixel data in a row-major, left-to-right, top-to-bottom format.  ```typst #let original = read("diagram.svg") #let changed = original.replace(   "#2B80FF", // blue   green.to-hex(), )  #image(bytes(original)) #image(bytes(changed)) ```',
+      'description': 'A [path](/docs/reference/syntax/#paths) to an image file or raw bytes making up an image in one of the supported [formats](/docs/reference/visualize/image/#parameters-format).  Bytes can be used to specify raw pixel data in a row-major, left-to-right, top-to-bottom format.  <TypstPreview   code={` #let original = read("diagram.svg") #let changed = original.replace(   "#2B80FF", // blue   green.to-hex(), )  #image(bytes(original)) #image(bytes(changed)) `}   image=\'/assets/8c4900221f249ebaf7a8713761a0df51.png\'   alt=\'Preview\' />',
       'type': 'str | bytes',
       'default': 'None'
     },
     'format': {
-      'description': 'The image\'s format.  By default, the format is detected automatically. Typically, you thus only need to specify this when providing raw bytes as the [`source{:typst}`](/docs/reference/visualize/image/#parameters-source) (even then, Typst will try to figure out the format automatically, but that\'s not always possible).  Supported formats are `"png"{:typst}`, `"jpg"{:typst}`, `"gif"{:typst}`, `"svg"{:typst}`, `"pdf"{:typst}`, `"webp"{:typst}` as well as raw pixel data.  Note that several restrictions apply when using PDF files as images:  - When exporting to PDF, any PDF image file used must have a version equal to or lower than the [export target PDF version](/docs/reference/pdf/#pdf-versions). - PDF files as images are currently not supported when exporting with a specific PDF standard, like PDF/A-3 or PDF/UA-1. In these cases, you can instead use SVGs to embed vector images. - The image file must not be password-protected. - Tags in your PDF image will not be preserved. Instead, you must provide an [alternative description](/docs/reference/visualize/image/#parameters-alt) to make the image accessible.  When providing raw pixel data as the `source{:typst}`, you must specify a dictionary with the following keys as the `format{:typst}`:  - `encoding{:typst}` ([str](/docs/reference/foundations/str/)): The encoding of the pixel data. One of:    - `"rgb8"{:typst}` (three 8-bit channels: red, green, blue)   - `"rgba8"{:typst}` (four 8-bit channels: red, green, blue, alpha)   - `"luma8"{:typst}` (one 8-bit channel)   - `"lumaa8"{:typst}` (two 8-bit channels: luma and alpha) - `width{:typst}` ([int](/docs/reference/foundations/int/)): The pixel width of the image. - `height{:typst}` ([int](/docs/reference/foundations/int/)): The pixel height of the image.  The pixel width multiplied by the height multiplied by the channel count for the specified encoding must then match the `source{:typst}` data.  ```typst #image(   read(     "tetrahedron.svg",     encoding: none,   ),   format: "svg",   width: 2cm, )  #image(   bytes(range(16).map(x => x * 16)),   format: (     encoding: "luma8",     width: 4,     height: 4,   ),   width: 2cm, ) ```',
+      'description': 'The image\'s format.  By default, the format is detected automatically. Typically, you thus only need to specify this when providing raw bytes as the [`source{:typst}`](/docs/reference/visualize/image/#parameters-source) (even then, Typst will try to figure out the format automatically, but that\'s not always possible).  Supported formats are `"png"{:typst}`, `"jpg"{:typst}`, `"gif"{:typst}`, `"svg"{:typst}`, `"pdf"{:typst}`, `"webp"{:typst}` as well as raw pixel data.  Note that several restrictions apply when using PDF files as images:  - When exporting to PDF, any PDF image file used must have a version equal to or lower than the [export target PDF version](/docs/reference/pdf/#pdf-versions). - PDF files as images are currently not supported when exporting with a specific PDF standard, like PDF/A-3 or PDF/UA-1. In these cases, you can instead use SVGs to embed vector images. - The image file must not be password-protected. - Tags in your PDF image will not be preserved. Instead, you must provide an [alternative description](/docs/reference/visualize/image/#parameters-alt) to make the image accessible.  When providing raw pixel data as the `source{:typst}`, you must specify a dictionary with the following keys as the `format{:typst}`:  - `encoding{:typst}` ([str](/docs/reference/foundations/str/)): The encoding of the pixel data. One of:    - `"rgb8"{:typst}` (three 8-bit channels: red, green, blue)   - `"rgba8"{:typst}` (four 8-bit channels: red, green, blue, alpha)   - `"luma8"{:typst}` (one 8-bit channel)   - `"lumaa8"{:typst}` (two 8-bit channels: luma and alpha) - `width{:typst}` ([int](/docs/reference/foundations/int/)): The pixel width of the image. - `height{:typst}` ([int](/docs/reference/foundations/int/)): The pixel height of the image.  The pixel width multiplied by the height multiplied by the channel count for the specified encoding must then match the `source{:typst}` data.  <TypstPreview   code={` #image(   read(     "tetrahedron.svg",     encoding: none,   ),   format: "svg",   width: 2cm, )  #image(   bytes(range(16).map(x => x * 16)),   format: (     encoding: "luma8",     width: 4,     height: 4,   ),   width: 2cm, ) `}   image=\'/assets/10ff96fc3a10fde3da637ec12b56637a.png\'   alt=\'Preview\' />',
       'type': 'auto | str | dictionary',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
@@ -60,7 +76,7 @@ Like most elements, images are _block-level_ by default and thus do not integrat
       'default': '<code><span class="typ-num">1</span></code>'
     },
     'fit': {
-      'description': 'How the image should adjust itself to a given area (the area is defined by the `width{:typst}` and `height{:typst}` fields). Note that `fit{:typst}` doesn\'t visually change anything if the area\'s aspect ratio is the same as the image\'s one.  ```typst #set page(width: 300pt, height: 50pt, margin: 10pt) #image("tiger.jpg", width: 100%, fit: "cover") #image("tiger.jpg", width: 100%, fit: "contain") #image("tiger.jpg", width: 100%, fit: "stretch") ```',
+      'description': 'How the image should adjust itself to a given area (the area is defined by the `width{:typst}` and `height{:typst}` fields). Note that `fit{:typst}` doesn\'t visually change anything if the area\'s aspect ratio is the same as the image\'s one.  <TypstPreview   code={` #set page(width: 300pt, height: 50pt, margin: 10pt) #image("tiger.jpg", width: 100%, fit: "cover") #image("tiger.jpg", width: 100%, fit: "contain") #image("tiger.jpg", width: 100%, fit: "stretch") `}   image=\'/assets/a194706a6a99674a7fb55f288a8631c6-0.png\'   alt=\'Preview page 1\' />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;cover&quot;</span></code>'
     },
@@ -79,12 +95,20 @@ Like most elements, images are _block-level_ by default and thus do not integrat
 
 
 ### Definitions
-
-### `decode`
-
 Decode a raster or vector graphic from bytes or a string.
 
-```#image.decode(data, format:, width:, height:, alt:, fit:, scaling:) -> content```
+```typst
+#image.decode(
+  data,
+  format: auto | str | dictionary,
+  width: auto | relative,
+  height: auto | relative | fraction,
+  alt: none | str,
+  fit: str,
+  scaling: auto | str
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{

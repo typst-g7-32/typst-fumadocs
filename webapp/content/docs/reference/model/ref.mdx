@@ -2,10 +2,9 @@
 title: "Reference"
 description: "Documentation for the `ref` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `ref`
+import { TypstPreview } from '@/components/typst/preview';
 
 A reference to a label or bibliography.
 
@@ -21,7 +20,8 @@ A `"page"{:typst}` reference produces a page reference to a label, displaying th
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "1")
 #set heading(numbering: "1.")
 #set math.equation(numbering: "(1)")
@@ -45,7 +45,10 @@ software looks like.
 $ T(n) = O(2^n) $ <slow>
 
 #bibliography("works.bib")
-```
+`}
+  image='/assets/a792745ccec945a90763138d4e45762f.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
@@ -57,7 +60,8 @@ To customize the supplement, add content in square brackets after the reference:
 
 When you only ever need to reference pages of a figure/table/heading/etc. in a document, the default `form{:typst}` field value can be changed to `"page"{:typst}` with a set rule. If you prefer a short "p." supplement over "page", the [`page.supplement{:typst}`](/docs/reference/layout/page/#parameters-supplement) field can be used for changing this:
 
-```typst
+<TypstPreview
+  code={`
 #set page(
   numbering: "1",
   supplement: "p.",
@@ -78,11 +82,15 @@ When you only ever need to reference pages of a figure/table/heading/etc. in a d
 
 See @shapes for examples
 of different shapes.
-```
+`}
+  image='/assets/809e5dd8fac922ad14ad84035d3de989-0.png'
+  alt='Preview page 1'
+/>
 
 If you write a show rule for references, you can access the referenced element through the `element{:typst}` field of the reference. The `element{:typst}` may be `none{:typst}` even if it exists if Typst hasn't discovered it yet, so you always need to handle that case in your code.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 #set math.equation(numbering: "(1)")
 
@@ -98,9 +106,19 @@ If you write a show rule for references, you can access the referenced element t
 = Beginnings <beginning>
 In @beginning we prove @pythagoras.
 $ a^2 + b^2 = c^2 $ <pythagoras>
-```
+`}
+  image='/assets/c4444a637c3c784f15880772001ccd9b.png'
+  alt='Preview'
+/>
 
-```#ref(target, supplement:, form:) -> content```
+```typst
+#ref(
+  target,
+  supplement: none | auto | content | function,
+  form: str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -110,12 +128,12 @@ $ a^2 + b^2 = c^2 $ <pythagoras>
       'default': 'None'
     },
     'supplement': {
-      'description': 'A supplement for the reference.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"normal"{:typst}`:  - For references to headings or figures, this is added before the referenced number. - For citations, this can be used to add a page number.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"page"{:typst}`, then this is added before the page number of the label referenced.  If a function is specified, it is passed the referenced element and should return content.  ```typst #set heading(numbering: "1.") #show ref.where(   form: "normal" ): set ref(supplement: it => {   if it.func() == heading {     "Chapter"   } else {     "Thing"   } })  = Introduction <intro> In @intro, we see how to turn Sections into Chapters. And in @intro[Part], it is done manually. ```',
+      'description': 'A supplement for the reference.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"normal"{:typst}`:  - For references to headings or figures, this is added before the referenced number. - For citations, this can be used to add a page number.  If the [`form{:typst}`](/docs/reference/model/ref/#parameters-form) is set to `"page"{:typst}`, then this is added before the page number of the label referenced.  If a function is specified, it is passed the referenced element and should return content.  <TypstPreview   code={` #set heading(numbering: "1.") #show ref.where(   form: "normal" ): set ref(supplement: it => {   if it.func() == heading {     "Chapter"   } else {     "Thing"   } })  = Introduction <intro> In @intro, we see how to turn Sections into Chapters. And in @intro[Part], it is done manually. `}   image=\'/assets/aa86f60f6632f6ef7a93b80a5a97c7d1.png\'   alt=\'Preview\' />',
       'type': 'none | auto | content | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'form': {
-      'description': 'The kind of reference to produce.  ```typst #set page(numbering: "1")  Here <here> we are on #ref(<here>, form: "page"). ```',
+      'description': 'The kind of reference to produce.  <TypstPreview   code={` #set page(numbering: "1")  Here <here> we are on #ref(<here>, form: "page"). `}   image=\'/assets/7c0b8deae09773dbb50f5ed89759c240.png\'   alt=\'Preview\' />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;normal&quot;</span></code>'
     }

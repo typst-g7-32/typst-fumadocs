@@ -2,7 +2,9 @@
 title: "Attach"
 description: "Documentation for the attach functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Subscript, superscripts, and limits.
 
@@ -12,27 +14,43 @@ If you want the base to stretch to fit long top and bottom attachments (for exam
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ sum_(i=0)^n a_i = 2^(1+i) $
-```
+`}
+  image='/assets/411437d70da7deb746bc3f0a67ecac51.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
 This function also has dedicated syntax for attachments after the base: Use the underscore (`_{:typst}`) to indicate a subscript i.e. bottom attachment and the hat (`^{:typst}`) to indicate a superscript i.e. top attachment.
 
-
-## `attach`
-
 A base with optional attachments.
 
-```typst
+<TypstPreview
+  code={`
 $ attach(
   Pi, t: alpha, b: beta,
   tl: 1, tr: 2+3, bl: 4+5, br: 6,
 ) $
-```
+`}
+  image='/assets/84fd52f8518c49b5d0c2154d3762e8c5.png'
+  alt='Preview'
+/>
 
-```#math.attach(base, t:, b:, tl:, bl:, tr:, br:) -> content```
+```typst
+#math.attach(
+  base,
+  t: none | content,
+  b: none | content,
+  tl: none | content,
+  bl: none | content,
+  tr: none | content,
+  br: none | content
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -74,16 +92,22 @@ $ attach(
   }}
 />
 
-
-## `scripts`
-
 Forces a base to display attachments as scripts.
 
-```typst
+<TypstPreview
+  code={`
 $ scripts(sum)_1^2 != sum_1^2 $
-```
+`}
+  image='/assets/c9599c27cd86c13285b8d314e2c8528c.png'
+  alt='Preview'
+/>
 
-```#math.scripts(body) -> content```
+```typst
+#math.scripts(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -95,16 +119,23 @@ $ scripts(sum)_1^2 != sum_1^2 $
   }}
 />
 
-
-## `limits`
-
 Forces a base to display attachments as limits.
 
-```typst
+<TypstPreview
+  code={`
 $ limits(A)_1^2 != A_1^2 $
-```
+`}
+  image='/assets/ffb91cddf4edf78f1af94d7ff70772ce.png'
+  alt='Preview'
+/>
 
-```#math.limits(body, inline:) -> content```
+```typst
+#math.limits(
+  body,
+  inline: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,7 +2,9 @@
 title: "Dictionary"
 description: "Documentation for the Dictionary type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A map from string keys to values.
 
@@ -16,37 +18,47 @@ Dictionaries can be added with the `+{:typst}` operator and [joined together](/d
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let dict = (
   name: "Typst",
   born: 2019,
 )
 
-#dict.name \
+#dict.name 
 #(dict.launch = 20)
-#dict.len() \
-#dict.keys() \
-#dict.values() \
-#dict.at("born") \
+#dict.len() 
+#dict.keys() 
+#dict.values() 
+#dict.at("born") 
 #dict.insert("city", "Berlin")
 #("name" in dict)
-```
+`}
+  image='/assets/e9a45e88bf57200fabfebcb669137411.png'
+  alt='Preview'
+/>
 
 [^1]: When spreading into a dictionary, if all items between the parentheses are spread, you have to use the special `(:..spread){:typst}` syntax. Otherwise, it will spread into an array.
 
 ## Constructor
-
-### `dictionary`
-
 Converts a value into a dictionary.
 
 Note that this function is only intended for conversion of a dictionary-like value to a dictionary, not for creation of a dictionary from individual pairs. Use the dictionary syntax `(key: value){:typst}` instead.
 
-```typst
+<TypstPreview
+  code={`
 #dictionary(sys).at("version")
-```
+`}
+  image='/assets/bebc0d67925f97a933ee062710eb0cd0.png'
+  alt='Preview'
+/>
 
-```#dictionary(value) -> dictionary```
+```typst
+#dictionary(
+  value
+) -> dictionary
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -60,18 +72,17 @@ Note that this function is only intended for conversion of a dictionary-like val
 
 
 ## Methods
-
-### `len`
-
 The number of pairs in the dictionary.
-
-```#dictionary.len() -> int```
-
-### `at`
 
 Returns the value associated with the specified key in the dictionary. May be used on the left-hand side of an assignment if the key is already present in the dictionary. Returns the default value if the key is not part of the dictionary or fails with an error if no default value was specified.
 
-```#dictionary.at(key, default:) -> any```
+```typst
+#dictionary.at(
+  key,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -88,14 +99,17 @@ Returns the value associated with the specified key in the dictionary. May be us
   }}
 />
 
-
-### `insert`
-
 Inserts a new pair into the dictionary. If the dictionary already contains this key, the value is updated.
 
 To insert multiple pairs at once, you can just alternatively another dictionary with the `+={:typst}` operator.
 
-```#dictionary.insert(key, value) -> ```
+```typst
+#dictionary.insert(
+  key,
+  value
+) -> 
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -112,12 +126,15 @@ To insert multiple pairs at once, you can just alternatively another dictionary 
   }}
 />
 
-
-### `remove`
-
 Removes a pair from the dictionary by key and return the value.
 
-```#dictionary.remove(key, default:) -> any```
+```typst
+#dictionary.remove(
+  key,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -134,46 +151,44 @@ Removes a pair from the dictionary by key and return the value.
   }}
 />
 
-
-### `keys`
-
 Returns the keys of the dictionary as an array in insertion order.
-
-```#dictionary.keys() -> array```
-
-### `values`
 
 Returns the values of the dictionary as an array in insertion order.
 
-```#dictionary.values() -> array```
-
-### `pairs`
-
 Returns the keys and values of the dictionary as an array of pairs. Each pair is represented as an array of length two.
-
-```#dictionary.pairs() -> array```
-
-### `filter`
 
 Produces a new dictionary with only the pairs from the original one for which the given function returns `true{:typst}`.
 
-```typst
+<TypstPreview
+  code={`
 #{
   (a: 0, b: 1, c: 2)
     .filter(v => v > 0)
 }
-```
+`}
+  image='/assets/1fe5e9292e0c7d38d09b2b3b61e81033.png'
+  alt='Preview'
+/>
 
-```typst
+<TypstPreview
+  code={`
 #{
   (a: 0, b: 1, c: 2)
     .pairs()
     .filter(((k, v)) => k != "a")
     .to-dict()
 }
-```
+`}
+  image='/assets/b4a9792d51c741e728b7d73635fcfe20.png'
+  alt='Preview'
+/>
 
-```#dictionary.filter(test) -> dictionary```
+```typst
+#dictionary.filter(
+  test
+) -> dictionary
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -185,16 +200,22 @@ Produces a new dictionary with only the pairs from the original one for which th
   }}
 />
 
-
-### `map`
-
 Produces a new dictionary where the keys are the same, but the values are transformed with the given function.
 
-```typst
+<TypstPreview
+  code={`
 #(a: 0, b: 1, c: 2).map(v => v + 1)
-```
+`}
+  image='/assets/8bd039eaf2068c7bf7d489d5839f2ad5.png'
+  alt='Preview'
+/>
 
-```#dictionary.map(mapper) -> dictionary```
+```typst
+#dictionary.map(
+  mapper
+) -> dictionary
+```
+### Parameters
 
 <TypeTable
   type={{

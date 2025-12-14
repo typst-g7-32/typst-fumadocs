@@ -2,10 +2,9 @@
 title: "Move"
 description: "Documentation for the `move` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `move`
+import { TypstPreview } from '@/components/typst/preview';
 
 Moves content without affecting layout.
 
@@ -13,7 +12,8 @@ The `move{:typst}` function allows you to move content while the layout still 's
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #rect(inset: 0pt, fill: gray, move(
   dx: 4pt, dy: 6pt,
   rect(
@@ -23,13 +23,23 @@ The `move{:typst}` function allows you to move content while the layout still 's
     [Abra cadabra]
   )
 ))
-```
+`}
+  image='/assets/6ac41d841f8a694b9b58217303184f74.png'
+  alt='Preview'
+/>
 
 ## Accessibility
 
 Moving is transparent to Assistive Technology (AT). Your content will be read in the order it appears in the source, regardless of any visual movement. If you need to hide content from AT altogether in PDF export, consider using [`pdf.artifact{:typst}`](/docs/reference/pdf/artifact/).
 
-```#move(dx:, dy:, body) -> content```
+```typst
+#move(
+  dx: relative,
+  dy: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

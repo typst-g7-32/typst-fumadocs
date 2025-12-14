@@ -2,10 +2,9 @@
 title: "Class"
 description: "Documentation for the `class` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `class`
+import { TypstPreview } from '@/components/typst/preview';
 
 Forced use of a certain math class.
 
@@ -13,16 +12,26 @@ This is useful to treat certain symbols as if they were of a different class, e.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let loves = math.class(
   "relation",
   sym.suit.heart,
 )
 
 $x loves y and y loves 5$
-```
+`}
+  image='/assets/e3ed6eac7ab33197c87fb7cb4f0ff530.png'
+  alt='Preview'
+/>
 
-```#math.class(class, body) -> content```
+```typst
+#math.class(
+  class,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

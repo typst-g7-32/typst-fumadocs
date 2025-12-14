@@ -2,22 +2,30 @@
 title: "Under/Over"
 description: "Documentation for the underover functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Delimiters above or below parts of an equation.
 
 The braces and brackets further allow you to add an optional annotation below or above themselves.
 
-
-## `underline`
-
 A horizontal line under content.
 
-```typst
+<TypstPreview
+  code={`
 $ underline(1 + 2 + ... + 5) $
-```
+`}
+  image='/assets/90fbf6ae4b8e62a139c6b4bd8329f2ab.png'
+  alt='Preview'
+/>
 
-```#math.underline(body) -> content```
+```typst
+#math.underline(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -29,16 +37,22 @@ $ underline(1 + 2 + ... + 5) $
   }}
 />
 
-
-## `overline`
-
 A horizontal line over content.
 
-```typst
+<TypstPreview
+  code={`
 $ overline(1 + 2 + ... + 5) $
-```
+`}
+  image='/assets/6eb6edcdeea961c6dd0c7657a98b57e1.png'
+  alt='Preview'
+/>
 
-```#math.overline(body) -> content```
+```typst
+#math.overline(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -50,16 +64,23 @@ $ overline(1 + 2 + ... + 5) $
   }}
 />
 
-
-## `underbrace`
-
 A horizontal brace under content, with an optional annotation below.
 
-```typst
+<TypstPreview
+  code={`
 $ underbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/ce5d55602c3ea271c5f9483757b86348.png'
+  alt='Preview'
+/>
 
-```#math.underbrace(body, annotation) -> content```
+```typst
+#math.underbrace(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -76,16 +97,23 @@ $ underbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `overbrace`
-
 A horizontal brace over content, with an optional annotation above.
 
-```typst
+<TypstPreview
+  code={`
 $ overbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/41739f52a0a2006372edca142286e55a.png'
+  alt='Preview'
+/>
 
-```#math.overbrace(body, annotation) -> content```
+```typst
+#math.overbrace(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -102,16 +130,23 @@ $ overbrace(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `underbracket`
-
 A horizontal bracket under content, with an optional annotation below.
 
-```typst
+<TypstPreview
+  code={`
 $ underbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/c84735e83bc2757b999a3ad87056973b.png'
+  alt='Preview'
+/>
 
-```#math.underbracket(body, annotation) -> content```
+```typst
+#math.underbracket(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -128,16 +163,23 @@ $ underbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `overbracket`
-
 A horizontal bracket over content, with an optional annotation above.
 
-```typst
+<TypstPreview
+  code={`
 $ overbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/a95cfe4723f0016480ef535731a5ad25.png'
+  alt='Preview'
+/>
 
-```#math.overbracket(body, annotation) -> content```
+```typst
+#math.overbracket(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -154,16 +196,23 @@ $ overbracket(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `underparen`
-
 A horizontal parenthesis under content, with an optional annotation below.
 
-```typst
+<TypstPreview
+  code={`
 $ underparen(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/4f11d79431033e7812308ab393328912.png'
+  alt='Preview'
+/>
 
-```#math.underparen(body, annotation) -> content```
+```typst
+#math.underparen(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -180,16 +229,23 @@ $ underparen(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `overparen`
-
 A horizontal parenthesis over content, with an optional annotation above.
 
-```typst
+<TypstPreview
+  code={`
 $ overparen(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/9f7044b8c228c1bf68a090eb72dfaf6a.png'
+  alt='Preview'
+/>
 
-```#math.overparen(body, annotation) -> content```
+```typst
+#math.overparen(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -206,16 +262,23 @@ $ overparen(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `undershell`
-
 A horizontal tortoise shell bracket under content, with an optional annotation below.
 
-```typst
+<TypstPreview
+  code={`
 $ undershell(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/f440038aa648a4fde405b0138d0c4af6.png'
+  alt='Preview'
+/>
 
-```#math.undershell(body, annotation) -> content```
+```typst
+#math.undershell(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -232,16 +295,23 @@ $ undershell(0 + 1 + dots.c + n, n + 1 "numbers") $
   }}
 />
 
-
-## `overshell`
-
 A horizontal tortoise shell bracket over content, with an optional annotation above.
 
-```typst
+<TypstPreview
+  code={`
 $ overshell(0 + 1 + dots.c + n, n + 1 "numbers") $
-```
+`}
+  image='/assets/1355d283aaa9b9fa97ae98fb78ac0657.png'
+  alt='Preview'
+/>
 
-```#math.overshell(body, annotation) -> content```
+```typst
+#math.overshell(
+  body,
+  annotation
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

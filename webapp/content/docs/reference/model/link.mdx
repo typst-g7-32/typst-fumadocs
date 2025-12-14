@@ -2,10 +2,9 @@
 title: "Link"
 description: "Documentation for the `link` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `link`
+import { TypstPreview } from '@/components/typst/preview';
 
 Links to a URL or a location in the document.
 
@@ -13,16 +12,20 @@ By default, links do not look any different from normal text. However, you can e
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #show link: underline
 
-https://example.com \
+https://example.com 
 
-#link("https://example.com") \
+#link("https://example.com") 
 #link("https://example.com")[
   See example.com
 ]
-```
+`}
+  image='/assets/9817d02583b839b8c8cae2e2fc58ca7e.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
@@ -60,12 +63,18 @@ As IDs must be unique in the DOM, duplicate labels might need disambiguation whe
 - If it's reusable, but not unique, a suffix consisting of a hyphen and an integer will be added. For instance, if the label `<mylabel>{:typst}` exists twice, it would turn into `mylabel-1{:typst}` and `mylabel-2{:typst}`.
 - Otherwise, a unique ID of the form `loc-{:typst}` followed by an integer will be generated.
 
-```#link(dest, body) -> content```
+```typst
+#link(
+  dest,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'dest': {
-      'description': 'The destination the link points to.  - To link to web pages, `dest{:typst}` should be a valid URL string. If the URL is in the `mailto:{:typst}` or `tel:{:typst}` scheme and the `body{:typst}` parameter is omitted, the email address or phone number will be the link\'s body, without the scheme. - To link to another part of the document, `dest{:typst}` can take one of three forms:    - A [label](/docs/reference/foundations/label/) attached to an element. If you also want automatic text for the link based on the element, consider using a [reference](/docs/reference/model/ref/) instead.   - A [`location{:typst}`](/docs/reference/introspection/location/) (typically retrieved from [`here{:typst}`](/docs/reference/introspection/here/), [`locate{:typst}`](/docs/reference/introspection/locate/) or [`query{:typst}`](/docs/reference/introspection/query/)).   - A dictionary with a `page{:typst}` key of type [integer](/docs/reference/foundations/int/) and `x{:typst}` and `y{:typst}` coordinates of type [length](/docs/reference/layout/length/). Pages are counted from one, and the coordinates are relative to the page\'s top left corner.  ```typst = Introduction <intro> #link("mailto:hello@typst.app") \\ #link(<intro>)[Go to intro] \\ #link((page: 1, x: 0pt, y: 0pt))[   Go to top ] ```',
+      'description': 'The destination the link points to.  - To link to web pages, `dest{:typst}` should be a valid URL string. If the URL is in the `mailto:{:typst}` or `tel:{:typst}` scheme and the `body{:typst}` parameter is omitted, the email address or phone number will be the link\'s body, without the scheme. - To link to another part of the document, `dest{:typst}` can take one of three forms:    - A [label](/docs/reference/foundations/label/) attached to an element. If you also want automatic text for the link based on the element, consider using a [reference](/docs/reference/model/ref/) instead.   - A [`location{:typst}`](/docs/reference/introspection/location/) (typically retrieved from [`here{:typst}`](/docs/reference/introspection/here/), [`locate{:typst}`](/docs/reference/introspection/locate/) or [`query{:typst}`](/docs/reference/introspection/query/)).   - A dictionary with a `page{:typst}` key of type [integer](/docs/reference/foundations/int/) and `x{:typst}` and `y{:typst}` coordinates of type [length](/docs/reference/layout/length/). Pages are counted from one, and the coordinates are relative to the page\'s top left corner.  <TypstPreview   code={` = Introduction <intro> #link("mailto:hello@typst.app")  #link(<intro>)[Go to intro]  #link((page: 1, x: 0pt, y: 0pt))[   Go to top ] `}   image=\'/assets/afe2f0708d82d4ae0eb545a1b6f83c42.png\'   alt=\'Preview\' />',
       'type': 'str | label | location | dictionary',
       'default': 'None'
     },

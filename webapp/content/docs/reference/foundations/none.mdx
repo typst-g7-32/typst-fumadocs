@@ -3,6 +3,8 @@ title: "None"
 description: "Documentation for the None type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 A value that indicates the absence of any other value.
 
 The none type has exactly one value: `none{:typst}`.
@@ -11,8 +13,12 @@ When inserted into the document, it is not visible. This is also the value that 
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 Not visible: #none
-```
+`}
+  image='/assets/6d60a10b08c2520a65b888d97c187676.png'
+  alt='Preview'
+/>
 
 

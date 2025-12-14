@@ -3,6 +3,8 @@ title: "Fraction"
 description: "Documentation for the Fraction type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Defines how the remaining space in a layout is distributed.
 
 Each fractionally sized element gets space based on the ratio of its fraction to the sum of all fractions.
@@ -11,8 +13,12 @@ For more details, also see the [h](/docs/reference/layout/h/) and [v](/docs/refe
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 Left #h(1fr) Left-ish #h(2fr) Right
-```
+`}
+  image='/assets/321e6c8c590024595b335be6ffae423a.png'
+  alt='Preview'
+/>
 
 

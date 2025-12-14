@@ -2,10 +2,9 @@
 title: "Page Break"
 description: "Documentation for the `pagebreak` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `pagebreak`
+import { TypstPreview } from '@/components/typst/preview';
 
 A manual page break.
 
@@ -13,20 +12,30 @@ Must not be used inside any containers.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 The next page contains
 more details on compound theory.
 #pagebreak()
 
 == Compound Theory
 In 1984, the first ...
-```
+`}
+  image='/assets/3098eee9a9bf195060b49592b4463703-0.png'
+  alt='Preview page 1'
+/>
 
 Even without manual page breaks, content will be automatically paginated based on the configured page size. You can set [the page height](/docs/reference/layout/page/#parameters-height) to `auto{:typst}` to let the page grow dynamically until a manual page break occurs.
 
 Pagination tries to avoid single lines of text at the top or bottom of a page (these are called _widows_ and _orphans_). You can adjust the [`text.costs{:typst}`](/docs/reference/text/text/#parameters-costs) parameter to disable this behavior.
 
-```#pagebreak(weak:, to:) -> content```
+```typst
+#pagebreak(
+  weak: bool,
+  to: none | str
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -36,7 +45,7 @@ Pagination tries to avoid single lines of text at the top or bottom of a page (t
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'to': {
-      'description': 'If given, ensures that the next page will be an even/odd page, with an empty page in between if necessary.  ```typst #set page(height: 30pt)  First. #pagebreak(to: "odd") Third. ```',
+      'description': 'If given, ensures that the next page will be an even/odd page, with an empty page in between if necessary.  <TypstPreview   code={` #set page(height: 30pt)  First. #pagebreak(to: "odd") Third. `}   image=\'/assets/ff80837b479a5387b266d55477502b8a-0.png\'   alt=\'Preview page 1\' />',
       'type': 'none | str',
       'default': '<code><span class="typ-key">none</span></code>'
     }

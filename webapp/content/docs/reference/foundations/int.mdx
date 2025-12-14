@@ -2,7 +2,9 @@
 title: "Integer"
 description: "Documentation for the Integer type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A whole number.
 
@@ -14,36 +16,47 @@ You can convert a value to an integer with this type's constructor.
 
 ## Example
 
-```typst
-#(1 + 2) \
-#(2 - 5) \
+<TypstPreview
+  code={`
+#(1 + 2) 
+#(2 - 5) 
 #(3 + 4 < 8)
 
-#0xff \
-#0o10 \
+#0xff 
+#0o10 
 #0b1001
-```
+`}
+  image='/assets/c1fa714490d9acd7860c0dd18c480526.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `int`
-
 Converts a value to an integer. Raises an error if there is an attempt to parse an invalid string or produce an integer that doesn't fit into a 64-bit signed integer.
 
 - Booleans are converted to `0{:typst}` or `1{:typst}`.
 - Floats and decimals are rounded to the next 64-bit integer towards zero.
 - Strings are parsed in base 10 by default.
 
-```typst
-#int(false) \
-#int(true) \
-#int(2.7) \
-#int(decimal("3.8")) \
-#(int("27") + int("4")) \
+<TypstPreview
+  code={`
+#int(false) 
+#int(true) 
+#int(2.7) 
+#int(decimal("3.8")) 
+#(int("27") + int("4")) 
 #(int("beef", base: 16))
-```
+`}
+  image='/assets/c4de2725fb7029ca72848c9f3c01a117.png'
+  alt='Preview'
+/>
 
-```#int(value, base:) -> int```
+```typst
+#int(
+  value,
+  base: int
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -62,47 +75,53 @@ Converts a value to an integer. Raises an error if there is an attempt to parse 
 
 
 ## Methods
-
-### `signum`
-
 Calculates the sign of an integer.
 
 - If the number is positive, returns `1{:typst}`.
 - If the number is negative, returns `-1{:typst}`.
 - If the number is zero, returns `0{:typst}`.
 
-```typst
-#(5).signum() \
-#(-5).signum() \
+<TypstPreview
+  code={`
+#(5).signum() 
+#(-5).signum() 
 #(0).signum()
-```
-
-```#int.signum() -> int```
-
-### `bit-not`
+`}
+  image='/assets/562726d9517a67df2c82335941895a06.png'
+  alt='Preview'
+/>
 
 Calculates the bitwise NOT of an integer.
 
 For the purposes of this function, the operand is treated as a signed integer of 64 bits.
 
-```typst
-#4.bit-not() \
+<TypstPreview
+  code={`
+#4.bit-not() 
 #(-1).bit-not()
-```
-
-```#int.bit-not() -> int```
-
-### `bit-and`
+`}
+  image='/assets/dc060efa9e84fb3dd52c7e2f3725842a.png'
+  alt='Preview'
+/>
 
 Calculates the bitwise AND between two integers.
 
 For the purposes of this function, the operands are treated as signed integers of 64 bits.
 
-```typst
+<TypstPreview
+  code={`
 #128.bit-and(192)
-```
+`}
+  image='/assets/927c13ad6f976e3e6ca9b71dcdaedec2.png'
+  alt='Preview'
+/>
 
-```#int.bit-and(rhs) -> int```
+```typst
+#int.bit-and(
+  rhs
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -114,18 +133,24 @@ For the purposes of this function, the operands are treated as signed integers o
   }}
 />
 
-
-### `bit-or`
-
 Calculates the bitwise OR between two integers.
 
 For the purposes of this function, the operands are treated as signed integers of 64 bits.
 
-```typst
+<TypstPreview
+  code={`
 #64.bit-or(32)
-```
+`}
+  image='/assets/cda54a333b5f8fef1521f6cb5de24550.png'
+  alt='Preview'
+/>
 
-```#int.bit-or(rhs) -> int```
+```typst
+#int.bit-or(
+  rhs
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -137,18 +162,24 @@ For the purposes of this function, the operands are treated as signed integers o
   }}
 />
 
-
-### `bit-xor`
-
 Calculates the bitwise XOR between two integers.
 
 For the purposes of this function, the operands are treated as signed integers of 64 bits.
 
-```typst
+<TypstPreview
+  code={`
 #64.bit-xor(96)
-```
+`}
+  image='/assets/2943eab0e2f921759c1927c0845a4beb.png'
+  alt='Preview'
+/>
 
-```#int.bit-xor(rhs) -> int```
+```typst
+#int.bit-xor(
+  rhs
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -160,19 +191,25 @@ For the purposes of this function, the operands are treated as signed integers o
   }}
 />
 
-
-### `bit-lshift`
-
 Shifts the operand's bits to the left by the specified amount.
 
 For the purposes of this function, the operand is treated as a signed integer of 64 bits. An error will occur if the result is too large to fit in a 64-bit integer.
 
-```typst
-#33.bit-lshift(2) \
+<TypstPreview
+  code={`
+#33.bit-lshift(2) 
 #(-1).bit-lshift(3)
-```
+`}
+  image='/assets/9085484b226c6c6a4ade4fdfbb9f4ed8.png'
+  alt='Preview'
+/>
 
-```#int.bit-lshift(shift) -> int```
+```typst
+#int.bit-lshift(
+  shift
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -184,20 +221,27 @@ For the purposes of this function, the operand is treated as a signed integer of
   }}
 />
 
-
-### `bit-rshift`
-
 Shifts the operand's bits to the right by the specified amount. Performs an arithmetic shift by default (extends the sign bit to the left, such that negative numbers stay negative), but that can be changed by the `logical{:typst}` parameter.
 
 For the purposes of this function, the operand is treated as a signed integer of 64 bits.
 
-```typst
-#64.bit-rshift(2) \
-#(-8).bit-rshift(2) \
+<TypstPreview
+  code={`
+#64.bit-rshift(2) 
+#(-8).bit-rshift(2) 
 #(-8).bit-rshift(2, logical: true)
-```
+`}
+  image='/assets/81e6da07e0993b30ed9ef7e30df8ed4e.png'
+  alt='Preview'
+/>
 
-```#int.bit-rshift(shift, logical:) -> int```
+```typst
+#int.bit-rshift(
+  shift,
+  logical: bool
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -214,17 +258,25 @@ For the purposes of this function, the operand is treated as a signed integer of
   }}
 />
 
-
-### `from-bytes`
-
 Converts bytes to an integer.
 
-```typst
-#int.from-bytes(bytes((0, 0, 0, 0, 0, 0, 0, 1))) \
+<TypstPreview
+  code={`
+#int.from-bytes(bytes((0, 0, 0, 0, 0, 0, 0, 1))) 
 #int.from-bytes(bytes((1, 0, 0, 0, 0, 0, 0, 0)), endian: "big")
-```
+`}
+  image='/assets/2342cf4345948a2d1fb61703db4728b0.png'
+  alt='Preview'
+/>
 
-```#int.from-bytes(bytes, endian:, signed:) -> int```
+```typst
+#int.from-bytes(
+  bytes,
+  endian: str,
+  signed: bool
+) -> int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -246,17 +298,24 @@ Converts bytes to an integer.
   }}
 />
 
-
-### `to-bytes`
-
 Converts an integer to bytes.
 
-```typst
-#array(10000.to-bytes(endian: "big")) \
+<TypstPreview
+  code={`
+#array(10000.to-bytes(endian: "big")) 
 #array(10000.to-bytes(size: 4))
-```
+`}
+  image='/assets/145ee0196e1e54e1216232195f2f0122.png'
+  alt='Preview'
+/>
 
-```#int.to-bytes(endian:, size:) -> bytes```
+```typst
+#int.to-bytes(
+  endian: str,
+  size: int
+) -> bytes
+```
+### Parameters
 
 <TypeTable
   type={{

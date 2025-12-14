@@ -2,7 +2,9 @@
 title: "Tiling"
 description: "Documentation for the Tiling type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A repeating tiling fill.
 
@@ -10,18 +12,23 @@ Typst supports the most common type of tilings, where a pattern is repeated in a
 
 ## Examples
 
-```typst
+<TypstPreview
+  code={`
 #let pat = tiling(size: (30pt, 30pt))[
   #place(line(start: (0%, 0%), end: (100%, 100%)))
   #place(line(start: (0%, 100%), end: (100%, 0%)))
 ]
 
 #rect(fill: pat, width: 100%, height: 60pt, stroke: 1pt)
-```
+`}
+  image='/assets/aa1d27fdbd1db81580724b895115f7d6.png'
+  alt='Preview'
+/>
 
 Tilings are also supported on text, but only when setting the [relativeness](/docs/reference/visualize/tiling/#constructor-relative) to either `auto{:typst}` (the default value) or `"parent"{:typst}`. To create word-by-word or glyph-by-glyph tilings, you can wrap the words or characters of your text in [boxes](/docs/reference/layout/box/) manually or through a [show rule](/docs/reference/styling/#show-rules).
 
-```typst
+<TypstPreview
+  code={`
 #let pat = tiling(
   size: (30pt, 30pt),
   relative: "parent",
@@ -34,11 +41,15 @@ Tilings are also supported on text, but only when setting the [relativeness](/do
 
 #set text(fill: pat)
 #lorem(10)
-```
+`}
+  image='/assets/1d49890bdcd0d3618e7fac207ef2772d.png'
+  alt='Preview'
+/>
 
 You can also space the elements further or closer apart using the [`spacing{:typst}`](/docs/reference/visualize/tiling/#constructor-spacing) feature of the tiling. If the spacing is lower than the size of the tiling, the tiling will overlap. If it is higher, the tiling will have gaps of the same color as the background of the tiling.
 
-```typst
+<TypstPreview
+  code={`
 #let pat = tiling(
   size: (30pt, 30pt),
   spacing: (10pt, 10pt),
@@ -55,7 +66,10 @@ You can also space the elements further or closer apart using the [`spacing{:typ
   height: 60pt,
   fill: pat,
 )
-```
+`}
+  image='/assets/a01f3d44bb227edd4662b2e9122d7ffe.png'
+  alt='Preview'
+/>
 
 ## Relativeness
 
@@ -71,12 +85,10 @@ Typst determines the ancestor container as follows:
 This type used to be called `pattern{:typst}`. The name remains as an alias, but is deprecated since Typst 0.13.
 
 ## Constructor
-
-### `tiling`
-
 Construct a new tiling.
 
-```typst
+<TypstPreview
+  code={`
 #let pat = tiling(
   size: (20pt, 20pt),
   relative: "parent",
@@ -91,9 +103,20 @@ Construct a new tiling.
 )
 
 #rect(width: 100%, height: 60pt, fill: pat)
-```
+`}
+  image='/assets/997166e01319ea437b75b8c87c9925f6.png'
+  alt='Preview'
+/>
 
-```#tiling(size:, spacing:, relative:, body) -> tiling```
+```typst
+#tiling(
+  size: auto | array,
+  spacing: array,
+  relative: auto | str,
+  body
+) -> tiling
+```
+### Parameters
 
 <TypeTable
   type={{

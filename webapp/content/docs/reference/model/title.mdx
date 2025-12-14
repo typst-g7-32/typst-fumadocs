@@ -2,10 +2,9 @@
 title: "Title"
 description: "Documentation for the `title` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `title`
+import { TypstPreview } from '@/components/typst/preview';
 
 A document title.
 
@@ -17,7 +16,8 @@ In HTML export, this shows as a `h1{:typst}` element while level 1 headings show
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set document(
   title: [Interstellar Mail Delivery]
 )
@@ -26,14 +26,22 @@ In HTML export, this shows as a `h1{:typst}` element while level 1 headings show
 
 = Introduction
 In recent years, ...
-```
+`}
+  image='/assets/5158e69981c96c71d0f8157067fd1726.png'
+  alt='Preview'
+/>
 
-```#title(body) -> content```
+```typst
+#title(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'body': {
-      'description': 'The content of the title.  When omitted (or `auto{:typst}`), this will default to [`document.title{:typst}`](/docs/reference/model/document/#parameters-title). In this case, a document title must have been previously set with `set document(title: [..]){:typst}`.  ```typst #set document(title: "Course ABC, Homework 1") #title[Homework 1]  ... ```',
+      'description': 'The content of the title.  When omitted (or `auto{:typst}`), this will default to [`document.title{:typst}`](/docs/reference/model/document/#parameters-title). In this case, a document title must have been previously set with `set document(title: [..]){:typst}`.  <TypstPreview   code={` #set document(title: "Course ABC, Homework 1") #title[Homework 1]  ... `}   image=\'/assets/898a77a910dde65fbc6149bcca1788f1.png\'   alt=\'Preview\' />',
       'type': 'auto | content',
       'default': '<code><span class="typ-key">auto</span></code>'
     }

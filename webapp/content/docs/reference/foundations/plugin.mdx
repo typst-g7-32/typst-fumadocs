@@ -2,10 +2,9 @@
 title: "Plugin"
 description: "Documentation for the `plugin` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `plugin`
+import { TypstPreview } from '@/components/typst/preview';
 
 Loads a WebAssembly module.
 
@@ -17,7 +16,8 @@ For security reasons, plugins run in isolation from your system. This means that
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let myplugin = plugin("hello.wasm")
 #let concat(a, b) = str(
   myplugin.concatenate(
@@ -27,7 +27,10 @@ For security reasons, plugins run in isolation from your system. This means that
 )
 
 #concat("hello", "world")
-```
+`}
+  image='/assets/563eb9b72603c710f73876546a243de1.png'
+  alt='Preview'
+/>
 
 Since the plugin function returns a module, it can be used with import syntax:
 
@@ -83,7 +86,12 @@ For more resources, check out the [wasm-minimal-protocol repository](https://git
 - Wrappers to help you write your plugin in Rust (Zig wrapper in development)
 - A stubber for WASI
 
-```#plugin(source) -> module```
+```typst
+#plugin(
+  source
+) -> module
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -97,9 +105,6 @@ For more resources, check out the [wasm-minimal-protocol repository](https://git
 
 
 ### Definitions
-
-### `transition`
-
 Calls a plugin function that has side effects and returns a new module with plugin functions that are guaranteed to have observed the results of the mutable call.
 
 Note that calling an impure function through a normal function call (without use of the transition API) is forbidden and leads to unpredictable behaviour. Read the [section on purity](/docs/reference/foundations/plugin/#purity) for more details.
@@ -119,7 +124,13 @@ _Note:_ Due to limitations in the internal WebAssembly implementation, the trans
 #assert.eq(mutated.get(), "[hello]")
 ```
 
-```#plugin.transition(func, arguments) -> module```
+```typst
+#plugin.transition(
+  func,
+  arguments
+) -> module
+```
+### Parameters
 
 <TypeTable
   type={{

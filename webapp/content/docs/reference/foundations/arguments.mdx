@@ -2,7 +2,9 @@
 title: "Arguments"
 description: "Documentation for the Arguments type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Captured arguments to a function.
 
@@ -10,7 +12,8 @@ Captured arguments to a function.
 
 Like built-in functions, custom functions can also take a variable number of arguments. You can specify an _argument sink_ which collects all excess arguments as `..sink{:typst}`. The resulting `sink{:typst}` value is of the `arguments{:typst}` type. It exposes methods to access the positional and named arguments.
 
-```typst
+<TypstPreview
+  code={`
 #let format(title, ..authors) = {
   let by = authors
     .pos()
@@ -20,33 +23,46 @@ Like built-in functions, custom functions can also take a variable number of arg
 }
 
 #format("ArtosFlow", "Jane", "Joe")
-```
+`}
+  image='/assets/d6ce7ebd806b82775abf2d566f8c412.png'
+  alt='Preview'
+/>
 
 ## Spreading
 
 Inversely to an argument sink, you can _spread_ arguments, arrays and dictionaries into a function call with the `..spread{:typst}` operator:
 
-```typst
+<TypstPreview
+  code={`
 #let array = (2, 3, 5)
 #calc.min(..array)
 #let dict = (fill: blue)
 #text(..dict)[Hello]
-```
+`}
+  image='/assets/91c9aab47f6ac6ae8183c670c0a9cc09.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `arguments`
-
 Construct spreadable arguments in place.
 
 This function behaves like `let args(..sink) = sink{:typst}`.
 
-```typst
+<TypstPreview
+  code={`
 #let args = arguments(stroke: red, inset: 1em, [Body])
 #box(..args)
-```
+`}
+  image='/assets/25bccad3df7eaeaab4a645bea07090b2.png'
+  alt='Preview'
+/>
 
-```#arguments(arguments) -> arguments```
+```typst
+#arguments(
+  arguments
+) -> arguments
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -60,20 +76,19 @@ This function behaves like `let args(..sink) = sink{:typst}`.
 
 
 ## Methods
-
-### `len`
-
 The number of arguments, positional or named.
-
-```#arguments.len() -> int```
-
-### `at`
 
 Returns the positional argument at the specified index, or the named argument with the specified name.
 
 If the key is an [integer](/docs/reference/foundations/int/), this is equivalent to first calling [`pos{:typst}`](/docs/reference/foundations/arguments/#definitions-pos) and then [`array.at{:typst}`](/docs/reference/foundations/array/#definitions-at). If it is a [string](/docs/reference/foundations/str/), this is equivalent to first calling [`named{:typst}`](/docs/reference/foundations/arguments/#definitions-named) and then [`dictionary.at{:typst}`](/docs/reference/foundations/dictionary/#definitions-at).
 
-```#arguments.at(key, default:) -> any```
+```typst
+#arguments.at(
+  key,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -90,31 +105,29 @@ If the key is an [integer](/docs/reference/foundations/int/), this is equivalent
   }}
 />
 
-
-### `pos`
-
 Returns the captured positional arguments as an array.
-
-```#arguments.pos() -> array```
-
-### `named`
 
 Returns the captured named arguments as a dictionary.
 
-```#arguments.named() -> dictionary```
-
-### `filter`
-
 Produces a new `arguments{:typst}` with only the arguments for which the value passes the test.
 
-```typst
+<TypstPreview
+  code={`
 #{
   arguments(-1, a: 0, b: 1, 2)
     .filter(v => v > 0)
 }
-```
+`}
+  image='/assets/af5193c5a1c15556e1575985eea881dd.png'
+  alt='Preview'
+/>
 
-```#arguments.filter(test) -> arguments```
+```typst
+#arguments.filter(
+  test
+) -> arguments
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -126,19 +139,25 @@ Produces a new `arguments{:typst}` with only the arguments for which the value p
   }}
 />
 
-
-### `map`
-
 Produces a new `arguments{:typst}` by transforming each argument value with the passed function.
 
-```typst
+<TypstPreview
+  code={`
 #{
   arguments(0, a: 1, 2)
     .map(v => v + 1)
 }
-```
+`}
+  image='/assets/e3caf1a8e01f50e9d8e5dafd0ddba353.png'
+  alt='Preview'
+/>
 
-```#arguments.map(mapper) -> arguments```
+```typst
+#arguments.map(
+  mapper
+) -> arguments
+```
+### Parameters
 
 <TypeTable
   type={{

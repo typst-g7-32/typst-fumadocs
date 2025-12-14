@@ -3,6 +3,8 @@ title: "Syntax"
 description: "A compact reference for Typst's syntax. Learn more about the language within markup, math, and code mode."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Typst is a markup language. This means that you can use simple syntax to accomplish common layout tasks. The lightweight markup syntax is complemented by set and show rules, which let you style your document easily and automatically. All this is backed by a tightly integrated scripting language with built-in and user-defined functions.
 
 ## Modes
@@ -87,7 +89,7 @@ Within code blocks and expressions, new expressions can start without a leading 
 | Math | `$x^2${:typst}` | [Math](/docs/reference/math/) |
 | Raw text | ``print(1)`{:typst}` | [`raw{:typst}`](/docs/reference/text/raw/) |
 | Variable access | `x{:typst}` | [Scripting](/docs/reference/scripting/#blocks) |
-| Code block | `{ let x = 1; x + 2 }{:typst}` | [Scripting](/docs/reference/scripting/#blocks) |
+| Code block | `\{ let x = 1; x + 2 \}{:typst}` | [Scripting](/docs/reference/scripting/#blocks) |
 | Content block | `[*Hello*]{:typst}` | [Scripting](/docs/reference/scripting/#blocks) |
 | Parenthesized expression | `(1 + 2){:typst}` | [Scripting](/docs/reference/scripting/#blocks) |
 | Array | `(1, 2, 3){:typst}` | [Array](/docs/reference/foundations/array/) |
@@ -105,12 +107,12 @@ Within code blocks and expressions, new expressions can start without a leading 
 | Set rule | `set text(14pt){:typst}` | [Styling](/docs/reference/styling/#set-rules) |
 | Set-if rule | `set text(..) if ..{:typst}` | [Styling](/docs/reference/styling/#set-rules) |
 | Show-set rule | `show heading: set block(..){:typst}` | [Styling](/docs/reference/styling/#show-rules) |
-| Show rule with function | `show raw: it => {..}{:typst}` | [Styling](/docs/reference/styling/#show-rules) |
+| Show rule with function | `show raw: it => \{..\}{:typst}` | [Styling](/docs/reference/styling/#show-rules) |
 | Show-everything rule | `show: template{:typst}` | [Styling](/docs/reference/styling/#show-rules) |
 | Context expression | `context text.lang{:typst}` | [Context](/docs/reference/context/) |
-| Conditional | `if x == 1 {..} else {..}{:typst}` | [Scripting](/docs/reference/scripting/#conditionals) |
-| For loop | `for x in (1, 2, 3) {..}{:typst}` | [Scripting](/docs/reference/scripting/#loops) |
-| While loop | `while x < 10 {..}{:typst}` | [Scripting](/docs/reference/scripting/#loops) |
+| Conditional | `if x == 1 \{..\} else \{..\}{:typst}` | [Scripting](/docs/reference/scripting/#conditionals) |
+| For loop | `for x in (1, 2, 3) \{..\}{:typst}` | [Scripting](/docs/reference/scripting/#loops) |
+| While loop | `while x < 10 \{..\}{:typst}` | [Scripting](/docs/reference/scripting/#loops) |
 | Loop control flow | `break, continue{:typst}` | [Scripting](/docs/reference/scripting/#loops) |
 | Return from function | `return x{:typst}` | [Function](/docs/reference/foundations/function/) |
 | Include module | `include "bar.typ"{:typst}` | [Scripting](/docs/reference/scripting/#modules) |
@@ -122,32 +124,44 @@ Within code blocks and expressions, new expressions can start without a leading 
 
 Comments are ignored by Typst and will not be included in the output. This is useful to exclude old versions or to add annotations. To comment out a single line, start it with `//{:typst}`:
 
-```typst
+<TypstPreview
+  code={`
 // our data barely supports
 // this claim
 
 We show with $p < 0.05$
 that the difference is
 significant.
-```
+`}
+  image='/assets/aa63c9c9fd83801f26f5ba5d0dc73151.png'
+  alt='Preview'
+/>
 
 Comments can also be wrapped between `/*{:typst}` and `*/{:typst}`. In this case, the comment can span over multiple lines:
 
-```typst
+<TypstPreview
+  code={`
 Our study design is as follows:
 /* Somebody write this up:
    - 1000 participants.
    - 2x2 data design. */
-```
+`}
+  image='/assets/d1b7773edfcc1952006a027c9e9b8c30.png'
+  alt='Preview'
+/>
 
 ## Escape sequences
 
-Escape sequences are used to insert special characters that are hard to type or otherwise have special meaning in Typst. To escape a character, precede it with a backslash. To insert any Unicode codepoint, you can write a hexadecimal escape sequence: `\u{1f600}{:typst}`. The same kind of escape sequences also work in [strings](/docs/reference/foundations/str/).
+Escape sequences are used to insert special characters that are hard to type or otherwise have special meaning in Typst. To escape a character, precede it with a backslash. To insert any Unicode codepoint, you can write a hexadecimal escape sequence: `\u\{1f600\}{:typst}`. The same kind of escape sequences also work in [strings](/docs/reference/foundations/str/).
 
-```typst
+<TypstPreview
+  code={`
 I got an ice cream for
 \$1.50! \u{1f600}
-```
+`}
+  image='/assets/d87ab5c15ab42543dde046ab1ad05951.png'
+  alt='Preview'
+/>
 
 ## Identifiers
 
@@ -157,7 +171,8 @@ More specifically, the identifier syntax in Typst is based on the [Unicode Stand
 
 For multi-word identifiers, the recommended case convention is [Kebab case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case). In Kebab case, words are written in lowercase and separated by hyphens (as in `top-edge{:typst}`). This is especially relevant when developing modules and packages for others to use, as it keeps things predictable.
 
-```typst
+<TypstPreview
+  code={`
 #let kebab-case = [Using hyphen]
 #let _schön = "😊"
 #let 始料不及 = "😱"
@@ -167,7 +182,10 @@ For multi-word identifiers, the recommended case convention is [Kebab case](http
 #if -π < 0 { _schön } else { 始料不及 }
 // -π means -1 * π,
 // so it's not a valid identifier
-```
+`}
+  image='/assets/77fa42f9351fc5ea2759a99ce3d73e26.png'
+  alt='Preview'
+/>
 
 ## Paths
 
@@ -183,6 +201,7 @@ By default, the project root is the parent directory of the main Typst file. For
 If you want to set a specific folder as the root of your project, you can use the CLI's `--root{:typst}` flag. Make sure that the main file is contained in the folder's subtree!
 
 ```typst
+
 typst compile --root .. file.typ
 ```
 

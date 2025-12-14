@@ -3,6 +3,8 @@ title: "Module"
 description: "Documentation for the Module type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 A collection of variables and functions that are commonly related to a single theme.
 
 A module can
@@ -14,20 +16,28 @@ A module can
 
 You can access definitions from the module using [field access notation](/docs/reference/scripting/#fields) and interact with it using the [import and include syntaxes](/docs/reference/scripting/#modules).
 
-```typst
+<TypstPreview
+  code={`
 #import "utils.typ"
 #utils.add(2, 5)
 
 #import utils: sub
 #sub(1, 4)
-```
+`}
+  image='/assets/8ad38f6a26a534e6fad80f3544716fff.png'
+  alt='Preview'
+/>
 
 You can check whether a definition is present in a module using the `in{:typst}` operator, with a string on the left-hand side. This can be useful to [conditionally access](/docs/reference/foundations/std/#conditional-access) definitions in a module.
 
-```typst
-#("table" in std) \
+<TypstPreview
+  code={`
+#("table" in std) 
 #("nope" in std)
-```
+`}
+  image='/assets/1a249cfd54530a168bf401ee1304a852.png'
+  alt='Preview'
+/>
 
 Alternatively, it is possible to convert a module to a dictionary, and therefore access its contents dynamically, using the [dictionary constructor](/docs/reference/foundations/dictionary/#constructor).
 

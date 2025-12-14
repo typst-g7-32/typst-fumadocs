@@ -2,7 +2,9 @@
 title: "Counter"
 description: "Documentation for the Counter type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Counts through pages, elements, and more.
 
@@ -14,19 +16,24 @@ Since counters change throughout the course of the document, their current value
 
 To access the raw value of a counter, we can use the [`get{:typst}`](/docs/reference/introspection/counter/#definitions-get) function. This function returns an [array](/docs/reference/foundations/array/): Counters can have multiple levels (in the case of headings for sections, subsections, and so on), and each item in the array corresponds to one level.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction
 Raw value of heading counter is
 #context counter(heading).get()
-```
+`}
+  image='/assets/8ea552ce797fc8605c34df5e705f0e54.png'
+  alt='Preview'
+/>
 
 ## Displaying a counter
 
 Often, we want to display the value of a counter in a more human-readable way. To do that, we can call the [`display{:typst}`](/docs/reference/introspection/counter/#definitions-display) function on the counter. This function retrieves the current counter value and formats it either with a provided or with an automatically inferred [numbering](/docs/reference/model/numbering/).
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction
@@ -40,7 +47,10 @@ The current value is: #context {
 Or in roman numerals: #context {
   counter(heading).display("I")
 }
-```
+`}
+  image='/assets/ec4522eb5a753d79b343291aff636a88.png'
+  alt='Preview'
+/>
 
 ## Modifying a counter
 
@@ -51,7 +61,8 @@ To modify a counter, you can use the `step{:typst}` and `update{:typst}` methods
 
 The heading counter is stepped before the heading is displayed, so `Analysis{:typst}` gets the number seven even though the counter is at six after the second update.
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.")
 
 = Introduction
@@ -69,13 +80,17 @@ Let's skip 7.1.
 Still at #context {
   counter(heading).display()
 }
-```
+`}
+  image='/assets/10e62abf96165699a2432049a18a6a40.png'
+  alt='Preview'
+/>
 
 ## Page counter
 
 The page counter is special. It is automatically stepped at each pagebreak. But like other counters, you can also step it manually. For example, you could have Roman page numbers for your preface, then switch to Arabic page numbers for your main content and reset the page counter to one.
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "(i)")
 
 = Preface
@@ -90,26 +105,34 @@ Here, the counter is reset to one.
 We also display both the current
 page and total number of pages in
 Arabic numbers.
-```
+`}
+  image='/assets/3c30a8aceea73d91286b71e31d456047-0.png'
+  alt='Preview page 1'
+/>
 
 ## Custom counters
 
 To define your own counter, call the `counter{:typst}` function with a string as a key. This key identifies the counter globally.
 
-```typst
+<TypstPreview
+  code={`
 #let mine = counter("mycounter")
-#context mine.display() \
+#context mine.display() 
 #mine.step()
-#context mine.display() \
+#context mine.display() 
 #mine.update(c => c * 3)
 #context mine.display()
-```
+`}
+  image='/assets/b15cb3320af269d859e669c3cddd652.png'
+  alt='Preview'
+/>
 
 ## How to step
 
 When you define and use a custom counter, in general, you should first step the counter and then display it. This way, the stepping behaviour of a counter can depend on the element it is stepped for. If you were writing a counter for, let's say, theorems, your theorem's definition would thus first include the counter step and only then display the counter and the theorem's contents.
 
-```typst
+<TypstPreview
+  code={`
 #let c = counter("theorem")
 #let theorem(it) = block[
   #c.step()
@@ -119,7 +142,10 @@ When you define and use a custom counter, in general, you should first step the 
 
 #theorem[$1 = 1$]
 #theorem[$2 < 3$]
-```
+`}
+  image='/assets/69fe98ee7391fc895dbd81c85839a421.png'
+  alt='Preview'
+/>
 
 The rationale behind this is best explained on the example of the heading counter: An update to the heading counter depends on the heading's level. By stepping directly before the heading, we can correctly step from `1{:typst}` to `1.1{:typst}` when encountering a level 2 heading. If we were to step after the heading, we wouldn't know what to step to.
 
@@ -129,13 +155,14 @@ Because counters should always be stepped before the elements they count, they a
 
 Counters can travel through time! You can find out the final value of the counter before it is reached and even determine what the value was at any particular location in the document.
 
-```typst
+<TypstPreview
+  code={`
 #let mine = counter("mycounter")
 
 = Values
 #context [
-  Value here: #mine.get() \
-  At intro: #mine.at(<intro>) \
+  Value here: #mine.get() 
+  At intro: #mine.at(<intro>) 
   Final value: #mine.final()
 ]
 
@@ -146,19 +173,24 @@ Counters can travel through time! You can find out the final value of the counte
 
 #mine.step()
 #mine.step()
-```
+`}
+  image='/assets/c287511a94ac2600d9b5fb0c93f18d83.png'
+  alt='Preview'
+/>
 
 ## Other kinds of state
 
 The `counter{:typst}` type is closely related to [state](/docs/reference/introspection/state/) type. Read its documentation for more details on state management in Typst and why it doesn't just use normal variables for counters.
 
 ## Constructor
-
-### `counter`
-
 Create a new counter identified by a key.
 
-```#counter(key) -> counter```
+```typst
+#counter(
+  key
+) -> counter
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -172,16 +204,9 @@ Create a new counter identified by a key.
 
 
 ## Methods
-
-### `get`
-
 Retrieves the value of the counter at the current location. Always returns an array of integers, even if the counter has just one number.
 
 This is equivalent to `counter.at(here()){:typst}`.
-
-```#counter.get() -> int array```
-
-### `display`
 
 Displays the value of the counter.
 
@@ -189,7 +214,14 @@ You can provide both a custom numbering and a custom location. Both default to `
 
 Returns the formatted output.
 
-```#counter.display(numbering, at:, both:) -> any```
+```typst
+#counter.display(
+  numbering,
+  at: auto | label | selector | location | function,
+  both: bool
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -211,14 +243,16 @@ Returns the formatted output.
   }}
 />
 
-
-### `at`
-
 Retrieves the value of the counter at the given location. Always returns an array of integers, even if the counter has just one number.
 
 The `selector{:typst}` must match exactly one element in the document. The most useful kinds of selectors for this are [labels](/docs/reference/foundations/label/) and [locations](/docs/reference/introspection/location/).
 
-```#counter.at(selector) -> int array```
+```typst
+#counter.at(
+  selector
+) -> int array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -230,20 +264,18 @@ The `selector{:typst}` must match exactly one element in the document. The most 
   }}
 />
 
-
-### `final`
-
 Retrieves the value of the counter at the end of the document. Always returns an array of integers, even if the counter has just one number.
-
-```#counter.final() -> int array```
-
-### `step`
 
 Increases the value of the counter by one.
 
 The update will be in effect at the position where the returned content is inserted into the document. If you don't put the output into the document, nothing happens! This would be the case, for example, if you write `let _ = counter(page).step(){:typst}`. Counter updates are always applied in layout order and in that case, Typst wouldn't know when to step the counter.
 
-```#counter.step(level:) -> content```
+```typst
+#counter.step(
+  level: int
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -255,14 +287,16 @@ The update will be in effect at the position where the returned content is inser
   }}
 />
 
-
-### `update`
-
 Updates the value of the counter.
 
 Just like with `step{:typst}`, the update only occurs if you put the resulting content into the document.
 
-```#counter.update(update) -> content```
+```typst
+#counter.update(
+  update
+) -> content
+```
+### Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,9 @@
 title: "JSON"
 description: "Documentation for the `json` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `json`
+import { TypstPreview } from '@/components/typst/preview';
 
 Reads structured data from a JSON file.
 
@@ -17,7 +16,8 @@ The JSON files in the example contain objects with the keys `temperature{:typst}
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let forecast(day) = block[
   #box(square(
     width: 2cm,
@@ -39,7 +39,10 @@ The JSON files in the example contain objects with the keys `temperature{:typst}
 
 #forecast(json("monday.json"))
 #forecast(json("tuesday.json"))
-```
+`}
+  image='/assets/f531864e1bdd9f39c36d5451a39f87b2.png'
+  alt='Preview'
+/>
 
 ## Conversion details
 
@@ -66,7 +69,12 @@ The JSON files in the example contain objects with the keys `temperature{:typst}
 - Bytes are not encoded as JSON arrays for performance and readability reasons. Consider using [`cbor.encode{:typst}`](/docs/reference/data-loading/cbor/#definitions-encode) for binary data.
 - The `repr{:typst}` function is [for debugging purposes only](/docs/reference/foundations/repr/#debugging-only), and its output is not guaranteed to be stable across Typst versions.
 
-```#json(source) -> any```
+```typst
+#json(
+  source
+) -> any
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -80,12 +88,14 @@ The JSON files in the example contain objects with the keys `temperature{:typst}
 
 
 ### Definitions
-
-### `decode`
-
 Reads structured data from a JSON string/bytes.
 
-```#json.decode(data) -> any```
+```typst
+#json.decode(
+  data
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -97,12 +107,15 @@ Reads structured data from a JSON string/bytes.
   }}
 />
 
-
-### `encode`
-
 Encodes structured data into a JSON string.
 
-```#json.encode(value, pretty:) -> str```
+```typst
+#json.encode(
+  value,
+  pretty: bool
+) -> str
+```
+### Parameters
 
 <TypeTable
   type={{

@@ -2,7 +2,9 @@
 title: "Float"
 description: "Documentation for the Float type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A floating-point number.
 
@@ -14,16 +16,17 @@ NaN and positive infinity are available as `float.nan{:typst}` and `float.inf{:t
 
 ## Example
 
-```typst
-#3.14 \
-#1e4 \
+<TypstPreview
+  code={`
+#3.14 
+#1e4 
 #(10 / 4)
-```
+`}
+  image='/assets/3a1ecfc8f2a14871dcc151f80926f42b.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `float`
-
 Converts a value to a float.
 
 - Booleans are converted to `0.0{:typst}` or `1.0{:typst}`.
@@ -31,16 +34,25 @@ Converts a value to a float.
 - Ratios are divided by 100%.
 - Strings are parsed in base 10 to the closest 64-bit float. Exponential notation is supported.
 
-```typst
-#float(false) \
-#float(true) \
-#float(4) \
-#float(40%) \
-#float("2.7") \
+<TypstPreview
+  code={`
+#float(false) 
+#float(true) 
+#float(4) 
+#float(40%) 
+#float("2.7") 
 #float("1e5")
-```
+`}
+  image='/assets/3cc6be1ea65a2f8fbe14dff52343876a.png'
+  alt='Preview'
+/>
 
-```#float(value) -> float```
+```typst
+#float(
+  value
+) -> float
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -54,36 +66,33 @@ Converts a value to a float.
 
 
 ## Methods
-
-### `is-nan`
-
 Checks if a float is not a number.
 
 In IEEE 754, more than one bit pattern represents a NaN. This function returns `true{:typst}` if the float is any of those bit patterns.
 
-```typst
-#float.is-nan(0) \
-#float.is-nan(1) \
+<TypstPreview
+  code={`
+#float.is-nan(0) 
+#float.is-nan(1) 
 #float.is-nan(float.nan)
-```
-
-```#float.is-nan() -> bool```
-
-### `is-infinite`
+`}
+  image='/assets/f6377c8713dcba71fb09d0925d677577.png'
+  alt='Preview'
+/>
 
 Checks if a float is infinite.
 
 Floats can represent positive infinity and negative infinity. This function returns `true{:typst}` if the float is an infinity.
 
-```typst
-#float.is-infinite(0) \
-#float.is-infinite(1) \
+<TypstPreview
+  code={`
+#float.is-infinite(0) 
+#float.is-infinite(1) 
 #float.is-infinite(float.inf)
-```
-
-```#float.is-infinite() -> bool```
-
-### `signum`
+`}
+  image='/assets/8a0a86fa68abec5eb9e8923c3f4eee.png'
+  alt='Preview'
+/>
 
 Calculates the sign of a floating point number.
 
@@ -91,25 +100,35 @@ Calculates the sign of a floating point number.
 - If the number is negative (including `-0.0{:typst}`), returns `-1.0{:typst}`.
 - If the number is NaN, returns `float.nan{:typst}`.
 
-```typst
-#(5.0).signum() \
-#(-5.0).signum() \
-#(0.0).signum() \
+<TypstPreview
+  code={`
+#(5.0).signum() 
+#(-5.0).signum() 
+#(0.0).signum() 
 #float.nan.signum()
-```
-
-```#float.signum() -> float```
-
-### `from-bytes`
+`}
+  image='/assets/1c7a7ea657572682dba8012c83fda699.png'
+  alt='Preview'
+/>
 
 Interprets bytes as a float.
 
-```typst
-#float.from-bytes(bytes((0, 0, 0, 0, 0, 0, 240, 63))) \
+<TypstPreview
+  code={`
+#float.from-bytes(bytes((0, 0, 0, 0, 0, 0, 240, 63))) 
 #float.from-bytes(bytes((63, 240, 0, 0, 0, 0, 0, 0)), endian: "big")
-```
+`}
+  image='/assets/4db0a29eaaeeef524a3a6ef790e25877.png'
+  alt='Preview'
+/>
 
-```#float.from-bytes(bytes, endian:) -> float```
+```typst
+#float.from-bytes(
+  bytes,
+  endian: str
+) -> float
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -126,17 +145,24 @@ Interprets bytes as a float.
   }}
 />
 
-
-### `to-bytes`
-
 Converts a float to bytes.
 
-```typst
-#array(1.0.to-bytes(endian: "big")) \
+<TypstPreview
+  code={`
+#array(1.0.to-bytes(endian: "big")) 
 #array(1.0.to-bytes())
-```
+`}
+  image='/assets/a32cf9d2d1c83a84118ffe5633a2486c.png'
+  alt='Preview'
+/>
 
-```#float.to-bytes(endian:, size:) -> bytes```
+```typst
+#float.to-bytes(
+  endian: str,
+  size: int
+) -> bytes
+```
+### Parameters
 
 <TypeTable
   type={{

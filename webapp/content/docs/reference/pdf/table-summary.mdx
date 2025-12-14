@@ -2,10 +2,9 @@
 title: "Table Summary"
 description: "Documentation for the `table-summary` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `table-summary`
+import { TypstPreview } from '@/components/typst/preview';
 
 A summary of the purpose and structure of a complex table.
 
@@ -17,7 +16,8 @@ If in doubt whether your table is complex enough to warrant a summary, err on th
 
 The API of this feature is temporary. Hence, calling this function requires enabling the `a11y-extras{:typst}` feature flag at the moment. Even if this functionality should be available without a feature flag in the future, the summary will remain exclusive to PDF export.
 
-```typst
+<TypstPreview
+  code={`
 #figure(
   pdf.table-summary(
     // The summary just provides orientation and structural
@@ -36,9 +36,18 @@ The API of this feature is temporary. Hence, calling this function requires enab
   // This is the key takeaway of the table, so we put it in the caption.
   caption: [The Sales org now has a new member],
 )
-```
+`}
+  image='/assets/c201ac9a658ef04d467227539fa50795.png'
+  alt='Preview'
+/>
 
-```#pdf.table-summary(summary:, table) -> content```
+```typst
+#pdf.table-summary(
+  summary: str,
+  table
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,24 +2,33 @@
 title: "Sizes"
 description: "Documentation for the sizes functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Forced size styles for expressions within formulas.
 
 These functions allow manual configuration of the size of equation elements to make them look as in a display/inline equation or as if used in a root or sub/superscripts.
 
-
-## `display`
-
 Forced display style in math.
 
 This is the normal size for block equations.
 
-```typst
+<TypstPreview
+  code={`
 $sum_i x_i/2 = display(sum_i x_i/2)$
-```
+`}
+  image='/assets/2b0ff12851291bbf6c19c8a6e5b87b4a.png'
+  alt='Preview'
+/>
 
-```#math.display(body, cramped:) -> content```
+```typst
+#math.display(
+  body,
+  cramped: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -35,20 +44,27 @@ $sum_i x_i/2 = display(sum_i x_i/2)$
     }
   }}
 />
-
-
-## `inline`
 
 Forced inline (text) style in math.
 
 This is the normal size for inline equations.
 
-```typst
+<TypstPreview
+  code={`
 $ sum_i x_i/2
     = inline(sum_i x_i/2) $
-```
+`}
+  image='/assets/ca187288080f6bcfd264bcfb9cdb4da8.png'
+  alt='Preview'
+/>
 
-```#math.inline(body, cramped:) -> content```
+```typst
+#math.inline(
+  body,
+  cramped: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -65,18 +81,25 @@ $ sum_i x_i/2
   }}
 />
 
-
-## `script`
-
 Forced script style in math.
 
 This is the smaller size used in powers or sub- or superscripts.
 
-```typst
+<TypstPreview
+  code={`
 $sum_i x_i/2 = script(sum_i x_i/2)$
-```
+`}
+  image='/assets/5003b4082132e3646b44993ac60fe58e.png'
+  alt='Preview'
+/>
 
-```#math.script(body, cramped:) -> content```
+```typst
+#math.script(
+  body,
+  cramped: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -93,18 +116,25 @@ $sum_i x_i/2 = script(sum_i x_i/2)$
   }}
 />
 
-
-## `sscript`
-
 Forced second script style in math.
 
 This is the smallest size, used in second-level sub- and superscripts (script of the script).
 
-```typst
+<TypstPreview
+  code={`
 $sum_i x_i/2 = sscript(sum_i x_i/2)$
-```
+`}
+  image='/assets/129983a09889adf6cdee40342a6eee8f.png'
+  alt='Preview'
+/>
 
-```#math.sscript(body, cramped:) -> content```
+```typst
+#math.sscript(
+  body,
+  cramped: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

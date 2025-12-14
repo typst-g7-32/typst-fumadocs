@@ -2,16 +2,16 @@
 title: "Layout"
 description: "Documentation for the `layout` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `layout`
+import { TypstPreview } from '@/components/typst/preview';
 
 Provides access to the current outer container's (or page's, if none) dimensions (width and height).
 
 Accepts a function that receives a single parameter, which is a dictionary with keys `width{:typst}` and `height{:typst}`, both of type [`length{:typst}`](/docs/reference/layout/length/). The function is provided [context](/docs/reference/context/), meaning you don't need to use it in combination with the `context{:typst}` keyword. This is why [`measure{:typst}`](/docs/reference/layout/measure/) can be called in the example below.
 
-```typst
+<TypstPreview
+  code={`
 #let text = lorem(30)
 #layout(size => [
   #let (height,) = measure(
@@ -19,10 +19,13 @@ Accepts a function that receives a single parameter, which is a dictionary with 
     text,
   )
   This text is #height high with
-  the current page width: \
+  the current page width: 
   #text
 ])
-```
+`}
+  image='/assets/cc7bcca62e697ffb30df3438570db1ab.png'
+  alt='Preview'
+/>
 
 Note that the `layout{:typst}` function forces its contents into a [block](/docs/reference/layout/block/)-level container, so placement relative to the page or pagebreaks are not possible within it.
 
@@ -30,7 +33,8 @@ If the `layout{:typst}` call is placed inside a box with a width of `800pt{:typs
 
 To retrieve the _remaining_ height of the page rather than its full size, you can wrap your `layout{:typst}` call in a `block(height: 1fr){:typst}`. This works because the block automatically grows to fill the remaining space (see the [fraction](/docs/reference/layout/fraction/) documentation for more details).
 
-```typst
+<TypstPreview
+  code={`
 #set page(height: 150pt)
 
 #lorem(20)
@@ -38,20 +42,32 @@ To retrieve the _remaining_ height of the page rather than its full size, you ca
 #block(height: 1fr, layout(size => [
   Remaining height: #size.height
 ]))
-```
+`}
+  image='/assets/287861b8e3129cb301b74afa92ff7a07.png'
+  alt='Preview'
+/>
 
 You can also use this function to resolve a [`ratio{:typst}`](/docs/reference/layout/ratio/) to a fixed length. This might come in handy if you're building your own layout abstractions.
 
-```typst
+<TypstPreview
+  code={`
 #layout(size => {
   let half = 50% * size.width
   [Half a page is #half wide.]
 })
-```
+`}
+  image='/assets/d40a0e3eb100447da2f5971d71a9a270.png'
+  alt='Preview'
+/>
 
 Note that the width or height provided by `layout{:typst}` will be infinite if the corresponding page dimension is set to `auto{:typst}`.
 
-```#layout(func) -> content```
+```typst
+#layout(
+  func
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

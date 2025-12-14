@@ -3,16 +3,22 @@ title: "Boolean"
 description: "Documentation for the Boolean type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 A type with two states.
 
 The boolean type has two values: `true{:typst}` and `false{:typst}`. It denotes whether something is active or enabled.
 
 ## Example
 
-```typst
-#false \
-#true \
+<TypstPreview
+  code={`
+#false 
+#true 
 #(1 < 2)
-```
+`}
+  image='/assets/918d3a591c91fbe230576ba759997e37.png'
+  alt='Preview'
+/>
 
 

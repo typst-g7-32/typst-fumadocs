@@ -3,6 +3,7 @@ title: "0.11.0"
 description: "Changes in Typst 0.11.0"
 ---
 
+
 ## Tables
 
 - Tables are now _much_ more flexible, read the new [Table Guide](/docs/guides/tables/) to get started
@@ -45,7 +46,7 @@ _Thanks to @PgBiel for his work on tables!_
 
 - Fixed priority of multiple [show-set rules](/docs/reference/styling/#show-rules): They now apply in the same order as normal set rules would
 - Show-set rules on the same element (e.g. `show heading.where(level: 1): set heading(numbering: "1."){:typst}`) now work properly
-- Setting properties on an element within a transformational show rule (e.g. `show heading: it => { set heading(..); it }{:typst}`) is **not** supported anymore (previously it also only worked sometimes); use show-set rules instead **(Breaking change)**
+- Setting properties on an element within a transformational show rule (e.g. `show heading: it => \{ set heading(..); it \}{:typst}`) is **not** supported anymore (previously it also only worked sometimes); use show-set rules instead **(Breaking change)**
 - Text show rules that match their own output now work properly (e.g. `show "cmd": `cmd`{:typst}`)
 - The elements passed to show rules and returned by queries now contain all fields of their respective element functions rather than just specific ones
 - All settable properties can now be used in [where](/docs/reference/foundations/function/#definitions-where) selectors

@@ -2,7 +2,9 @@
 title: "Regex"
 description: "Documentation for the Regex type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A regular expression.
 
@@ -12,7 +14,8 @@ Can be used as a [show rule selector](/docs/reference/styling/#show-rules) and w
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 // Works with string methods.
 #"a,b;c".split(regex("[,;]"))
 
@@ -20,15 +23,20 @@ Can be used as a [show rule selector](/docs/reference/styling/#show-rules) and w
 #show regex("\\d+"): set text(red)
 
 The numbers 1 to 10.
-```
+`}
+  image='/assets/38dae2ee47dba9afece64c10c42aaff8.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `regex`
-
 Create a regular expression from a string.
 
-```#regex(regex) -> regex```
+```typst
+#regex(
+  regex
+) -> regex
+```
+### Parameters
 
 <TypeTable
   type={{

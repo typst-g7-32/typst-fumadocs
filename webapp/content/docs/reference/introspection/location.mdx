@@ -3,6 +3,8 @@ title: "Location"
 description: "Documentation for the Location type."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Identifies an element in the document.
 
 A location uniquely identifies an element in the document and lets you access its absolute position on the pages. You can retrieve the current location with the [`here{:typst}`](/docs/reference/introspection/here/) function and the location of a queried or shown element with the [`location(){:typst}`](/docs/reference/foundations/content/#definitions-location) method on content.
@@ -22,9 +24,6 @@ Note that you can still observe elements that are not locatable in queries throu
 
 
 ## Methods
-
-### `page`
-
 Returns the page number for this location.
 
 Note that this does not return the value of the [page counter](/docs/reference/introspection/counter/) at this location, but the true page number (starting from one).
@@ -33,28 +32,23 @@ If you want to know the value of the page counter, use `counter(page).at(loc){:t
 
 Can be used with [`here{:typst}`](/docs/reference/introspection/here/) to retrieve the physical page position of the current context:
 
-```typst
+<TypstPreview
+  code={`
 #context [
   I am located on
   page #here().page()
 ]
-```
-
-```#location.page() -> int```
-
-### `position`
+`}
+  image='/assets/d13a1548b2d47ac4cb904c3f62c9c993.png'
+  alt='Preview'
+/>
 
 Returns a dictionary with the page number and the x, y position for this location. The page number starts at one and the coordinates are measured from the top-left of the page.
 
 If you only need the page number, use `page(){:typst}` instead as it allows Typst to skip unnecessary work.
 
-```#location.position() -> dictionary```
-
-### `page-numbering`
-
 Returns the page numbering pattern of the page at this location. This can be used when displaying the page counter in order to obtain the local numbering. This is useful if you are building custom indices or outlines.
 
 If the page numbering is set to `none{:typst}` at that location, this function returns `none{:typst}`.
 
-```#location.page-numbering() -> none str function```
 

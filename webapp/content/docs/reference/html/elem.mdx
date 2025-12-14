@@ -2,10 +2,8 @@
 title: "Elem"
 description: "Documentation for the `elem` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `elem`
 
 An HTML element that can contain Typst content.
 
@@ -21,7 +19,14 @@ Normally, Typst will generate `html{:typst}`, `head{:typst}`, and `body{:typst}`
 ]
 ```
 
-```#html.elem(tag, attrs:, body) -> content```
+```typst
+#html.elem(
+  tag,
+  attrs: dictionary,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,16 +2,16 @@
 title: "Path"
 description: "Documentation for the `path` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `path`
+import { TypstPreview } from '@/components/typst/preview';
 
 A path through a list of points, connected by Bézier curves.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #path(
   fill: blue.lighten(80%),
   stroke: blue,
@@ -20,9 +20,21 @@ A path through a list of points, connected by Bézier curves.
   (100%, 50pt),
   ((50%, 0pt), (40pt, 0pt)),
 )
-```
+`}
+  image='/assets/7c71fff7477a30492c8c5421fe00a40f.png'
+  alt='Preview'
+/>
 
-```#path(fill:, fill-rule:, stroke:, closed:, vertices) -> content```
+```typst
+#path(
+  fill: none | color | gradient | tiling,
+  fill-rule: str,
+  stroke: none | auto | length | color | gradient | stroke | tiling | dictionary,
+  closed: bool,
+  vertices
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -32,7 +44,7 @@ A path through a list of points, connected by Bézier curves.
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'fill-rule': {
-      'description': 'The drawing rule used to fill the path.  ```typst // We use `.with` to get a new // function that has the common // arguments pre-applied. #let star = path.with(   fill: red,   closed: true,   (25pt, 0pt),   (10pt, 50pt),   (50pt, 20pt),   (0pt, 20pt),   (40pt, 50pt), )  #star(fill-rule: "non-zero") #star(fill-rule: "even-odd") ```',
+      'description': 'The drawing rule used to fill the path.  <TypstPreview   code={` // We use \\`.with\\` to get a new // function that has the common // arguments pre-applied. #let star = path.with(   fill: red,   closed: true,   (25pt, 0pt),   (10pt, 50pt),   (50pt, 20pt),   (0pt, 20pt),   (40pt, 50pt), )  #star(fill-rule: "non-zero") #star(fill-rule: "even-odd") `}   image=\'/assets/30910e51feb697b68ad0f1be1e5dc72a.png\'   alt=\'Preview\' />',
       'type': 'str',
       'default': '<code><span class="typ-str">&quot;non-zero&quot;</span></code>'
     },

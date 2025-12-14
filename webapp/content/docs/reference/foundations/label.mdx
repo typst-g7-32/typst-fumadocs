@@ -2,7 +2,9 @@
 title: "Label"
 description: "Documentation for the Label type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A label for an element.
 
@@ -14,13 +16,17 @@ Once constructed, you can get the name of a label using [`str{:typst}`](/docs/re
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #show <a>: set text(blue)
 #show label("b"): set text(red)
 
 = Heading <a>
 *Strong* #label("b")
-```
+`}
+  image='/assets/97765723d8aff99a5c36e2fcda86a09f.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
@@ -39,12 +45,14 @@ Note that there is a syntactical difference when using the dedicated syntax for 
 Currently, labels can only be attached to elements in markup mode, not in code mode. This might change in the future.
 
 ## Constructor
-
-### `label`
-
 Creates a label from a string.
 
-```#label(name) -> label```
+```typst
+#label(
+  name
+) -> label
+```
+### Parameters
 
 <TypeTable
   type={{

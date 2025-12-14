@@ -2,10 +2,8 @@
 title: "Frame"
 description: "Documentation for the `frame` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `frame`
 
 An element that lays out its content as an inline SVG.
 
@@ -13,7 +11,12 @@ Sometimes, converting Typst content to HTML is not desirable. This can be the ca
 
 This function allows you to use the Typst layout engine that would also be used for PDF, SVG, and PNG export to render a part of your document exactly how it would appear when exported in one of these formats. It embeds the content as an inline SVG.
 
-```#html.frame(body) -> content```
+```typst
+#html.frame(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -3,6 +3,7 @@ title: "0.13.0"
 description: "Changes in Typst 0.13.0"
 ---
 
+
 ## Highlights
 
 - There is now a distinction between [proper paragraphs](/docs/reference/model/par/) and just inline-level content. This is important for future work on accessibility and means that [first line indent](/docs/reference/model/par/#parameters-first-line-indent) can now be enabled for all paragraphs instead of just consecutive ones.
@@ -103,7 +104,7 @@ description: "Changes in Typst 0.13.0"
 - Prose and author-only citations now use editor names if the author names are unavailable
 - Some non-standard but widely used BibLaTeX `editortype{:typst}`s like `producer{:typst}`, `writer{:typst}`, `scriptwriter{:typst}`, and `none{:typst}` (defined by widespread style `biblatex-chicago{:typst}` to mean performers within `music{:typst}` and `video{:typst}` entries) are now recognized
 - CSL styles can now render affixes around the bibliography
-- For BibTeX entries with `eprinttype = {pubmed}{:typst}`, the PubMed ID will now be correctly processed
+- For BibTeX entries with `eprinttype = \{pubmed\}{:typst}`, the PubMed ID will now be correctly processed
 - Whitespace handling for strings delimiting initialized names has been improved
 - Uppercase spelling after apostrophes used as quotation marks is now possible
 - Fixed bugs around the handling of CSL delimiting characters

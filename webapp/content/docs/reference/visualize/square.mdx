@@ -2,27 +2,43 @@
 title: "Square"
 description: "Documentation for the `square` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `square`
+import { TypstPreview } from '@/components/typst/preview';
 
 A square with optional content.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 // Without content.
 #square(size: 40pt)
 
 // With content.
 #square[
-  Automatically \
+  Automatically 
   sized to fit.
 ]
-```
+`}
+  image='/assets/e35a80a6686ae7fe68882233aa8efee.png'
+  alt='Preview'
+/>
 
-```#square(size:, width:, height:, fill:, stroke:, radius:, inset:, outset:, body) -> content```
+```typst
+#square(
+  size: auto | length,
+  width: auto | relative,
+  height: auto | relative | fraction,
+  fill: none | color | gradient | tiling,
+  stroke: none | auto | length | color | gradient | stroke | tiling | dictionary,
+  radius: relative | dictionary,
+  inset: relative | dictionary,
+  outset: relative | dictionary,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

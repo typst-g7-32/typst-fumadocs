@@ -2,10 +2,9 @@
 title: "XML"
 description: "Documentation for the `xml` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `xml`
+import { TypstPreview } from '@/components/typst/preview';
 
 Reads structured data from an XML file.
 
@@ -19,7 +18,8 @@ The XML file in the example contains a root `news{:typst}` tag with multiple `ar
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let find-child(elem, tag) = {
   elem.children
     .find(e => "tag" in e and e.tag == tag)
@@ -50,9 +50,17 @@ The XML file in the example contains a root `news{:typst}` tag with multiple `ar
     article(elem)
   }
 }
-```
+`}
+  image='/assets/3cb7f4941d7061f93cb7357d15706f74.png'
+  alt='Preview'
+/>
 
-```#xml(source) -> any```
+```typst
+#xml(
+  source
+) -> any
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -66,12 +74,14 @@ The XML file in the example contains a root `news{:typst}` tag with multiple `ar
 
 
 ### Definitions
-
-### `decode`
-
 Reads structured data from an XML string/bytes.
 
-```#xml.decode(data) -> any```
+```typst
+#xml.decode(
+  data
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{

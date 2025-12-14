@@ -2,7 +2,9 @@
 title: "Left/Right"
 description: "Documentation for the lr functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Delimiter matching.
 
@@ -12,23 +14,30 @@ To prevent a delimiter from being matched by Typst, and thus auto-scaled, escape
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ [a, b/2] $
 $ lr(]sum_(x=1)^n], size: #50%) x $
 $ abs((x + y) / 2) $
 $ \{ (x / y) \} $
 #set math.lr(size: 1em)
 $ { (a / b), a, b in (0; 1/2] } $
-```
-
-
-## `lr`
+`}
+  image='/assets/63330327318f138d9440594430988bbb.png'
+  alt='Preview'
+/>
 
 Scales delimiters.
 
 While matched delimiters scale by default, this can be used to scale unmatched delimiters and to control the delimiter scaling more precisely.
 
-```#math.lr(size:, body) -> content```
+```typst
+#math.lr(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -45,16 +54,22 @@ While matched delimiters scale by default, this can be used to scale unmatched d
   }}
 />
 
-
-## `mid`
-
 Scales delimiters vertically to the nearest surrounding `lr(){:typst}` group.
 
-```typst
+<TypstPreview
+  code={`
 $ { x mid(|) sum_(i=1)^n w_i|f_i (x)| < 1 } $
-```
+`}
+  image='/assets/a29f9290887cdd1f41b9003f982e3560.png'
+  alt='Preview'
+/>
 
-```#math.mid(body) -> content```
+```typst
+#math.mid(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -66,16 +81,23 @@ $ { x mid(|) sum_(i=1)^n w_i|f_i (x)| < 1 } $
   }}
 />
 
-
-## `abs`
-
 Takes the absolute value of an expression.
 
-```typst
+<TypstPreview
+  code={`
 $ abs(x/2) $
-```
+`}
+  image='/assets/5892ee44ad18813000297eeafd1b6e78.png'
+  alt='Preview'
+/>
 
-```#math.abs(size:, body) -> content```
+```typst
+#math.abs(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -92,16 +114,23 @@ $ abs(x/2) $
   }}
 />
 
-
-## `norm`
-
 Takes the norm of an expression.
 
-```typst
+<TypstPreview
+  code={`
 $ norm(x/2) $
-```
+`}
+  image='/assets/602e918d9e4207139477dfb451df53cd.png'
+  alt='Preview'
+/>
 
-```#math.norm(size:, body) -> content```
+```typst
+#math.norm(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -118,16 +147,23 @@ $ norm(x/2) $
   }}
 />
 
-
-## `floor`
-
 Floors an expression.
 
-```typst
+<TypstPreview
+  code={`
 $ floor(x/2) $
-```
+`}
+  image='/assets/3c3107954755188561218b3da59b9b88.png'
+  alt='Preview'
+/>
 
-```#math.floor(size:, body) -> content```
+```typst
+#math.floor(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -144,16 +180,23 @@ $ floor(x/2) $
   }}
 />
 
-
-## `ceil`
-
 Ceils an expression.
 
-```typst
+<TypstPreview
+  code={`
 $ ceil(x/2) $
-```
+`}
+  image='/assets/f0cd1c0e8d2655688398c799bc806a38.png'
+  alt='Preview'
+/>
 
-```#math.ceil(size:, body) -> content```
+```typst
+#math.ceil(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -170,16 +213,23 @@ $ ceil(x/2) $
   }}
 />
 
-
-## `round`
-
 Rounds an expression.
 
-```typst
+<TypstPreview
+  code={`
 $ round(x/2) $
-```
+`}
+  image='/assets/b45f33012980296a7361d593384f333c.png'
+  alt='Preview'
+/>
 
-```#math.round(size:, body) -> content```
+```typst
+#math.round(
+  size: relative,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

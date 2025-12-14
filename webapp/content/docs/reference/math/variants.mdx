@@ -2,20 +2,24 @@
 title: "Variants"
 description: "Documentation for the variants functions."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 Alternate typefaces within formulas.
 
 These functions are distinct from the [`text{:typst}`](/docs/reference/text/text/) function because math fonts contain multiple variants of each letter.
 
-
-## `serif`
-
 Serif (roman) font style in math.
 
 This is already the default.
 
-```#math.serif(body) -> content```
+```typst
+#math.serif(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -26,17 +30,23 @@ This is already the default.
     }
   }}
 />
-
-
-## `sans`
 
 Sans-serif font style in math.
 
-```typst
+<TypstPreview
+  code={`
 $ sans(A B C) $
-```
+`}
+  image='/assets/407ec97977e50acfb00a33fc9e4056ad.png'
+  alt='Preview'
+/>
 
-```#math.sans(body) -> content```
+```typst
+#math.sans(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -47,17 +57,23 @@ $ sans(A B C) $
     }
   }}
 />
-
-
-## `frak`
 
 Fraktur font style in math.
 
-```typst
+<TypstPreview
+  code={`
 $ frak(P) $
-```
+`}
+  image='/assets/7bc5e4240760597643a9b5acf7819e79.png'
+  alt='Preview'
+/>
 
-```#math.frak(body) -> content```
+```typst
+#math.frak(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -68,17 +84,23 @@ $ frak(P) $
     }
   }}
 />
-
-
-## `mono`
 
 Monospace font style in math.
 
-```typst
+<TypstPreview
+  code={`
 $ mono(x + y = z) $
-```
+`}
+  image='/assets/55d904edd40fbf32537bb0710d91dc9f.png'
+  alt='Preview'
+/>
 
-```#math.mono(body) -> content```
+```typst
+#math.mono(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -89,21 +111,27 @@ $ mono(x + y = z) $
     }
   }}
 />
-
-
-## `bb`
 
 Blackboard bold (double-struck) font style in math.
 
 For uppercase latin letters, blackboard bold is additionally available through [symbols](/docs/reference/symbols/sym/) of the form `NN{:typst}` and `RR{:typst}`.
 
-```typst
+<TypstPreview
+  code={`
 $ bb(b) $
 $ bb(N) = NN $
 $ f: NN -> RR $
-```
+`}
+  image='/assets/eeab38b02d476b4bcefc48bf7678c7b9.png'
+  alt='Preview'
+/>
 
-```#math.bb(body) -> content```
+```typst
+#math.bb(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -114,19 +142,25 @@ $ f: NN -> RR $
     }
   }}
 />
-
-
-## `cal`
 
 Calligraphic (chancery) font style in math.
 
-```typst
+<TypstPreview
+  code={`
 Let $cal(P)$ be the set of ...
-```
+`}
+  image='/assets/92ac6bdff36119c06add06619087c88f.png'
+  alt='Preview'
+/>
 
 This is the default calligraphic/script style for most math fonts. See [`scr{:typst}`](/docs/reference/math/variants/#functions-scr) for more on how to get the other style (roundhand).
 
-```#math.cal(body) -> content```
+```typst
+#math.cal(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -138,30 +172,40 @@ This is the default calligraphic/script style for most math fonts. See [`scr{:ty
   }}
 />
 
-
-## `scr`
-
 Script (roundhand) font style in math.
 
-```typst
+<TypstPreview
+  code={`
 $scr(L)$ is not the set of linear
 maps $cal(L)$.
-```
+`}
+  image='/assets/ff0806462518fc754f49fbae8043ab79.png'
+  alt='Preview'
+/>
 
 There are two ways that fonts can support differentiating `cal{:typst}` and `scr{:typst}`. The first is using Unicode variation sequences. This works out of the box in Typst, however only a few math fonts currently support this.
 
 The other way is using [font features](/docs/reference/text/text/#parameters-features). For example, the roundhand style might be available in a font through the _stylistic set 1_ (`ss01{:typst}`) feature. To use it in Typst, you could then define your own version of `scr{:typst}` like in the example below.
 
-```typst
+<TypstPreview
+  code={`
 #let scr(it) = text(
   stylistic-set: 1,
   $cal(it)$,
 )
 
 We establish $cal(P) != scr(P)$.
-```
+`}
+  image='/assets/ef22b570a55967020c8bd88b99f68c16.png'
+  alt='Preview'
+/>
 
-```#math.scr(body) -> content```
+```typst
+#math.scr(
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,22 +2,30 @@
 title: "Primes"
 description: "Documentation for the `primes` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `primes`
+import { TypstPreview } from '@/components/typst/preview';
 
 Grouped primes.
 
-```typst
+<TypstPreview
+  code={`
 $ a'''_b = a^'''_b $
-```
+`}
+  image='/assets/b8780dbde828dd2caa0a121cde267db1.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
 This function has dedicated syntax: use apostrophes instead of primes. They will automatically attach to the previous element, moving superscripts to the next level.
 
-```#math.primes(count) -> content```
+```typst
+#math.primes(
+  count
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

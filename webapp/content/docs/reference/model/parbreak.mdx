@@ -3,8 +3,7 @@ title: "Paragraph Break"
 description: "Documentation for the `parbreak` function."
 ---
 
-
-## `parbreak`
+import { TypstPreview } from '@/components/typst/preview';
 
 A paragraph break.
 
@@ -12,17 +11,20 @@ This starts a new paragraph. Especially useful when used within code like [for l
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #for i in range(3) {
   [Blind text #i: ]
   lorem(5)
   parbreak()
 }
-```
+`}
+  image='/assets/5209f40a97b9d041dd878b57ae66f860.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
 Instead of calling this function, you can insert a blank line into your markup to create a paragraph break.
 
-```#parbreak() -> content```
 

@@ -2,10 +2,9 @@
 title: "Heading"
 description: "Documentation for the `heading` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `heading`
+import { TypstPreview } from '@/components/typst/preview';
 
 A section heading.
 
@@ -19,7 +18,8 @@ When writing a [show rule](/docs/reference/styling/#show-rules) that accesses th
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set heading(numbering: "1.a)")
 
 = Introduction
@@ -27,7 +27,10 @@ In recent years, ...
 
 == Preliminaries
 To start, ...
-```
+`}
+  image='/assets/3da8ed6c330c3767836190a4021f5927.png'
+  alt='Preview'
+/>
 
 ## Syntax
 
@@ -45,12 +48,25 @@ As mentioned above, a top-level heading indicates a top-level section of the doc
 
 For this reason, in HTML export, a [`title{:typst}`](/docs/reference/model/title/) element will turn into an `<h1>{:typst}` and headings turn into `<h2>{:typst}` and lower (a level 1 heading thus turns into `<h2>{:typst}`, a level 2 heading into `<h3>{:typst}`, etc).
 
-```#heading(level:, depth:, offset:, numbering:, supplement:, outlined:, bookmarked:, hanging-indent:, body) -> content```
+```typst
+#heading(
+  level: auto | int,
+  depth: int,
+  offset: int,
+  numbering: none | str | function,
+  supplement: none | auto | content | function,
+  outlined: bool,
+  bookmarked: auto | bool,
+  hanging-indent: auto | length,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'level': {
-      'description': 'The absolute nesting depth of the heading, starting from one. If set to `auto{:typst}`, it is computed from `offset + depth{:typst}`.  This is primarily useful for usage in [show rules](/docs/reference/styling/#show-rules) (either with [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selectors or by accessing the level directly on a shown heading).  ```typst #show heading.where(level: 2): set text(red)  = Level 1 == Level 2  #set heading(offset: 1) = Also level 2 == Level 3 ```',
+      'description': 'The absolute nesting depth of the heading, starting from one. If set to `auto{:typst}`, it is computed from `offset + depth{:typst}`.  This is primarily useful for usage in [show rules](/docs/reference/styling/#show-rules) (either with [`where{:typst}`](/docs/reference/foundations/function/#definitions-where) selectors or by accessing the level directly on a shown heading).  <TypstPreview   code={` #show heading.where(level: 2): set text(red)  = Level 1 == Level 2  #set heading(offset: 1) = Also level 2 == Level 3 `}   image=\'/assets/fe90e6f8fd396e0fe319b97dbaf1a394.png\'   alt=\'Preview\' />',
       'type': 'auto | int',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
@@ -60,32 +76,32 @@ For this reason, in HTML export, a [`title{:typst}`](/docs/reference/model/title
       'default': '<code><span class="typ-num">1</span></code>'
     },
     'offset': {
-      'description': 'The starting offset of each heading\'s `level{:typst}`, used to turn its relative `depth{:typst}` into its absolute `level{:typst}`.  ```typst = Level 1  #set heading(offset: 1, numbering: "1.1") = Level 2  #heading(offset: 2, depth: 2)[   I\'m level 4 ] ```',
+      'description': 'The starting offset of each heading\'s `level{:typst}`, used to turn its relative `depth{:typst}` into its absolute `level{:typst}`.  <TypstPreview   code={` = Level 1  #set heading(offset: 1, numbering: "1.1") = Level 2  #heading(offset: 2, depth: 2)[   I\'m level 4 ] `}   image=\'/assets/84ab568a4e7e1f030c7a3a8ec0354a2c.png\'   alt=\'Preview\' />',
       'type': 'int',
       'default': '<code><span class="typ-num">0</span></code>'
     },
     'numbering': {
-      'description': 'How to number the heading. Accepts a [numbering pattern or function](/docs/reference/model/numbering/) taking multiple numbers.  ```typst #set heading(numbering: "1.a.")  = A section == A subsection === A sub-subsection ```',
+      'description': 'How to number the heading. Accepts a [numbering pattern or function](/docs/reference/model/numbering/) taking multiple numbers.  <TypstPreview   code={` #set heading(numbering: "1.a.")  = A section == A subsection === A sub-subsection `}   image=\'/assets/76d21794ff33145e127cdaac70f78b6c.png\'   alt=\'Preview\' />',
       'type': 'none | str | function',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'supplement': {
-      'description': 'A supplement for the heading.  For references to headings, this is added before the referenced number.  If a function is specified, it is passed the referenced heading and should return content.  ```typst #set heading(numbering: "1.", supplement: [Chapter])  = Introduction <intro> In @intro, we see how to turn Sections into Chapters. And in @intro[Part], it is done manually. ```',
+      'description': 'A supplement for the heading.  For references to headings, this is added before the referenced number.  If a function is specified, it is passed the referenced heading and should return content.  <TypstPreview   code={` #set heading(numbering: "1.", supplement: [Chapter])  = Introduction <intro> In @intro, we see how to turn Sections into Chapters. And in @intro[Part], it is done manually. `}   image=\'/assets/3993144e7996642b7d2f45d44c369199.png\'   alt=\'Preview\' />',
       'type': 'none | auto | content | function',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'outlined': {
-      'description': 'Whether the heading should appear in the [outline](/docs/reference/model/outline/).  Note that this property, if set to `true{:typst}`, ensures the heading is also shown as a bookmark in the exported PDF\'s outline (when exporting to PDF). To change that behavior, use the `bookmarked{:typst}` property.  ```typst #outline()  #heading[Normal] This is a normal heading.  #heading(outlined: false)[Hidden] This heading does not appear in the outline. ```',
+      'description': 'Whether the heading should appear in the [outline](/docs/reference/model/outline/).  Note that this property, if set to `true{:typst}`, ensures the heading is also shown as a bookmark in the exported PDF\'s outline (when exporting to PDF). To change that behavior, use the `bookmarked{:typst}` property.  <TypstPreview   code={` #outline()  #heading[Normal] This is a normal heading.  #heading(outlined: false)[Hidden] This heading does not appear in the outline. `}   image=\'/assets/ab747af34dccbfd0fc8693f1e700f84e.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">true</span></code>'
     },
     'bookmarked': {
-      'description': 'Whether the heading should appear as a bookmark in the exported PDF\'s outline. Doesn\'t affect other export formats, such as PNG.  The default value of `auto{:typst}` indicates that the heading will only appear in the exported PDF\'s outline if its `outlined{:typst}` property is set to `true{:typst}`, that is, if it would also be listed in Typst\'s [outline](/docs/reference/model/outline/). Setting this property to either `true{:typst}` (bookmark) or `false{:typst}` (don\'t bookmark) bypasses that behavior.  ```typst #heading[Normal heading] This heading will be shown in the PDF\'s bookmark outline.  #heading(bookmarked: false)[Not bookmarked] This heading won\'t be bookmarked in the resulting PDF. ```',
+      'description': 'Whether the heading should appear as a bookmark in the exported PDF\'s outline. Doesn\'t affect other export formats, such as PNG.  The default value of `auto{:typst}` indicates that the heading will only appear in the exported PDF\'s outline if its `outlined{:typst}` property is set to `true{:typst}`, that is, if it would also be listed in Typst\'s [outline](/docs/reference/model/outline/). Setting this property to either `true{:typst}` (bookmark) or `false{:typst}` (don\'t bookmark) bypasses that behavior.  <TypstPreview   code={` #heading[Normal heading] This heading will be shown in the PDF\'s bookmark outline.  #heading(bookmarked: false)[Not bookmarked] This heading won\'t be bookmarked in the resulting PDF. `}   image=\'/assets/fd4bcc50364eb53747e22f371da7368b.png\'   alt=\'Preview\' />',
       'type': 'auto | bool',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'hanging-indent': {
-      'description': 'The indent all but the first line of a heading should have.  The default value of `auto{:typst}` uses the width of the numbering as indent if the heading is aligned at the [start](/docs/reference/layout/direction/#definitions-start) of the [text direction](/docs/reference/text/text/#parameters-dir), and no indent for center and other alignments.  ```typst #set heading(numbering: "1.") = A very, very, very, very, very, very long heading  #show heading: set align(center) == A very long heading\\ with center alignment ```',
+      'description': 'The indent all but the first line of a heading should have.  The default value of `auto{:typst}` uses the width of the numbering as indent if the heading is aligned at the [start](/docs/reference/layout/direction/#definitions-start) of the [text direction](/docs/reference/text/text/#parameters-dir), and no indent for center and other alignments.  <TypstPreview   code={` #set heading(numbering: "1.") = A very, very, very, very, very, very long heading  #show heading: set align(center) == A very long heading\\ with center alignment `}   image=\'/assets/2dd0ccc419a029d6fbae760e9905b33c.png\'   alt=\'Preview\' />',
       'type': 'auto | length',
       'default': '<code><span class="typ-key">auto</span></code>'
     },

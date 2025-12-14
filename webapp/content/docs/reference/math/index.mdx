@@ -3,38 +3,52 @@ title: "Math"
 description: "Documentation for functions related to Math in Typst."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Typst has special [syntax](/docs/reference/syntax/#math) and library functions to typeset mathematical formulas. Math formulas can be displayed inline with text or as separate blocks. They will be typeset into their own block if they start and end with at least one space (e.g. `$ x^2 ${:typst}`).
 
 ## Variables
 
 In math, single letters are always displayed as is. Multiple letters, however, are interpreted as variables and functions. To display multiple letters verbatim, you can place them into quotes and to access single letter variables, you can use the [hash syntax](/docs/reference/scripting/#expressions).
 
-```typst
+<TypstPreview
+  code={`
 $ A = pi r^2 $
 $ "area" = pi dot "radius"^2 $
 $ cal(A) :=
     { x in RR | x "is natural" } $
 #let x = 5
 $ #x < 17 $
-```
+`}
+  image='/assets/8524e76a7c6784dd9c30bb62d92a4897.png'
+  alt='Preview'
+/>
 
 ## Symbols
 
 Math mode makes a wide selection of [symbols](/docs/reference/symbols/sym/) like `pi{:typst}`, `dot{:typst}`, or `RR{:typst}` available. Many mathematical symbols are available in different variants. You can select between different variants by applying [modifiers](/docs/reference/foundations/symbol/) to the symbol. Typst further recognizes a number of shorthand sequences like `=>{:typst}` that approximate a symbol. When such a shorthand exists, the symbol's documentation lists it.
 
-```typst
+<TypstPreview
+  code={`
 $ x < y => x gt.eq.not y $
-```
+`}
+  image='/assets/dd08c3941abc7b8b1c9310fbebf71b6e.png'
+  alt='Preview'
+/>
 
 ## Line Breaks
 
 Formulas can also contain line breaks. Each line can contain one or multiple _alignment points_ (`&{:typst}`) which are then aligned.
 
-```typst
+<TypstPreview
+  code={`
 $ sum_(k=0)^n k
-    &= 1 + ... + n \
+    &= 1 + ... + n 
     &= (n(n+1)) / 2 $
-```
+`}
+  image='/assets/e18e117e8b98666dc9823bbeed6dd264.png'
+  alt='Preview'
+/>
 
 ## Function calls
 
@@ -45,14 +59,18 @@ Math mode supports special function calls without the hash prefix. In these "mat
 - They don't support trailing content blocks.
 - They provide additional syntax for 2-dimensional argument lists. The semicolon (`;{:typst}`) merges preceding arguments separated by commas into an array argument.
 
-```typst
+<TypstPreview
+  code={`
 $ frac(a^2, 2) $
 $ vec(1, 2, delim: "[") $
 $ mat(1, 2; 3, 4) $
 $ mat(..#range(1, 5).chunks(2)) $
 $ lim_x =
     op("lim", limits: #true)_x $
-```
+`}
+  image='/assets/a04e7f595e2b6bd62e8eb21bcf63a042.png'
+  alt='Preview'
+/>
 
 To write a verbatim comma or semicolon in a math call, escape it with a backslash. The colon on the other hand is only recognized in a special way if directly preceded by an identifier, so to display it verbatim in those cases, you can just insert a space before it.
 
@@ -62,21 +80,29 @@ Functions calls preceded by a hash are normal code function calls and not affect
 
 When equations include multiple _alignment points_ (`&{:typst}`), this creates blocks of alternatingly right- and left-aligned columns. In the example below, the expression `(3x + y) / 7{:typst}` is right-aligned and `= 9{:typst}` is left-aligned. The word "given" is also left-aligned because `&&{:typst}` creates two alignment points in a row, alternating the alignment twice. `& &{:typst}` and `&&{:typst}` behave exactly the same way. Meanwhile, "multiply by 7" is right-aligned because just one `&{:typst}` precedes it. Each alignment point simply alternates between right-aligned/left-aligned.
 
-```typst
-$ (3x + y) / 7 &= 9 && "given" \
-  3x + y &= 63 & "multiply by 7" \
-  3x &= 63 - y && "subtract y" \
+<TypstPreview
+  code={`
+$ (3x + y) / 7 &= 9 && "given" 
+  3x + y &= 63 & "multiply by 7" 
+  3x &= 63 - y && "subtract y" 
   x &= 21 - y/3 & "divide by 3" $
-```
+`}
+  image='/assets/f1233da95c9167f12592cfc2f7cf3674.png'
+  alt='Preview'
+/>
 
 ## Math fonts
 
 You can set the math font by with a [show-set rule](/docs/reference/styling/#show-rules) as demonstrated below. Note that only special OpenType math fonts are suitable for typesetting maths.
 
-```typst
+<TypstPreview
+  code={`
 #show math.equation: set text(font: "Fira Math")
 $ sum_(i in NN) 1 + i $
-```
+`}
+  image='/assets/a86f5771fd97e49bb413be94448c5f66.png'
+  alt='Preview'
+/>
 
 ## Math module
 
@@ -86,13 +112,17 @@ All math functions are part of the `math{:typst}` [module](/docs/reference/scrip
 
 To make math accessible, you must provide alternative descriptions of equations in natural language using the [`alt{:typst}` parameter of `math.equation{:typst}`](/docs/reference/math/equation/#parameters-alt). For more information, see the [Textual Representations section of the Accessibility Guide](/docs/guides/accessibility/#textual-representations).
 
-```typst
+<TypstPreview
+  code={`
 #math.equation(
   alt: "d S equals delta q divided by T",
   block: true,
   $ dif S = (delta q) / T $,
 )
-```
+`}
+  image='/assets/20d64e50eb0363ab3beb776d3cec11dc.png'
+  alt='Preview'
+/>
 
 In the future, Typst will automatically make equations without alternative descriptions accessible in HTML and PDF 2.0 export.
 

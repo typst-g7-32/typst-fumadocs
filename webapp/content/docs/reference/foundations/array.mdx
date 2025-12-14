@@ -2,7 +2,9 @@
 title: "Array"
 description: "Documentation for the Array type."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypstPreview } from '@/components/typst/preview';
 
 A sequence of values.
 
@@ -14,35 +16,45 @@ You can access and update array items with the `.at(){:typst}` method. Indices a
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #let values = (1, 7, 4, -3, 2)
 
-#values.at(0) \
+#values.at(0) 
 #(values.at(0) = 3)
-#values.at(-1) \
-#values.find(calc.even) \
-#values.filter(calc.odd) \
-#values.map(calc.abs) \
-#values.rev() \
-#(1, (2, 3)).flatten() \
+#values.at(-1) 
+#values.find(calc.even) 
+#values.filter(calc.odd) 
+#values.map(calc.abs) 
+#values.rev() 
+#(1, (2, 3)).flatten() 
 #(("A", "B", "C")
     .join(", ", last: " and "))
-```
+`}
+  image='/assets/b82dcffb69c678f6966654cb6a9894a3.png'
+  alt='Preview'
+/>
 
 ## Constructor
-
-### `array`
-
 Converts a value to an array.
 
 Note that this function is only intended for conversion of a collection-like value to an array, not for creation of an array from individual items. Use the array syntax `(1, 2, 3){:typst}` (or `(1,){:typst}` for a single-element array) instead.
 
-```typst
+<TypstPreview
+  code={`
 #let hi = "Hello 😃"
 #array(bytes(hi))
-```
+`}
+  image='/assets/5f88747ad7a056745bb4d94b9e4440e4.png'
+  alt='Preview'
+/>
 
-```#array(value) -> array```
+```typst
+#array(
+  value
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -56,18 +68,16 @@ Note that this function is only intended for conversion of a collection-like val
 
 
 ## Methods
-
-### `len`
-
 The number of values in the array.
-
-```#array.len() -> int```
-
-### `first`
 
 Returns the first item in the array. May be used on the left-hand side an assignment. Returns the default value if the array is empty or fails with an error is no default value was specified.
 
-```#array.first(default:) -> any```
+```typst
+#array.first(
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -78,13 +88,15 @@ Returns the first item in the array. May be used on the left-hand side an assign
     }
   }}
 />
-
-
-### `last`
 
 Returns the last item in the array. May be used on the left-hand side of an assignment. Returns the default value if the array is empty or fails with an error is no default value was specified.
 
-```#array.last(default:) -> any```
+```typst
+#array.last(
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -96,12 +108,15 @@ Returns the last item in the array. May be used on the left-hand side of an assi
   }}
 />
 
-
-### `at`
-
 Returns the item at the specified index in the array. May be used on the left-hand side of an assignment. Returns the default value if the index is out of bounds or fails with an error if no default value was specified.
 
-```#array.at(index, default:) -> any```
+```typst
+#array.at(
+  index,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -118,12 +133,14 @@ Returns the item at the specified index in the array. May be used on the left-ha
   }}
 />
 
-
-### `push`
-
 Adds a value to the end of the array.
 
-```#array.push(value) -> ```
+```typst
+#array.push(
+  value
+) -> 
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -135,20 +152,19 @@ Adds a value to the end of the array.
   }}
 />
 
-
-### `pop`
-
 Removes the last item from the array and returns it. Fails with an error if the array is empty.
-
-```#array.pop() -> any```
-
-### `insert`
 
 Inserts a value into the array at the specified index, shifting all subsequent elements to the right. Fails with an error if the index is out of bounds.
 
 To replace an element of an array, use [`at{:typst}`](/docs/reference/foundations/array/#definitions-at).
 
-```#array.insert(index, value) -> ```
+```typst
+#array.insert(
+  index,
+  value
+) -> 
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -165,12 +181,15 @@ To replace an element of an array, use [`at{:typst}`](/docs/reference/foundation
   }}
 />
 
-
-### `remove`
-
 Removes the value at the specified index from the array and return it.
 
-```#array.remove(index, default:) -> any```
+```typst
+#array.remove(
+  index,
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -187,12 +206,16 @@ Removes the value at the specified index from the array and return it.
   }}
 />
 
-
-### `slice`
-
 Extracts a subslice of the array. Fails with an error if the start or end index is out of bounds.
 
-```#array.slice(start, end, count:) -> array```
+```typst
+#array.slice(
+  start,
+  end,
+  count: int
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -214,14 +237,16 @@ Extracts a subslice of the array. Fails with an error if the start or end index 
   }}
 />
 
-
-### `contains`
-
 Whether the array contains the specified value.
 
 This method also has dedicated syntax: You can write `2 in (1, 2, 3){:typst}` instead of `(1, 2, 3).contains(2){:typst}`.
 
-```#array.contains(value) -> bool```
+```typst
+#array.contains(
+  value
+) -> bool
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -233,12 +258,14 @@ This method also has dedicated syntax: You can write `2 in (1, 2, 3){:typst}` in
   }}
 />
 
-
-### `find`
-
 Searches for an item for which the given function returns `true{:typst}` and returns the first match or `none{:typst}` if there is no match.
 
-```#array.find(searcher) -> any none```
+```typst
+#array.find(
+  searcher
+) -> any none
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -249,13 +276,15 @@ Searches for an item for which the given function returns `true{:typst}` and ret
     }
   }}
 />
-
-
-### `position`
 
 Searches for an item for which the given function returns `true{:typst}` and returns the index of the first match or `none{:typst}` if there is no match.
 
-```#array.position(searcher) -> none int```
+```typst
+#array.position(
+  searcher
+) -> none int
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -266,9 +295,6 @@ Searches for an item for which the given function returns `true{:typst}` and ret
     }
   }}
 />
-
-
-### `range`
 
 Create an array consisting of a sequence of numbers.
 
@@ -276,15 +302,26 @@ If you pass just one positional parameter, it is interpreted as the `end{:typst}
 
 This function is available both in the array function's scope and globally.
 
-```typst
-#range(5) \
-#range(2, 5) \
-#range(20, step: 4) \
-#range(21, step: 4) \
+<TypstPreview
+  code={`
+#range(5) 
+#range(2, 5) 
+#range(20, step: 4) 
+#range(21, step: 4) 
 #range(5, 2, step: -1)
-```
+`}
+  image='/assets/ceb87963d025cafe69d4f502bb2cf46c.png'
+  alt='Preview'
+/>
 
-```#array.range(start, end, step:) -> array```
+```typst
+#array.range(
+  start,
+  end,
+  step: int
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -306,12 +343,14 @@ This function is available both in the array function's scope and globally.
   }}
 />
 
-
-### `filter`
-
 Produces a new array with only the items from the original one for which the given function returns `true{:typst}`.
 
-```#array.filter(test) -> array```
+```typst
+#array.filter(
+  test
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -323,12 +362,14 @@ Produces a new array with only the items from the original one for which the giv
   }}
 />
 
-
-### `map`
-
 Produces a new array in which all items from the original one were transformed with the given function.
 
-```#array.map(mapper) -> array```
+```typst
+#array.map(
+  mapper
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -340,22 +381,28 @@ Produces a new array in which all items from the original one were transformed w
   }}
 />
 
-
-### `enumerate`
-
 Returns a new array with the values alongside their indices.
 
 The returned array consists of `(index, value){:typst}` pairs in the form of length-2 arrays. These can be [destructured](/docs/reference/scripting/#bindings) with a let binding or for loop.
 
-```typst
+<TypstPreview
+  code={`
 #for (i, value) in ("A", "B", "C").enumerate() {
   [#i: #value \ ]
 }
 
 #("A", "B", "C").enumerate(start: 1)
-```
+`}
+  image='/assets/4bbc8a9ddf0acf4358de76c1f38313a8.png'
+  alt='Preview'
+/>
 
-```#array.enumerate(start:) -> array```
+```typst
+#array.enumerate(
+  start: int
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -367,9 +414,6 @@ The returned array consists of `(index, value){:typst}` pairs in the form of len
   }}
 />
 
-
-### `zip`
-
 Zips the array with other arrays.
 
 Returns an array of arrays, where the `i{:typst}`th inner array contains all the `i{:typst}`th elements from each original array.
@@ -378,7 +422,13 @@ If the arrays to be zipped have different lengths, they are zipped up to the las
 
 This function is variadic, meaning that you can zip multiple arrays together at once: `(1, 2).zip(("A", "B"), (10, 20)){:typst}` yields `((1, "A", 10), (2, "B", 20)){:typst}`.
 
-```#array.zip(exact:, others) -> array```
+```typst
+#array.zip(
+  exact: bool,
+  others
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -395,17 +445,24 @@ This function is variadic, meaning that you can zip multiple arrays together at 
   }}
 />
 
-
-### `fold`
-
 Folds all items into a single value using an accumulator function.
 
-```typst
+<TypstPreview
+  code={`
 #let array = (1, 2, 3, 4)
 #array.fold(0, (acc, x) => acc + x)
-```
+`}
+  image='/assets/74abb75036c3e00c4b810d4e0d74f915.png'
+  alt='Preview'
+/>
 
-```#array.fold(init, folder) -> any```
+```typst
+#array.fold(
+  init,
+  folder
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -422,12 +479,14 @@ Folds all items into a single value using an accumulator function.
   }}
 />
 
-
-### `sum`
-
 Sums all items (works for all types that can be added).
 
-```#array.sum(default:) -> any```
+```typst
+#array.sum(
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -438,13 +497,15 @@ Sums all items (works for all types that can be added).
     }
   }}
 />
-
-
-### `product`
 
 Calculates the product of all items (works for all types that can be multiplied).
 
-```#array.product(default:) -> any```
+```typst
+#array.product(
+  default: any
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -456,12 +517,14 @@ Calculates the product of all items (works for all types that can be multiplied)
   }}
 />
 
-
-### `any`
-
 Whether the given function returns `true{:typst}` for any item in the array.
 
-```#array.any(test) -> bool```
+```typst
+#array.any(
+  test
+) -> bool
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -472,13 +535,15 @@ Whether the given function returns `true{:typst}` for any item in the array.
     }
   }}
 />
-
-
-### `all`
 
 Whether the given function returns `true{:typst}` for all items in the array.
 
-```#array.all(test) -> bool```
+```typst
+#array.all(
+  test
+) -> bool
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -490,28 +555,26 @@ Whether the given function returns `true{:typst}` for all items in the array.
   }}
 />
 
-
-### `flatten`
-
 Combine all nested arrays into a single flat one.
-
-```#array.flatten() -> array```
-
-### `rev`
 
 Return a new array with the same items, but in reverse order.
 
-```#array.rev() -> array```
-
-### `split`
-
 Split the array at occurrences of the specified value.
 
-```typst
+<TypstPreview
+  code={`
 #(1, 1, 2, 3, 2, 4, 5).split(2)
-```
+`}
+  image='/assets/e0d10d9d30f4e678ab9479679fad56ab.png'
+  alt='Preview'
+/>
 
-```#array.split(at) -> array```
+```typst
+#array.split(
+  at
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -523,12 +586,16 @@ Split the array at occurrences of the specified value.
   }}
 />
 
-
-### `join`
-
 Combine all items in the array into one.
 
-```#array.join(separator, last:, default:) -> any```
+```typst
+#array.join(
+  separator,
+  last: any,
+  default: any | none
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -550,16 +617,22 @@ Combine all items in the array into one.
   }}
 />
 
-
-### `intersperse`
-
 Returns an array with a copy of the separator value placed between adjacent elements.
 
-```typst
+<TypstPreview
+  code={`
 #("A", "B", "C").intersperse("-")
-```
+`}
+  image='/assets/9ad27cdd1677fc26080cad0c262e0c93.png'
+  alt='Preview'
+/>
 
-```#array.intersperse(separator) -> array```
+```typst
+#array.intersperse(
+  separator
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -571,20 +644,27 @@ Returns an array with a copy of the separator value placed between adjacent elem
   }}
 />
 
-
-### `chunks`
-
 Splits an array into non-overlapping chunks, starting at the beginning, ending with a single remainder chunk.
 
 All chunks but the last have `chunk-size{:typst}` elements. If `exact{:typst}` is set to `true{:typst}`, the remainder is dropped if it contains less than `chunk-size{:typst}` elements.
 
-```typst
+<TypstPreview
+  code={`
 #let array = (1, 2, 3, 4, 5, 6, 7, 8)
-#array.chunks(3) \
+#array.chunks(3) 
 #array.chunks(3, exact: true)
-```
+`}
+  image='/assets/35c1baf0f7902b3b48cc164333d55b.png'
+  alt='Preview'
+/>
 
-```#array.chunks(chunk-size, exact:) -> array```
+```typst
+#array.chunks(
+  chunk-size,
+  exact: bool
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -601,19 +681,25 @@ All chunks but the last have `chunk-size{:typst}` elements. If `exact{:typst}` i
   }}
 />
 
-
-### `windows`
-
 Returns sliding windows of `window-size{:typst}` elements over an array.
 
 If the array length is less than `window-size{:typst}`, this will return an empty array.
 
-```typst
+<TypstPreview
+  code={`
 #let array = (1, 2, 3, 4, 5, 6, 7, 8)
 #array.windows(5)
-```
+`}
+  image='/assets/19a732fa351d05f71c5f8ddfc73c2a3e.png'
+  alt='Preview'
+/>
 
-```#array.windows(window-size) -> array```
+```typst
+#array.windows(
+  window-size
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -625,25 +711,32 @@ If the array length is less than `window-size{:typst}`, this will return an empt
   }}
 />
 
-
-### `sorted`
-
 Return a sorted version of this array, optionally by a given key function. The sorting algorithm used is stable.
 
 Returns an error if a pair of values selected for comparison could not be compared, or if the key or comparison function (if given) yield an error.
 
 To sort according to multiple criteria at once, e.g. in case of equality between some criteria, the key function can return an array. The results are in lexicographic order.
 
-```typst
+<TypstPreview
+  code={`
 #let array = (
   (a: 2, b: 4),
   (a: 1, b: 5),
   (a: 2, b: 3),
 )
 #array.sorted(key: it => (it.a, it.b))
-```
+`}
+  image='/assets/fe903cbcc2093647a0fabae43aaaaf52.png'
+  alt='Preview'
+/>
 
-```#array.sorted(key:, by:) -> array```
+```typst
+#array.sorted(
+  key: function,
+  by: function
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -653,54 +746,57 @@ To sort according to multiple criteria at once, e.g. in case of equality between
       'default': 'None'
     },
     'by': {
-      'description': 'If given, uses this function to compare every two elements in the array.  The function will receive two elements in the array for comparison, and should return a boolean indicating their order: `true{:typst}` indicates that the elements are in order, while `false{:typst}` indicates that they should be swapped. To keep the sort stable, if the two elements are equal, the function should return `true{:typst}`.  If this function does not order the elements properly (e.g., by returning `false{:typst}` for both `(x, y){:typst}` and `(y, x){:typst}`, or for `(x, x){:typst}`), the resulting array will be in unspecified order.  When used together with `key{:typst}`, `by{:typst}` will be passed the keys instead of the elements.  ```typst #(   "sorted",   "by",   "decreasing",   "length", ).sorted(   key: s => s.len(),   by: (l, r) => l >= r, ) ```',
+      'description': 'If given, uses this function to compare every two elements in the array.  The function will receive two elements in the array for comparison, and should return a boolean indicating their order: `true{:typst}` indicates that the elements are in order, while `false{:typst}` indicates that they should be swapped. To keep the sort stable, if the two elements are equal, the function should return `true{:typst}`.  If this function does not order the elements properly (e.g., by returning `false{:typst}` for both `(x, y){:typst}` and `(y, x){:typst}`, or for `(x, x){:typst}`), the resulting array will be in unspecified order.  When used together with `key{:typst}`, `by{:typst}` will be passed the keys instead of the elements.  <TypstPreview   code={` #(   "sorted",   "by",   "decreasing",   "length", ).sorted(   key: s => s.len(),   by: (l, r) => l >= r, ) `}   image=\'/assets/7dde7fb47ef53c8d8b1aa9991abdf508.png\'   alt=\'Preview\' />',
       'type': 'function',
       'default': 'None'
     }
   }}
 />
-
-
-### `dedup`
 
 Deduplicates all items in the array.
 
 Returns a new array with all duplicate items removed. Only the first element of each duplicate is kept.
 
-```typst
+<TypstPreview
+  code={`
 #(3, 3, 1, 2, 3).dedup()
-```
+`}
+  image='/assets/eb5537b1ca487f754e0c896313f339ba.png'
+  alt='Preview'
+/>
 
-```#array.dedup(key:) -> array```
+```typst
+#array.dedup(
+  key: function
+) -> array
+```
+### Parameters
 
 <TypeTable
   type={{
     'key': {
-      'description': 'If given, applies this function to each element in the array to determine the keys to deduplicate by.  ```typst #("apple", "banana", " apple ").dedup(key: s => s.trim()) ```',
+      'description': 'If given, applies this function to each element in the array to determine the keys to deduplicate by.  <TypstPreview   code={` #("apple", "banana", " apple ").dedup(key: s => s.trim()) `}   image=\'/assets/f407445b261ebb675e8a26021d5f339.png\'   alt=\'Preview\' />',
       'type': 'function',
       'default': 'None'
     }
   }}
 />
 
-
-### `to-dict`
-
 Converts an array of pairs into a dictionary. The first value of each pair is the key, the second the value.
 
 If the same key occurs multiple times, the last value is selected.
 
-```typst
+<TypstPreview
+  code={`
 #(
   ("apples", 2),
   ("peaches", 3),
   ("apples", 5),
 ).to-dict()
-```
-
-```#array.to-dict() -> dictionary```
-
-### `reduce`
+`}
+  image='/assets/2e6b8e445cf77edd022ddf968946479e.png'
+  alt='Preview'
+/>
 
 Reduces the elements to a single one, by repeatedly applying a reducing operation.
 
@@ -710,12 +806,21 @@ The reducing function is a closure with two arguments: an "accumulator", and an 
 
 For arrays with at least one element, this is the same as [`array.fold{:typst}`](/docs/reference/foundations/array/#definitions-fold) with the first element of the array as the initial accumulator value, folding every subsequent element into it.
 
-```typst
+<TypstPreview
+  code={`
 #let array = (2, 1, 4, 3)
 #array.reduce((acc, x) => calc.max(acc, x))
-```
+`}
+  image='/assets/1e6640799dfe1da6d9f5eea2ffbf5c92.png'
+  alt='Preview'
+/>
 
-```#array.reduce(reducer) -> any```
+```typst
+#array.reduce(
+  reducer
+) -> any
+```
+### Parameters
 
 <TypeTable
   type={{

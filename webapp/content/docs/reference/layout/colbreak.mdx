@@ -2,10 +2,9 @@
 title: "Column Break"
 description: "Documentation for the `colbreak` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `colbreak`
+import { TypstPreview } from '@/components/typst/preview';
 
 Forces a column break.
 
@@ -13,7 +12,8 @@ The function will behave like a [page break](/docs/reference/layout/pagebreak/) 
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 #set page(columns: 2)
 Preliminary findings from our
 ongoing research project have
@@ -28,9 +28,17 @@ a hitherto uncharacterized process
 that defies our current
 understanding of the fundamental
 laws of nature.
-```
+`}
+  image='/assets/317ca576aa5033b3292e2f600bab0f18.png'
+  alt='Preview'
+/>
 
-```#colbreak(weak:) -> content```
+```typst
+#colbreak(
+  weak: bool
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

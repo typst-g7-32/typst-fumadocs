@@ -2,10 +2,9 @@
 title: "Cases"
 description: "Documentation for the `cases` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `cases`
+import { TypstPreview } from '@/components/typst/preview';
 
 A case distinction.
 
@@ -13,31 +12,43 @@ Content across different branches can be aligned with the `&{:typst}` symbol.
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ f(x, y) := cases(
   1 "if" (x dot y)/2 <= 0,
   2 "if" x "is even",
   3 "if" x in NN,
   4 "else",
 ) $
-```
+`}
+  image='/assets/d17d4014f0e278177d8e26b02a9734f8.png'
+  alt='Preview'
+/>
 
-```#math.cases(delim:, reverse:, gap:, children) -> content```
+```typst
+#math.cases(
+  delim: none | str | array | symbol,
+  reverse: bool,
+  gap: relative,
+  children
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'delim': {
-      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  ```typst #set math.cases(delim: "[") $ x = cases(1, 2) $ ```',
+      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  <TypstPreview   code={` #set math.cases(delim: "[") $ x = cases(1, 2) $ `}   image=\'/assets/6c4add3875963902d22adb31b49798e5.png\'   alt=\'Preview\' />',
       'type': 'none | str | array | symbol',
       'default': '<code><span class="typ-punct">(</span><span class="typ-str">&quot;{&quot;</span><span class="typ-punct">,</span> <span class="typ-str">&quot;}&quot;</span><span class="typ-punct">)</span></code>'
     },
     'reverse': {
-      'description': 'Whether the direction of cases should be reversed.  ```typst #set math.cases(reverse: true) $ cases(1, 2) = x $ ```',
+      'description': 'Whether the direction of cases should be reversed.  <TypstPreview   code={` #set math.cases(reverse: true) $ cases(1, 2) = x $ `}   image=\'/assets/cfa01064a26c1fd9ccf797ba030d211a.png\'   alt=\'Preview\' />',
       'type': 'bool',
       'default': '<code><span class="typ-key">false</span></code>'
     },
     'gap': {
-      'description': 'The gap between branches.  ```typst #set math.cases(gap: 1em) $ x = cases(1, 2) $ ```',
+      'description': 'The gap between branches.  <TypstPreview   code={` #set math.cases(gap: 1em) $ x = cases(1, 2) $ `}   image=\'/assets/fb1b1c7f3447e03c3a622e530afa6457.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0.2em</span></code>'
     },

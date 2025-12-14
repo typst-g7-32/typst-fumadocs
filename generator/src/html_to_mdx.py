@@ -74,7 +74,7 @@ def process_pre(element: Tag) -> str:
     code_content = element.get_text()
     language = "typst"
     
-    return f"```{language}\n{code_content.strip()}\n```"
+    return f"```{language}\n{code_content.rstrip()}\n```"
 
 def process_table(element: Tag) -> str:
     rows_md = []
@@ -138,9 +138,21 @@ def process_list(element: Tag, depth: int = 0) -> str:
 
 def process_preview_code(element: Tag) -> str:
     pre_block = element.find("pre")
-    if pre_block:
-        code_text = pre_block.get_text().strip()
+    image_block = element.find("img")
+    if not pre_block:
+        return ""
+    code_text = pre_block.get_text().replace("\\\n", "\n").rstrip()
+    if not image_block:
         return f"```typst\n{code_text}\n```"
+    if image_block and pre_block:
+        if not isinstance(image_block, Tag):
+            logger.warning(f"Skipping unsupported image block: {image_block}")
+            return ""
+        src = image_block.get('src', "")
+        alt = image_block.get('alt', "")
+        code_text = code_text.replace("`", "\\`")
+        code_text = "{" + f"`\n{code_text}\n`" + "}"
+        return f"<TypstPreview\n  code={code_text}\n  image='{src}'\n  alt='{alt}'\n/>"
     return ""
 
 def process_info_box(element: Tag) -> str:
@@ -199,7 +211,7 @@ def process_element(element):
         
         if element.name == "code" and element.parent.name != "pre":
             language = "typst"
-            text = element.get_text().strip()
+            text = element.get_text().rstrip()
             return f'`{text}{{:{language}}}`'
 
         if element.name == "pre":
@@ -263,6 +275,7 @@ def process_inline(element):
         if element.name == "code":
             language = "typst"
             text = element.get_text().strip()
+            text = text.replace("{", "\\{").replace("}", "\\}")
             if text == "`":
                 return "```"
             return f'`{text}{{:{language}}}`'

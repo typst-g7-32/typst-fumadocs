@@ -2,10 +2,9 @@
 title: "Bibliography"
 description: "Documentation for the `bibliography` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `bibliography`
+import { TypstPreview } from '@/components/typst/preview';
 
 A bibliography / reference listing.
 
@@ -31,7 +30,8 @@ Typst offers a wide selection of built-in [citation and bibliography styles](/do
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 This was already noted by
 pirates long ago. @arrgh
 
@@ -39,9 +39,20 @@ Multiple sources say ...
 @arrgh @netwok.
 
 #bibliography("works.bib")
-```
+`}
+  image='/assets/209df19e613387ac8475d78ce387afdf.png'
+  alt='Preview'
+/>
 
-```#bibliography(sources, title:, full:, style:) -> content```
+```typst
+#bibliography(
+  sources,
+  title: none | auto | content,
+  full: bool,
+  style: str | bytes
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,8 @@
 title: "Artifact"
 description: "Documentation for the `artifact` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `artifact`
 
 Marks content as a PDF artifact.
 
@@ -19,7 +17,13 @@ If you are unsure what constitutes an artifact, check the [Accessibility Guide](
 
 In the future, this function may be moved out of the `pdf{:typst}` module, making it possible to hide content in HTML export from AT.
 
-```#pdf.artifact(kind:, body) -> content```
+```typst
+#pdf.artifact(
+  kind: str,
+  body
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -3,11 +3,14 @@ title: "Page Setup"
 description: "An in-depth guide to setting page dimensions, margins, and page numbers in Typst. Learn how to create appealing and clear layouts and get there quickly."
 ---
 
+import { TypstPreview } from '@/components/typst/preview';
+
 Your page setup is a big part of the first impression your document gives. Line lengths, margins, and columns influence [appearance](https://practicaltypography.com/page-margins.html) and [legibility](https://designregression.com/article/line-length-revisited-following-the-research) while the right headers and footers will help your reader easily navigate your document. This guide will help you to customize pages, margins, headers, footers, and page numbers so that they are the right fit for your content and you can get started with writing.
 
 In Typst, each page has a width, a height, and margins on all four sides. The top and bottom margins may contain a header and footer. The set rule of the [`page{:typst}`](/docs/reference/layout/page/) element is where you control all of the page setup. If you make changes with this set rule, Typst will ensure that there is a new and conforming empty page afterward, so it may insert a page break. Therefore, it is best to specify your [`page{:typst}`](/docs/reference/layout/page/) set rule at the start of your document or in your template.
 
-```typst
+<TypstPreview
+  code={`
 #set rect(
   width: 100%,
   height: 100%,
@@ -22,7 +25,10 @@ In Typst, each page has a width, a height, and margins on all four sides. The to
 )
 
 #rect(fill: aqua.lighten(40%))
-```
+`}
+  image='/assets/7fe9722cc3b9bdd5ee00ca23dbcb3702.png'
+  alt='Preview'
+/>
 
 This example visualizes the dimensions for page content, headers, and footers. The page content is the page size (ISO B7) minus each side's default margin. In the top and the bottom margin, there are stroked rectangles visualizing the header and footer. They do not touch the main content, instead, they are offset by 30% of the respective margin. You can control this offset by specifying the [`header-ascent{:typst}`](/docs/reference/layout/page/#parameters-header-ascent) and [`footer-descent{:typst}`](/docs/reference/layout/page/#parameters-footer-descent) arguments.
 
@@ -32,19 +38,27 @@ Below, the guide will go more into detail on how to accomplish common page setup
 
 Typst's default page size is A4 paper. Depending on your region and your use case, you will want to change this. You can do this by using the [`page{:typst}`](/docs/reference/layout/page/) set rule and passing it a string argument to use a common page size. Options include the complete ISO 216 series (e.g. `"a4"{:typst}` and `"iso-c2"{:typst}`), customary US formats like `"us-legal"{:typst}` or `"us-letter"{:typst}`, and more. Check out the reference for the [page's paper argument](/docs/reference/layout/page/#parameters-paper) to learn about all available options.
 
-```typst
+<TypstPreview
+  code={`
 #set page("us-letter")
 
 This page likes freedom.
-```
+`}
+  image='/assets/4246fd7d86f948c7c3689eb7698c9c4f.png'
+  alt='Preview'
+/>
 
 If you need to customize your page size to some dimensions, you can specify the named arguments [`width{:typst}`](/docs/reference/layout/page/#parameters-width) and [`height{:typst}`](/docs/reference/layout/page/#parameters-height) instead.
 
-```typst
+<TypstPreview
+  code={`
 #set page(width: 12cm, height: 12cm)
 
 This page is a square.
-```
+`}
+  image='/assets/465b6b3f98e32a2fea10d872f41f87c9.png'
+  alt='Preview'
+/>
 
 ### Change the page's margins
 
@@ -52,7 +66,8 @@ Margins are a vital ingredient for good typography: [Typographers consider lines
 
 The `margin{:typst}` argument will accept a length if you want to set all margins to the same width. However, you often want to set different margins on each side. To do this, you can pass a dictionary:
 
-```typst
+<TypstPreview
+  code={`
 #set page(margin: (
   top: 3cm,
   bottom: 2cm,
@@ -60,7 +75,10 @@ The `margin{:typst}` argument will accept a length if you want to set all margin
 ))
 
 #lorem(100)
-```
+`}
+  image='/assets/c896f60e6558035f03087583440e7441.png'
+  alt='Preview'
+/>
 
 The page margin dictionary can have keys for each side (`top{:typst}`, `bottom{:typst}`, `left{:typst}`, `right{:typst}`), but you can also control left and right together by setting the `x{:typst}` key of the margin dictionary, like in the example. Likewise, the top and bottom margins can be adjusted together by setting the `y{:typst}` key.
 
@@ -91,7 +109,8 @@ Headers and footers are inserted in the top and bottom margins of every page. Yo
 
 In case you need more than just a page number, the best way to insert a header and a footer are the [`header{:typst}`](/docs/reference/layout/page/#parameters-header) and [`footer{:typst}`](/docs/reference/layout/page/#parameters-footer) arguments of the [`page{:typst}`](/docs/reference/layout/page/) set rule. You can pass any content as their values:
 
-```typst
+<TypstPreview
+  code={`
 #set page(header: [
   _Lisa Strassner's Thesis_
   #h(1fr)
@@ -99,7 +118,10 @@ In case you need more than just a page number, the best way to insert a header a
 ])
 
 #lorem(150)
-```
+`}
+  image='/assets/f0814aae5cf80934a96205a02aad36b4.png'
+  alt='Preview'
+/>
 
 Headers are bottom-aligned by default so that they do not collide with the top edge of the page. You can change this by wrapping your header in the [`align{:typst}`](/docs/reference/layout/align/) function.
 
@@ -158,27 +180,39 @@ Here, we query for all instances of the `<big-table>{:typst}` label. We then che
 
 Page numbers help readers keep track of and reference your document more easily. The simplest way to insert page numbers is the [`numbering{:typst}`](/docs/reference/layout/page/#parameters-numbering) argument of the [`page{:typst}`](/docs/reference/layout/page/) set rule. You can pass a [_numbering pattern_](/docs/reference/model/numbering/#parameters-numbering) string that shows how you want your pages to be numbered.
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "1")
 
 This is a numbered page.
-```
+`}
+  image='/assets/b48b5390c93bf60c40473268b2bc55b2.png'
+  alt='Preview'
+/>
 
 Above, you can check out the simplest conceivable example. It adds a single Arabic page number at the center of the footer. You can specify other characters than `"1"{:typst}` to get other numerals. For example, `"i"{:typst}` will yield lowercase Roman numerals. Any character that is not interpreted as a number will be output as-is. For example, put dashes around your page number by typing this:
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "— 1 —")
 
 This is a — numbered — page.
-```
+`}
+  image='/assets/d7f4767d2392e3a857f037af58edd21f.png'
+  alt='Preview'
+/>
 
 You can add the total number of pages by entering a second number character in the string.
 
-```typst
+<TypstPreview
+  code={`
 #set page(numbering: "1 of 1")
 
 This is one of many numbered pages.
-```
+`}
+  image='/assets/cbb2198058d0bedc9aabffd8b12f7c30.png'
+  alt='Preview'
+/>
 
 Go to the [`numbering{:typst}` function reference](/docs/reference/model/numbering/#parameters-numbering) to learn more about the arguments you can pass here.
 
@@ -188,7 +222,8 @@ In case you need to right- or left-align the page number, use the [`number-align
 
 Sometimes, you need to add other content than a page number to your footer. However, once a footer is specified, the [`numbering{:typst}`](/docs/reference/layout/page/#parameters-numbering) argument of the [`page{:typst}`](/docs/reference/layout/page/) set rule is ignored. This section shows you how to add a custom footer with page numbers and more.
 
-```typst
+<TypstPreview
+  code={`
 #set page(footer: context [
   *American Society of Proceedings*
   #h(1fr)
@@ -199,13 +234,17 @@ Sometimes, you need to add other content than a page number to your footer. Howe
 ])
 
 This page has a custom footer.
-```
+`}
+  image='/assets/a5ae057e4480999f126c73098458484c.png'
+  alt='Preview'
+/>
 
 First, we add some strongly emphasized text on the left and add free space to fill the line. Then, we call `counter(page){:typst}` to retrieve the page counter and use its `display{:typst}` function to show its current value. We also set `both{:typst}` to `true{:typst}` so that our numbering pattern applies to the current _and_ final page number.
 
 We can also get more creative with the page number. For example, let's insert a circle for each page.
 
-```typst
+<TypstPreview
+  code={`
 #set page(footer: context [
   *Fun Typography Club*
   #h(1fr)
@@ -223,7 +262,10 @@ We can also get more creative with the page number. For example, let's insert a 
 ])
 
 This page has a custom footer.
-```
+`}
+  image='/assets/3f1e0c8050c6661e537d30705124bf28.png'
+  alt='Preview'
+/>
 
 In this example, we use the number of pages to create an array of [circles](/docs/reference/visualize/circle/). The circles are wrapped in a [box](/docs/reference/layout/box/) so they can all appear on the same line because they are blocks and would otherwise create paragraph breaks. The length of this [array](/docs/reference/foundations/array/) depends on the current page number.
 
@@ -249,13 +291,17 @@ In this example, we skip five pages. `n{:typst}` is the current value of the pag
 
 In case you need to retrieve the actual page number instead of the value of the page counter, you can use the [`page{:typst}`](/docs/reference/introspection/location/#definitions-page) method on the return value of the [`here{:typst}`](/docs/reference/introspection/here/) function:
 
-```typst
+<TypstPreview
+  code={`
 #counter(page).update(n => n + 5)
 
 // This returns one even though the
 // page counter was incremented by 5.
 #context here().page()
-```
+`}
+  image='/assets/d3dcad44515b9bf64e2f18e46b5e67fd.png'
+  alt='Preview'
+/>
 
 You can also obtain the page numbering pattern from the location returned by `here{:typst}` with the [`page-numbering{:typst}`](/docs/reference/introspection/location/#definitions-page-numbering) method.
 
@@ -265,16 +311,21 @@ Add columns to your document to fit more on a page while maintaining legible lin
 
 To lay out your content in columns, just specify the desired number of columns in a [`page{:typst}`](/docs/reference/layout/page/#parameters-columns) set rule. To adjust the amount of space between the columns, add a set rule on the [`columns{:typst}` function](/docs/reference/layout/columns/), specifying the `gutter{:typst}` parameter.
 
-```typst
+<TypstPreview
+  code={`
 #set page(columns: 2)
 #set columns(gutter: 12pt)
 
 #lorem(30)
-```
+`}
+  image='/assets/160439991e4175b3b075a3ef990b2cfb.png'
+  alt='Preview'
+/>
 
 Very commonly, scientific papers have a single-column title and abstract, while the main body is set in two-columns. To achieve this effect, Typst's [`place{:typst}` function](/docs/reference/layout/place/) can temporarily escape the two-column layout by specifying `float: true{:typst}` and `scope: "parent"{:typst}`:
 
-```typst
+<TypstPreview
+  code={`
 #set page(columns: 2)
 #set par(justify: true)
 
@@ -289,7 +340,10 @@ Very commonly, scientific papers have a single-column title and abstract, while 
 
 == About seals in the wild
 #lorem(80)
-```
+`}
+  image='/assets/af081b829515e76f76dc6155ffd6c211.png'
+  alt='Preview'
+/>
 
 _Floating placement_ refers to elements being pushed to the top or bottom of the column or page, with the remaining content flowing in between. It is also frequently used for [figures](/docs/reference/model/figure/#parameters-placement).
 
@@ -297,7 +351,8 @@ _Floating placement_ refers to elements being pushed to the top or bottom of the
 
 To create columns within a nested layout, e.g. within a rectangle, you can use the [`columns{:typst}` function](/docs/reference/layout/columns/) directly. However, it really should only be used within nested layouts. At the page-level, the page set rule is preferable because it has better interactions with things like page-level floats, footnotes, and line numbers.
 
-```typst
+<TypstPreview
+  code={`
 #rect(
   width: 6cm,
   height: 3.5cm,
@@ -310,7 +365,10 @@ To create columns within a nested layout, e.g. within a rectangle, you can use t
     rested on the cold concrete.
   ]
 )
-```
+`}
+  image='/assets/e1a95ddb12510e9685331557bbb6a251.png'
+  alt='Preview'
+/>
 
 ### Balanced columns
 
@@ -320,7 +378,8 @@ If the columns on the last page of a document differ greatly in length, they may
 
 You do not need to override your page settings if you need to insert a single page with a different setup. For example, you may want to insert a page that's flipped to landscape to insert a big table or change the margin and columns for your title page. In this case, you can call [`page{:typst}`](/docs/reference/layout/page/) as a function with your content as an argument and the overrides as the other arguments. This will insert enough new pages with your overridden settings to place your content on them. Typst will revert to the page settings from the set rule after the call.
 
-```typst
+<TypstPreview
+  code={`
 #page(flipped: true)[
   = Multiplication table
 
@@ -333,4 +392,7 @@ You do not need to override your page settings if you need to insert a single pa
     }
   )
 ]
-```
+`}
+  image='/assets/539141c80d3b642706762cd1fd76ed13.png'
+  alt='Preview'
+/>

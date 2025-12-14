@@ -2,10 +2,9 @@
 title: "Lorem"
 description: "Documentation for the `lorem` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `lorem`
+import { TypstPreview } from '@/components/typst/preview';
 
 Creates blind text.
 
@@ -13,15 +12,24 @@ This function yields a Latin-like _Lorem Ipsum_ blind text with the given number
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 = Blind Text
 #lorem(30)
 
 = More Blind Text
 #lorem(15)
-```
+`}
+  image='/assets/8af2acc2969291e2f08d4ebef2a3538e.png'
+  alt='Preview'
+/>
 
-```#lorem(words) -> str```
+```typst
+#lorem(
+  words
+) -> str
+```
+## Parameters
 
 <TypeTable
   type={{

@@ -2,10 +2,8 @@
 title: "Assert"
 description: "Documentation for the `assert` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `assert`
 
 Ensures that a condition is fulfilled.
 
@@ -19,7 +17,13 @@ If you wish to test equality between two values, see [`assert.eq{:typst}`](/docs
 #assert(1 < 2, message: "math broke")
 ```
 
-```#assert(condition, message:) -> ```
+```typst
+#assert(
+  condition,
+  message: str
+) -> 
+```
+## Parameters
 
 <TypeTable
   type={{
@@ -38,9 +42,6 @@ If you wish to test equality between two values, see [`assert.eq{:typst}`](/docs
 
 
 ### Definitions
-
-### `eq`
-
 Ensures that two values are equal.
 
 Fails with an error if the first value is not equal to the second. Does not produce any output in the document.
@@ -49,7 +50,14 @@ Fails with an error if the first value is not equal to the second. Does not prod
 #assert.eq(10, 10)
 ```
 
-```#assert.eq(left, right, message:) -> ```
+```typst
+#assert.eq(
+  left,
+  right,
+  message: str
+) -> 
+```
+### Parameters
 
 <TypeTable
   type={{
@@ -71,9 +79,6 @@ Fails with an error if the first value is not equal to the second. Does not prod
   }}
 />
 
-
-### `ne`
-
 Ensures that two values are not equal.
 
 Fails with an error if the first value is equal to the second. Does not produce any output in the document.
@@ -82,7 +87,14 @@ Fails with an error if the first value is equal to the second. Does not produce 
 #assert.ne(3, 4)
 ```
 
-```#assert.ne(left, right, message:) -> ```
+```typst
+#assert.ne(
+  left,
+  right,
+  message: str
+) -> 
+```
+### Parameters
 
 <TypeTable
   type={{

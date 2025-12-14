@@ -2,10 +2,9 @@
 title: "Vector"
 description: "Documentation for the `vec` function."
 ---
+
 import { TypeTable } from 'fumadocs-ui/components/type-table';
-
-
-## `vec`
+import { TypstPreview } from '@/components/typst/preview';
 
 A column vector.
 
@@ -15,27 +14,39 @@ This function is for typesetting vector components. To typeset a symbol that rep
 
 ## Example
 
-```typst
+<TypstPreview
+  code={`
 $ vec(a, b, c) dot vec(1, 2, 3)
     = a + 2b + 3c $
-```
+`}
+  image='/assets/2e7466d3a94b320803f1f09065d03ae9.png'
+  alt='Preview'
+/>
 
-```#math.vec(delim:, align:, gap:, children) -> content```
+```typst
+#math.vec(
+  delim: none | str | array | symbol,
+  align: alignment,
+  gap: relative,
+  children
+) -> content
+```
+## Parameters
 
 <TypeTable
   type={{
     'delim': {
-      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  ```typst #set math.vec(delim: "[") $ vec(1, 2) $ ```',
+      'description': 'The delimiter to use.  Can be a single character specifying the left delimiter, in which case the right delimiter is inferred. Otherwise, can be an array containing a left and a right delimiter.  <TypstPreview   code={` #set math.vec(delim: "[") $ vec(1, 2) $ `}   image=\'/assets/e4b15927d776e5b9635c5a7a90044772.png\'   alt=\'Preview\' />',
       'type': 'none | str | array | symbol',
       'default': '<code><span class="typ-punct">(</span><span class="typ-str">&quot;(&quot;</span><span class="typ-punct">,</span> <span class="typ-str">&quot;)&quot;</span><span class="typ-punct">)</span></code>'
     },
     'align': {
-      'description': 'The horizontal alignment that each element should have.  ```typst #set math.vec(align: right) $ vec(-1, 1, -1) $ ```',
+      'description': 'The horizontal alignment that each element should have.  <TypstPreview   code={` #set math.vec(align: right) $ vec(-1, 1, -1) $ `}   image=\'/assets/66d1e5a7d638cc4b73e7761d7f9ba72c.png\'   alt=\'Preview\' />',
       'type': 'alignment',
       'default': '<code>center</code>'
     },
     'gap': {
-      'description': 'The gap between elements.  ```typst #set math.vec(gap: 1em) $ vec(1, 2) $ ```',
+      'description': 'The gap between elements.  <TypstPreview   code={` #set math.vec(gap: 1em) $ vec(1, 2) $ `}   image=\'/assets/ba22b66d050a8c8cdc3b7206a7b4593f.png\'   alt=\'Preview\' />',
       'type': 'relative',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">0.2em</span></code>'
     },
