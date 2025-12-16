@@ -1,29 +1,29 @@
 ---
-title: "Circle"
-description: "Documentation for the `circle` function."
+title: "Круг"
+description: "Документация для функции `circle`."
 ---
 
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { TypstPreview } from '@/components/typst/preview';
 
-A circle with optional content.
+Круг с необязательным содержимым.
 
-## Example
+## Пример
 
 <TypstPreview
   code={`
-  // Without content.
+  // Без содержимого.
   #circle(radius: 25pt)
 
-  // With content.
+  // С содержимым.
   #circle[
     #set align(center + horizon)
-    Automatically \
-    sized to fit.
+    Автоматически \\
+    подгоняется под размер.
   ]
 `}
   image='/typst-fumadocs/assets/1f59e2c057a82944d5833baa72667f56.png'
-  alt='Preview'
+  alt='Предварительный просмотр'
   editable={true}
 />
 
@@ -39,51 +39,49 @@ A circle with optional content.
   body
 ) -> content
 ```
-## Parameters
+## Параметры
 
 <TypeTable
   type={{
     'radius': {
-      'description': 'The circle\'s radius. This is mutually exclusive with `width{:typst}` and `height{:typst}`.',
+      'description': 'Радиус круга. Взаимоисключающий параметр с `width{:typst}` и `height{:typst}`.',
       'type': 'length',
       'default': '<code><span class="typ-num">0pt</span></code>'
     },
     'width': {
-      'description': 'The circle\'s width. This is mutually exclusive with `radius{:typst}` and `height{:typst}`.  In contrast to `radius{:typst}`, this can be relative to the parent container\'s width.',
+      'description': 'Ширина круга. Взаимоисключающий параметр с `radius{:typst}` и `height{:typst}`.  В отличие от `radius{:typst}`, может быть относительным к ширине родительского контейнера.',
       'type': 'auto | relative',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'height': {
-      'description': 'The circle\'s height. This is mutually exclusive with `radius{:typst}` and `width{:typst}`.  In contrast to `radius{:typst}`, this can be relative to the parent container\'s height.',
+      'description': 'Высота круга. Взаимоисключающий параметр с `radius{:typst}` и `width{:typst}`.  В отличие от `radius{:typst}`, может быть относительным к высоте родительского контейнера.',
       'type': 'auto | relative | fraction',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'fill': {
-      'description': 'How to fill the circle. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-fill) for more details.',
+      'description': 'Как заполнить круг. См. [документацию прямоугольника](/docs/reference/visualize/rect/#parameters-fill) для подробностей.',
       'type': 'none | color | gradient | tiling',
       'default': '<code><span class="typ-key">none</span></code>'
     },
     'stroke': {
-      'description': 'How to stroke the circle. See the [rectangle\'s documentation](/docs/reference/visualize/rect/#parameters-stroke) for more details.',
+      'description': 'Как обвести круг. См. [документацию прямоугольника](/docs/reference/visualize/rect/#parameters-stroke) для подробностей.',
       'type': 'none | auto | length | color | gradient | stroke | tiling | dictionary',
       'default': '<code><span class="typ-key">auto</span></code>'
     },
     'inset': {
-      'description': 'How much to pad the circle\'s content. See the [box\'s documentation](/docs/reference/layout/box/#parameters-inset) for more details.',
+      'description': 'Внутренние отступы содержимого круга. См. [документацию box](/docs/reference/layout/box/#parameters-inset) для подробностей.',
       'type': 'relative | dictionary',
       'default': '<code><span class="typ-num">0%</span> <span class="typ-op">+</span> <span class="typ-num">5pt</span></code>'
     },
     'outset': {
-      'description': 'How much to expand the circle\'s size without affecting the layout. See the [box\'s documentation](/docs/reference/layout/box/#parameters-outset) for more details.',
+      'description': 'Насколько расширить размер круга без влияния на макет. См. [документацию box](/docs/reference/layout/box/#parameters-outset) для подробностей.',
       'type': 'relative | dictionary',
       'default': '<code><span class="typ-punct">(</span><span class="typ-punct">:</span><span class="typ-punct">)</span></code>'
     },
     'body': {
-      'description': 'The content to place into the circle. The circle expands to fit this content, keeping the 1-1 aspect ratio.',
+      'description': 'Содержимое, помещаемое в круг. Круг расширяется, чтобы вместить это содержимое, сохраняя соотношение сторон 1:1.',
       'type': 'none | content',
       'default': '<code><span class="typ-key">none</span></code>'
     }
   }}
 />
-
-
